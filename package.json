@@ -1,0 +1,29 @@
+{
+  "name": "blended-music",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "@std/esm": "cjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mephisto83/blended-music.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mephisto83/blended-music/issues"
+  },
+  "homepage": "https://github.com/mephisto83/blended-music#readme",
+  "dependencies": {
+    "@std/esm": "^0.26.0",
+    "jsmidgen": "^0.1.5",
+    "midi-file-parser": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.1.6",
+    "babel-core": "^6.26.3"
+  }
+}
