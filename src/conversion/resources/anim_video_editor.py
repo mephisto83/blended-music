@@ -40,6 +40,10 @@ _scene = bpy.data.scenes[0]
 _scene.render.resolution_x = 1920
 _scene.render.resolution_y = 1080
 _scene.render.image_settings.file_format = 'FFMPEG'
+_scene.render.codec = 'H264'
+_scene.constant_rate_factor = 'HIGH'
+_scene.format = 'MKV'
+
 if render_out_path:
     _scene.render.filepath = render_out_path
 else:    

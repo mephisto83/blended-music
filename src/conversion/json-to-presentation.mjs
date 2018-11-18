@@ -7,7 +7,7 @@ import fs from 'fs';
 import path from 'path';
 import MidiJsonInformation from '../movie/midi-json-information.mjs';
 
-const FILEINFOJSON = 'filminfo.json';
+export const FILEINFOJSON = 'filminfo.json';
 
 export default class JsonToPresentationJson {
     constructor() {
@@ -310,6 +310,6 @@ export default class JsonToPresentationJson {
             tracks: tracksInfo
         })
 
-        // await Util.clearDirectory(`${outputDirectory}${path.sep}*`);
+        await Util.clearDirectory(`${outputDirectory}${path.sep}*`);
     }
 }

@@ -212,9 +212,7 @@ export default class Basic {
                 log(`no tracks found`)
             }
         var camera = me.addCamera();
-        if (fullMovie) {
-            me.addGround();
-        }
+        me.addGround();
         return {
             file: filename,
             start: 1,

@@ -192,6 +192,41 @@ export default class Util {
         })
     }
 
+    static async isDirectory(dir) {
+        return await new Promise((resolve, fail) => {
+            fs.stat(file, function (err, stat) {
+                if (err) {
+                    fail(err);
+                }
+                else {
+                    if (stat && stat.isDirectory()) {
+                        resolve(true);
+                    }
+                    else {
+                        resolve(false);
+                    }
+                }
+            });
+        });
+    }
+
+    static async readDirDeep(directory, withFile) {
+        return await new Promise(async (resolve, fail) => {
+            var result = [];
+
+            var files = Util.readDir(directory);
+            for (var i = 0; i < files.length; i++) {
+                if (await Util.isDirectory(path.join(directory, files[i]))) {
+                    result = [...result, ...Util.readDirDeep(path.join(directory, files[i]))]
+                }
+                else if (files[i] === withFile) {
+                    result.push(directory);
+                }
+            }
+            return result;
+        })
+    }
+
     static async clearDirectory(directory) {
         return await new Promise((resolve, fail) => {
             rimraf(directory, (err) => {

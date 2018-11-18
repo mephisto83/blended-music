@@ -23,6 +23,7 @@ var __dirname = path.resolve(path.dirname(''));
             count: 1,
             debounce: 1000
         });
+
         await BlendedMusic.JsonToPresentation.run({
             inputDir: __dirname + `${path.sep}test${path.sep}raw_json`,
             outputDir: __dirname + `${path.sep}test${path.sep}movie_json`,
@@ -32,6 +33,12 @@ var __dirname = path.resolve(path.dirname(''));
             count: 1,
             debounce: 1000
         });
+
+        await BlendedMusic.PresentationToYouTube.run({
+            videoInputDir: __dirname + `${path.sep}test${path.sep}movies`,
+            count: 1,
+            debounce: 1000     
+        })
     } catch (e) {
         console.log(e);
     }
