@@ -12,6 +12,7 @@ test/output/
 # Runtime data
 pids
 *.mid
+*.blend
 *.midi
 *.mkv
 *.mp4
