@@ -188,7 +188,7 @@ export default class Basic {
         me.duration = duration;
         var objects = me.objects;
         var keyframes = me.keyframes;
-        var fullMovie = true;
+        var fullMovie = false;
         if (fullMovie)
             if (raw.tracks) {
                 raw.tracks.filter(track => {

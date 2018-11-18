@@ -200,16 +200,27 @@ export default class JsonToPresentationJson {
         await JsonToPresentationJson.midisToMp3(
             mp3path,
             midipath, vlclocation);
-        var endframe = 40 || endFrame;
+        var endframe =  endFrame;
         var _blenderAnimationRenderTemplate = Template.bindTemplate(blenderAnimationRenderTemplate, {
             audio_file: mp3path,
             audio_output_window: '.\\output\\audio\\',
         });
 
-        await Util.executeSpawnCmd(`${outputDirectory}${path.sep}${batfile}`, [], {
-            detached: true,
-            cwd: outputDirectory
-        });
+        //
+        //blender --background --python ".\\{{pythonFile}}" 
+
+        await Util.executeSpawnCmd(`${blender}${path.sep}blender`, [
+            '--background',
+            '--python',
+            `.\\${pyfile}`
+        ], {
+                detached: true,
+                cwd: outputDirectory
+            });
+        // await Util.executeSpawnCmd(`${outputDirectory}${path.sep}${batfile}`, [], {
+        //     detached: true,
+        //     cwd: outputDirectory
+        // });
 
         var cameraTemplate = await JsonToPresentationJson.getCameraTemplate();
         var cameraCommands = '\r\n' + Template.bindTemplate(cameraTemplate, {
@@ -239,12 +250,33 @@ export default class JsonToPresentationJson {
 
             await Util.copyFile(resourceFilePath, `${outputDirectory}${path.sep}${resource}`)
         }));
-
-        await Util.executeSpawnCmd(`render.bat`, {
-            detached: true,
-            cwd: outputDirectory
-        });
-
+        //  presentation-bl-god_chpn_op10_e01.mid.blend  -P render.py  -x 1 -o //output/presentation-bl-god_chpn_op10_e01.mid/  -s 1 -e 40 -a  -- 1 40 "default_camera"
+        // await Util.executeSpawnCmd(`render.bat`, {
+        //     detached: true,
+        //     cwd: outputDirectory
+        // });
+        await Util.executeSpawnCmd(`${blender}${path.sep}blender`, [
+            '-b',
+            blendfile,
+            '-P',
+            'render.py',
+            '-x',
+            1,
+            '-o',
+            '//output/' + 'presentation-bl-' + fileName + '/',
+            '-s',
+            1,
+            '-e',
+            endFrame,
+            '-a',
+            '--',
+            1,
+            endFrame,
+            camera
+        ], {
+                detached: true,
+                cwd: outputDirectory
+            })
 
         await Util.writeFile(`${outputDirectory}${path.sep}renderanim.bat`, _blenderAnimationRenderTemplate);
         await Util.executeCmd(`renderanim.bat`, {
