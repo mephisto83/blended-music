@@ -16,7 +16,7 @@ export default class JsonToPresentationJson {
         return ({
             fileName: movieDefinition.fileName,
             "settings": {
-                "RenderEngine": "CYCLES",
+                "RenderEngine": movieDefinition.renderEngine || "CYCLES",
                 "FrameStart": movieDefinition.startFrame,
                 "FrameEnd": movieDefinition.startEnd,
                 "samples": "200",
@@ -154,6 +154,7 @@ export default class JsonToPresentationJson {
             movieDefinition,
             BlendObjects,
             Materials,
+            blender,
             outputDirectory,
             midiDir,
             file,
@@ -199,18 +200,10 @@ export default class JsonToPresentationJson {
         await JsonToPresentationJson.midisToMp3(
             mp3path,
             midipath, vlclocation);
-        var endframe = 30 || endFrame;
+        var endframe = 40 || endFrame;
         var _blenderAnimationRenderTemplate = Template.bindTemplate(blenderAnimationRenderTemplate, {
-            file: blendfile,
-            name: Util.fileToFolder(fileName),
             audio_file: mp3path,
-            endframe,
-            render_out_path: `${videoOutputDir}`,
             audio_output_window: '.\\output\\audio\\',
-            audio_output: '//output/audio/',
-            py_audio_output: '\\output\\audio\\',
-            py_output: '\\output\\' + 'presentation-bl-' + fileName + '\\',
-            output: '//output/' + 'presentation-bl-' + fileName + '/'
         });
 
         await Util.executeSpawnCmd(`${outputDirectory}${path.sep}${batfile}`, [], {
@@ -220,6 +213,7 @@ export default class JsonToPresentationJson {
 
         var cameraTemplate = await JsonToPresentationJson.getCameraTemplate();
         var cameraCommands = '\r\n' + Template.bindTemplate(cameraTemplate, {
+            blender: `${blender}${path.sep}`,
             file: blendfile,
             output: '//output/' + 'presentation-bl-' + fileName + '/',
             startframe: 1,
@@ -259,7 +253,8 @@ export default class JsonToPresentationJson {
         });
         //blender --background -P anim_video_editor.py -- "{{py_output}}" {{endframe}} "{{py_audio_output}}" "{{name}}" "{{render_out_path}}"
 
-        await Util.executeSpawnCmd('blender', [
+        //collect images and write to video file.
+        await Util.executeSpawnCmd(`${blender}${path.sep}blender`, [
             '--background',
             '-P',
             'anim_video_editor.py',

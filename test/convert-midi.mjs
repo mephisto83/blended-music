@@ -9,9 +9,11 @@ var __dirname = path.resolve(path.dirname(''));
 (async function () {
     //var converter = new BlendedMusic.MidiToJson();
     // var res = await converter.process(__dirname + '/test/midi', __dirname + '/test/output');
-
+    const blender = 'D:\\blender-2.80-d5c751012b3-win64\\blender-2.80.0-git.d5c751012b3-windows64';
     try {
         await BlendedMusic.Install.run({
+            blender,
+            version: "2.80",
             presentation: {
                 directory: 'D:\\dev\\Python\\Blender\\Presentation'
             }
@@ -25,6 +27,7 @@ var __dirname = path.resolve(path.dirname(''));
         });
 
         await BlendedMusic.JsonToPresentation.run({
+            blender,
             inputDir: __dirname + `${path.sep}test${path.sep}raw_json`,
             outputDir: __dirname + `${path.sep}test${path.sep}movie_json`,
             videoOutputDir: __dirname + `${path.sep}test${path.sep}movies`,
@@ -33,12 +36,21 @@ var __dirname = path.resolve(path.dirname(''));
             count: 1,
             debounce: 1000
         });
-
-        await BlendedMusic.PresentationToYouTube.run({
-            videoInputDir: __dirname + `${path.sep}test${path.sep}movies`,
-            count: 1,
-            debounce: 1000     
-        })
+        if (false)
+            await BlendedMusic.PresentationToYouTube.run({
+                credentialDirectory: `D:${path.sep}creds`,
+                videoInputDir: __dirname + `${path.sep}test${path.sep}movies`,
+                count: 1,
+                debounce: 1000
+            })
+        else if (false) {
+            await BlendedMusic.PresentationToYouTubePuppeteer.run({
+                credentialDirectory: `D:${path.sep}creds`,
+                videoInputDir: __dirname + `${path.sep}test${path.sep}movies`,
+                count: 1,
+                debounce: 1000
+            })
+        }
     } catch (e) {
         console.log(e);
     }

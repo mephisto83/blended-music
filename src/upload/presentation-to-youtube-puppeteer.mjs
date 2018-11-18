@@ -1,102 +1,154 @@
+
 import Util from '../util/util';
 import Template from '../util/template';
 import { log } from '../util/util';
 import * as A from '../util/array';
 import readline from 'readline';
 import * as GA from 'googleapis';
-var google = GA.default.google;
-var OAuth2 = google.auth.OAuth2;
 
 import fs from 'fs';
 import path from 'path';
 const YOUTUBEFILE = 'youtube.json';
 
 import { FILEINFOJSON } from '../conversion/json-to-presentation';
-
-// If modifying these scopes, delete your previously saved credentials
-// at ~/.credentials/youtube-nodejs-quickstart.json
-var SCOPES = [
-    'https://www.googleapis.com/auth/youtube',
-    'https://www.googleapis.com/auth/youtube.readonly',
-    'https://www.googleapis.com/auth/youtube.upload'
-];
-
-export default class PresentationToYoutube {
+import PuppeteerBase from '../puppeteer/puppeteer-base.mjs';
+const YOUTUBE_ADDRESS = 'https://www.youtube.com';
+const CREDENTIAL_FILE = 'creds.json';
+const SIGN_IN = 'SIGN IN';
+const PUBLISH = 'Publish';
+const NEXT = 'Next';
+export default class PresentationToYouTubePuppeteer extends PuppeteerBase {
     constructor(directory, credentialDirectory) {
+        super();
         this.directory = directory;
         this.credentialDirectory = credentialDirectory;
-        var TOKEN_DIR = `${(credentialDirectory)}${path.sep}.credentials${path.sep}`;
-        var TOKEN_PATH = TOKEN_DIR + 'youtube-presentation-to-youtube.json';
-        this.TOKEN_DIR = TOKEN_DIR;
-        this.TOKEN_PATH = TOKEN_PATH;
         this.oauth2Client = null;
         this.youtube = null;
     }
-    async init() {
+    async openYoutube() {
         var me = this;
-        return await new Promise(async (resolve) => {
-
-            // Load client secrets from a local file.
-            fs.readFile(`${this.credentialDirectory}${path.sep}client_secret.json`, async function processClientSecrets(err, content) {
-                if (err) {
-                    console.log('Error loading client secret file: ' + err);
-                    return;
-                }
-                // Authorize a client with the loaded credentials, then call the YouTube API.
-                await me.authorize(JSON.parse(content));
-                me.channel = await me.getChannel();
-                resolve();
-            });
-        });
+        me.open(YOUTUBE_ADDRESS)
     }
-    async initYoutube() {
+    async signIn() {
         var me = this;
-        // initialize the Youtube API library
-        const youtube = google.youtube({
-            version: 'v3',
-            auth: me.oauth2Client,
-        });
+        var creds = await Util.readJson(path.join(this.credentialDirectory, CREDENTIAL_FILE));
+        log(creds);
 
-        me.youtube = youtube;
+        await me.waitFor('paper-button', SIGN_IN);
+        await me.clickOn('paper-button', SIGN_IN);
+
+        await me.waitFor('input[type="email"]');
+        await me.enterText('input[type="email"]', creds.username);
+
+        await me.waitFor('[id="identifierNext"]', NEXT);
+        await me.clickOn('[id="identifierNext"]', NEXT);
+
+        await me.waitFor('[type="password"]');
+        await me.enterText('input[type="password"]', creds.password);
+
+        await me.wait();
+
+        await me.waitFor('[id="passwordNext"]');
+        await me.clickOn('[id="passwordNext"]', NEXT);
+
+        await me.wait();
+
+        if (await me.isThere('.yt-dialog-base .yt-user-name', creds.channelName)) {
+            await me.clickOn('.yt-dialog-base .yt-user-name', creds.channelName)
+        }
+
+        return true;
+    }
+    async init() {
+        log('initializing browser');
+        await this.start();
+        var me = this;
+        await me.openYoutube();
+
+        me.signedIn = await me.signIn();
+    }
+
+    async uploadScreen() {
+        await this.clickOn('[aria-label="Create a video or post"]');
+        await this.wait();
+
+        await this.clickOn('paper-item', 'Upload video');
+        await this.wait();
     }
 
     // very basic example of uploading a video to youtube
     async  upload(file, info) {
         var { title, description, tags } = info;
         const fileSize = fs.statSync(file).size;
-        const res = await this.youtube.videos.insert(
-            {
-                part: 'id,snippet,status',
-                notifySubscribers: false,
-                requestBody: {
-                    snippet: {
-                        title: title || 'Node.js YouTube Upload Test',
-                        description: description || 'Testing YouTube upload via Google APIs Node.js Client',
-                        tags: tags || []
-                    },
-                    status: {
-                        privacyStatus: 'private',
-                    },
-                },
-                media: {
-                    body: fs.createReadStream(file),
-                },
-            },
-            {
-                // Use the `onUploadProgress` event from Axios to track the
-                // number of bytes uploaded to this point.
-                onUploadProgress: evt => {
-                    const progress = (evt.bytesRead / fileSize) * 100;
-                    readline.clearLine();
-                    readline.cursorTo(0);
-                    process.stdout.write(`${Math.round(progress)}% complete`);
-                },
-                onError: evt => {
-                    log(evt);
-                }
-            }
-        )
-        return res;
+
+        await this.uploadScreen();
+
+        await this.waitFor('[type="file"]');
+
+        const filePath = file;
+        const input = await this.page.$('input[type="file"]');
+        await input.uploadFile(filePath);
+
+        await this.wait();
+
+        await this.waitFor('input[name="title"]');
+        await this.enterText('input[name="title"]', title);
+
+        await this.wait();
+
+        await this.waitFor('textarea[name="description"]');
+        await this.enterText('textarea[name="description"]', description);
+
+
+        await this.wait();
+        for (var i = 0; i < tags.length; i++) {
+            var tag = tags[i];
+            await this.sendText('.video-settings-add-tag', tag);
+        }
+
+
+
+        await this.waitFor('button', PUBLISH);
+
+        var link = await this.readText('.watch-page-link a');
+
+        await this.clickOn('button', PUBLISH);
+        // const res = await this.youtube.videos.insert(
+        //     {
+        //         part: 'id,snippet,status',
+        //         notifySubscribers: false,
+        //         requestBody: {
+        //             snippet: {
+        //                 title: title || 'Node.js YouTube Upload Test',
+        //                 description: description || 'Testing YouTube upload via Google APIs Node.js Client',
+        //                 tags: tags || []
+        //             },
+        //             status: {
+        //                 privacyStatus: 'private',
+        //             },
+        //         },
+        //         media: {
+        //             body: fs.createReadStream(file),
+        //         },
+        //     },
+        //     {
+        //         // Use the `onUploadProgress` event from Axios to track the
+        //         // number of bytes uploaded to this point.
+        //         onUploadProgress: evt => {
+        //             const progress = (evt.bytesRead / fileSize) * 100;
+        //             readline.clearLine();
+        //             readline.cursorTo(0);
+        //             process.stdout.write(`${Math.round(progress)}% complete`);
+        //         },
+        //         onError: evt => {
+        //             log(evt);
+        //         }
+        //     }
+        // )
+        return {
+            ...info,
+            link
+        };
     }
     /**
      * Create an OAuth2 client with the given credentials, and then execute the
@@ -247,10 +299,10 @@ export default class PresentationToYoutube {
         log(`ensuring directory:${videoInputDir} exists`)
         await Util.ensureDirectory(videoInputDir);
 
-        var converter = new PresentationToYoutube(videoInputDir, credentialDirectory);
+        var converter = new PresentationToYouTubePuppeteer(videoInputDir, credentialDirectory);
         converter.options = ops;
+
         await converter.init();
-        await converter.initYoutube();
         do {
             await converter.process(videoInputDir, videoInputDir);
             await Util.wait(debounce);
@@ -294,10 +346,12 @@ export default class PresentationToYoutube {
                     var result = await me.upload(path.join(sub_dir, file_to_upload), {
                         title: infoJon.name,
                         tags: tags,
-                        description: `${infoJon.build.name} vers ${infoJon.build.version} 
+                        description: `${infoJon.build.name} 
+                        v${infoJon.build.version}
                         instruments : ${instruments.join()}`
                     });
-                    await Util.writeJsonToFile(path.join(sub_dir, YOUTUBEFILE), result);
+                    if (result)
+                        await Util.writeJsonToFile(path.join(sub_dir, YOUTUBEFILE), result);
                 }
             }
         }));

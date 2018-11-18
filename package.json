@@ -19,6 +19,8 @@
   "homepage": "https://github.com/mephisto83/blended-music#readme",
   "dependencies": {
     "@std/esm": "^0.26.0",
+    "google-auth-library": "^2.0.1",
+    "googleapis": "^35.0.0",
     "jsmidgen": "^0.1.5",
     "midi-file-parser": "^1.0.0",
     "puppeteer": "^1.10.0",

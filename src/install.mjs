@@ -9,10 +9,11 @@ export default class Install {
         if (ops.presentation && ops.presentation.directory) {
             log('installing Presentation addons')
             var { directory } = ops.presentation;
-            await Util.executeSpawnCmd(`${directory}${path.sep}PresentationInstall.bat`, [], {
-                detached: true,
-                cwd: directory
-            });
+            await Util.executeSpawnCmd(`${ops.blender}${path.sep}blender`,
+                ['-b', '--python', 'PresentationInstall.py', '--', ops.blender, ops.version], {
+                    detached: true,
+                    cwd: directory
+                });
         }
     }
 }

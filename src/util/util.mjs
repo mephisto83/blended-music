@@ -11,6 +11,10 @@ export default class Util {
     static async readDirectory(dir) {
         return await Util.readDir(dir);
     }
+    static async getFilesWith(directory, match) {
+        var files = await Util.readDir(directory);
+        return files.filter(t => t.indexOf(match) !== -1);
+    }
     static async readDir(director) {
         if (await Util.directoryExists(director)) {
             return await new Promise((resolve, fail) => {
@@ -125,6 +129,13 @@ export default class Util {
             });
         });
     }
+    static async fileExists(dir) {
+        return await new Promise((resolve, fail) => {
+            fs.exists(dir, (res) => {
+                return resolve(res);
+            });
+        });
+    }
     static async copyFile(source, target) {
         log('source');
         log(source);
@@ -194,7 +205,7 @@ export default class Util {
 
     static async isDirectory(dir) {
         return await new Promise((resolve, fail) => {
-            fs.stat(file, function (err, stat) {
+            fs.stat(dir, function (err, stat) {
                 if (err) {
                     fail(err);
                 }
@@ -211,20 +222,23 @@ export default class Util {
     }
 
     static async readDirDeep(directory, withFile) {
-        return await new Promise(async (resolve, fail) => {
-            var result = [];
-
-            var files = Util.readDir(directory);
-            for (var i = 0; i < files.length; i++) {
-                if (await Util.isDirectory(path.join(directory, files[i]))) {
-                    result = [...result, ...Util.readDirDeep(path.join(directory, files[i]))]
-                }
-                else if (files[i] === withFile) {
-                    result.push(directory);
-                }
+        var result = [];
+        var hasfile = false;
+        var files = await Util.readDir(directory);
+        for (var i = 0; i < files.length; i++) {
+            if (await Util.isDirectory(path.join(directory, files[i]))) {
+                var moredirs = (await Util.readDirDeep(path.join(directory, files[i]), withFile));
+                result = [...result, ...moredirs];
             }
-            return result;
-        })
+            else if (files[i] === withFile) {
+                hasfile = true;
+            }
+        }
+        if (hasfile) {
+            result.push(directory);
+        }
+
+        return result;
     }
 
     static async clearDirectory(directory) {
