@@ -5,7 +5,8 @@
   "main": "index.js",
   "@std/esm": "cjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    
+    "test": "node --experimental-modules ./test/convert-midi.mjs"
   },
   "repository": {
     "type": "git",
