@@ -11,6 +11,10 @@ test/raw_json/
 test/output/
 # Runtime data
 pids
+*.mid
+*.midi
+*.mkv
+*.mp4
 *.pid
 *.seed
 *.pid.lock
