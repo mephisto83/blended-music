@@ -62,7 +62,29 @@ export default class Basic {
 
         return res;
     }
+    addGround() {
+        var me = this;
 
+        var handles = {
+            "y_keyframe_point": {
+                'handle_left_type': 'VECTOR',
+                'handle_right_type': 'VECTOR'
+            }
+        }
+
+        me.objects.push({
+            "name": "default_ground_plane",
+            "type": "plane"
+        });
+
+        var frame = me.getKeyFrame(1);
+        frame.objects.push({
+            "name": "default_ground_plane",
+            "scale": { x: 1000, y: 1000, z: 1 },
+            "translate": { "x": 0, "y": 0, "z": 0 }
+        })
+
+    }
     addCamera() {
         var me = this;
 
@@ -82,9 +104,6 @@ export default class Basic {
         }, {
                 "name": "default_empty",
                 "type": "empty"
-            }, {
-                "name": "default_ground_plane",
-                "type": "plane"
             }, {
                 "name": "default_sun",
                 "strength": 3,
@@ -113,10 +132,6 @@ export default class Basic {
                     "z": 2.2,
                     ...handles
                 }
-            }, {
-                "name": "default_ground_plane",
-                "scale": { x: 1000, y: 1000, z: 1 },
-                "translate": { "x": 0, "y": 0, "z": 0 }
             }, {
                 "name": "default_sun",
                 "type": "lamp",
@@ -173,7 +188,8 @@ export default class Basic {
         me.duration = duration;
         var objects = me.objects;
         var keyframes = me.keyframes;
-        if (false)
+        var fullMovie = false;
+        if (fullMovie)
             if (raw.tracks) {
                 raw.tracks.filter(track => {
                     return !track.isPercussion
@@ -196,7 +212,9 @@ export default class Basic {
                 log(`no tracks found`)
             }
         var camera = me.addCamera();
-
+        if (fullMovie) {
+            me.addGround();
+        }
         return {
             file: filename,
             start: 1,
@@ -206,7 +224,7 @@ export default class Basic {
             keyframes,
             objects,
             startFrame: 1,
-            startEnd: lastFrame,
+            endFrame: lastFrame,
             camera
         }
     }

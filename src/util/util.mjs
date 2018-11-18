@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs';
+import rimraf from 'rimraf';
 import child_process from 'child_process';
 let exec = child_process.exec;
 let spawn = child_process.spawn;
@@ -169,7 +170,9 @@ export default class Util {
             });
         });
 
-        return await promise;
+        await promise;
+
+        return current;
     }
     static async ensureDirectory(dir) {
         var alreadyExists = await Util.directoryExists(dir);
@@ -189,21 +192,36 @@ export default class Util {
         })
     }
 
+    static async clearDirectory(directory) {
+        return await new Promise((resolve, fail) => {
+            rimraf(directory, (err) => {
+                if (err) {
+                    fail(err);
+                }
+                else {
+                    resolve();
+                }
+            });
+        });
+    }
 
     static async executeCmd(cmd, options) {
         return await new Promise(function (resolve, fail) {
             var child = exec(cmd, options, function (error, stdout, stderr) {
                 if (error != null) {
-                    console.log(error);;
+                    log(error);
                     fail(error);
                 }
                 resolve();
             });
             child.stdout.on('data', function (data) {
+                log(data);
             });
             child.stderr.on('data', function (data) {
+                log(data);
             });
             child.on('close', function (code) {
+                log(code);
             });
         });
     }

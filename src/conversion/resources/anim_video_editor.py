@@ -22,7 +22,12 @@ if(argv[2]):
 renderPath = "default"
 if(argv[3]):
 	renderPath = argv[3]+"_"
+
+render_out_path = False
+if(argv[4]):
+    render_out_path = argv[4]
   # --> ['example', 'args', '123']
+
 scene = context.scene
 
 print("starting ")
@@ -34,8 +39,11 @@ files.sort()
 _scene = bpy.data.scenes[0]
 _scene.render.resolution_x = 1920
 _scene.render.resolution_y = 1080
-_scene.render.image_settings.file_format = 'H264'
-_scene.render.filepath = "//output/" + renderPath
+_scene.render.image_settings.file_format = 'FFMPEG'
+if render_out_path:
+    _scene.render.filepath = render_out_path
+else:    
+    _scene.render.filepath = "//output/" + renderPath
 _scene.render.ffmpeg.audio_codec = 'MP3'
 
 print(files[0])

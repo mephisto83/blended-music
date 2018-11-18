@@ -7,6 +7,7 @@ import fs from 'fs';
 import path from 'path';
 import MidiJsonInformation from '../movie/midi-json-information.mjs';
 
+const FILEINFOJSON = 'filminfo.json';
 
 export default class JsonToPresentationJson {
     constructor() {
@@ -48,13 +49,16 @@ export default class JsonToPresentationJson {
             outputDir,
             movieBuilders,
             count,
-            debounce
+            debounce,
+            videoOutputDir
         } = ops;
 
         log(`ensuring directory:${outputDir} exists`)
         await Util.ensureDirectory(outputDir);
         log(`ensuring directory:${inputDir} exists`)
         await Util.ensureDirectory(inputDir);
+        log(`ensuring directory:${inputDir} exists`)
+        await Util.ensureDirectory(videoOutputDir);
 
         var converter = new JsonToPresentationJson();
         converter.options = ops;
@@ -87,11 +91,15 @@ export default class JsonToPresentationJson {
                     var movie = await builder.buildMovie(file_path, file, info);
                     log(`creating directory: ${dir_path}`);
                     await Util.ensureDirectoryDeep(outpath, [folderName, infobuilder.name, infobuilder.version]);
+                    let videoOutputDir = await Util.ensureDirectoryDeep(me.options.videoOutputDir, [folderName, infobuilder.name, infobuilder.version]);
                     log('built folder structure');
                     await JsonToPresentationJson.saveMidiMovie({
                         ...me.options,
+                        videoOutputDir,
                         movieDefinition: movie,
                         file,
+                        midiInfo: info,
+                        infobuilder,
                         outputDirectory: dir_path
                     });
                 }
@@ -142,8 +150,19 @@ export default class JsonToPresentationJson {
 
     static async saveMidiMovie(ops) {
         log(ops);
-        var { movieDefinition, BlendObjects, Materials, outputDirectory, midiDir, file, vlclocation } = ops;
-        var { fileName, camera } = movieDefinition;
+        var {
+            movieDefinition,
+            BlendObjects,
+            Materials,
+            outputDirectory,
+            midiDir,
+            file,
+            vlclocation,
+            midiInfo,
+            infobuilder,
+            videoOutputDir
+        } = ops;
+        var { fileName, camera, endFrame, startFrame } = movieDefinition;
         var audio_file = fileName.split('').subset(0, fileName.lastIndexOf('.')).join('') + '.mp3';
 
         var jsonFileName = 'presentation-json-' + fileName + '.json';
@@ -159,6 +178,7 @@ export default class JsonToPresentationJson {
         var pythonScripeTemplate = await JsonToPresentationJson.getPythonScriptTemplate();
         var batFileTemplate = await JsonToPresentationJson.getBatFileTemplate();
         var renderTemplate = await JsonToPresentationJson.getFile('render.tpl');
+        var blenderAnimationRenderTemplate = await JsonToPresentationJson.getFile('blender-render.tpl');
 
         var pythonFile = Template.bindTemplate(pythonScripeTemplate, {
             jsonfile: jsonFileName,
@@ -169,17 +189,29 @@ export default class JsonToPresentationJson {
             pythonFile: pyfile
         });
 
-
-
         log(`write python file`);
         await Util.writeFile(`${outputDirectory}${path.sep}${pyfile}`, pythonFile);
 
         log(`write bat file`);
         await Util.writeFile(`${outputDirectory}${path.sep}${batfile}`, _batFileTemplate);
-
+        let mp3path = `${outputDirectory}${path.sep}${audio_file}`;
+        let midipath = `${midiDir}${path.sep}${fileName}`;
         await JsonToPresentationJson.midisToMp3(
-            `${outputDirectory}${path.sep}${audio_file}`,
-            `${midiDir}${path.sep}${fileName}`, vlclocation);
+            mp3path,
+            midipath, vlclocation);
+        var endframe = 30 || endFrame;
+        var _blenderAnimationRenderTemplate = Template.bindTemplate(blenderAnimationRenderTemplate, {
+            file: blendfile,
+            name: Util.fileToFolder(fileName),
+            audio_file: mp3path,
+            endframe,
+            render_out_path: `${videoOutputDir}`,
+            audio_output_window: '.\\output\\audio\\',
+            audio_output: '//output/audio/',
+            py_audio_output: '\\output\\audio\\',
+            py_output: '\\output\\' + 'presentation-bl-' + fileName + '\\',
+            output: '//output/' + 'presentation-bl-' + fileName + '/'
+        });
 
         await Util.executeSpawnCmd(`${outputDirectory}${path.sep}${batfile}`, [], {
             detached: true,
@@ -191,7 +223,7 @@ export default class JsonToPresentationJson {
             file: blendfile,
             output: '//output/' + 'presentation-bl-' + fileName + '/',
             startframe: 1,
-            endframe: 2,
+            endframe,
             camera: camera
         }) + '\r\n';
 
@@ -214,10 +246,70 @@ export default class JsonToPresentationJson {
             await Util.copyFile(resourceFilePath, `${outputDirectory}${path.sep}${resource}`)
         }));
 
-        await Util.executeCmd(`render.bat`, {
+        await Util.executeSpawnCmd(`render.bat`, {
             detached: true,
             cwd: outputDirectory
         });
 
+
+        await Util.writeFile(`${outputDirectory}${path.sep}renderanim.bat`, _blenderAnimationRenderTemplate);
+        await Util.executeCmd(`renderanim.bat`, {
+            detached: true,
+            cwd: outputDirectory
+        });
+        //blender --background -P anim_video_editor.py -- "{{py_output}}" {{endframe}} "{{py_audio_output}}" "{{name}}" "{{render_out_path}}"
+
+        await Util.executeSpawnCmd('blender', [
+            '--background',
+            '-P',
+            'anim_video_editor.py',
+            '--',
+            '\\output\\' + 'presentation-bl-' + fileName + '\\',
+            endframe,
+            '\\output\\audio\\',
+            Util.fileToFolder(fileName),
+            `${videoOutputDir}${path.sep}${Util.fileToFolder(fileName)}`
+
+        ], {
+                detached: true,
+                cwd: outputDirectory
+            });
+        var tracksInfo = [];
+        if (midiInfo) {
+            var { raw } = midiInfo;
+            if (raw) {
+                var { header, tracks } = raw;
+                if (header) {
+                    var { timeSignature, bpm, name, PPQ } = header;
+                }
+                if (tracks) {
+                    tracks.forEach((track, index) => {
+                        if (track) {
+                            tracksInfo.push({
+                                name: track.name,
+                                index,
+                                instrument: track.instrument,
+                                instrumentFamily: track.instrumentFamily,
+                                channelNumber: track.channelNumber,
+                                instrumentNumber: track.instrumentNumber
+                            })
+                        }
+                    });
+                }
+            }
+        }
+        await Util.writeJsonToFile(`${videoOutputDir}${path.sep}${FILEINFOJSON}`, {
+            build: infobuilder,
+            duration: midiInfo.duration,
+            ppq: PPQ,
+            name,
+            timeSignature,
+            bpm,
+            startFrame: 1,
+            endFrame: endframe,
+            tracks: tracksInfo
+        })
+
+        // await Util.clearDirectory(`${outputDirectory}${path.sep}*`);
     }
 }

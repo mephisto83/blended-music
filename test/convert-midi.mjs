@@ -26,6 +26,7 @@ var __dirname = path.resolve(path.dirname(''));
         await BlendedMusic.JsonToPresentation.run({
             inputDir: __dirname + `${path.sep}test${path.sep}raw_json`,
             outputDir: __dirname + `${path.sep}test${path.sep}movie_json`,
+            videoOutputDir: __dirname + `${path.sep}test${path.sep}movies`,
             movieBuilders: [Basic],
             midiDir: __dirname + `${path.sep}test${path.sep}midi`,
             count: 1,
