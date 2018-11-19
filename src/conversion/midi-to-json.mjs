@@ -25,8 +25,12 @@ export default class MidiToJson {
 
             fs.readFile(file, "binary", function (err, midiBlob) {
                 if (!err) {
-                    var midi = MidiConvert.parse(midiBlob);
-                    resolve(midi);
+                    try {
+                        var midi = MidiConvert.parse(midiBlob);
+                        resolve(midi);
+                    } catch (e) {
+                        fail(e);
+                    }
                 }
                 fail(err);
             });
@@ -44,11 +48,13 @@ export default class MidiToJson {
     async process(directory, outpath) {
         var completeFiles = await Util.readDir(outpath);
         var jsonArray = await this.convertDirectory(directory, completeFiles);
-        await Promise.all(jsonArray.map(async processedFile => {
+
+        for (var i = 0; i < jsonArray.length; i++) {
+            var processedFile = jsonArray[i];
             let _out_path_ = `${outpath}${path.sep}${processedFile.file}`;
             log(_out_path_);
             return await Util.writeJsonToFile(_out_path_, processedFile.data);
-        }));
+        }
 
         return jsonArray.length;
     }
@@ -61,15 +67,21 @@ export default class MidiToJson {
         log(`found  ${files.length}`)
         var filesToConvert = files.filter(t => matching(t));
         log(`found ${files.length} to convert`);
-        return await Promise.all(filesToConvert.map(async file => {
+        var result = [];
+        for (var i = 0; i < filesToConvert.length; i++) {
+            var file = filesToConvert[i];
+            try {
+                var json = await MidiToJson.convertFile(`${directory}${path.sep}${file}`);
 
-            var json = await MidiToJson.convertFile(`${directory}${path.sep}${file}`);
-
-            return {
-                data: json,
-                file,
-                directory
-            };
-        }));
+                result.push({
+                    data: json,
+                    file,
+                    directory
+                });
+            } catch (e) {
+                log(e);
+            }
+        };
+        return result;
     }
 }

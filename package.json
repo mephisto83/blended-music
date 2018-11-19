@@ -5,7 +5,9 @@
   "main": "index.js",
   "@std/esm": "cjs",
   "scripts": {
-    "test": "node --experimental-modules ./test/convert-midi.mjs"
+    "test": "node --experimental-modules ./test/convert-midi.mjs",
+    "upstairs": "node --experimental-modules ./test/upstairs.mjs",
+    "midi-to-json": "node --experimental-modules ./test/midi-to-json.mjs"
   },
   "repository": {
     "type": "git",

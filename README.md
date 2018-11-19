@@ -9,4 +9,5 @@
 
 ## setup blender
 
-- Add blender to your environment PATH
+- Add a path to your version of blender
+- Update the version if required(default 2.80)
