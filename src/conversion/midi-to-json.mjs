@@ -49,12 +49,15 @@ export default class MidiToJson {
         var completeFiles = await Util.readDir(outpath);
         var jsonArray = await this.convertDirectory(directory, completeFiles);
 
-        for (var i = 0; i < jsonArray.length; i++) {
-            var processedFile = jsonArray[i];
+        //for (var i = 0; i < jsonArray.length; i++) {
+        var i = 0;
+        var processedFile = jsonArray[i];
+        if (processedFile) {
             let _out_path_ = `${outpath}${path.sep}${processedFile.file}`;
             log(_out_path_);
             return await Util.writeJsonToFile(_out_path_, processedFile.data);
         }
+        //}
 
         return jsonArray.length;
     }

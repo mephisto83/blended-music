@@ -75,13 +75,17 @@ export default class JsonToPresentationJson {
         movieBuilders = movieBuilders || [];
         var files = await Util.readDir(directory);
         var me = this;
-        await Promise.all(files.map(async file => {
+        //        await Promise.all(files.map(async file => {
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
             var folderName = Util.fileToFolder(file);
             var file_path = `${directory}${path.sep}${file}`;
             var json = await Util.readJson(file_path);
             var info = MidiJsonInformation.getInformation(json);
 
-            await Promise.all(movieBuilders.map(async builder => {
+            // await Promise.all(movieBuilders.map(async builder => {
+            for (var j = 0; j < movieBuilders.length; j++) {
+                var builder = movieBuilders[j];
                 var infobuilder = builder.info();
                 var dir_path = `${outpath}${path.sep}${folderName}${path.sep}${infobuilder.name}${path.sep}${infobuilder.version}`;
                 log(`check if ${dir_path}`)
@@ -106,8 +110,8 @@ export default class JsonToPresentationJson {
                 else {
                     log(`${dir_path} already exists`)
                 }
-            }));
-        }));
+            }
+        }
         log(`processed ${directory}`)
     }
 
@@ -200,7 +204,7 @@ export default class JsonToPresentationJson {
         await JsonToPresentationJson.midisToMp3(
             mp3path,
             midipath, vlclocation);
-        var endframe =  endFrame;
+        var endframe = endFrame;
         var _blenderAnimationRenderTemplate = Template.bindTemplate(blenderAnimationRenderTemplate, {
             audio_file: mp3path,
             audio_output_window: '.\\output\\audio\\',
