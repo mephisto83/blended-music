@@ -13,8 +13,11 @@ export default class Basic {
     static info() {
         return {
             name: 'Basic',
-            version: '0.0.1'
+            version: '0.0.2'
         }
+    }
+    renderEngine() {
+        return 'BLENDER_EEVEE';
     }
     getKeyFrame(frameIndex) {
         var keyframe = this.keyframes.find(t => t.frame === frameIndex);
@@ -85,17 +88,30 @@ export default class Basic {
         })
 
     }
-    addCamera() {
-        var me = this;
-
-        var default_camera = 'default_camera';
+    getHandles() {
 
         var handles = {
             "y_keyframe_point": {
                 'handle_left_type': 'VECTOR',
                 'handle_right_type': 'VECTOR'
+            }, "x_keyframe_point": {
+                'handle_left_type': 'VECTOR',
+                'handle_right_type': 'VECTOR'
+            }, "z_keyframe_point": {
+                'handle_left_type': 'VECTOR',
+                'handle_right_type': 'VECTOR'
             }
+
         }
+
+        return handles;
+    }
+    addCamera() {
+        var me = this;
+
+        var default_camera = 'default_camera';
+
+        var handles = me.getHandles();
 
 
         me.objects.push({
@@ -178,6 +194,39 @@ export default class Basic {
             return basic._buildMovie(filepath, filename, info, ops);
         });
     }
+    constructMovie(raw) {
+        var me = this;
+        var objects = me.objects;
+        if (raw.tracks) {
+            raw.tracks.filter(track => {
+                return !track.isPercussion
+            }).forEach((track, track_index) => {
+                if (track && track.notes) {
+                    track.notes.forEach((note, note_index) => {
+                        let name = `track-${track_index}-${note.name}-${note_index}`;
+                        objects.push({
+                            name,
+                            type: "cube"
+                        });
+                        let keyframe = me.getKeyFrame(1);
+                        let note_frame = me.createNoteKeyFrame(note, name);
+                        keyframe.objects.push(note_frame);
+                    });
+                }
+            });
+        }
+        else {
+            log(`no tracks found`)
+        }
+    }
+    getMapping() {
+        var me = this;
+        var result = {};
+        for (var i = me.firstFrame; i <= me.lastFrame + 1; i++) {
+            result[i] = 1;
+        }
+        return result;
+    }
     _buildMovie(filepath, filename, info, ops) {
         var me = this;
         ops = ops || {};
@@ -186,34 +235,16 @@ export default class Basic {
         me.framesPerSecond = ops.framesPerSecond;
         var lastFrame = Math.ceil(ops.framesPerSecond * duration);
         me.duration = duration;
+        me.lastFrame = lastFrame;
+        me.firstFrame = 1;
         var objects = me.objects;
         var keyframes = me.keyframes;
-        var fullMovie = true;
-        if (fullMovie)
-            if (raw.tracks) {
-                raw.tracks.filter(track => {
-                    return !track.isPercussion
-                }).forEach((track, track_index) => {
-                    if (track && track.notes) {
-                        track.notes.forEach((note, note_index) => {
-                            let name = `track-${track_index}-${note.name}-${note_index}`;
-                            objects.push({
-                                name,
-                                type: "cube"
-                            });
-                            let keyframe = me.getKeyFrame(1);
-                            let note_frame = me.createNoteKeyFrame(note, name);
-                            keyframe.objects.push(note_frame);
-                        });
-                    }
-                });
-            }
-            else {
-                log(`no tracks found`)
-            }
+        me.constructMovie(raw);
+
         var camera = me.addCamera();
-        me.addGround();
+        var mapping = me.getMapping();
         return {
+            mapping,
             file: filename,
             start: 1,
             orginalName: filename,
@@ -223,7 +254,7 @@ export default class Basic {
             objects,
             startFrame: 1,
             endFrame: lastFrame,
-            renderEngine: 'BLENDER_EEVEE',
+            renderEngine: me.renderEngine(),
             camera
         }
     }

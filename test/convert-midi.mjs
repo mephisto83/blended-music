@@ -3,6 +3,7 @@ import MidiJsonInformation from '../src/movie/midi-json-information';
 import path from 'path';
 import Util from '../src/util/util.mjs';
 import Basic from '../src/movie/basic.mjs';
+import SingleFrameBasic from '../src/movie/single-frame-basic.mjs'
 
 var __dirname = path.resolve(path.dirname(''));
 
@@ -25,13 +26,12 @@ var __dirname = path.resolve(path.dirname(''));
             count: 1,
             debounce: 1000
         });
-
         await BlendedMusic.JsonToPresentation.run({
             blender,
             inputDir: __dirname + `${path.sep}test${path.sep}raw_json`,
             outputDir: __dirname + `${path.sep}test${path.sep}movie_json`,
             videoOutputDir: __dirname + `${path.sep}test${path.sep}movies`,
-            movieBuilders: [Basic],
+            movieBuilders: [SingleFrameBasic],
             midiDir: __dirname + `${path.sep}test${path.sep}midi`,
             count: 1,
             debounce: 1000

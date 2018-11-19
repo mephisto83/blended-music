@@ -15,6 +15,7 @@ export default class JsonToPresentationJson {
     static createJsonFrom(movieDefinition, BlendObjects, Materials) {
         return ({
             fileName: movieDefinition.fileName,
+            mapping: movieDefinition.mapping,
             "settings": {
                 "RenderEngine": movieDefinition.renderEngine || "CYCLES",
                 "FrameStart": movieDefinition.startFrame,
@@ -167,7 +168,7 @@ export default class JsonToPresentationJson {
             infobuilder,
             videoOutputDir
         } = ops;
-        var { fileName, camera, endFrame, startFrame } = movieDefinition;
+        var { fileName, camera, endFrame, startFrame, mapping } = movieDefinition;
         var audio_file = fileName.split('').subset(0, fileName.lastIndexOf('.')).join('') + '.mp3';
 
         var jsonFileName = 'presentation-json-' + fileName + '.json';
@@ -231,7 +232,7 @@ export default class JsonToPresentationJson {
             blender: `${blender}${path.sep}`,
             file: blendfile,
             output: '//output/' + 'presentation-bl-' + fileName + '/',
-            startframe: 1,
+            startframe: startFrame,
             endframe,
             camera: camera
         }) + '\r\n';
@@ -259,28 +260,17 @@ export default class JsonToPresentationJson {
         //     detached: true,
         //     cwd: outputDirectory
         // });
-        await Util.executeSpawnCmd(`${blender}${path.sep}blender`, [
-            '-b',
+
+        await JsonToPresentationJson.renderMapping({
+            blender,
             blendfile,
-            '-P',
-            'render.py',
-            '-x',
-            1,
-            '-o',
-            '//output/' + 'presentation-bl-' + fileName + '/',
-            '-s',
-            1,
-            '-e',
+            startFrame,
             endFrame,
-            '-a',
-            '--',
-            1,
-            endFrame,
-            camera
-        ], {
-                detached: true,
-                cwd: outputDirectory
-            })
+            camera,
+            mapping,
+            outputDirectory,
+            fileName,
+        })
 
         await Util.writeFile(`${outputDirectory}${path.sep}renderanim.bat`, _blenderAnimationRenderTemplate);
         await Util.executeCmd(`renderanim.bat`, {
@@ -342,5 +332,70 @@ export default class JsonToPresentationJson {
         })
 
         await Util.clearDirectory(`${outputDirectory}${path.sep}*`);
+    }
+
+    static async renderMapping(ops) {
+        var {
+            blender,
+            blendfile,
+            startFrame,
+            endFrame,
+            camera,
+            mapping,
+            outputDirectory
+        } = ops;
+        var chunks = [];
+        var currentChunk = null;
+        var currentFrame = 1;
+        for (var _i in mapping) {
+            var i = parseInt(_f);
+            if (currentChunk === null) {
+                currentChunk = {
+                    start: i
+                };
+                if (mapping[_i] !== 1) {
+                    currentChunk.end = i;
+                }
+            }
+            else if (currentChunk.start === i - 1) {// the next frame if just rendering
+
+            }
+            else if (currentChunk.start !== i - 1) {
+                currentChunk.end = currentChunk.start + parseInt(mapping[currentChunk.start]) - 1;
+                chunks.push(currentChunk);
+                currentChunk = {
+                    start: i
+                }
+            }
+        }
+        currentChunk.end = currentChunk.start + parseInt(mapping[currentChunk.start]) - 1;
+        chunks.push(currentChunk);
+        for (var y = 0; y < chunks.length; y++) {
+            currentChunk = chunks[y];
+            var { start, end } = currentChunk;
+            await Util.executeSpawnCmd(`${blender}${path.sep}blender`, [
+                '-b',
+                blendfile,
+                '-P',
+                'render.py',
+                '-x',
+                1,
+                '-o',
+                '//output/' + 'presentation-bl-' + fileName + '/',
+                '-s',
+                start,
+                '-e',
+                end,
+                '-a',
+                '--',
+                start,
+                end,
+                camera
+            ], {
+                    detached: true,
+                    cwd: outputDirectory
+                });
+        }
+
     }
 }
