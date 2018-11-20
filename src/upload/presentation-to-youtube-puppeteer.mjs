@@ -309,6 +309,7 @@ export default class PresentationToYouTubePuppeteer extends PuppeteerBase {
             count--;
         }
         while (count !== 0)
+        await converter.close();
     }
 
 
