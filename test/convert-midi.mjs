@@ -3,7 +3,7 @@ import MidiJsonInformation from '../src/movie/midi-json-information';
 import path from 'path';
 import Util from '../src/util/util.mjs';
 import Basic from '../src/movie/basic.mjs';
-import SingleFrameBasic from '../src/movie/single-frame-basic.mjs'
+import SingleFrameBasic from '../src/movie/single-frame-basic.mjs';
 
 var __dirname = path.resolve(path.dirname(''));
 

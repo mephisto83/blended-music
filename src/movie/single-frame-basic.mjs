@@ -5,7 +5,7 @@ export default class SingleFrameBasic extends Basic {
     static info() {
         return {
             name: 'Single Frame Basic',
-            version: '0.0.1'
+            version: '0.0.2'
         }
     }
 

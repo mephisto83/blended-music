@@ -3,6 +3,7 @@ import MidiJsonInformation from '../src/movie/midi-json-information';
 import path from 'path';
 import Util from '../src/util/util.mjs';
 import Basic from '../src/movie/basic.mjs';
+import SingleFrameBasic from '../src/movie/single-frame-basic.mjs';
 
 (async function () {
     //var converter = new BlendedMusic.MidiToJson();
@@ -14,7 +15,7 @@ import Basic from '../src/movie/basic.mjs';
 
     const presentation_dir = 'E:\\dev\\Presentation';
     const blender = 'E:\\blender-2.80-d5c751012b3-win64\\blender-2.80.0-git.d5c751012b3-windows64';
-    const creds = `D:${path.sep}creds`;
+    const creds = `E:${path.sep}creds`;
     var installationProblems = 10;
     var midiToJsonProblems = 10;
     var jsonToPresentationProblems = 10;
@@ -54,7 +55,7 @@ import Basic from '../src/movie/basic.mjs';
                     inputDir: __dirname + `${path.sep}${projects}${path.sep}raw_json`,
                     outputDir: __dirname + `${path.sep}${projects}${path.sep}movie_json`,
                     videoOutputDir: __dirname + `${path.sep}${projects}${path.sep}movies`,
-                    movieBuilders: [Basic],
+                    movieBuilders: [SingleFrameBasic],
                     midiDir: __dirname + `${path.sep}${projects}${path.sep}midi`,
                     count: 1,
                     debounce: 1000
@@ -71,7 +72,7 @@ import Basic from '../src/movie/basic.mjs';
                     count: 1,
                     debounce: 1000
                 })
-            else if (false) {
+            else if (true) {
                 await BlendedMusic.PresentationToYouTubePuppeteer.run({
                     credentialDirectory: creds,
                     videoInputDir: __dirname + `${path.sep}${projects}${path.sep}movies`,

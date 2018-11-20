@@ -316,7 +316,9 @@ export default class PresentationToYouTubePuppeteer extends PuppeteerBase {
         var directories = await Util.readDirDeep(directory, FILEINFOJSON);
         var me = this;
         console.log(directories);
-        await Promise.all(directories.map(async sub_dir => {
+        //await Promise.all(directories.map(async sub_dir => {
+        for (var j = 0; j < directories.length; j++) {
+            var sub_dir = directories[j];
             var youtubeResultExists = await Util.fileExists(path.join(sub_dir, YOUTUBEFILE));
             if (!youtubeResultExists) {
                 var filesToUpload = await Util.getFilesWith(sub_dir, '.mkv');
@@ -354,7 +356,7 @@ export default class PresentationToYouTubePuppeteer extends PuppeteerBase {
                         await Util.writeJsonToFile(path.join(sub_dir, YOUTUBEFILE), result);
                 }
             }
-        }));
+        }
         log(`processed ${directory}`)
     }
 

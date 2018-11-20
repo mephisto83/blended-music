@@ -48,7 +48,7 @@ export default class Basic {
     }
     createNoteKeyFrame(note, name, ops) {
         var me = this;
-        ops = ops || {};
+        ops = ops || { trackCount: 1 };
         var y_ = me.toTimeToDimension(note.time);
         var x_ = me.midiToDimension(note.midi);
         var dim = me.toTimeToDimension(note.duration);
@@ -59,7 +59,7 @@ export default class Basic {
                 x: x_,
                 z: .5
             },
-            scale: { x: 1, y: dim, z: 1 },
+            scale: { x: (1 / ops.trackCount) * .5, y: dim, z: 1 * (note.velocity || 1) },
             rotation: { x: 0, y: 0, z: 0 }
         }
 
@@ -209,7 +209,7 @@ export default class Basic {
                             type: "cube"
                         });
                         let keyframe = me.getKeyFrame(1);
-                        let note_frame = me.createNoteKeyFrame(note, name);
+                        let note_frame = me.createNoteKeyFrame(note, name, { trackCount: raw.tracks.length });
                         keyframe.objects.push(note_frame);
                     });
                 }
