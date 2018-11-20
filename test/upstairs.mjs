@@ -36,6 +36,21 @@ import SingleFrameBasic from '../src/movie/single-frame-basic.mjs';
                 console.log('installation issues')
                 console.log(e);
             }
+            if (false)
+                await BlendedMusic.PresentationToYouTube.run({
+                    credentialDirectory: creds,
+                    videoInputDir: __dirname + `${path.sep}${projects}${path.sep}movies`,
+                    count: 1,
+                    debounce: 1000
+                })
+            else if (true) {
+                await BlendedMusic.PresentationToYouTubePuppeteer.run({
+                    credentialDirectory: creds,
+                    videoInputDir: __dirname + `${path.sep}${projects}${path.sep}movies`,
+                    count: 1,
+                    debounce: 1000
+                })
+            }
             try {
                 await BlendedMusic.MidiToJson.run({
                     inputDir: __dirname + `${path.sep}${projects}${path.sep}midi`,
@@ -64,21 +79,6 @@ import SingleFrameBasic from '../src/movie/single-frame-basic.mjs';
                 jsonToPresentationProblems--;
                 console.log('json to presentaton problems');
                 console.log(e);
-            }
-            if (false)
-                await BlendedMusic.PresentationToYouTube.run({
-                    credentialDirectory: creds,
-                    videoInputDir: __dirname + `${path.sep}${projects}${path.sep}movies`,
-                    count: 1,
-                    debounce: 1000
-                })
-            else if (true) {
-                await BlendedMusic.PresentationToYouTubePuppeteer.run({
-                    credentialDirectory: creds,
-                    videoInputDir: __dirname + `${path.sep}${projects}${path.sep}movies`,
-                    count: 1,
-                    debounce: 1000
-                })
             }
         } catch (e) {
             console.log(e);

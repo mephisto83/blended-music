@@ -352,8 +352,10 @@ export default class PresentationToYouTubePuppeteer extends PuppeteerBase {
                         v${infoJon.build.version}
                         instruments : ${instruments.join()}`
                     });
-                    if (result)
+                    if (result) {
                         await Util.writeJsonToFile(path.join(sub_dir, YOUTUBEFILE), result);
+                        return;
+                    }
                 }
             }
         }

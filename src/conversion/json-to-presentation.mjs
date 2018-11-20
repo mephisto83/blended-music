@@ -108,6 +108,7 @@ export default class JsonToPresentationJson {
                         infobuilder,
                         outputDirectory: dir_path
                     });
+                    return;
                 }
                 else {
                     log(`${dir_path} already exists`)
