@@ -239,7 +239,8 @@ export default class Basic {
         me.firstFrame = 1;
         var objects = me.objects;
         var keyframes = me.keyframes;
-        me.constructMovie(raw);
+        if (false)
+            me.constructMovie(raw);
 
         var camera = me.addCamera();
         var mapping = me.getMapping();

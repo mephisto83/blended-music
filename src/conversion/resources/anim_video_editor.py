@@ -1,5 +1,6 @@
 import os
 import bpy
+import json
 from bpy import context
 import sys
 argv = sys.argv
@@ -28,9 +29,33 @@ if(argv[4]):
     render_out_path = argv[4]
   # --> ['example', 'args', '123']
 
+chunk_mapping_path = False
+if(argv[5]):
+    chunk_mapping_path = argv[5]
+
+image_mapping_path = False
+if(argv[6]):
+    image_mapping_path = argv[6]
+
 scene = context.scene
 
+chunk_map = False
+image_map = False
+# read chunk map contents
+if chunk_mapping_path:
+    f = open(chunk_mapping_path, 'r')
+    filecontents = f.read()
+    chunk_map = json.loads(filecontents)
+
+# read image map contents
+if image_mapping_path:
+    f = open(image_mapping_path, 'r')
+    filecontents = f.read()
+    image_map = json.loads(filecontents)
+
+
 print("starting ")
+
 #path = "./1/"
 path =os.path.dirname(os.path.realpath(__file__))+relPath
 path_audio =os.path.dirname(os.path.realpath(__file__))+relAudioPath
@@ -53,18 +78,34 @@ _scene.render.ffmpeg.audio_codec = 'MP3'
 print(files[0])
 # create the sequencer data
 scene.sequence_editor_create()
-filepath = os.path.join(path, files[0])
-print(filepath)
+seq = False
+if image_map and chunk_map:
+    ok = 1
+    for file in files:
+        file_num = file.split(".png")[0]
+        num = int(file_num)
+        length = image_map[str(num)]
+        filepath = os.path.join(path, file)
+        seq = scene.sequence_editor.sequences.new_image(
+            name="image"+str(num),
+            filepath=filepath,
+            channel=1, 
+            frame_start=num)
+        seq.frame_final_duration = length
 
-# bpy.context.area.type = "VIEW_3D"
-seq = scene.sequence_editor.sequences.new_image(
-        name="MyStrip",
-        filepath=filepath,
-        channel=1, frame_start=1)
+else:
+    filepath = os.path.join(path, files[0])
+    print(filepath)
 
-# add the rest of the images.
-for f in files[1:count]:
-    seq.elements.append(f)
+    # bpy.context.area.type = "VIEW_3D"
+    seq = scene.sequence_editor.sequences.new_image(
+            name="MyStrip",
+            filepath=filepath,
+            channel=1, frame_start=1)
+
+    # add the rest of the images.
+    for f in files[1:count]:
+        seq.elements.append(f)
 
 files_audio = os.listdir(path_audio)
 filepath_audio = os.path.join(path_audio, files_audio[0])

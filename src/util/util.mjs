@@ -276,10 +276,12 @@ export default class Util {
     }
 
     static async  executeSpawnCmd(cmd, args, options) {
+        console.log(cmd);
+        console.log(args);
         return await new Promise(function (resolve, fail) {
             var child = spawn(cmd, args, options);
             child.stdout.on('data', function (data) {
-                //console.log('stdout: ' + data);
+                console.log('stdout: ' + data);
             });
 
             child.stderr.on('data', function (data) {

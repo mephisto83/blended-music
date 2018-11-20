@@ -6,6 +6,7 @@ import * as A from '../util/array';
 import fs from 'fs';
 import path from 'path';
 import MidiJsonInformation from '../movie/midi-json-information.mjs';
+import { SSL_OP_NETSCAPE_DEMO_CIPHER_CHANGE_BUG } from 'constants';
 
 export const FILEINFOJSON = 'filminfo.json';
 
@@ -261,7 +262,7 @@ export default class JsonToPresentationJson {
         //     cwd: outputDirectory
         // });
 
-        await JsonToPresentationJson.renderMapping({
+        var renderedChunks = await JsonToPresentationJson.renderMapping({
             blender,
             blendfile,
             startFrame,
@@ -269,7 +270,7 @@ export default class JsonToPresentationJson {
             camera,
             mapping,
             outputDirectory,
-            fileName,
+            fileName
         })
 
         await Util.writeFile(`${outputDirectory}${path.sep}renderanim.bat`, _blenderAnimationRenderTemplate);
@@ -277,8 +278,11 @@ export default class JsonToPresentationJson {
             detached: true,
             cwd: outputDirectory
         });
+        var chunk_mapping_path = `${outputDirectory}${path.sep}chunks.json`;
+        var image_mapping_path = `${outputDirectory}${path.sep}image_mappins.json`;
         //blender --background -P anim_video_editor.py -- "{{py_output}}" {{endframe}} "{{py_audio_output}}" "{{name}}" "{{render_out_path}}"
-
+        await Util.writeJsonToFile(chunk_mapping_path, renderedChunks)
+        await Util.writeJsonToFile(image_mapping_path, mapping)
         //collect images and write to video file.
         await Util.executeSpawnCmd(`${blender}${path.sep}blender`, [
             '--background',
@@ -289,8 +293,9 @@ export default class JsonToPresentationJson {
             endframe,
             '\\output\\audio\\',
             Util.fileToFolder(fileName),
-            `${videoOutputDir}${path.sep}${Util.fileToFolder(fileName)}`
-
+            `${videoOutputDir}${path.sep}${Util.fileToFolder(fileName)}`,
+            chunk_mapping_path,
+            image_mapping_path
         ], {
                 detached: true,
                 cwd: outputDirectory
@@ -341,38 +346,87 @@ export default class JsonToPresentationJson {
             startFrame,
             endFrame,
             camera,
+            fileName,
             mapping,
             outputDirectory
         } = ops;
         var chunks = [];
         var currentChunk = null;
-        var currentFrame = 1;
+        var nextFrame = 1;
+        var lastKey = null;
         for (var _i in mapping) {
-            var i = parseInt(_f);
+            lastKey = _i;
+            console.log(`key ${_i}`)
+            var i = parseInt(_i);
             if (currentChunk === null) {
+
+                console.log(`current chunk is null`)
                 currentChunk = {
                     start: i
                 };
-                if (mapping[_i] !== 1) {
+                console.log('create a new chunk');
+                if (mapping[i] === 1) {
+                    nextFrame = i + 1;
+                }
+                else {
                     currentChunk.end = i;
+                    chunks.push(currentChunk);
+                    currentChunk = null;
                 }
             }
-            else if (currentChunk.start === i - 1) {// the next frame if just rendering
+            else if (nextFrame === i) {// the next frame if just rendering
+                console.log('expected next frame matches the current chunk ');
+                if (mapping[i] === 1) {
+                    console.log('expected next frame ' + nextFrame);
+                    nextFrame = i + 1;
+                }
+                else {
+                    console.log('next frame is more than 1 away');
+                    currentChunk.end = nextFrame - 1;
+                    chunks.push(currentChunk);
+                    console.log('create a new chunk, and push the old into the list')
+                    currentChunk = {
+                        start: i
+                    }
+                    if (mapping[i] === 1) {
+                        nextFrame = i + 1;
+                    }
+                    else {
+                        currentChunk.end = i;
+                        chunks.push(currentChunk);
+                        currentChunk = null;
+                    }
+                }
 
             }
-            else if (currentChunk.start !== i - 1) {
-                currentChunk.end = currentChunk.start + parseInt(mapping[currentChunk.start]) - 1;
+            else if (nextFrame !== i) {
+                console.log('expected next frame ' + nextFrame);
+                currentChunk.end = nextFrame - 1;
                 chunks.push(currentChunk);
                 currentChunk = {
                     start: i
+                };
+
+                if (mapping[i] === 1) {
+                    nextFrame = i + 1;
+                }
+                else {
+                    currentChunk.end = i;
+                    chunks.push(currentChunk);
+                    currentChunk = null;
                 }
             }
         }
-        currentChunk.end = currentChunk.start + parseInt(mapping[currentChunk.start]) - 1;
-        chunks.push(currentChunk);
+        if (currentChunk) {
+            currentChunk.end = nextFrame - 1;
+            chunks.push(currentChunk);
+        }
+
+        console.log(`${chunks.length} chunks to render`);
         for (var y = 0; y < chunks.length; y++) {
             currentChunk = chunks[y];
             var { start, end } = currentChunk;
+            console.log('render chunk');
             await Util.executeSpawnCmd(`${blender}${path.sep}blender`, [
                 '-b',
                 blendfile,
@@ -396,6 +450,6 @@ export default class JsonToPresentationJson {
                     cwd: outputDirectory
                 });
         }
-
+        return chunks;
     }
 }
