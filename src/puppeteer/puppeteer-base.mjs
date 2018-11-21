@@ -30,11 +30,11 @@ export default class PuppeteerBase {
         await this.page.type(select, text, { delay: 100 });
         await this.page.keyboard.press('Enter');
     }
-    async wait() {
+    async wait(timeout) {
         return await new Promise((resolve) => {
             setTimeout(() => {
                 resolve();
-            }, 3000);
+            }, timeout || 3000);
         })
     }
     async readText(selector) {
@@ -47,24 +47,26 @@ export default class PuppeteerBase {
     async waitFor(selector, text) {
         var notdone = true;
         do {
-
-            await this.page.waitFor(selector);
-            console.log('wait for  ' + selector);
-            if (text) {
-                notdone = !(await this.page.evaluate((selector, text) => {
-                    var els = document.querySelectorAll(selector);
-                    for (var i = 0; i < els.length; i++) {
-                        if (els[i].innerText.indexOf(text) !== -1) {
-                            return true;
+            try {
+                await this.page.waitFor(selector);
+                console.log('wait for  ' + selector);
+                if (text) {
+                    notdone = !(await this.page.evaluate((selector, text) => {
+                        var els = document.querySelectorAll(selector);
+                        for (var i = 0; i < els.length; i++) {
+                            if (els[i].innerText.indexOf(text) !== -1) {
+                                return true;
+                            }
                         }
-                    }
-                    console.log(els.length);
-                    return false;
-                }, selector, text));
+                        console.log(els.length);
+                        return false;
+                    }, selector, text));
+                }
+                else {
+                    notdone = false;
+                }
             }
-            else {
-                notdone = false;
-            }
+            catch (e) { console.log(e); }
         } while (notdone);
     }
     async clickOn(selector, text) {

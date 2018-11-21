@@ -34,15 +34,19 @@ export default class PresentationToYouTubePuppeteer extends PuppeteerBase {
         var creds = await Util.readJson(path.join(this.credentialDirectory, CREDENTIAL_FILE));
         log(creds);
 
+        await me.wait();
         await me.waitFor('paper-button', SIGN_IN);
         await me.clickOn('paper-button', SIGN_IN);
 
+        await me.wait();
         await me.waitFor('input[type="email"]');
         await me.enterText('input[type="email"]', creds.username);
 
+        await me.wait();
         await me.waitFor('[id="identifierNext"]', NEXT);
         await me.clickOn('[id="identifierNext"]', NEXT);
 
+        await me.wait();
         await me.waitFor('[type="password"]');
         await me.enterText('input[type="password"]', creds.password);
 
@@ -108,11 +112,17 @@ export default class PresentationToYouTubePuppeteer extends PuppeteerBase {
 
 
 
+        await this.waitFor('.watch-page-link a');
         await this.waitFor('button', PUBLISH);
 
         var link = await this.readText('.watch-page-link a');
 
+        await this.wait();
         await this.clickOn('button', PUBLISH);
+        await this.wait(10000);
+
+        await this.waitFor('.yt-alert-message', 'Your video was uploaded');
+        await this.wait(10000);
         // const res = await this.youtube.videos.insert(
         //     {
         //         part: 'id,snippet,status',
@@ -332,6 +342,7 @@ export default class PresentationToYouTubePuppeteer extends PuppeteerBase {
                     var names = infoJon.tracks.filter(t => t.name
                         && t.name.toLowerCase().indexOf('copyright') === -1
                         && t.name.indexOf('©') === -1
+                        && t.name.indexOf('@') === -1
                         && t.name.indexOf('http') === -1)
                         .map(t => t.name).unique();
                     var instruments = infoJon.tracks.filter(t => t.instrument).map(t => `${t.instrumentFamily} ${t.instrument}`).unique();
@@ -347,11 +358,11 @@ export default class PresentationToYouTubePuppeteer extends PuppeteerBase {
                         tags.push(t);
                     });
                     var result = await me.upload(path.join(sub_dir, file_to_upload), {
-                        title: infoJon.name,
+                        title: infoJon.name || infoJon.build.name,
                         tags: tags,
-                        description: `${infoJon.build.name} 
-                        v${infoJon.build.version}
-                        instruments : ${instruments.join()}`
+                        description: `${infoJon.build.name}
+v${infoJon.build.version}
+instruments : ${instruments.join()}`
                     });
                     if (result) {
                         await Util.writeJsonToFile(path.join(sub_dir, YOUTUBEFILE), result);
