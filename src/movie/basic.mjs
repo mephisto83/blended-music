@@ -1,5 +1,6 @@
 import MidiJsonInformation from "./midi-json-information.mjs";
 import { log } from '../util/util';
+import Materials from './materials.mjs';
 
 export default class Basic {
     constructor() {
@@ -13,7 +14,7 @@ export default class Basic {
     static info() {
         return {
             name: 'Basic',
-            version: '0.0.2'
+            version: '0.0.3'
         }
     }
     renderEngine() {
@@ -32,7 +33,7 @@ export default class Basic {
         return keyframe;
     }
     toTimeToFrames(duration) {
-
+        return this.framesPerSecond * duration;
     }
     createKeyFrame(frameIndex) {
         return {
@@ -52,6 +53,8 @@ export default class Basic {
         var y_ = me.toTimeToDimension(note.time);
         var x_ = me.midiToDimension(note.midi);
         var dim = me.toTimeToDimension(note.duration);
+        var frame = me.toTimeToFrames(note.time);
+        var endframe = me.toTimeToFrames(note.time + note.duration);
         var res = {
             name: name,
             position: {
@@ -59,6 +62,31 @@ export default class Basic {
                 x: x_,
                 z: .5
             },
+            materialConfig: Materials.Output(`material-${name}`,
+                Materials.Mix(`material-mix-${name}`,
+                    Materials.Value(`material-light-value-${name}`, .5).animate([{
+                        frame: frame,
+                        value: 0,
+                    }, {
+                        frame: frame + 1,
+                        value: 1
+                    }, {
+                        frame: endframe - 1,
+                        value: 1
+                    }, {
+                        frame: endframe,
+                        value: 0
+                    }]),
+                    Materials.Diffuse(`material-light-diff-${name}`,
+                        Materials.Color(`material-light-color-${name}`, [.5, .5, .5, 1]),
+                    ),
+                    Materials.Emission(
+                        `material-light-${name}`,
+                        Materials.Color(`material-light-color-${name}`, [1, 1, 0, 1]),
+                        Materials.Value(`material-light-strength-${name}`, 1)
+                    )
+                )
+            ),
             scale: { x: (1 / ops.trackCount) * .5, y: dim, z: 1 * (note.velocity || 1) },
             rotation: { x: 0, y: 0, z: 0 }
         }
@@ -106,6 +134,40 @@ export default class Basic {
 
         return handles;
     }
+    addLamps() {
+        var me = this;
+        me.objects.push({
+            "name": "default_sun",
+            "strength": 3,
+            "type": "lamp",
+            "light": "SUN"
+        });
+
+
+        var frame = me.getKeyFrame(1);
+        frame.objects.push({
+            "name": "default_sun",
+            "type": "lamp",
+            "light": "SUN",
+            "strength": 3,
+            "rotation": { "x": 0, "y": -80, "z": 0 }
+        })
+
+        me.keyframes.push(frame);
+
+    }
+    getDefaultCameraTargetProperties() {
+        var me = this;
+        var handles = me.getHandles();
+        return {
+            "translate": {
+                "x": 0,
+                "y": 0,
+                "z": 2.2,
+                ...handles
+            }
+        };
+    }
     addCamera() {
         var me = this;
 
@@ -120,15 +182,11 @@ export default class Basic {
         }, {
                 "name": "default_empty",
                 "type": "empty"
-            }, {
-                "name": "default_sun",
-                "strength": 3,
-                "type": "lamp",
-                "light": "SUN"
             });
 
 
         var frame = me.getKeyFrame(1);
+        var properties = me.getDefaultCameraTargetProperties();
         frame.objects.push({
             "name": default_camera,
             "translate": {
@@ -142,18 +200,7 @@ export default class Basic {
             "sensor_width": 15.80
         }, {
                 "name": "default_empty",
-                "translate": {
-                    "x": 0,
-                    "y": 0,
-                    "z": 2.2,
-                    ...handles
-                }
-            }, {
-                "name": "default_sun",
-                "type": "lamp",
-                "light": "SUN",
-                "strength": 3,
-                "rotation": { "x": 0, "y": -80, "z": 0 }
+                ...properties
             })
 
         var lastFrame = Math.ceil(me.framesPerSecond * me.duration);
@@ -218,6 +265,7 @@ export default class Basic {
         else {
             log(`no tracks found`)
         }
+        me.addLamps();
     }
     getMapping() {
         var me = this;
@@ -239,13 +287,14 @@ export default class Basic {
         me.firstFrame = 1;
         var objects = me.objects;
         var keyframes = me.keyframes;
-        if (false)
-            me.constructMovie(raw);
+        //if (false)
+        me.constructMovie(raw);
 
         var camera = me.addCamera();
         var mapping = me.getMapping();
         return {
             mapping,
+            materials: me.getMaterials(),
             file: filename,
             start: 1,
             orginalName: filename,
@@ -258,5 +307,9 @@ export default class Basic {
             renderEngine: me.renderEngine(),
             camera
         }
+    }
+
+    getMaterials() {
+        return null;
     }
 }

@@ -13,11 +13,12 @@ export const FILEINFOJSON = 'filminfo.json';
 export default class JsonToPresentationJson {
     constructor() {
     }
-    static createJsonFrom(movieDefinition, BlendObjects, Materials) {
+    static createJsonFrom(movieDefinition, directory, BlendObjects, Materials) {
         return ({
             fileName: movieDefinition.fileName,
             mapping: movieDefinition.mapping,
             "settings": {
+
                 "RenderEngine": movieDefinition.renderEngine || "CYCLES",
                 "FrameStart": movieDefinition.startFrame,
                 "FrameEnd": movieDefinition.startEnd,
@@ -29,13 +30,7 @@ export default class JsonToPresentationJson {
                         "Names": BlendObjects
                     }
                 } : {}),
-                ... (Materials ? {
-                    "Materials": {
-                        "File": "//mat.blend",
-                        "Names": Materials
-                    }
-                } : {})
-
+                
             },
             "scenes": [{
                 "name": "default",
@@ -178,7 +173,7 @@ export default class JsonToPresentationJson {
         var pyfile = 'presentation-py-' + fileName + '.py';
         var batfile = 'presentation-blend-' + fileName + '.bat';
 
-        var presentation = JsonToPresentationJson.createJsonFrom(movieDefinition);
+        var presentation = JsonToPresentationJson.createJsonFrom(movieDefinition, `${outputDirectory}`);
         await Util.ensureDirectory(outputDirectory);
 
         await Util.writeJsonToFile(`${outputDirectory}${path.sep}${jsonFileName}`, presentation);
@@ -246,7 +241,7 @@ export default class JsonToPresentationJson {
         await Util.writeFile(`${outputDirectory}${path.sep}render.py`, renderpy);
         await Util.ensureDirectoryDeep(outputDirectory, ['output', 'presentation-bl-' + fileName]);
 
-        var jobResources = ['anim_video_editor.py', 'mat.blend', 'objects.blend'];
+        var jobResources = ['anim_video_editor.py', 'mat.blend', 'materials.blend', 'objects.blend'];
         console.log(cameraCommands);
         // executeCmd()
 
