@@ -30,7 +30,7 @@ export default class JsonToPresentationJson {
                         "Names": BlendObjects
                     }
                 } : {}),
-                
+
             },
             "scenes": [{
                 "name": "default",
@@ -72,6 +72,7 @@ export default class JsonToPresentationJson {
         movieBuilders = movieBuilders || [];
         var files = await Util.readDir(directory);
         var me = this;
+        files = files.random();
         //        await Promise.all(files.map(async file => {
         for (var i = 0; i < files.length; i++) {
             var file = files[i];

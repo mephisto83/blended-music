@@ -19,7 +19,8 @@ import SingleFrameBasic from '../src/movie/single-frame-basic.mjs';
     var installationProblems = 10;
     var midiToJsonProblems = 10;
     var jsonToPresentationProblems = 10;
-    
+    var youtubeuploadProblems = 10;
+
     do {
         try {
 
@@ -36,20 +37,20 @@ import SingleFrameBasic from '../src/movie/single-frame-basic.mjs';
                 console.log('installation issues')
                 console.log(e);
             }
-            if (false)
-                await BlendedMusic.PresentationToYouTube.run({
-                    credentialDirectory: creds,
-                    videoInputDir: __dirname + `${path.sep}${projects}${path.sep}movies`,
-                    count: 1,
-                    debounce: 1000
-                })
-            else if (true) {
-                await BlendedMusic.PresentationToYouTubePuppeteer.run({
-                    credentialDirectory: creds,
-                    videoInputDir: __dirname + `${path.sep}${projects}${path.sep}movies`,
-                    count: 1,
-                    debounce: 1000
-                })
+            if (true) {
+
+                try {
+                    await BlendedMusic.PresentationToYouTubePuppeteer.run({
+                        credentialDirectory: creds,
+                        videoInputDir: __dirname + `${path.sep}${projects}${path.sep}movies`,
+                        count: 1,
+                        debounce: 1000
+                    });
+                } catch (e) {
+                    youtubeuploadProblems--;
+                    console.log('youtube upload issues')
+                    console.log(e);
+                }
             }
             try {
                 await BlendedMusic.MidiToJson.run({
@@ -59,9 +60,21 @@ import SingleFrameBasic from '../src/movie/single-frame-basic.mjs';
                     debounce: 1000
                 });
             } catch (e) {
+
                 midiToJsonProblems--;
                 console.log('midi to json conversion issues');
                 console.log(e);
+            }
+
+            try {
+                await BlendedMusic.Harvest.run({
+                    targetDirectory: __dirname + `${path.sep}${projects}${path.sep}midi`,
+                    directory: ['//192.168.1.113', 'Public', 'midi'].join('/'),
+                    count: 1,
+                    debounce: 1000
+                })
+            } catch (e) {
+
             }
 
             try {
@@ -84,7 +97,7 @@ import SingleFrameBasic from '../src/movie/single-frame-basic.mjs';
             console.log(e);
         }
     }
-    while (!(!installationProblems || !midiToJsonProblems || !jsonToPresentationProblems));
+    while (!(!installationProblems || !youtubeuploadProblems || !midiToJsonProblems || !jsonToPresentationProblems));
     // var files = await Util.readDirectory(__dirname + '/${projects}/output');
     // var filename = `${__dirname}${path.sep}${projects}${path.sep}output${path.sep}${files[0]}`;
     // var json = await Util.readJson(filename);
