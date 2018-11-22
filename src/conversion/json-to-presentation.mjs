@@ -241,7 +241,7 @@ export default class JsonToPresentationJson {
         await Util.writeFile(`${outputDirectory}${path.sep}render.py`, renderpy);
         await Util.ensureDirectoryDeep(outputDirectory, ['output', 'presentation-bl-' + fileName]);
 
-        var jobResources = ['anim_video_editor.py', 'mat.blend', 'materials.blend', 'objects.blend'];
+        var jobResources = ['anim_video_editor.py', 'mat.blend', 'objects.blend'];
         console.log(cameraCommands);
         // executeCmd()
 

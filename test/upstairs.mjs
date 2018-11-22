@@ -70,7 +70,7 @@ import SingleFrameBasic from '../src/movie/single-frame-basic.mjs';
                     inputDir: __dirname + `${path.sep}${projects}${path.sep}raw_json`,
                     outputDir: __dirname + `${path.sep}${projects}${path.sep}movie_json`,
                     videoOutputDir: __dirname + `${path.sep}${projects}${path.sep}movies`,
-                    movieBuilders: [SingleFrameBasic],
+                    movieBuilders: [Basic, SingleFrameBasic],
                     midiDir: __dirname + `${path.sep}${projects}${path.sep}midi`,
                     count: 1,
                     debounce: 1000

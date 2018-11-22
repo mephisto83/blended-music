@@ -96,7 +96,8 @@ export default class PresentationToYouTubePuppeteer extends PuppeteerBase {
         await this.wait();
 
         await this.waitFor('input[name="title"]');
-        await this.enterText('input[name="title"]', title);
+        if (title)
+            await this.enterText('input[name="title"]', title);
 
         await this.wait();
 
@@ -106,8 +107,10 @@ export default class PresentationToYouTubePuppeteer extends PuppeteerBase {
 
         await this.wait();
         for (var i = 0; i < tags.length; i++) {
-            var tag = tags[i];
-            await this.sendText('.video-settings-add-tag', tag);
+            if (i < 15) {
+                var tag = tags[i];
+                await this.sendText('.video-settings-add-tag', tag);
+            }
         }
 
 
@@ -358,7 +361,7 @@ export default class PresentationToYouTubePuppeteer extends PuppeteerBase {
                         tags.push(t);
                     });
                     var result = await me.upload(path.join(sub_dir, file_to_upload), {
-                        title: infoJon.name || infoJon.build.name,
+                        title: infoJon.name,
                         tags: tags,
                         description: `${infoJon.build.name}
 v${infoJon.build.version}
