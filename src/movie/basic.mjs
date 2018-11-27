@@ -50,6 +50,15 @@ export default class Basic {
     midiToDimension(midi) {
         return this.midi2dim * ((midi / 127) - .5);
     }
+    colorPalette() {
+        return [
+            [255, 107, 53],
+            [0, 78, 137],
+            [247, 197, 159],
+            [239, 239, 208],
+            [26, 101, 158]
+        ]
+    }
     createNoteKeyFrame(note, name, ops) {
         var me = this;
         ops = ops || { trackCount: 1, track_index: 0 };
@@ -60,6 +69,7 @@ export default class Basic {
         var endframe = me.toTimeToFrames(note.time + note.duration);
         var width = (1 / (ops.trackCount || 1)) * .5;
         var x_offset = (width * 2) * ops.track_index;
+        var palette = me.colorPalette()[ops.track_index] || [1, 0, 0];
         var res = {
             name: name,
             position: {
@@ -87,7 +97,7 @@ export default class Basic {
                     ),
                     Materials.Emission(
                         `material-light-${name}`,
-                        Materials.Color(`material-light-color-${name}`, [1, 1, 0, 1]),
+                        Materials.Color(`material-light-color-${name}`, [...palette, 1]),
                         Materials.Value(`material-light-strength-${name}`, 1)
                     )
                 )
