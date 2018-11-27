@@ -63,6 +63,7 @@ export default class SingleFrameBasic extends Basic {
 
         me.objects.push({
             "name": default_camera,
+            "camera_type": "ORTHO",
             "type": "camera"
         }, {
                 "name": "default_empty",

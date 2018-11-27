@@ -31,7 +31,7 @@ var __dirname = path.resolve(path.dirname(''));
             inputDir: __dirname + `${path.sep}test${path.sep}raw_json`,
             outputDir: __dirname + `${path.sep}test${path.sep}movie_json`,
             videoOutputDir: __dirname + `${path.sep}test${path.sep}movies`,
-            movieBuilders: [Basic, SingleFrameBasic],
+            movieBuilders: [Basic],
             midiDir: __dirname + `${path.sep}test${path.sep}midi`,
             count: 1,
             debounce: 1000

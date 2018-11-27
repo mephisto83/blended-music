@@ -23,7 +23,7 @@ var __dirname = path.resolve(path.dirname(''));
             directory: ['C:', 'Users', 'mephisto', 'Downloads'].join(path.sep),
             //targetDirectory: __dirname + `${path.sep}test${path.sep}midi`,
             targetDirectory: ['//192.168.1.113', 'Public', 'midi'].join('/'),
-            count: 10,
+            count: -1,
             debounce: 1000
         })
         

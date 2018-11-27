@@ -14,7 +14,7 @@ export default class Basic {
     static info() {
         return {
             name: 'Basic',
-            version: '0.0.3'
+            version: '0.0.4'
         }
     }
     renderEngine() {
@@ -42,24 +42,29 @@ export default class Basic {
         }
     }
     toTimeToDimension(duration) {
-        return this.time2dim * duration;
+        return this.time2dim * duration / 2;
+    }
+    toTimeToPosition(time) {
+        return this.time2dim * time;
     }
     midiToDimension(midi) {
         return this.midi2dim * ((midi / 127) - .5);
     }
     createNoteKeyFrame(note, name, ops) {
         var me = this;
-        ops = ops || { trackCount: 1 };
-        var y_ = me.toTimeToDimension(note.time);
+        ops = ops || { trackCount: 1, track_index: 0 };
+        var y_ = me.toTimeToPosition(note.time);
         var x_ = me.midiToDimension(note.midi);
         var dim = me.toTimeToDimension(note.duration);
         var frame = me.toTimeToFrames(note.time);
         var endframe = me.toTimeToFrames(note.time + note.duration);
+        var width = (1 / (ops.trackCount || 1)) * .5;
+        var x_offset = (width * 2) * ops.track_index;
         var res = {
             name: name,
             position: {
-                y: y_ + (dim / 2),
-                x: x_,
+                y: y_ + dim,
+                x: (x_ + x_offset),
                 z: .5
             },
             materialConfig: Materials.Output(`material-${name}`,
@@ -87,7 +92,7 @@ export default class Basic {
                     )
                 )
             ),
-            scale: { x: (1 / ops.trackCount) * .5, y: dim, z: 1 * (note.velocity || 1) },
+            scale: { x: width, y: dim, z: 1 * (note.velocity || 1) },
             rotation: { x: 0, y: 0, z: 0 }
         }
 
@@ -178,7 +183,8 @@ export default class Basic {
 
         me.objects.push({
             "name": default_camera,
-            "type": "camera"
+            "type": "camera",
+            "camera_type": "ORTHO"
         }, {
                 "name": "default_empty",
                 "type": "empty"
@@ -189,6 +195,8 @@ export default class Basic {
         var properties = me.getDefaultCameraTargetProperties();
         frame.objects.push({
             "name": default_camera,
+            "camera_type": "ORTHO",
+            "ortho_scale": 45,
             "translate": {
                 "x": 0,
                 "y": -67.3141,
@@ -256,7 +264,7 @@ export default class Basic {
                             type: "cube"
                         });
                         let keyframe = me.getKeyFrame(1);
-                        let note_frame = me.createNoteKeyFrame(note, name, { trackCount: raw.tracks.length });
+                        let note_frame = me.createNoteKeyFrame(note, name, { trackCount: raw.tracks.length, track_index });
                         keyframe.objects.push(note_frame);
                     });
                 }
