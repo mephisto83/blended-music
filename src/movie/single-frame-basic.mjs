@@ -9,7 +9,7 @@ export default class SingleFrameBasic extends Basic {
     static info() {
         return {
             name: 'Single Frame Basic',
-            version: '0.0.4'
+            version: '0.0.5'
         }
     }
 
@@ -63,7 +63,6 @@ export default class SingleFrameBasic extends Basic {
 
         me.objects.push({
             "name": default_camera,
-            "camera_type": "ORTHO",
             "type": "camera"
         }, {
                 "name": "default_empty",

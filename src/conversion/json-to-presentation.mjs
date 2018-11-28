@@ -35,6 +35,7 @@ export default class JsonToPresentationJson {
             "scenes": [{
                 "name": "default",
                 "world": "SkyWorld",
+                "world-config": movieDefinition.world,
                 "objects": movieDefinition.objects,
                 "keyframes": movieDefinition.keyframes
             }]

@@ -14,7 +14,9 @@ export default class Materials {
             Color: "ShaderNodeMixRGB",
             Value: "ShaderNodeValue",
             Mix: "ShaderNodeMixShader",
-            Diffuse: "ShaderNodeBsdfDiffuse"
+            Diffuse: "ShaderNodeBsdfDiffuse",
+            WorldOutput: "ShaderNodeOutputWorld",
+            Background: "ShaderNodeBackground"
 
         }
     }
@@ -23,6 +25,23 @@ export default class Materials {
         var material = new Materials(name);
         material.type = Materials.Types().Output;
         material.surface = surface;
+
+        return material;
+    }
+
+    static WorldOutput(name, surface) {
+        var material = new Materials(name);
+        material.type = Materials.Types().WorldOutput;
+        material.surface = surface;
+
+        return material;
+    }
+
+    static Background(name, color, strength) {
+        var material = new Materials(name);
+        material.type = Materials.Types().Background;
+        material.color = color;
+        material.strength = strength;
 
         return material;
     }

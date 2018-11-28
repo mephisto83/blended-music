@@ -313,6 +313,7 @@ export default class Basic {
         return {
             mapping,
             materials: me.getMaterials(),
+            world: me.getWorlds(),
             file: filename,
             start: 1,
             orginalName: filename,
@@ -329,5 +330,15 @@ export default class Basic {
 
     getMaterials() {
         return null;
+    }
+    getWorlds() {
+        return {
+            name: 'SkyWorld',
+            config: Materials.WorldOutput(`SkyWorld`,
+                Materials.Background(`background`,
+                    Materials.Color(`color`, [0, 0, 0, 1])
+                )
+            )
+        };
     }
 }
