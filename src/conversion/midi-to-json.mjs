@@ -71,7 +71,9 @@ export default class MidiToJson {
         var filesToConvert = files.filter(t => matching(t));
         log(`found ${files.length} to convert`);
         var result = [];
-        for (var i = 0; i < filesToConvert.length; i++) {
+        //for (var i = 0; i < filesToConvert.length; i++) {
+        var i = 0;
+        if (filesToConvert.length) {
             var file = filesToConvert[i];
             try {
                 var json = await MidiToJson.convertFile(`${directory}${path.sep}${file}`);

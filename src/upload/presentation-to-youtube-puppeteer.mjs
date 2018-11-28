@@ -56,50 +56,30 @@ export default class PresentationToYouTubePuppeteer extends YouTube {
         }
 
 
+        try {
+            await this.waitFor('.watch-page-link a');
+            await this.waitFor('button', PUBLISH);
 
-        await this.waitFor('.watch-page-link a');
-        await this.waitFor('button', PUBLISH);
+            var link = await this.readText('.watch-page-link a');
 
-        var link = await this.readText('.watch-page-link a');
+            await this.wait();
+            await this.clickOn('button', PUBLISH);
+            await this.wait(10000);
 
-        await this.wait();
-        await this.clickOn('button', PUBLISH);
-        await this.wait(10000);
+            var alreadyUploaded = this.waitForAny([
+                { selector: '.yt-uix-form-input-text.share-panel-url' },
+                { selector: '.yt-alert-message', text: 'Your video was uploaded' },
+                { selector: '.upload-active-widget .upload-failure.hid' }]);
 
-        await this.waitFor('.yt-alert-message', 'Your video was uploaded');
-        await this.wait(10000);
-        // const res = await this.youtube.videos.insert(
-        //     {
-        //         part: 'id,snippet,status',
-        //         notifySubscribers: false,
-        //         requestBody: {
-        //             snippet: {
-        //                 title: title || 'Node.js YouTube Upload Test',
-        //                 description: description || 'Testing YouTube upload via Google APIs Node.js Client',
-        //                 tags: tags || []
-        //             },
-        //             status: {
-        //                 privacyStatus: 'private',
-        //             },
-        //         },
-        //         media: {
-        //             body: fs.createReadStream(file),
-        //         },
-        //     },
-        //     {
-        //         // Use the `onUploadProgress` event from Axios to track the
-        //         // number of bytes uploaded to this point.
-        //         onUploadProgress: evt => {
-        //             const progress = (evt.bytesRead / fileSize) * 100;
-        //             readline.clearLine();
-        //             readline.cursorTo(0);
-        //             process.stdout.write(`${Math.round(progress)}% complete`);
-        //         },
-        //         onError: evt => {
-        //             log(evt);
-        //         }
-        //     }
-        // )
+            await alreadyUploaded;
+            await this.wait(10000);
+            if (await this.isThere('button', PUBLISH)) {
+                await this.clickOn('button', PUBLISH);
+                await this.wait(10000);
+            }
+        } catch (e) {
+            console.log(e);
+        }
         return {
             ...info,
             link

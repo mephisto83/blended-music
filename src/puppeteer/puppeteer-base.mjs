@@ -69,6 +69,26 @@ export default class PuppeteerBase {
             catch (e) { console.log(e); }
         } while (notdone);
     }
+    async waitForAny(any) {
+        var notdone = true;
+        do {
+            try {
+                notdone = !(await this.page.evaluate((any) => {
+                    return any.find(one => {
+                        var { selector, text } = one;
+                        var els = document.querySelectorAll(selector);
+                        for (var i = 0; i < els.length; i++) {
+                            if (!text || els[i].innerText.indexOf(text) !== -1) {
+                                return true;
+                            }
+                        }
+                        console.log(els.length);
+                    }) || false;
+                }, any));
+            }
+            catch (e) { console.log(e); }
+        } while (notdone);
+    }
     async clickOn(selector, text) {
         await this.page.waitFor(selector);
         await this.page.evaluate((selector, text) => {
