@@ -69,9 +69,15 @@ export default class PuppeteerBase {
             catch (e) { console.log(e); }
         } while (notdone);
     }
-    async waitForAny(any) {
+    async waitForAny(any, maximum) {
+        maximum = maximum || 1200000;//20 minutes
+        var failed;
+        setTimeout(() => {
+            failed = true;
+        }, maximum)
         var notdone = true;
         do {
+
             try {
                 notdone = !(await this.page.evaluate((any) => {
                     return any.find(one => {
@@ -87,6 +93,10 @@ export default class PuppeteerBase {
                 }, any));
             }
             catch (e) { console.log(e); }
+            if (failed) {
+                notdone = false;
+                throw 'didnt finish in an reasonable amount of time';
+            }
         } while (notdone);
     }
     async clickOn(selector, text) {
