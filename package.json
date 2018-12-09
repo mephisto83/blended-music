@@ -10,6 +10,7 @@
     "farm": "node --experimental-modules ./test/midi-farm.mjs",
     "defense": "node  --experimental-modules ./test/defense.mjs",
     "install": "node --experimental-modules ./test/install.mjs",
+    "voronoi": "node --experimental-modules ./test/voronoi-test.mjs",
     "midi-to-json": "node --experimental-modules ./test/midi-to-json.mjs"
   },
   "repository": {

@@ -93,7 +93,7 @@ export default class Basic {
                         value: 0
                     }]),
                     Materials.Diffuse(`material-light-diff-${name}`,
-                        Materials.Color(`material-light-color-${name}`, [.5, .5, .5, 1]),
+                        Materials.Color(`material-light-color-${name}`, [...palette, 1]),
                     ),
                     Materials.Emission(
                         `material-light-${name}`,
@@ -206,7 +206,7 @@ export default class Basic {
         frame.objects.push({
             "name": default_camera,
             "camera_type": "ORTHO",
-            "ortho_scale": 45,
+            "ortho_scale": 55,
             "translate": {
                 "x": 0,
                 "y": -67.3141,
