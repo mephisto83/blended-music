@@ -1,3 +1,6 @@
+import * as M from './math';
+import { Vector, Edge } from './math.mjs';
+
 export default function Closure() {
     /*!
     Copyright (C) 2010-2013 Raymond Hill: https://github.com/gorhill/Javascript-Voronoi
@@ -356,4 +359,369 @@ export default function Closure() {
         this.reset(); return g
     };
     return Voronoi;
+}
+export class VoronoiBase {
+    getAngle(e1, e2) {
+        //find vector components
+        var dAx = e1.vb.x - e1.va.x;// A2x - A1x;
+        var dAy = e1.vb.y - e1.va.y;// A2y - A1y;
+        var dBx = e2.vb.x - e2.va.x;// B2x - B1x;
+        var dBy = e2.vb.y - e2.va.y;// B2y - B1y;
+
+        var angle = Math.atan2(dAx * dBy - dAy * dBx, dAx * dBx + dAy * dBy);
+        if (angle < 0) { angle = angle * -1; }
+        var degree_angle = angle * (180 / Math.PI);
+
+        return degree_angle;
+    }
+    getEdgeLength(edge) {
+        return Math.sqrt(Math.pow(edge.va.x - edge.vb.x, 2) + Math.pow(edge.va.y - edge.vb.y, 2))
+    }
+    getUnusedEdge(edges, usedPoints, filter, ops, lastEdge) {
+        ops = ops || {};
+        var me = this;
+        filter = filter || (() => (true));
+        return edges.filter(edge => {
+            if (ops && ops.minimumEdgeAngle && lastEdge) {
+                var angle = me.getAngle(lastEdge, edge);
+                if (ops.minimumEdgeAngle > angle) {
+                    return false;
+                }
+            }
+            if (ops && ops.maximumEdgeAngle && lastEdge) {
+                if (ops.maximumEdgeAngle <= me.getAngle(lastEdge, edge)) {
+                    return false;
+                }
+            }
+            if (ops && ops.maximumSegmentLength) {
+                // console.log(`ops.maximumSegmentLength: ${ops.maximumSegmentLength}`);
+                // console.log(`edge length: ${Math.sqrt(Math.pow(edge.va.x - edge.vb.x, 2), Math.pow(edge.va.y - edge.vb.y, 2))}`);
+                if (ops.maximumSegmentLength < me.getEdgeLength(edge)) {
+                    return false;
+                }
+            }
+            return true;
+        }).filter(edge => {
+            if (edge.va) {
+                var alreadyUsed = usedPoints.find(point => {
+                    return edge.va.x === point.x && edge.va.y === point.y;
+                });
+                return !alreadyUsed;
+            }
+            else {
+                return false;
+            }
+        }).random().find(filter);
+    }
+    getPaths(seeds, history, ops) {
+        history = history || { usedPoints: [] };
+        ops = ops || {};
+        var { minimumLength = 2 } = ops;
+        var result = { paths: [] };
+        console.log(`getting paths`);
+        var tries = (ops.maximumPaths || 2000) * 10;
+        do {
+            tries--;
+            var should = false;
+            if (ops.maximumPaths && result.paths.length > ops.maximumPaths) {
+                break;
+            }
+            var pathRes = this.getPath(seeds, history, ops);
+            var { history } = pathRes;
+
+            if (pathRes && pathRes.path && pathRes.path.length) {
+                if (minimumLength) {
+                    if (minimumLength <= pathRes.path.length) {
+                        result.paths.push(pathRes.path);
+                    }
+                    else {
+                        history.usedPoints = history.usedPoints.filter(x => {
+                            return !pathRes.path.find(edge => {
+                                return edge.va.x === x.x && edge.vb.y === x.y;
+                            })
+                        })
+                    }
+                }
+                else {
+                    result.paths.push(pathRes.path);
+                }
+                should = true;
+            }
+        } while (tries && should);
+        result.history = history;
+        return result;
+    }
+    getPath(seeds, history, ops) {
+        var me = this;
+        history = history || { usedPoints: [] };
+        ops = ops || {}
+        var { diagram } = seeds;
+        var { edges } = diagram;
+        var startingEdge = this.getUnusedEdge(edges, history.usedPoints, null, ops);
+        var result = [];
+        console.log(`getting path;`)
+        if (startingEdge) {
+            history.usedPoints.push(startingEdge.va);
+            var endPoint = startingEdge.vb;
+            result.push(startingEdge);
+            var lastEdge = null;
+            do {
+                var moreedges = false;
+                var nextEdge = this.getUnusedEdge(edges, history.usedPoints, (_edge) => {
+                    return _edge.va.x === endPoint.x && _edge.va.y == endPoint.y;
+                }, ops, lastEdge);
+                if (ops && ops.maximumLength && ops.maximumLength < result.length) {
+                    moreedges = false
+                }
+                else if (nextEdge) {
+                    console.log(`me.getEdgeLength(edge): ${me.getEdgeLength(nextEdge)}`)
+                    history.usedPoints.push(nextEdge.va);
+                    endPoint = nextEdge.vb;
+                    result.push(nextEdge);
+                    lastEdge = nextEdge;
+                    moreedges = true;
+                }
+
+            } while (moreedges);
+            if (nextEdge)
+                history.usedPoints.push(nextEdge.vb);
+
+        }
+        console.log(`the path is ${result.length} long.`)
+        return {
+            path: result,
+            history
+        };
+    }
+    createWeb(ops) {
+        ops = ops || {};
+        var {
+            level = 100,
+            sites = [],
+            height = 800,
+            width = 800
+        } = ops;
+
+        var bbox = { xl: 0, xr: height, yt: 0, yb: width }; // xl is x-left, xr is x-right, yt is y-top, and yb is y-bottom
+        // var sites = []; // [{ x: 200, y: 200 }, { x: 50, y: 250 }, { x: 400, y: 100 } /* , ... */];
+        var diagram = null;
+        var result = {};
+
+        var Voronoi = Closure();
+        var voronoi = new Voronoi();
+        var seed = this.randomSites(voronoi, bbox, diagram, level, sites);
+
+        return seed.diagram.edges;
+    }
+    createVoronoiSeed() {
+        var Voronoi = V();
+        var voronoi = new Voronoi();
+        var bbox = { xl: 0, xr: 800, yt: 0, yb: 800 }; // xl is x-left, xr is x-right, yt is y-top, and yb is y-bottom
+        var sites = []; // [{ x: 200, y: 200 }, { x: 50, y: 250 }, { x: 400, y: 100 } /* , ... */];
+        var {
+            diagram,
+            sites,
+            bbox
+        } = this.randomSites(voronoi, bbox, null, 2, sites);
+        // a 'vertex' is an object exhibiting 'x' and 'y' properties. The
+        // Voronoi object will add a unique 'voronoiId' property to all
+        // sites. The 'voronoiId' can be used as a key to lookup the associated cell
+        // in diagram.cells.
+
+        return {
+            diagram,
+            sites,
+            bbox
+        }
+    }
+    createLevels(levels, ops) {
+        ops = ops || {};
+        var sites = []; // [{ x: 200, y: 200 }, { x: 50, y: 250 }, { x: 400, y: 100 } /* , ... */];
+        var bbox = ops.bbox || { xl: 0, xr: 800, yt: 0, yb: 800 }; // xl is x-left, xr is x-right, yt is y-top, and yb is y-bottom
+        var sites = []; // [{ x: 200, y: 200 }, { x: 50, y: 250 }, { x: 400, y: 100 } /* , ... */];
+        var diagram = null;
+        var result = {};
+        var Voronoi = V();
+        var voronoi = new Voronoi();
+
+        console.log(`creating levels`)
+        return levels.map((level, i) => {
+            console.log(`creating ${level}`)
+            var seed = this.randomSites(voronoi, bbox, diagram, level, sites);
+            diagram = seed.diagram;
+            sites = seed.sites;
+            bbox = seed.bbox;
+
+            var paths = this.getPaths(seed, null, ops);
+
+            return {
+                level,
+                paths
+            }
+        });
+
+    }
+    randomSites(voronoi, bbox, diagram, n, sites, ops) {
+        sites = sites || [];
+        ops = ops || {};
+
+        var { xo = 0, yo = 0, dx = 800, dy = 800 } = ops;
+        for (var i = sites.length; i < n; i++) {
+            sites.push({
+                x: xo + Math.random() * dx + Math.random() / dx,
+                y: yo + Math.random() * dy + Math.random() / dy
+            });
+        }
+        if (diagram) {
+            voronoi.recycle(diagram);
+        }
+        diagram = voronoi.compute(sites, bbox);
+
+        return {
+            diagram,
+            sites,
+            bbox
+        }
+    }
+    createPath(pathConfig, name, level, ops) {
+        ops = ops || {};
+        var { sx = 1, sy = 1 } = ops;
+        var parts = pathConfig.filter(x => x.va && x.vb);
+        var lastEdge = parts[parts.length - 1];
+        var last = [lastEdge.vb.x * sx, lastEdge.vb.y * sy, 0, 0];
+        var path = {
+            name,
+            position: {
+                x: 0,
+                y: 0,
+                z: 0
+            },
+            type: 'path',
+            bevel_object: name + '-bevel',
+            use_path: "false",
+            points: [...parts.map(edge => {
+                return [edge.va.x * sx, edge.va.y * sy, 0, 0]
+            }), last],
+        };
+        var keyframes = [];
+        keyframes.push({
+            name: name + '-bevel',
+            position: {
+                y: 0,
+                x: 0,
+                z: 0
+            }
+        });
+        keyframes.push({
+            name: name,
+            position: {
+                y: 0,
+                x: 0,
+                z: 0
+            }
+        });
+
+        var circle = {
+            name: name + '-bevel',
+            type: 'circle',
+            scale: {
+                //CUSTOPP //Customization opportunity
+                x: 1 / Math.pow(ops.base_x || ops.base || 2, level),
+                y: 1 / Math.pow(ops.base_y || ops.base || 2, level),
+                z: 1 / Math.pow(ops.base_z || ops.base || 2, level)
+            },
+            position: {
+                x: 0,
+                y: 0,
+                z: 0
+            }
+        };
+
+        return {
+            path,
+            circle,
+            keyframes
+        }
+    }
+    constructMovie(raw) {
+        var me = this;
+
+        var objects = me.objects;
+
+        var useWeb = false;
+        if (useWeb) {
+
+            var edges = this.createWeb();
+            edges.map((edge, pathindex) => {
+                var { path, circle, keyframes } = me.createPath([edge], `path-${pathindex}`, 10);
+                objects.push(circle);
+                objects.push(path);
+                let keyframe = me.getKeyFrame(1);
+                keyframe.objects.push(...keyframes);
+            });
+
+        }
+        else {
+            var res = this.createLevels([...(new Array(4))].map((_, i) => {
+                return (i + 1) * 25;
+            }), {
+                    maximumPaths: 25,
+                    bbox: { xl: 0, xr: 800, yt: 0, yb: 800 }
+                });
+            res.map((levelConfig, index) => {
+                levelConfig.paths.paths.map((path, pathindex) => {
+                    console.log(`path index ${pathindex}`)
+                    var { path, circle, keyframes } = me.createPath(
+                        path,
+                        `path-${pathindex}-level-${levelConfig.level}-${index}`,
+                        index + 1.1,
+                        {
+                            sx: 1 / 80,
+                            sy: 1 / 80,
+                            base: 4
+                        });
+                    objects.push(circle);
+                    objects.push(path);
+                    let keyframe = me.getKeyFrame(1);
+                    keyframe.objects.push(...keyframes);
+                });
+            })
+        }
+        me.addLamps();
+    }
+}
+export class VoronoiWeb extends VoronoiBase {
+    static run(ops) {
+        ops = ops || {};
+        var {
+            level = 100,
+            sites = [],
+            height = 800,
+            width = 800
+        } = ops;
+        var voronoi = new VoronoiWeb();
+        var edges = voronoi.createWeb({
+            level,
+            sites,
+            height: 800,
+            width: 800
+        });
+
+        var sy = height / 800;
+        var sx = width / 800;
+        return {
+            edges: edges.map(edge => M.Edge.run({ a: edge.va, b: edge.vb })).map(edge => Edge.run({
+                a: Vector.run({
+                    x: edge.a.x * sx,
+                    y: edge.a.y * sy,
+                    z: edge.a.z
+                }),
+                b: Vector.run({
+                    x: edge.b.x * sx,
+                    y: edge.b.y * sy,
+                    z: edge.b.z
+                })
+            }))
+        }
+    }
 }
