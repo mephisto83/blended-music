@@ -184,7 +184,7 @@ export default class VoronoiMovie extends Basic {
                         edges: group,
                         transformation: {
                             y: function (x, y, z) {
-                                return y + Math.sin(x) + Math.cos(2 * x);;
+                                return y + .1 * Math.sin(x) + .2 * Math.cos(2 * x);;
                             }
                         }
                     });

@@ -110,8 +110,8 @@ export default class SingleFrameBasic extends Basic {
         var x_ = me.midiToDimension(note.midi);
         var dim = .5;
         var z = 10 * (note.velocity || 0);
-        var frame = me.toTimeToFrames(note.time);
-        var endframe = me.toTimeToFrames(note.time + note.duration);
+        var frame = me.toTimeToFrames(note.time + ops.trackStart);
+        var endframe = me.toTimeToFrames(note.time + note.duration + ops.trackStart);
         var res = {
             name: name,
             position: {

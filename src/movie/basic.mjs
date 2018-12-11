@@ -14,7 +14,7 @@ export default class Basic {
     static info() {
         return {
             name: 'Basic',
-            version: '0.0.4'
+            version: '0.0.5'
         }
     }
     renderEngine() {
@@ -65,8 +65,8 @@ export default class Basic {
         var y_ = me.toTimeToPosition(note.time);
         var x_ = me.midiToDimension(note.midi);
         var dim = me.toTimeToDimension(note.duration);
-        var frame = me.toTimeToFrames(note.time);
-        var endframe = me.toTimeToFrames(note.time + note.duration);
+        var frame = me.toTimeToFrames(note.time + (ops.trackStart || 0));
+        var endframe = me.toTimeToFrames(note.time + note.duration + (ops.trackStart || 0));
         var width = (1 / (ops.trackCount || 1)) * .5;
         var x_offset = (width * 2) * ops.track_index;
         var palette = me.colorPalette()[ops.track_index] || [1, 0, 0];
@@ -206,7 +206,7 @@ export default class Basic {
         frame.objects.push({
             "name": default_camera,
             "camera_type": "ORTHO",
-            "ortho_scale": 55,
+            "ortho_scale": 80.4,
             "translate": {
                 "x": 0,
                 "y": -67.3141,
@@ -267,6 +267,7 @@ export default class Basic {
                 return !track.isPercussion
             }).forEach((track, track_index) => {
                 if (track && track.notes) {
+                    var trackStart = track.startTime;
                     track.notes.forEach((note, note_index) => {
                         let name = `track-${track_index}-${note.name}-${note_index}`;
                         objects.push({
@@ -274,7 +275,8 @@ export default class Basic {
                             type: "cube"
                         });
                         let keyframe = me.getKeyFrame(1);
-                        let note_frame = me.createNoteKeyFrame(note, name, { trackCount: raw.tracks.length, track_index });
+                        var trackStart = track.startTime;
+                        let note_frame = me.createNoteKeyFrame(note, name, { trackStart, trackCount: raw.tracks.length, track_index });
                         keyframe.objects.push(note_frame);
                     });
                 }
