@@ -33,7 +33,7 @@ export default class Basic {
         return keyframe;
     }
     toTimeToFrames(duration) {
-        return this.framesPerSecond * duration;
+        return Math.ceil(this.framesPerSecond * duration);
     }
     createKeyFrame(frameIndex) {
         return {

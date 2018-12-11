@@ -210,6 +210,30 @@ export class SplitEdge {
     }
 }
 
+
+export class Face {
+    static run(ops) {
+        ops = ops || {};
+        var { face, center = Vector.run({}) } = ops;
+        return {
+            _type: Types.FACE,
+            center,
+            ...Map.run({
+                collection: face,
+                function: (vector) => {
+                    return Vector.run({
+                        ...vector
+                    })
+                }
+            })
+        }
+    }
+}
+
+export function VectorDistance(v1, v2) {
+    return Math.sqrt(Math.pow(v1.x - v2.x, 2), Math.pow(v1.y - v2.y, 2), Math.pow(v1.z - v2.z, 2))
+}
+
 export class Edge {
     static run(ops) {
         ops = ops || {};
@@ -292,6 +316,7 @@ export class SplitVector {
 }
 export const Types = {
     VECTOR: 'VECTOR',
+    FACE: 'FACE',
     EDGE: 'EDGE'
 }
 export class Vector {

@@ -511,7 +511,18 @@ export class VoronoiBase {
         var voronoi = new Voronoi();
         var seed = this.randomSites(voronoi, bbox, diagram, level, sites);
 
-        return seed.diagram.edges;
+        return {
+            diagram: seed.diagram,
+            edges: seed.diagram.edges,
+            cellCenters: seed.diagram.cells.map(cell => {
+                return cell.site;
+            }),
+            faces: seed.diagram.cells.map(cell => {
+                return cell.halfedges.map(he => {
+                    return he.edge.va;
+                });
+            })
+        };
     }
     createVoronoiSeed() {
         var Voronoi = V();
@@ -690,6 +701,7 @@ export class VoronoiBase {
         me.addLamps();
     }
 }
+
 export class VoronoiWeb extends VoronoiBase {
     static run(ops) {
         ops = ops || {};
@@ -700,7 +712,7 @@ export class VoronoiWeb extends VoronoiBase {
             width = 800
         } = ops;
         var voronoi = new VoronoiWeb();
-        var edges = voronoi.createWeb({
+        var { edges, faces, cellCenters } = voronoi.createWeb({
             level,
             sites,
             height: 800,
@@ -721,7 +733,30 @@ export class VoronoiWeb extends VoronoiBase {
                     y: edge.b.y * sy,
                     z: edge.b.z
                 })
-            }))
+            })),
+            faces: faces.map((face, faceIndex) => {
+                var res = M.Face.run({
+                    face,
+                    center: Vector.run({
+                        z: 0,
+                        ...cellCenters[faceIndex]
+                    })
+                });
+                res.center = Vector.run({
+                    x: res.center.x * sx,
+                    y: res.center.y * sy,
+                    z: res.center.z
+                })
+                res.collection = [...res.collection.map(vector => {
+                    return Vector.run({
+                        x: vector.x * sx,
+                        y: vector.y * sy,
+                        z: vector.z
+                    })
+                })]
+
+                return res;
+            })
         }
     }
 }
