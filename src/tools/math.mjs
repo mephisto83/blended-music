@@ -1,3 +1,5 @@
+import * as rando from './random.mjs';
+
 export class Lerp {
     static run(ops) {
         ops = ops || {};
@@ -9,6 +11,18 @@ export class Lerp {
 
         return {
             value: lerp(thrustAmount, to, Math.max(Math.min(1, step), 0))
+        }
+    }
+}
+
+export class MathFunction {
+    static run(ops) {
+        ops = ops || {};
+        var { a, b } = ops;
+        ops.function = ops.function || ((c, d) => (c + d));
+
+        return {
+            a: ops.function(a, b)
         }
     }
 }
@@ -172,7 +186,7 @@ export class Map {
         ops = ops || {};
 
         var { collection = [] } = ops;
-
+        ops.function = ops.function || function (x) { return x; };
         return {
             collection: collection.map(item => {
                 return ops.function(item);
@@ -207,6 +221,60 @@ export class Edge {
         }
     }
 }
+export class ToEdge {
+    static run(ops) {
+        ops = ops || {};
+        var {
+            edges = [],
+            each = function (v) { return v; }
+        } = ops;
+
+        return {
+            edges: edges.map(edge => {
+                return each(edge);
+            })
+        }
+    }
+}
+
+export class ToVector {
+    static run(ops) {
+        ops = ops || {};
+        var { edge = Edge.run(), each = function (v) { return v; } } = ops;
+        var { a, b } = edge;
+        return {
+            edge: Edge.run({
+                a: each(a),
+                b: each(b)
+            })
+        }
+    }
+}
+
+//2D Noise
+export class Noise {
+    static run(ops) {
+        ops = ops || {};
+        var { a = 0, b = 0, seed = 1 } = ops;
+        rando.Random.noise.seed(seed);
+        return {
+            a: rando.Rand1.random(a)(),
+            b: rando.Rand1.random(b)()
+        }
+    }
+}
+
+export class ToNumber {
+    static run(ops) {
+        ops = ops || {}
+        var { vector = Vector.run(), on = function (v) { return v; } } = ops;
+
+        return {
+            vector: on(vector.x, vector.y, vector.z)
+        }
+    }
+}
+
 export class SplitVector {
     static run(ops) {
         ops = ops || {};

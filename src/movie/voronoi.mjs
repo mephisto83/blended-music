@@ -173,19 +173,9 @@ export default class VoronoiMovie extends Basic {
 
             var { edges } = VoronoiWeb.run({ height: 10, width: 10 });
 
-            // ProceduralNode.Map.run({
-            //     collection: edges,
-            //     function: ProceduralNode.SplitEdge.run(
-            //         ProceduralNode.SplitVector.run(
-            //             ProceduralNode.Interpolate.run({
-            //                 steps: 10
-            //             })
-            //         )
-            //     )
-            // })
             var { edges } = ProceduralNode.InterpolateEdge.run({
                 edges,
-                steps: 3
+                steps: 30
             });
             var { collection } = ProceduralNode.Map.run({
                 collection: edges,
@@ -194,17 +184,64 @@ export default class VoronoiMovie extends Basic {
                         edges: group,
                         transformation: {
                             y: function (x, y, z) {
-                                return y + Math.sin(x);
+                                return y + Math.sin(x) + Math.cos(2 * x);;
                             }
                         }
                     });
                     return edges;
                 }
             });
-            console.log(edges)
+            // Map the collection
+            var { collection } = ProceduralNode.Map.run({
+                collection: collection,
+                function: (group) => {
+                    // From edges => edge
+                    var { edges } = ProceduralNode.ToEdge.run({
+                        edges: group,
+                        each: (edge) => {
+                            // From edge to vector
+                            var { edge } = ProceduralNode.ToVector.run({
+                                edge,
+                                each: (vector) => {
+                                    // from vector to vector
+                                    var { vector } = ProceduralNode.ToNumber.run({
+                                        vector: vector,
+                                        on: (x, y, z) => {
+                                            var { a, b } = ProceduralNode.Noise.run({
+                                                seed: 1,
+                                                a: x,
+                                                b: y
+                                            });
+                                            var math_res = ProceduralNode.MathFunction.run({
+                                                a,
+                                                b: .01,
+                                                function: (c, d) => c * d
+                                            })
+                                            var math_res2 = ProceduralNode.MathFunction.run({
+                                                a: b,
+                                                b: .01,
+                                                function: (c, d) => c * d
+                                            })
+                                            return ProceduralNode.Vector.run({
+                                                x: x + math_res.a,
+                                                y: y + math_res2.a,
+                                                z
+                                            });
+                                        }
+                                    });
+                                    return vector;
+                                }
+                            });
+                            return edge;
+                        }
+                    })
+                    return edges;
+                }
+            });
+            console.log(collection)
 
             collection.map((edge, pathindex) => {
-                console.log(edge.length);
+                console.log(edge);
                 var { path, circle, keyframes } = me.createPath(edge, `path-${pathindex}`, 10);
                 objects.push(circle);
                 objects.push(path);
