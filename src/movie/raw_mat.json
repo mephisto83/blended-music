@@ -1,0 +1,1461 @@
+{
+    "materials": [
+        {
+            "name": "Gold",
+            "value": {
+                "definitions": {
+                    "links": [],
+                    "nodes": []
+                },
+                "links": [
+                    {
+                        "from": 1,
+                        "from_socket": {
+                            "name": "Shader",
+                            "type": "SHADER"
+                        },
+                        "to": 0,
+                        "to_socket": {
+                            "name": "Surface",
+                            "type": "SHADER"
+                        }
+                    }
+                ],
+                "nodes": [
+                    {
+                        "id": 0,
+                        "inputs": [
+                            {
+                                "name": "Surface",
+                                "type": "SHADER"
+                            },
+                            {
+                                "name": "Volume",
+                                "type": "SHADER"
+                            },
+                            {
+                                "name": "Displacement",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "name": "Material Output",
+                        "outputs": [],
+                        "type": "OUTPUT_MATERIAL"
+                    },
+                    {
+                        "id": 1,
+                        "inputs": [
+                            {
+                                "name": "Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Rim Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Rim Amount",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Non-Metal <-> Metal",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Roughness",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Offset Roughness",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Reflectivity",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Offset Reflectivity",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "IOR",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Normal",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "name": "PBR_Shader",
+                        "outputs": [
+                            {
+                                "name": "Shader",
+                                "type": "SHADER"
+                            }
+                        ],
+                        "type": "GROUP"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Marble",
+            "value": {
+                "definitions": {
+                    "links": [],
+                    "nodes": []
+                },
+                "links": [
+                    {
+                        "from": 1,
+                        "from_socket": {
+                            "name": "Shader",
+                            "type": "SHADER"
+                        },
+                        "to": 0,
+                        "to_socket": {
+                            "name": "Surface",
+                            "type": "SHADER"
+                        }
+                    }
+                ],
+                "nodes": [
+                    {
+                        "id": 0,
+                        "inputs": [
+                            {
+                                "name": "Surface",
+                                "type": "SHADER"
+                            },
+                            {
+                                "name": "Volume",
+                                "type": "SHADER"
+                            },
+                            {
+                                "name": "Displacement",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "name": "Material Output",
+                        "outputs": [],
+                        "type": "OUTPUT_MATERIAL"
+                    },
+                    {
+                        "id": 1,
+                        "inputs": [
+                            {
+                                "name": "Vector",
+                                "type": "VECTOR"
+                            },
+                            {
+                                "name": "Scale",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Base Color 1",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Base Color 2",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Vein Color 1",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Vein Color 2",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Speckle Color",
+                                "type": "RGBA"
+                            }
+                        ],
+                        "name": "Pro4_Marble",
+                        "outputs": [
+                            {
+                                "name": "Shader",
+                                "type": "SHADER"
+                            }
+                        ],
+                        "type": "GROUP"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "PBR Master Material",
+            "value": {
+                "definitions": {
+                    "links": [],
+                    "nodes": []
+                },
+                "links": [
+                    {
+                        "from": 1,
+                        "from_socket": {
+                            "name": "Shader",
+                            "type": "SHADER"
+                        },
+                        "to": 0,
+                        "to_socket": {
+                            "name": "Surface",
+                            "type": "SHADER"
+                        }
+                    }
+                ],
+                "nodes": [
+                    {
+                        "id": 0,
+                        "inputs": [
+                            {
+                                "name": "Surface",
+                                "type": "SHADER"
+                            },
+                            {
+                                "name": "Volume",
+                                "type": "SHADER"
+                            },
+                            {
+                                "name": "Displacement",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "name": "Material Output",
+                        "outputs": [],
+                        "type": "OUTPUT_MATERIAL"
+                    },
+                    {
+                        "id": 1,
+                        "inputs": [
+                            {
+                                "name": "Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Rim Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Rim Amount",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Non-Metal <-> Metal",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Roughness",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Offset Roughness",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Reflectivity",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Offset Reflectivity",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "IOR",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Normal",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "name": "PBR_Shader",
+                        "outputs": [
+                            {
+                                "name": "Shader",
+                                "type": "SHADER"
+                            }
+                        ],
+                        "type": "GROUP"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "PBR Organic Shader",
+            "value": {
+                "definitions": {
+                    "links": [],
+                    "nodes": []
+                },
+                "links": [
+                    {
+                        "from": 1,
+                        "from_socket": {
+                            "name": "Shader",
+                            "type": "SHADER"
+                        },
+                        "to": 0,
+                        "to_socket": {
+                            "name": "Surface",
+                            "type": "SHADER"
+                        }
+                    }
+                ],
+                "nodes": [
+                    {
+                        "id": 0,
+                        "inputs": [
+                            {
+                                "name": "Surface",
+                                "type": "SHADER"
+                            },
+                            {
+                                "name": "Volume",
+                                "type": "SHADER"
+                            },
+                            {
+                                "name": "Displacement",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "name": "Material Output",
+                        "outputs": [],
+                        "type": "OUTPUT_MATERIAL"
+                    },
+                    {
+                        "id": 1,
+                        "inputs": [
+                            {
+                                "name": "Surface Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Epidermal Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Subdermal Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Muscle Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Opacity",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "SSS Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Roughness",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Normal",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "name": "PBR_Organic_Shader",
+                        "outputs": [
+                            {
+                                "name": "Shader",
+                                "type": "SHADER"
+                            }
+                        ],
+                        "type": "GROUP"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Procedural 4",
+            "value": {
+                "links": [],
+                "nodes": []
+            }
+        },
+        {
+            "name": "Procedural Pro Material",
+            "value": {
+                "definitions": {
+                    "links": [],
+                    "nodes": []
+                },
+                "links": [
+                    {
+                        "from": 11,
+                        "from_socket": {
+                            "name": "Shader",
+                            "type": "SHADER"
+                        },
+                        "to": 0,
+                        "to_socket": {
+                            "name": "Surface",
+                            "type": "SHADER"
+                        }
+                    }
+                ],
+                "nodes": [
+                    {
+                        "id": 0,
+                        "inputs": [
+                            {
+                                "name": "Surface",
+                                "type": "SHADER"
+                            },
+                            {
+                                "name": "Volume",
+                                "type": "SHADER"
+                            },
+                            {
+                                "name": "Displacement",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "name": "Material Output",
+                        "outputs": [],
+                        "type": "OUTPUT_MATERIAL"
+                    },
+                    {
+                        "id": 1,
+                        "inputs": [
+                            {
+                                "name": "Base Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Secondary Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Tertiary Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Offset Color Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Texture Scale",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Detail",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Lacunarity",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Detail Scale",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Distortion",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Bump Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Extra Bump",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Extra Bump Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Vector",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "name": "P_Pro_MasterNode",
+                        "outputs": [
+                            {
+                                "name": "Checker Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Checker Fac",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Checker Normal",
+                                "type": "VECTOR"
+                            },
+                            {
+                                "name": "Magic Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Magic Fac",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Magic Normal",
+                                "type": "VECTOR"
+                            },
+                            {
+                                "name": "Mix Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Mix Fac",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Mix Normal",
+                                "type": "VECTOR"
+                            },
+                            {
+                                "name": "Musgrave Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Musgrave Fac",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Musgrave Normal",
+                                "type": "VECTOR"
+                            },
+                            {
+                                "name": "Noise Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Noise Fac",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Noise Normal",
+                                "type": "VECTOR"
+                            },
+                            {
+                                "name": "Waves (Saw) Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Waves (Saw) Fac",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Waves (Saw) Normal",
+                                "type": "VECTOR"
+                            },
+                            {
+                                "name": "Waves (Sine) Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Waves (Sine) Fac",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Waves (Sine) Normal",
+                                "type": "VECTOR"
+                            },
+                            {
+                                "name": "Voronoi (Cells) Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Voronoi (Cells) Fac",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Voronoi (Cells) Normal",
+                                "type": "VECTOR"
+                            },
+                            {
+                                "name": "Voronoi (Intensity) Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Voronoi (Intensity) Fac",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Voronoi (Intensity) Normal",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "type": "GROUP"
+                    },
+                    {
+                        "id": 2,
+                        "inputs": [
+                            {
+                                "name": "Base Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Secondary Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Tertiary Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Offset Color Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Texture Scale",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Distortion",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Bump Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Extra Bump",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Extra Bump Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Vector",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "name": "Pro4_Magic",
+                        "outputs": [
+                            {
+                                "name": "Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Fac",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Normal",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "type": "GROUP"
+                    },
+                    {
+                        "id": 3,
+                        "inputs": [
+                            {
+                                "name": "Base Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Secondary Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Tertiary Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Offset Color Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Texture Scale",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Detail",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Bump Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Extra Bump",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Extra Bump Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Vector",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "name": "Pro4_Noise",
+                        "outputs": [
+                            {
+                                "name": "Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Fac",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Normal",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "type": "GROUP"
+                    },
+                    {
+                        "id": 4,
+                        "inputs": [
+                            {
+                                "name": "Base Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Secondary Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Tertiary Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Offset Color Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Texture Scale",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Detail",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Lacunarity",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Bump Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Extra Bump",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Extra Bump Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Vector",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "name": "Pro4_Mix",
+                        "outputs": [
+                            {
+                                "name": "Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Fac",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Normal",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "type": "GROUP"
+                    },
+                    {
+                        "id": 5,
+                        "inputs": [
+                            {
+                                "name": "Base Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Secondary Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Tertiary Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Offset Color Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Texture Scale",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Detail",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Lacunarity",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Bump Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Extra Bump",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Extra Bump Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Vector",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "name": "Pro4_Musgrave",
+                        "outputs": [
+                            {
+                                "name": "Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Fac",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Normal",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "type": "GROUP"
+                    },
+                    {
+                        "id": 6,
+                        "inputs": [
+                            {
+                                "name": "Base Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Secondary Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Tertiary Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Offset Color Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Texture Scale",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Detail",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Detail Scale",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Distortion",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Bump Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Extra Bump",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Extra Bump Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Vector",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "name": "Pro4_Waves (Sine)",
+                        "outputs": [
+                            {
+                                "name": "Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Fac",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Normal",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "type": "GROUP"
+                    },
+                    {
+                        "id": 7,
+                        "inputs": [
+                            {
+                                "name": "Base Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Secondary Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Tertiary Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Offset Color Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Texture Scale",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Detail",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Detail Scale",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Distortion",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Bump Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Extra Bump",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Extra Bump Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Vector",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "name": "Pro4_Waves (Saw)",
+                        "outputs": [
+                            {
+                                "name": "Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Fac",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Normal",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "type": "GROUP"
+                    },
+                    {
+                        "id": 8,
+                        "inputs": [
+                            {
+                                "name": "Base Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Secondary Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Tertiary Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Offset Color Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Texture Scale",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Bump Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Extra Bump",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Extra Bump Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Vector",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "name": "Pro4_Voronoi (Intensity)",
+                        "outputs": [
+                            {
+                                "name": "Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Fac",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Normal",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "type": "GROUP"
+                    },
+                    {
+                        "id": 9,
+                        "inputs": [
+                            {
+                                "name": "Base Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Secondary Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Tertiary Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Offset Color Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Texture Scale",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Bump Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Extra Bump",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Extra Bump Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Vector",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "name": "Pro4_Voronoi (Cells)",
+                        "outputs": [
+                            {
+                                "name": "Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Fac",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Normal",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "type": "GROUP"
+                    },
+                    {
+                        "id": 10,
+                        "inputs": [
+                            {
+                                "name": "Base Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Secondary Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Tertiary Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Offset Color Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Texture Scale",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Bump Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Extra Bump",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Extra Bump Strength",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Vector",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "name": "Pro4_Checker",
+                        "outputs": [
+                            {
+                                "name": "Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Fac",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Normal",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "type": "GROUP"
+                    },
+                    {
+                        "id": 11,
+                        "inputs": [
+                            {
+                                "name": "Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Rim Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Rim Amount",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Non-Metal <-> Metal",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Roughness",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Offset Roughness",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Reflectivity",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Offset Reflectivity",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "IOR",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Normal",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "name": "PBR_Shader",
+                        "outputs": [
+                            {
+                                "name": "Shader",
+                                "type": "SHADER"
+                            }
+                        ],
+                        "type": "GROUP"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Stand",
+            "value": {
+                "definitions": {
+                    "links": [],
+                    "nodes": [
+                        {
+                            "id": 0,
+                            "inputs": [
+                                {
+                                    "name": "Color",
+                                    "type": "RGBA"
+                                },
+                                {
+                                    "name": "Rim Color",
+                                    "type": "RGBA"
+                                },
+                                {
+                                    "name": "Rim Amount",
+                                    "type": "VALUE"
+                                },
+                                {
+                                    "name": "Non-Metal <-> Metal",
+                                    "type": "VALUE"
+                                },
+                                {
+                                    "name": "Roughness",
+                                    "type": "VALUE"
+                                },
+                                {
+                                    "name": "Offset Roughness",
+                                    "type": "VALUE"
+                                },
+                                {
+                                    "name": "Reflectivity",
+                                    "type": "VALUE"
+                                },
+                                {
+                                    "name": "Offset Reflectivity",
+                                    "type": "VALUE"
+                                },
+                                {
+                                    "name": "IOR",
+                                    "type": "VALUE"
+                                },
+                                {
+                                    "name": "Normal",
+                                    "type": "VECTOR"
+                                }
+                            ],
+                            "name": "PBR_Shader",
+                            "outputs": [
+                                {
+                                    "name": "Shader",
+                                    "type": "SHADER"
+                                }
+                            ],
+                            "type": "GROUP"
+                        },
+                        {
+                            "id": 1,
+                            "inputs": [
+                                {
+                                    "name": "Vector",
+                                    "type": "VECTOR"
+                                },
+                                {
+                                    "name": "Scale",
+                                    "type": "VALUE"
+                                },
+                                {
+                                    "name": "Detail",
+                                    "type": "VALUE"
+                                },
+                                {
+                                    "name": "Distortion",
+                                    "type": "VALUE"
+                                },
+                                {
+                                    "name": "Primary Color",
+                                    "type": "RGBA"
+                                },
+                                {
+                                    "name": "Secondary Color",
+                                    "type": "RGBA"
+                                },
+                                {
+                                    "name": "Normal Strength",
+                                    "type": "VALUE"
+                                }
+                            ],
+                            "name": "Pro4_WormTrails",
+                            "outputs": [
+                                {
+                                    "name": "Color",
+                                    "type": "RGBA"
+                                },
+                                {
+                                    "name": "Fac",
+                                    "type": "VALUE"
+                                },
+                                {
+                                    "name": "Normal",
+                                    "type": "VECTOR"
+                                }
+                            ],
+                            "type": "GROUP"
+                        },
+                        {
+                            "id": 2,
+                            "inputs": [
+                                {
+                                    "name": "Base Color",
+                                    "type": "RGBA"
+                                },
+                                {
+                                    "name": "Secondary Color",
+                                    "type": "RGBA"
+                                },
+                                {
+                                    "name": "Tertiary Color",
+                                    "type": "RGBA"
+                                },
+                                {
+                                    "name": "Offset Color Strength",
+                                    "type": "VALUE"
+                                },
+                                {
+                                    "name": "Texture Scale",
+                                    "type": "VALUE"
+                                },
+                                {
+                                    "name": "Detail",
+                                    "type": "VALUE"
+                                },
+                                {
+                                    "name": "Bump Strength",
+                                    "type": "VALUE"
+                                },
+                                {
+                                    "name": "Extra Bump",
+                                    "type": "RGBA"
+                                },
+                                {
+                                    "name": "Extra Bump Strength",
+                                    "type": "VALUE"
+                                },
+                                {
+                                    "name": "Vector",
+                                    "type": "VECTOR"
+                                }
+                            ],
+                            "name": "Pro4_Noise",
+                            "outputs": [
+                                {
+                                    "name": "Color",
+                                    "type": "RGBA"
+                                },
+                                {
+                                    "name": "Fac",
+                                    "type": "VALUE"
+                                },
+                                {
+                                    "name": "Normal",
+                                    "type": "VECTOR"
+                                }
+                            ],
+                            "type": "GROUP"
+                        }
+                    ]
+                },
+                "links": [
+                    {
+                        "from": 1,
+                        "from_socket": {
+                            "name": "Shader",
+                            "type": "SHADER"
+                        },
+                        "to": 0,
+                        "to_socket": {
+                            "name": "Surface",
+                            "type": "SHADER"
+                        }
+                    }
+                ],
+                "nodes": [
+                    {
+                        "id": 0,
+                        "inputs": [
+                            {
+                                "name": "Surface",
+                                "type": "SHADER"
+                            },
+                            {
+                                "name": "Volume",
+                                "type": "SHADER"
+                            },
+                            {
+                                "name": "Displacement",
+                                "type": "VECTOR"
+                            }
+                        ],
+                        "name": "Material Output",
+                        "outputs": [],
+                        "type": "OUTPUT_MATERIAL"
+                    },
+                    {
+                        "id": 1,
+                        "inputs": [
+                            {
+                                "name": "Vector",
+                                "type": "VECTOR"
+                            },
+                            {
+                                "name": "Color Scale",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Normal Scale",
+                                "type": "VALUE"
+                            },
+                            {
+                                "name": "Base Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Secondary Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Tertiary Color",
+                                "type": "RGBA"
+                            },
+                            {
+                                "name": "Normal Strength",
+                                "type": "VALUE"
+                            }
+                        ],
+                        "name": "Pro4_Mud",
+                        "outputs": [
+                            {
+                                "name": "Shader",
+                                "type": "SHADER"
+                            }
+                        ],
+                        "type": "GROUP"
+                    }
+                ]
+            }
+        }
+    ]
+}

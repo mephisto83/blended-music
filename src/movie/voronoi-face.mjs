@@ -246,8 +246,8 @@ export default class VoronoiFace extends Basic {
         noteEvents.map(noteEvent => {
             var { note, trackStart, trackCount, track_index } = noteEvent;
             palette = me.colorPalette()[track_index] || [1, 0, 0];
-            var frame = me.toTimeToFrames(note.time + (trackStart || 0));
-            var endframe = me.toTimeToFrames(note.time + note.duration + (trackStart || 0));
+            var frame = me.toTimeToFrames(note.time);
+            var endframe = me.toTimeToFrames(note.time + note.duration);
 
             lightAnim.push({
                 frame: frame,

@@ -65,8 +65,8 @@ export default class Basic {
         var y_ = me.toTimeToPosition(note.time);
         var x_ = me.midiToDimension(note.midi);
         var dim = me.toTimeToDimension(note.duration);
-        var frame = me.toTimeToFrames(note.time + (ops.trackStart || 0));
-        var endframe = me.toTimeToFrames(note.time + note.duration + (ops.trackStart || 0));
+        var frame = me.toTimeToFrames(note.time);
+        var endframe = me.toTimeToFrames(note.time + note.duration);
         var width = (1 / (ops.trackCount || 1)) * .5;
         var x_offset = (width * 2) * ops.track_index;
         var palette = me.colorPalette()[ops.track_index] || [1, 0, 0];
