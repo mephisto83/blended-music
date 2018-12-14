@@ -17,7 +17,6 @@ export default class Materials {
             Diffuse: "ShaderNodeBsdfDiffuse",
             WorldOutput: "ShaderNodeOutputWorld",
             Background: "ShaderNodeBackground"
-
         }
     }
 

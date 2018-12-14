@@ -1,0 +1,24 @@
+import Materials from './materials';
+export default class GroupMaterials extends Materials {
+    constructor(name) {
+        this.name = name;
+        this.type = null;
+    }
+
+    static Types() {
+       var res = super.Types();
+        return {
+            ...res,
+            Emission: "ShaderNodeEmission",
+            Output: "ShaderNodeOutputMaterial",
+            Color: "ShaderNodeMixRGB",
+            Value: "ShaderNodeValue",
+            Mix: "ShaderNodeMixShader",
+            Diffuse: "ShaderNodeBsdfDiffuse",
+            WorldOutput: "ShaderNodeOutputWorld",
+            Background: "ShaderNodeBackground",
+            {{types}}
+        }
+    }
+
+}

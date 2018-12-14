@@ -9,6 +9,7 @@
     "upstairs": "node --experimental-modules ./test/upstairs.mjs",
     "farm": "node --experimental-modules ./test/midi-farm.mjs",
     "random": "node --experimental-modules ./test/random.mjs",
+    "createmat": "node --experimental-modules ./test/createmat.mjs",
     "defense": "node  --experimental-modules ./test/defense.mjs",
     "install": "node --experimental-modules ./test/install.mjs",
     "voronoi": "node --experimental-modules ./test/voronoi.mjs",
