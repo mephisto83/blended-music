@@ -314,6 +314,7 @@ export default class Basic {
         var mapping = me.getMapping();
         return {
             mapping,
+            materialGroups: me.getMaterialGroups(),
             materials: me.getMaterials(),
             world: me.getWorlds(),
             file: filename,
@@ -329,7 +330,9 @@ export default class Basic {
             camera
         }
     }
-
+    getMaterialGroups(){
+        return null;
+    }
     getMaterials() {
         return null;
     }

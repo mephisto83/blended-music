@@ -24,6 +24,7 @@ export default class JsonToPresentationJson {
                 "FrameEnd": movieDefinition.startEnd,
                 "samples": "200",
                 "Device": "GPU",
+                "MaterialGroups": movieDefinition.materialGroups || null,
                 ...(BlendObjects ? {
                     "Objects": {
                         "File": "//objects.blend",
@@ -81,8 +82,8 @@ export default class JsonToPresentationJson {
         files = files.sort((a, b) => {
             return getFilesizeInBytes(path.join(directory, a)) - getFilesizeInBytes(path.join(directory, b));
         })
-        
-        
+
+
         //        await Promise.all(files.map(async file => {
         for (var i = 0; i < files.length; i++) {
             var file = files[i];

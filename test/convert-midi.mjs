@@ -3,6 +3,7 @@ import MidiJsonInformation from '../src/movie/midi-json-information';
 import path from 'path';
 import Util from '../src/util/util.mjs';
 import Basic from '../src/movie/basic.mjs';
+import MaterialMovie from '../src/movie/material-movie';
 import VoronoiFace from '../src/movie/voronoi-face'
 import Voronoi from '../src/movie/voronoi.mjs';
 import SingleFrameBasic from '../src/movie/single-frame-basic.mjs';
@@ -33,7 +34,7 @@ var __dirname = path.resolve(path.dirname(''));
             inputDir: __dirname + `${path.sep}test${path.sep}raw_json`,
             outputDir: __dirname + `${path.sep}test${path.sep}movie_json`,
             videoOutputDir: __dirname + `${path.sep}test${path.sep}movies`,
-            movieBuilders: [VoronoiFace],
+            movieBuilders: [MaterialMovie],
             midiDir: __dirname + `${path.sep}test${path.sep}midi`,
             count: 1,
             debounce: 1000

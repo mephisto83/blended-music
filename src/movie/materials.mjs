@@ -7,6 +7,10 @@ export default class Materials {
         this.animation = animation;
         return this;
     }
+    out(key) {
+        this.$output = key;
+        return this;
+    }
     static Types() {
         return {
             Emission: "ShaderNodeEmission",
@@ -24,6 +28,14 @@ export default class Materials {
         var material = new Materials(name);
         material.type = Materials.Types().Output;
         material.surface = surface;
+
+        return material;
+    }
+
+    static Custom(name, customgroup) {
+        var material = new Materials(name);
+        material.type = 'CUSTOM';
+        material.custom = customgroup;
 
         return material;
     }
