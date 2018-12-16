@@ -97,7 +97,7 @@ export default class MaterialReader {
             nodes.map(node => {
                 node.inputs.map(input => {
                     if (!links.find(link => {
-                        return link.to === node.id && link.to_socket && input.name === link.to_socket.name
+                        return link.to === node.id && link.to_socket && input.socket_index === link.to_socket.socket_index
                     })) {
                         if (node.type !== 'ShaderNodeOutputMaterial')
                             potentialInputs.push({
@@ -109,7 +109,7 @@ export default class MaterialReader {
                 });
                 node.outputs.map(output => {
                     if (!links.find(link => {
-                        return link.from === node.id && link.from_socket && output.name === link.from_socket.name
+                        return link.from === node.id && link.from_socket && output.socket_index === link.from_socket.socket_index
                     })) {
                         potentialOutputs.push({
                             id: node.id,
@@ -173,8 +173,10 @@ export default class MaterialReader {
                 "outputs": [
                     ...potentialInputs.map(x => {
                         return {
-                            name: x.input.name,
-                            type: x.input.type
+                            ...x.input//,
+                            // name: x.input.name,
+                            // type: x.input.type,
+                            // socket_index: x.input.socket_index
                         }
                     })
                 ],
@@ -188,13 +190,15 @@ export default class MaterialReader {
                     "o": "true",
                     "from_socket": {
                         "name": x.input.name,
-                        "type": x.input.type
+                        "type": x.input.type,
+                        socket_index: x.input.socket_index
                     },
                     "to": x.id,
                     "to_node": x.name,
                     "to_socket": {
                         "name": x.input.name,
-                        "type": x.input.type
+                        "type": x.input.type,
+                        socket_index: x.input.socket_index
                     }
                 };
             })];
@@ -208,7 +212,16 @@ export default class MaterialReader {
                 material.type = 'GROUP';
                 material.conversion = ${JSON.stringify(conversion, null, 2)}
                 ${pinputs}
-                material.definition = ${JSON.stringify({ links, nodes }, null, 2)}
+                material.definition = ${JSON.stringify({
+                    links, nodes, defaultInputs: [...potentialInputs.map(x => {
+                        return {
+                            ...x.input//,
+                            // name: x.input.name,
+                            // type: x.input.type,
+                            // socket_index: x.input.socket_index
+                        }
+                    })]
+                }, null, 2)}
                 return material;
             }
             `;
