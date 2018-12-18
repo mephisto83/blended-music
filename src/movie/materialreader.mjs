@@ -25,16 +25,16 @@ export default class MaterialReader {
         var lib = library.map(group => {
             var { name, value } = group;
             var _name = cleanName(name + 'Group');
-            var { links, nodes } = value;
+            var { links, nodes, defaultInputs } = value;
             var groupInputNode = nodes.find(t => t.type === 'NodeGroupInput');
             var { outputs } = groupInputNode;
             var conversion = {};
             var _outputs = {};
+            var __outputs = {};
             var groupOutputNode = nodes.find(t => t.type === 'NodeGroupOutput');
-
             var _arguments = outputs.filter(x => x.name).map(t => {
                 var name = lowerCaseFirstLetter(cleanName(t.name));
-                conversion[name] = t.name;
+                conversion[name] = t.socket_index;
                 return name;
             });
 
@@ -42,7 +42,12 @@ export default class MaterialReader {
                 var { inputs } = groupOutputNode;
                 inputs.filter(t => t.name).map(t => {
                     _outputs[t.name] = t.type;
+                    __outputs[t.name] = t.socket_index;
                 })
+            }
+            var potentialInputs = []
+            if (groupInputNode) {
+                potentialInputs = [...groupInputNode.outputs];
             }
 
             var propSets = _arguments.map(arg => {
@@ -58,8 +63,12 @@ export default class MaterialReader {
                 material.isGroup = true;
                 material.conversion = ${JSON.stringify(conversion, null, 2)}
                 material.outputs = ${JSON.stringify(_outputs, null, 2)}
+                material.outputIndexes = ${JSON.stringify(__outputs, null, 2)}
                 ${propSets}
-                material.definition = ${JSON.stringify({ links, nodes }, null, 2)}
+                material.definition = ${JSON.stringify({
+                    links,
+                    nodes, defaultInputs
+                }, null, 2)}
                 return material;
             }
             `;
@@ -128,6 +137,7 @@ export default class MaterialReader {
                 _arguments.push(argname);
                 conversion[argname] = {
                     node: `${node.name}`,
+                    socket_index: input.socket_index,
                     input: input.name
                 };
                 return `material.${argname} = ${argname};
@@ -142,7 +152,14 @@ export default class MaterialReader {
 
 
             var _out_put_node = nodes.find(x => x.type === 'ShaderNodeOutputMaterial');
-
+            var __outputs = {};
+            var ___outputs = {};
+            _out_put_node.inputs.map(out_ins => {
+                __outputs[out_ins.name] = out_ins.type;
+                ___outputs[out_ins.name] = out_ins.socket_index;
+            })
+            // return `material.outputs = ${JSON.stringify(__outputs, null, 2)}
+            // `
             var pOutputs = {
                 "name": "Group Output",
                 "options": {},
@@ -157,6 +174,7 @@ export default class MaterialReader {
                 return t;
             })];
             var inputGroupId = nodes.length;
+
             var pInputs = {
                 "dimensions": {
                     "height": 108,
@@ -173,10 +191,7 @@ export default class MaterialReader {
                 "outputs": [
                     ...potentialInputs.map(x => {
                         return {
-                            ...x.input//,
-                            // name: x.input.name,
-                            // type: x.input.type,
-                            // socket_index: x.input.socket_index
+                            ...x.input
                         }
                     })
                 ],
@@ -187,7 +202,6 @@ export default class MaterialReader {
                 return {
                     "from": inputGroupId,
                     "from_node": "Group Input",
-                    "o": "true",
                     "from_socket": {
                         "name": x.input.name,
                         "type": x.input.type,
@@ -210,12 +224,17 @@ export default class MaterialReader {
                 var material = new GroupMaterials('${name}')
                 material.isGroup = true;
                 material.type = 'GROUP';
-                material.conversion = ${JSON.stringify(conversion, null, 2)}
+                material.conversion = ${JSON.stringify(conversion, null, 2)};
+                material.outputs = ${JSON.stringify(__outputs, null, 2)};
+                material.outputIndexes = ${JSON.stringify(___outputs, null, 2)};
                 ${pinputs}
                 material.definition = ${JSON.stringify({
-                    links, nodes, defaultInputs: [...potentialInputs.map(x => {
+                    links, nodes, defaultInputs: [...potentialInputs.map((x, index) => {
                         return {
-                            ...x.input//,
+                            ...x.input,
+                            ...{ socket_index: index }
+
+                            //,
                             // name: x.input.name,
                             // type: x.input.type,
                             // socket_index: x.input.socket_index

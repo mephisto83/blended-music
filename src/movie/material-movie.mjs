@@ -219,12 +219,14 @@ export default class MaterialMovie extends Basic {
             })
 
         var matNames = GroupMaterials.MaterialNames();
-        var material = matNames[materialIndex % matNames.length];
+        var material = "RG$PBR$Shader$v21Group";// matNames[materialIndex % matNames.length];
+        var gmat = GroupMaterials[material](Materials.Color('color', [1, 0, .1, 1]), Materials.Value(material + 'val', .3));
         var res = {
             name: name,
             materialConfig: Materials.Output(`material-${name}`,
                 Materials.Custom(
-                    GroupMaterials[material]()
+                    `material-custom-${name}`,
+                    gmat.out(Materials.StandardOut(gmat))
                 )
             ),
             position: {

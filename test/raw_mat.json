@@ -4,6 +4,37 @@
             "name": "Cloud Mix",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Color",
+                        "socket_index": 0,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 5.0,
+                        "name": "Scale",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 5.0,
+                        "name": "Detail",
+                        "socket_index": 2,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Offset Color Strength",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloatFactor"
+                    }
+                ],
                 "links": [
                     {
                         "from": 0,
@@ -535,6 +566,59 @@
             "name": "Dielectric",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "name": "Color",
+                        "socket_index": 0,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Roughness",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Offset Roughness",
+                        "socket_index": 2,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Reflectivity",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Offset Reflectivity",
+                        "socket_index": 4,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "IOR",
+                        "socket_index": 5,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Normal",
+                        "socket_index": 6,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 13,
@@ -1186,7 +1270,7 @@
                             {
                                 "default_value": [
                                     0.8000000715255737,
-                                    0.0025751744396984577,
+                                    0.0,
                                     0.0025751744396984577,
                                     1.0
                                 ],
@@ -1478,6 +1562,30 @@
             "name": "Fresnel Dielectric",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": 0.5,
+                        "name": "Roughness",
+                        "socket_index": 0,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 1.4500000476837158,
+                        "name": "IOR",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Normal",
+                        "socket_index": 2,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 2,
@@ -1866,6 +1974,36 @@
             "name": "Fresnel Metallic",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": 0.5,
+                        "name": "Rim Amount",
+                        "socket_index": 0,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Roughness",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 1.4500000476837158,
+                        "name": "IOR",
+                        "socket_index": 2,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Normal",
+                        "socket_index": 3,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 8,
@@ -2617,6 +2755,36 @@
             "name": "Fresnel.001",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": 0.5,
+                        "name": "Rim Amount",
+                        "socket_index": 0,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Roughness",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 1.4500000476837158,
+                        "name": "IOR",
+                        "socket_index": 2,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Normal",
+                        "socket_index": 3,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 8,
@@ -3368,6 +3536,64 @@
             "name": "Metal",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.5000225305557251,
+                            0.07414800673723221,
+                            0.023964539170265198,
+                            1.0
+                        ],
+                        "name": "Metal Color",
+                        "socket_index": 0,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.6254019141197205,
+                            0.3592257797718048,
+                            0.07633601874113083,
+                            1.0
+                        ],
+                        "name": "Rim Color",
+                        "socket_index": 1,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.10000002384185791,
+                        "name": "Rim Amount",
+                        "socket_index": 2,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Roughness",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Offset Roughness",
+                        "socket_index": 4,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 1.4500000476837158,
+                        "name": "IOR",
+                        "socket_index": 5,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Normal",
+                        "socket_index": 6,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 1,
@@ -3759,7 +3985,7 @@
                             {
                                 "default_value": [
                                     0.5000225305557251,
-                                    0.023964539170265198,
+                                    0.07414800673723221,
                                     0.023964539170265198,
                                     1.0
                                 ],
@@ -3770,7 +3996,7 @@
                             {
                                 "default_value": [
                                     0.6254019141197205,
-                                    0.07633601874113083,
+                                    0.3592257797718048,
                                     0.07633601874113083,
                                     1.0
                                 ],
@@ -3812,7 +4038,7 @@
                             {
                                 "default_value": [
                                     0.5000225305557251,
-                                    0.023964539170265198,
+                                    0.07414800673723221,
                                     0.023964539170265198,
                                     1.0
                                 ],
@@ -4122,6 +4348,110 @@
             "name": "P_Pro_MasterNode",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.9553954005241394,
+                            0.4217880368232727,
+                            0.20943038165569305,
+                            1.0
+                        ],
+                        "name": "Base Color",
+                        "socket_index": 0,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5028865933418274,
+                            0.4453256130218506,
+                            0.10074843466281891,
+                            1.0
+                        ],
+                        "name": "Secondary Color",
+                        "socket_index": 1,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.14809265732765198,
+                            0.03720312938094139,
+                            1.0
+                        ],
+                        "name": "Tertiary Color",
+                        "socket_index": 2,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Offset Color Strength",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Texture Scale",
+                        "socket_index": 4,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 20.0,
+                        "name": "Detail",
+                        "socket_index": 5,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 2.0,
+                        "name": "Lacunarity",
+                        "socket_index": 6,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 5.0,
+                        "name": "Detail Scale",
+                        "socket_index": 7,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Distortion",
+                        "socket_index": 8,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Bump Strength",
+                        "socket_index": 9,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Extra Bump",
+                        "socket_index": 10,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Extra Bump Strength",
+                        "socket_index": 11,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Vector",
+                        "socket_index": 12,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 8,
@@ -6175,7 +6505,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -6186,7 +6516,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -6197,7 +6527,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -6293,7 +6623,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -6304,7 +6634,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -6315,7 +6645,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -6405,7 +6735,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -6416,7 +6746,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -6427,7 +6757,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -6529,7 +6859,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -6540,7 +6870,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -6551,7 +6881,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -6647,7 +6977,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -6658,7 +6988,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -6669,7 +6999,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -6777,7 +7107,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -6788,7 +7118,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -6799,7 +7129,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -6889,7 +7219,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -6900,7 +7230,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -6911,7 +7241,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -7013,7 +7343,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -7024,7 +7354,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -7035,7 +7365,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -7230,7 +7560,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -7241,7 +7571,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -7252,7 +7582,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -7604,6 +7934,80 @@
             "name": "PBR_Organic_Shader",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.6038162708282471,
+                            0.5180138945579529,
+                            0.3708575665950775,
+                            1.0
+                        ],
+                        "name": "Surface Color",
+                        "socket_index": 0,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.8000000715255737,
+                            0.40797245502471924,
+                            0.08686286211013794,
+                            1.0
+                        ],
+                        "name": "Epidermal Color",
+                        "socket_index": 1,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.45753151178359985,
+                            0.05939243733882904,
+                            0.07463523745536804,
+                            1.0
+                        ],
+                        "name": "Subdermal Color",
+                        "socket_index": 2,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.35055580735206604,
+                            0.028564974665641785,
+                            0.04188697040081024,
+                            1.0
+                        ],
+                        "name": "Muscle Color",
+                        "socket_index": 3,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 100.0,
+                        "name": "Opacity",
+                        "socket_index": 4,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "SSS Strength",
+                        "socket_index": 5,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Roughness",
+                        "socket_index": 6,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Normal",
+                        "socket_index": 7,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 17,
@@ -8234,7 +8638,7 @@
                             {
                                 "default_value": [
                                     0.0033209901303052902,
-                                    0.8000000715255737,
+                                    0.0,
                                     0.8000000715255737,
                                     1.0
                                 ],
@@ -8306,7 +8710,7 @@
                             {
                                 "default_value": [
                                     0.004322738386690617,
-                                    0.0,
+                                    0.8000000715255737,
                                     0.0,
                                     1.0
                                 ],
@@ -8411,7 +8815,7 @@
                             {
                                 "default_value": [
                                     0.8000000715255737,
-                                    0.011646291241049767,
+                                    0.06807360053062439,
                                     0.011646291241049767,
                                     1.0
                                 ],
@@ -9046,6 +9450,82 @@
             "name": "PBR_Shader",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.8000000715255737,
+                            0.0,
+                            0.0025751744396984577,
+                            1.0
+                        ],
+                        "name": "Color",
+                        "socket_index": 0,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.6254019141197205,
+                            0.3592257797718048,
+                            0.07633601874113083,
+                            1.0
+                        ],
+                        "name": "Rim Color",
+                        "socket_index": 1,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.19999992847442627,
+                        "name": "Rim Amount",
+                        "socket_index": 2,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Non-Metal <-> Metal",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Roughness",
+                        "socket_index": 4,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Offset Roughness",
+                        "socket_index": 5,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.781818151473999,
+                        "name": "Reflectivity",
+                        "socket_index": 6,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Offset Reflectivity",
+                        "socket_index": 7,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 1.4500000476837158,
+                        "name": "IOR",
+                        "socket_index": 8,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Normal",
+                        "socket_index": 9,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 3,
@@ -9557,7 +10037,7 @@
                             {
                                 "default_value": [
                                     0.5000225305557251,
-                                    0.023964539170265198,
+                                    0.07414800673723221,
                                     0.023964539170265198,
                                     1.0
                                 ],
@@ -9568,7 +10048,7 @@
                             {
                                 "default_value": [
                                     0.6254019141197205,
-                                    0.07633601874113083,
+                                    0.3592257797718048,
                                     0.07633601874113083,
                                     1.0
                                 ],
@@ -9706,6 +10186,36 @@
             "name": "Pro4_Asphalt",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Vector",
+                        "socket_index": 0,
+                        "type": "NodeSocketVector"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Color Scale",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 25.0,
+                        "name": "Bump Scale",
+                        "socket_index": 2,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Normal Strength",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloatFactor"
+                    }
+                ],
                 "links": [
                     {
                         "from": 0,
@@ -10313,7 +10823,7 @@
                             {
                                 "default_value": [
                                     0.8000000715255737,
-                                    0.0025751744396984577,
+                                    0.0,
                                     0.0025751744396984577,
                                     1.0
                                 ],
@@ -10324,7 +10834,7 @@
                             {
                                 "default_value": [
                                     0.6254019141197205,
-                                    0.07633601874113083,
+                                    0.3592257797718048,
                                     0.07633601874113083,
                                     1.0
                                 ],
@@ -10760,6 +11270,86 @@
             "name": "Pro4_Checker",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.9553954005241394,
+                            0.4217880368232727,
+                            0.20943038165569305,
+                            1.0
+                        ],
+                        "name": "Base Color",
+                        "socket_index": 0,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5028865933418274,
+                            0.4453256130218506,
+                            0.10074843466281891,
+                            1.0
+                        ],
+                        "name": "Secondary Color",
+                        "socket_index": 1,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.14809265732765198,
+                            0.03720312938094139,
+                            1.0
+                        ],
+                        "name": "Tertiary Color",
+                        "socket_index": 2,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Offset Color Strength",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Texture Scale",
+                        "socket_index": 4,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.8999999761581421,
+                        "name": "Bump Strength",
+                        "socket_index": 5,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Extra Bump",
+                        "socket_index": 6,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Extra Bump Strength",
+                        "socket_index": 7,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Vector",
+                        "socket_index": 8,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 21,
@@ -12378,7 +12968,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -12389,7 +12979,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -12431,7 +13021,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.17578952014446259,
+                                    0.3434239625930786,
                                     0.17578952014446259,
                                     1.0
                                 ],
@@ -12442,7 +13032,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -13127,6 +13717,75 @@
             "name": "Pro4_CheckeredPlaster",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Vector",
+                        "socket_index": 0,
+                        "type": "NodeSocketVector"
+                    },
+                    {
+                        "default_value": 15.0,
+                        "name": "Primary Scale",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 15.0,
+                        "name": "Secondary Scale",
+                        "socket_index": 2,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Grunge Scale",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 5.0,
+                        "name": "Checker Scale",
+                        "socket_index": 4,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": [
+                            0.8000000715255737,
+                            0.0749443918466568,
+                            0.06067108362913132,
+                            1.0
+                        ],
+                        "name": "Primary Color",
+                        "socket_index": 5,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.6480249166488647,
+                            0.6093754768371582,
+                            0.4080688953399658,
+                            1.0
+                        ],
+                        "name": "Plaster Primary Color",
+                        "socket_index": 6,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.6954216361045837,
+                            0.6504405736923218,
+                            0.35993897914886475,
+                            1.0
+                        ],
+                        "name": "Plaster Secondary Color",
+                        "socket_index": 7,
+                        "type": "NodeSocketColor"
+                    }
+                ],
                 "links": [
                     {
                         "from": 0,
@@ -13671,7 +14330,7 @@
                             {
                                 "default_value": [
                                     0.8000000715255737,
-                                    0.06067108362913132,
+                                    0.0749443918466568,
                                     0.06067108362913132,
                                     1.0
                                 ],
@@ -13682,7 +14341,7 @@
                             {
                                 "default_value": [
                                     0.6254019141197205,
-                                    0.07633601874113083,
+                                    0.3592257797718048,
                                     0.07633601874113083,
                                     1.0
                                 ],
@@ -13904,7 +14563,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -13915,7 +14574,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -13926,7 +14585,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -14293,7 +14952,7 @@
                             {
                                 "default_value": [
                                     0.6480249166488647,
-                                    0.4080688953399658,
+                                    0.6093754768371582,
                                     0.4080688953399658,
                                     1.0
                                 ],
@@ -14304,7 +14963,7 @@
                             {
                                 "default_value": [
                                     0.6954216361045837,
-                                    0.35993897914886475,
+                                    0.6504405736923218,
                                     0.35993897914886475,
                                     1.0
                                 ],
@@ -14539,6 +15198,43 @@
             "name": "Pro4_Clouds",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": 3.0,
+                        "name": "Fluff Scale",
+                        "socket_index": 0,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 8.0,
+                        "name": "Fluff Detail",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Absorption Strength",
+                        "socket_index": 2,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Density",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.800000011920929,
+                            0.800000011920929,
+                            0.800000011920929,
+                            1.0
+                        ],
+                        "name": "Color",
+                        "socket_index": 4,
+                        "type": "NodeSocketColor"
+                    }
+                ],
                 "links": [
                     {
                         "from": 2,
@@ -15000,6 +15696,52 @@
             "name": "Pro4_Dots",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Vector",
+                        "socket_index": 0,
+                        "type": "NodeSocketVector"
+                    },
+                    {
+                        "default_value": 100.0,
+                        "name": "Scale",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Base Color",
+                        "socket_index": 2,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Dot Color",
+                        "socket_index": 3,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Normal Strength",
+                        "socket_index": 4,
+                        "type": "NodeSocketFloatFactor"
+                    }
+                ],
                 "links": [
                     {
                         "from": 3,
@@ -15471,6 +16213,92 @@
             "name": "Pro4_Magic",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.9553954005241394,
+                            0.4217880368232727,
+                            0.20943038165569305,
+                            1.0
+                        ],
+                        "name": "Base Color",
+                        "socket_index": 0,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5028865933418274,
+                            0.4453256130218506,
+                            0.10074843466281891,
+                            1.0
+                        ],
+                        "name": "Secondary Color",
+                        "socket_index": 1,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.14809265732765198,
+                            0.03720312938094139,
+                            1.0
+                        ],
+                        "name": "Tertiary Color",
+                        "socket_index": 2,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Offset Color Strength",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 2.0,
+                        "name": "Texture Scale",
+                        "socket_index": 4,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Distortion",
+                        "socket_index": 5,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.8999999761581421,
+                        "name": "Bump Strength",
+                        "socket_index": 6,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Extra Bump",
+                        "socket_index": 7,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Extra Bump Strength",
+                        "socket_index": 8,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Vector",
+                        "socket_index": 9,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 23,
@@ -17209,7 +18037,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -17220,7 +18048,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -17262,7 +18090,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.17578952014446259,
+                                    0.3434239625930786,
                                     0.17578952014446259,
                                     1.0
                                 ],
@@ -17273,7 +18101,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -17900,6 +18728,79 @@
             "name": "Pro4_Marble",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Vector",
+                        "socket_index": 0,
+                        "type": "NodeSocketVector"
+                    },
+                    {
+                        "default_value": 3.0,
+                        "name": "Scale",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": [
+                            0.018233012408018112,
+                            0.01702404022216797,
+                            0.011345821432769299,
+                            1.0
+                        ],
+                        "name": "Base Color 1",
+                        "socket_index": 2,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.048171836882829666,
+                            0.028759686276316643,
+                            0.016415856778621674,
+                            1.0
+                        ],
+                        "name": "Base Color 2",
+                        "socket_index": 3,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.1480759233236313,
+                            0.014754770323634148,
+                            1.0
+                        ],
+                        "name": "Vein Color 1",
+                        "socket_index": 4,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.508245587348938,
+                            0.22192531824111938,
+                            0.05428784340620041,
+                            1.0
+                        ],
+                        "name": "Vein Color 2",
+                        "socket_index": 5,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.508245587348938,
+                            0.22192531824111938,
+                            0.05428784340620041,
+                            1.0
+                        ],
+                        "name": "Speckle Color",
+                        "socket_index": 6,
+                        "type": "NodeSocketColor"
+                    }
+                ],
                 "links": [
                     {
                         "from": 22,
@@ -18870,7 +19771,7 @@
                             {
                                 "default_value": [
                                     0.8000000715255737,
-                                    0.0025751744396984577,
+                                    0.0,
                                     0.0025751744396984577,
                                     1.0
                                 ],
@@ -18881,7 +19782,7 @@
                             {
                                 "default_value": [
                                     0.6254019141197205,
-                                    0.07633601874113083,
+                                    0.3592257797718048,
                                     0.07633601874113083,
                                     1.0
                                 ],
@@ -19646,7 +20547,7 @@
                             {
                                 "default_value": [
                                     0.5088812708854675,
-                                    0.054480284452438354,
+                                    0.22322800755500793,
                                     0.054480284452438354,
                                     1.0
                                 ],
@@ -19657,7 +20558,7 @@
                             {
                                 "default_value": [
                                     0.508245587348938,
-                                    0.05428784340620041,
+                                    0.22192531824111938,
                                     0.05428784340620041,
                                     1.0
                                 ],
@@ -19770,7 +20671,7 @@
                             {
                                 "default_value": [
                                     0.018233012408018112,
-                                    0.011345821432769299,
+                                    0.01702404022216797,
                                     0.011345821432769299,
                                     1.0
                                 ],
@@ -19781,7 +20682,7 @@
                             {
                                 "default_value": [
                                     0.048171836882829666,
-                                    0.016415856778621674,
+                                    0.028759686276316643,
                                     0.016415856778621674,
                                     1.0
                                 ],
@@ -19823,7 +20724,7 @@
                             {
                                 "default_value": [
                                     0.04804423451423645,
-                                    0.027943987399339676,
+                                    0.04446321725845337,
                                     0.027943987399339676,
                                     1.0
                                 ],
@@ -19834,7 +20735,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.014754770323634148,
+                                    0.1480759233236313,
                                     0.014754770323634148,
                                     1.0
                                 ],
@@ -20267,7 +21168,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.2664775848388672,
+                                    0.4576066732406616,
                                     0.2664775848388672,
                                     1.0
                                 ],
@@ -20278,7 +21179,7 @@
                             {
                                 "default_value": [
                                     0.508245587348938,
-                                    0.05428784340620041,
+                                    0.22192531824111938,
                                     0.05428784340620041,
                                     1.0
                                 ],
@@ -20500,6 +21401,98 @@
             "name": "Pro4_Mix",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.9553954005241394,
+                            0.4217880368232727,
+                            0.20943038165569305,
+                            1.0
+                        ],
+                        "name": "Base Color",
+                        "socket_index": 0,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5028865933418274,
+                            0.4453256130218506,
+                            0.10074843466281891,
+                            1.0
+                        ],
+                        "name": "Secondary Color",
+                        "socket_index": 1,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.14809265732765198,
+                            0.03720312938094139,
+                            1.0
+                        ],
+                        "name": "Tertiary Color",
+                        "socket_index": 2,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Offset Color Strength",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 2.0,
+                        "name": "Texture Scale",
+                        "socket_index": 4,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 50.0,
+                        "name": "Detail",
+                        "socket_index": 5,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 2.0,
+                        "name": "Lacunarity",
+                        "socket_index": 6,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.8999999761581421,
+                        "name": "Bump Strength",
+                        "socket_index": 7,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Extra Bump",
+                        "socket_index": 8,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Extra Bump Strength",
+                        "socket_index": 9,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Vector",
+                        "socket_index": 10,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 5,
@@ -22808,7 +23801,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.17578952014446259,
+                                    0.3434239625930786,
                                     0.17578952014446259,
                                     1.0
                                 ],
@@ -22819,7 +23812,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -22861,7 +23854,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -22872,7 +23865,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -23136,6 +24129,69 @@
             "name": "Pro4_Mud",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Vector",
+                        "socket_index": 0,
+                        "type": "NodeSocketVector"
+                    },
+                    {
+                        "default_value": 5.0,
+                        "name": "Color Scale",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 3.0,
+                        "name": "Normal Scale",
+                        "socket_index": 2,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": [
+                            0.34191441535949707,
+                            0.24228113889694214,
+                            0.18447501957416534,
+                            1.0
+                        ],
+                        "name": "Base Color",
+                        "socket_index": 3,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.14296220242977142,
+                            0.085452139377594,
+                            0.053180523216724396,
+                            1.0
+                        ],
+                        "name": "Secondary Color",
+                        "socket_index": 4,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.11792322993278503,
+                            0.07576367259025574,
+                            0.05263402685523033,
+                            1.0
+                        ],
+                        "name": "Tertiary Color",
+                        "socket_index": 5,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.6000000238418579,
+                        "name": "Normal Strength",
+                        "socket_index": 6,
+                        "type": "NodeSocketFloatFactor"
+                    }
+                ],
                 "links": [
                     {
                         "from": 1,
@@ -23338,7 +24394,7 @@
                             {
                                 "default_value": [
                                     0.3414909243583679,
-                                    0.1835775524377823,
+                                    0.24338097870349884,
                                     0.1835775524377823,
                                     1.0
                                 ],
@@ -23349,7 +24405,7 @@
                             {
                                 "default_value": [
                                     0.6254019141197205,
-                                    0.07633601874113083,
+                                    0.3592257797718048,
                                     0.07633601874113083,
                                     1.0
                                 ],
@@ -23526,7 +24582,7 @@
                             {
                                 "default_value": [
                                     0.34191441535949707,
-                                    0.18447501957416534,
+                                    0.24228113889694214,
                                     0.18447501957416534,
                                     1.0
                                 ],
@@ -23537,7 +24593,7 @@
                             {
                                 "default_value": [
                                     0.14296220242977142,
-                                    0.053180523216724396,
+                                    0.085452139377594,
                                     0.053180523216724396,
                                     1.0
                                 ],
@@ -23548,7 +24604,7 @@
                             {
                                 "default_value": [
                                     0.11792322993278503,
-                                    0.05263402685523033,
+                                    0.07576367259025574,
                                     0.05263402685523033,
                                     1.0
                                 ],
@@ -23725,6 +24781,98 @@
             "name": "Pro4_Musgrave",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.9553954005241394,
+                            0.4217880368232727,
+                            0.20943038165569305,
+                            1.0
+                        ],
+                        "name": "Base Color",
+                        "socket_index": 0,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5028865933418274,
+                            0.4453256130218506,
+                            0.10074843466281891,
+                            1.0
+                        ],
+                        "name": "Secondary Color",
+                        "socket_index": 1,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.14809265732765198,
+                            0.03720312938094139,
+                            1.0
+                        ],
+                        "name": "Tertiary Color",
+                        "socket_index": 2,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Offset Color Strength",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Texture Scale",
+                        "socket_index": 4,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 20.0,
+                        "name": "Detail",
+                        "socket_index": 5,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 2.0,
+                        "name": "Lacunarity",
+                        "socket_index": 6,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Bump Strength",
+                        "socket_index": 7,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Extra Bump",
+                        "socket_index": 8,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Extra Bump Strength",
+                        "socket_index": 9,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Vector",
+                        "socket_index": 10,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 27,
@@ -25778,7 +26926,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.17578952014446259,
+                                    0.3434239625930786,
                                     0.17578952014446259,
                                     1.0
                                 ],
@@ -25789,7 +26937,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -25831,7 +26979,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -25842,7 +26990,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -26452,6 +27600,92 @@
             "name": "Pro4_Noise",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.9553954005241394,
+                            0.4217880368232727,
+                            0.20943038165569305,
+                            1.0
+                        ],
+                        "name": "Base Color",
+                        "socket_index": 0,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5028865933418274,
+                            0.4453256130218506,
+                            0.10074843466281891,
+                            1.0
+                        ],
+                        "name": "Secondary Color",
+                        "socket_index": 1,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.14809265732765198,
+                            0.03720312938094139,
+                            1.0
+                        ],
+                        "name": "Tertiary Color",
+                        "socket_index": 2,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Offset Color Strength",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 5.0,
+                        "name": "Texture Scale",
+                        "socket_index": 4,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 20.0,
+                        "name": "Detail",
+                        "socket_index": 5,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.8999999761581421,
+                        "name": "Bump Strength",
+                        "socket_index": 6,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Extra Bump",
+                        "socket_index": 7,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Extra Bump Strength",
+                        "socket_index": 8,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Vector",
+                        "socket_index": 9,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 28,
@@ -28503,7 +29737,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -28514,7 +29748,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -28556,7 +29790,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.17578952014446259,
+                                    0.3434239625930786,
                                     0.17578952014446259,
                                     1.0
                                 ],
@@ -28567,7 +29801,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -28982,6 +30216,64 @@
             "name": "Pro4_PlanetaryClouds",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Vector",
+                        "socket_index": 0,
+                        "type": "NodeSocketVector"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Scale",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 20.0,
+                        "name": "Detail",
+                        "socket_index": 2,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Distortion",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Base Color",
+                        "socket_index": 4,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Cloud Color",
+                        "socket_index": 5,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Normal Strength",
+                        "socket_index": 6,
+                        "type": "NodeSocketFloatFactor"
+                    }
+                ],
                 "links": [
                     {
                         "from": 5,
@@ -29541,6 +30833,159 @@
             "name": "Pro4_PlanetGenerator",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Vector",
+                        "socket_index": 0,
+                        "type": "NodeSocketVector"
+                    },
+                    {
+                        "default_value": [
+                            0.39149776101112366,
+                            0.3310618996620178,
+                            0.13551634550094604,
+                            1.0
+                        ],
+                        "name": "Biome 1 | Color 1",
+                        "socket_index": 1,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5028865933418274,
+                            0.33730655908584595,
+                            0.11935558915138245,
+                            1.0
+                        ],
+                        "name": "Biome 1 | Color 2",
+                        "socket_index": 2,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.22784750163555145,
+                            0.09421773254871368,
+                            1.0
+                        ],
+                        "name": "Biome 1 | Color 3",
+                        "socket_index": 3,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.3871992230415344,
+                            0.21561460196971893,
+                            0.09231522679328918,
+                            1.0
+                        ],
+                        "name": "Biome 2 | Color 1",
+                        "socket_index": 4,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5028865933418274,
+                            0.4586332142353058,
+                            0.16450895369052887,
+                            1.0
+                        ],
+                        "name": "Biome 2 | Color 2",
+                        "socket_index": 5,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.2778395414352417,
+                            0.3426298499107361,
+                            0.11415830254554749,
+                            1.0
+                        ],
+                        "name": "Biome 2 | Color 3",
+                        "socket_index": 6,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.09869689494371414,
+                            0.08660843968391418,
+                            0.2558301091194153,
+                            1.0
+                        ],
+                        "name": "Ocean Color",
+                        "socket_index": 7,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.800000011920929,
+                            0.800000011920929,
+                            0.800000011920929,
+                            1.0
+                        ],
+                        "name": "Cloud Color",
+                        "socket_index": 8,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.3492913842201233,
+                            0.3492913842201233,
+                            0.3492913842201233,
+                            1.0
+                        ],
+                        "name": "Mountain Color",
+                        "socket_index": 9,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 5.0,
+                        "name": "Mountain Scale",
+                        "socket_index": 10,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.4000000059604645,
+                        "name": "Mountain Height",
+                        "socket_index": 11,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Cloud Scale",
+                        "socket_index": 12,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Cloud Density",
+                        "socket_index": 13,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.800000011920929,
+                        "name": "Cloud Opacity",
+                        "socket_index": 14,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Continent Size",
+                        "socket_index": 15,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 2.0,
+                        "name": "Continent Detail",
+                        "socket_index": 16,
+                        "type": "NodeSocketFloat"
+                    }
+                ],
                 "links": [
                     {
                         "from": 15,
@@ -30395,7 +31840,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -30406,7 +31851,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -30417,7 +31862,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -30519,7 +31964,7 @@
                             {
                                 "default_value": [
                                     0.39149776101112366,
-                                    0.13551634550094604,
+                                    0.3310618996620178,
                                     0.13551634550094604,
                                     1.0
                                 ],
@@ -30530,7 +31975,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.11935558915138245,
+                                    0.33730655908584595,
                                     0.11935558915138245,
                                     1.0
                                 ],
@@ -30541,7 +31986,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.09421773254871368,
+                                    0.22784750163555145,
                                     0.09421773254871368,
                                     1.0
                                 ],
@@ -30677,7 +32122,7 @@
                             {
                                 "default_value": [
                                     0.3871992230415344,
-                                    0.09231522679328918,
+                                    0.21561460196971893,
                                     0.09231522679328918,
                                     1.0
                                 ],
@@ -30688,7 +32133,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.16450895369052887,
+                                    0.4586332142353058,
                                     0.16450895369052887,
                                     1.0
                                 ],
@@ -30699,7 +32144,7 @@
                             {
                                 "default_value": [
                                     0.2778395414352417,
-                                    0.11415830254554749,
+                                    0.3426298499107361,
                                     0.11415830254554749,
                                     1.0
                                 ],
@@ -31035,7 +32480,7 @@
                             {
                                 "default_value": [
                                     0.06717310845851898,
-                                    0.08895158022642136,
+                                    0.2558301091194153,
                                     0.08895158022642136,
                                     1.0
                                 ],
@@ -31046,7 +32491,7 @@
                             {
                                 "default_value": [
                                     0.6254019141197205,
-                                    0.07633601874113083,
+                                    0.3592257797718048,
                                     0.07633601874113083,
                                     1.0
                                 ],
@@ -31339,7 +32784,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -31350,7 +32795,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -31361,7 +32806,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -31624,7 +33069,7 @@
                             {
                                 "default_value": [
                                     0.09869689494371414,
-                                    0.2558301091194153,
+                                    0.08660843968391418,
                                     0.2558301091194153,
                                     1.0
                                 ],
@@ -31635,7 +33080,7 @@
                             {
                                 "default_value": [
                                     0.6254019141197205,
-                                    0.07633601874113083,
+                                    0.3592257797718048,
                                     0.07633601874113083,
                                     1.0
                                 ],
@@ -31962,6 +33407,52 @@
             "name": "Pro4_Plaster",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Vector",
+                        "socket_index": 0,
+                        "type": "NodeSocketVector"
+                    },
+                    {
+                        "default_value": 10.0,
+                        "name": "Scale",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "name": "Primary Color",
+                        "socket_index": 2,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.6814512014389038,
+                            0.6954216361045837,
+                            0.624729573726654,
+                            1.0
+                        ],
+                        "name": "Secondary Color",
+                        "socket_index": 3,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Normal Strength",
+                        "socket_index": 4,
+                        "type": "NodeSocketFloatFactor"
+                    }
+                ],
                 "links": [
                     {
                         "from": 2,
@@ -32322,7 +33813,7 @@
                             {
                                 "default_value": [
                                     0.6814512014389038,
-                                    0.624729573726654,
+                                    0.6954216361045837,
                                     0.624729573726654,
                                     1.0
                                 ],
@@ -32640,7 +34131,7 @@
                             {
                                 "default_value": [
                                     0.6254019141197205,
-                                    0.07633601874113083,
+                                    0.3592257797718048,
                                     0.07633601874113083,
                                     1.0
                                 ],
@@ -32835,6 +34326,58 @@
             "name": "Pro4_Puddles",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Vector",
+                        "socket_index": 0,
+                        "type": "NodeSocketVector"
+                    },
+                    {
+                        "default_value": 5.0,
+                        "name": "Scale",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 10.0,
+                        "name": "Edge Pattern Scale",
+                        "socket_index": 2,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Base Color",
+                        "socket_index": 3,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Puddle Color",
+                        "socket_index": 4,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Normal Strength",
+                        "socket_index": 5,
+                        "type": "NodeSocketFloatFactor"
+                    }
+                ],
                 "links": [
                     {
                         "from": 0,
@@ -33704,6 +35247,54 @@
             "name": "Pro4_Strips",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": 3.0,
+                        "name": "Stripe Scale",
+                        "socket_index": 0,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 10.0,
+                        "name": "Distortion Scale",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 1.2999999523162842,
+                        "name": "Lacunarity",
+                        "socket_index": 2,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Primary Color",
+                        "socket_index": 3,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Secondary Color",
+                        "socket_index": 4,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Normal Strength",
+                        "socket_index": 5,
+                        "type": "NodeSocketFloatFactor"
+                    }
+                ],
                 "links": [
                     {
                         "from": 4,
@@ -34612,6 +36203,20 @@
             "name": "Pro4_VolumetricClouds1",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": 3.0,
+                        "name": "Fluff Scale",
+                        "socket_index": 0,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 8.0,
+                        "name": "Fluff Detail",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloat"
+                    }
+                ],
                 "links": [
                     {
                         "from": 12,
@@ -35876,6 +37481,20 @@
             "name": "Pro4_VolumetricClouds2",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": 3.0,
+                        "name": "Fluff Scale",
+                        "socket_index": 0,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 8.0,
+                        "name": "Fluff Detail",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloat"
+                    }
+                ],
                 "links": [
                     {
                         "from": 17,
@@ -37140,6 +38759,86 @@
             "name": "Pro4_Voronoi (Cells)",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.9553954005241394,
+                            0.4217880368232727,
+                            0.20943038165569305,
+                            1.0
+                        ],
+                        "name": "Base Color",
+                        "socket_index": 0,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5028865933418274,
+                            0.4453256130218506,
+                            0.10074843466281891,
+                            1.0
+                        ],
+                        "name": "Secondary Color",
+                        "socket_index": 1,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.14809265732765198,
+                            0.03720312938094139,
+                            1.0
+                        ],
+                        "name": "Tertiary Color",
+                        "socket_index": 2,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Offset Color Strength",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 5.0,
+                        "name": "Texture Scale",
+                        "socket_index": 4,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Bump Strength",
+                        "socket_index": 5,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Extra Bump",
+                        "socket_index": 6,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Extra Bump Strength",
+                        "socket_index": 7,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Vector",
+                        "socket_index": 8,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 22,
@@ -38801,7 +40500,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -38812,7 +40511,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -38854,7 +40553,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.17578952014446259,
+                                    0.3434239625930786,
                                     0.17578952014446259,
                                     1.0
                                 ],
@@ -38865,7 +40564,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -39458,6 +41157,86 @@
             "name": "Pro4_Voronoi (Intensity)",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.9553954005241394,
+                            0.4217880368232727,
+                            0.20943038165569305,
+                            1.0
+                        ],
+                        "name": "Base Color",
+                        "socket_index": 0,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5028865933418274,
+                            0.4453256130218506,
+                            0.10074843466281891,
+                            1.0
+                        ],
+                        "name": "Secondary Color",
+                        "socket_index": 1,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.14809265732765198,
+                            0.03720312938094139,
+                            1.0
+                        ],
+                        "name": "Tertiary Color",
+                        "socket_index": 2,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Offset Color Strength",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Texture Scale",
+                        "socket_index": 4,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.8999999761581421,
+                        "name": "Bump Strength",
+                        "socket_index": 5,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Extra Bump",
+                        "socket_index": 6,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Extra Bump Strength",
+                        "socket_index": 7,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Vector",
+                        "socket_index": 8,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 21,
@@ -41066,7 +42845,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -41077,7 +42856,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -41119,7 +42898,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.17578952014446259,
+                                    0.3434239625930786,
                                     0.17578952014446259,
                                     1.0
                                 ],
@@ -41130,7 +42909,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -41776,6 +43555,52 @@
             "name": "Pro4_VoronoiOrb",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Vector",
+                        "socket_index": 0,
+                        "type": "NodeSocketVector"
+                    },
+                    {
+                        "default_value": 5.0,
+                        "name": "Scale",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Base Color",
+                        "socket_index": 2,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Ball Color",
+                        "socket_index": 3,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Strength",
+                        "socket_index": 4,
+                        "type": "NodeSocketFloatFactor"
+                    }
+                ],
                 "links": [
                     {
                         "from": 2,
@@ -42303,6 +44128,70 @@
             "name": "Pro4_Warp",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Vector",
+                        "socket_index": 0,
+                        "type": "NodeSocketVector"
+                    },
+                    {
+                        "default_value": 5.0,
+                        "name": "Base Scale",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 5.0,
+                        "name": "Warp Scale",
+                        "socket_index": 2,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 10.0,
+                        "name": "Detail",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Distortion",
+                        "socket_index": 4,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Primary Color",
+                        "socket_index": 5,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Secondary Color",
+                        "socket_index": 6,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Normal Strength",
+                        "socket_index": 7,
+                        "type": "NodeSocketFloatFactor"
+                    }
+                ],
                 "links": [
                     {
                         "from": 1,
@@ -43183,6 +45072,104 @@
             "name": "Pro4_Waves (Saw)",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.9553954005241394,
+                            0.4217880368232727,
+                            0.20943038165569305,
+                            1.0
+                        ],
+                        "name": "Base Color",
+                        "socket_index": 0,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5028865933418274,
+                            0.4453256130218506,
+                            0.10074843466281891,
+                            1.0
+                        ],
+                        "name": "Secondary Color",
+                        "socket_index": 1,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.14809265732765198,
+                            0.03720312938094139,
+                            1.0
+                        ],
+                        "name": "Tertiary Color",
+                        "socket_index": 2,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Offset Color Strength",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Texture Scale",
+                        "socket_index": 4,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 2.0,
+                        "name": "Detail",
+                        "socket_index": 5,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Detail Scale",
+                        "socket_index": 6,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Distortion",
+                        "socket_index": 7,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.8999999761581421,
+                        "name": "Bump Strength",
+                        "socket_index": 8,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Extra Bump",
+                        "socket_index": 9,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Extra Bump Strength",
+                        "socket_index": 10,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Vector",
+                        "socket_index": 11,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 23,
@@ -45033,7 +47020,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -45044,7 +47031,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -45086,7 +47073,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.17578952014446259,
+                                    0.3434239625930786,
                                     0.17578952014446259,
                                     1.0
                                 ],
@@ -45097,7 +47084,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -45762,6 +47749,104 @@
             "name": "Pro4_Waves (Sine)",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.9553954005241394,
+                            0.4217880368232727,
+                            0.20943038165569305,
+                            1.0
+                        ],
+                        "name": "Base Color",
+                        "socket_index": 0,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5028865933418274,
+                            0.4453256130218506,
+                            0.10074843466281891,
+                            1.0
+                        ],
+                        "name": "Secondary Color",
+                        "socket_index": 1,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.14809265732765198,
+                            0.03720312938094139,
+                            1.0
+                        ],
+                        "name": "Tertiary Color",
+                        "socket_index": 2,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Offset Color Strength",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Texture Scale",
+                        "socket_index": 4,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 2.0,
+                        "name": "Detail",
+                        "socket_index": 5,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Detail Scale",
+                        "socket_index": 6,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Distortion",
+                        "socket_index": 7,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.8999999761581421,
+                        "name": "Bump Strength",
+                        "socket_index": 8,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Extra Bump",
+                        "socket_index": 9,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Extra Bump Strength",
+                        "socket_index": 10,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Vector",
+                        "socket_index": 11,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 23,
@@ -47612,7 +49697,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -47623,7 +49708,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -47665,7 +49750,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.17578952014446259,
+                                    0.3434239625930786,
                                     0.17578952014446259,
                                     1.0
                                 ],
@@ -47676,7 +49761,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -48341,6 +50426,64 @@
             "name": "Pro4_WormTrails",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Vector",
+                        "socket_index": 0,
+                        "type": "NodeSocketVector"
+                    },
+                    {
+                        "default_value": 5.0,
+                        "name": "Scale",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 20.0,
+                        "name": "Detail",
+                        "socket_index": 2,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Distortion",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Primary Color",
+                        "socket_index": 4,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.5,
+                            0.5,
+                            0.5,
+                            1.0
+                        ],
+                        "name": "Secondary Color",
+                        "socket_index": 5,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Normal Strength",
+                        "socket_index": 6,
+                        "type": "NodeSocketFloatFactor"
+                    }
+                ],
                 "links": [
                     {
                         "from": 4,
@@ -49449,6 +51592,42 @@
             "name": "Reflection",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": null,
+                        "name": "Shader",
+                        "socket_index": 0,
+                        "type": "NodeSocketShader"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Roughness",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 0.781818151473999,
+                        "name": "Reflectivity",
+                        "socket_index": 2,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 1.4500000476837158,
+                        "name": "IOR",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Normal",
+                        "socket_index": 4,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 1,
@@ -49954,6 +52133,121 @@
             "name": "RG PBR Shader (v2.1)",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "name": "Surface Color",
+                        "socket_index": 0,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.10000000149011612,
+                        "name": "Surface Roughness",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Surface Normal",
+                        "socket_index": 2,
+                        "type": "NodeSocketVector"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Metallic",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "name": "Rim Color",
+                        "socket_index": 4,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Rim Strength",
+                        "socket_index": 5,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "name": "SSS Color",
+                        "socket_index": 6,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "SSS Strength",
+                        "socket_index": 7,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 0.10000000149011612,
+                        "name": "SSS Scale",
+                        "socket_index": 8,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "SSS Texture Blur",
+                        "socket_index": 9,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Clearcoat Roughness",
+                        "socket_index": 10,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Clearcoat Reflectivity",
+                        "socket_index": 11,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Clearcoat Normal",
+                        "socket_index": 12,
+                        "type": "NodeSocketVector"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Displacement",
+                        "socket_index": 13,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "Displacement Factor",
+                        "socket_index": 14,
+                        "type": "NodeSocketFloatFactor"
+                    }
+                ],
                 "links": [
                     {
                         "from": 42,
@@ -53107,7 +55401,7 @@
                             {
                                 "default_value": [
                                     0.3698512315750122,
-                                    0.08733575791120529,
+                                    0.16514673829078674,
                                     0.08733575791120529,
                                     1.0
                                 ],
@@ -53124,7 +55418,7 @@
                             {
                                 "default_value": [
                                     0.8000000715255737,
-                                    0.24587178230285645,
+                                    0.38921207189559937,
                                     0.24587178230285645,
                                     1.0
                                 ],
@@ -53479,7 +55773,7 @@
                             {
                                 "default_value": [
                                     0.5000225305557251,
-                                    0.023964539170265198,
+                                    0.07414800673723221,
                                     0.023964539170265198,
                                     1.0
                                 ],
@@ -53490,7 +55784,7 @@
                             {
                                 "default_value": [
                                     0.6254019141197205,
-                                    0.07633601874113083,
+                                    0.3592257797718048,
                                     0.07633601874113083,
                                     1.0
                                 ],
@@ -53807,7 +56101,7 @@
                             {
                                 "default_value": [
                                     0.6254019141197205,
-                                    0.07633601874113083,
+                                    0.3592257797718048,
                                     0.07633601874113083,
                                     1.0
                                 ],
@@ -55201,6 +57495,35 @@
             "name": "RG_Dielectric",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "name": "Color",
+                        "socket_index": 0,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.10000000149011612,
+                        "name": "Roughness",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Normal",
+                        "socket_index": 2,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 5,
@@ -55378,7 +57701,7 @@
                             {
                                 "default_value": [
                                     0.8000000715255737,
-                                    0.0025751744396984577,
+                                    0.0,
                                     0.0025751744396984577,
                                     1.0
                                 ],
@@ -55650,6 +57973,30 @@
             "name": "RG_Fresnel",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": 0.5,
+                        "name": "Roughness",
+                        "socket_index": 0,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 1.4500000476837158,
+                        "name": "IOR",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Normal",
+                        "socket_index": 2,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 5,
@@ -56038,6 +58385,52 @@
             "name": "RG_Glass",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "name": "Color",
+                        "socket_index": 0,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                        ],
+                        "name": "Rim Color",
+                        "socket_index": 1,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Rim Strength",
+                        "socket_index": 2,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Roughness",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Normal",
+                        "socket_index": 4,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 0,
@@ -56647,6 +59040,52 @@
             "name": "RG_Metallic",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.5000225305557251,
+                            0.07414800673723221,
+                            0.023964539170265198,
+                            1.0
+                        ],
+                        "name": "Metal Color",
+                        "socket_index": 0,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.6254019141197205,
+                            0.3592257797718048,
+                            0.07633601874113083,
+                            1.0
+                        ],
+                        "name": "Rim Color",
+                        "socket_index": 1,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.10000002384185791,
+                        "name": "Rim Amount",
+                        "socket_index": 2,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Roughness",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Normal",
+                        "socket_index": 4,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 1,
@@ -56973,7 +59412,7 @@
                             {
                                 "default_value": [
                                     0.5000225305557251,
-                                    0.023964539170265198,
+                                    0.07414800673723221,
                                     0.023964539170265198,
                                     1.0
                                 ],
@@ -56984,7 +59423,7 @@
                             {
                                 "default_value": [
                                     0.6254019141197205,
-                                    0.07633601874113083,
+                                    0.3592257797718048,
                                     0.07633601874113083,
                                     1.0
                                 ],
@@ -57026,7 +59465,7 @@
                             {
                                 "default_value": [
                                     0.5000225305557251,
-                                    0.023964539170265198,
+                                    0.07414800673723221,
                                     0.023964539170265198,
                                     1.0
                                 ],
@@ -57252,6 +59691,58 @@
             "name": "RG_MetallicMap",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ],
+                        "name": "Color",
+                        "socket_index": 0,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Roughness",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.6254019141197205,
+                            0.3592257797718048,
+                            0.07633601874113083,
+                            1.0
+                        ],
+                        "name": "Rim Color",
+                        "socket_index": 2,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.6000000238418579,
+                        "name": "Rim Amount",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Normal",
+                        "socket_index": 4,
+                        "type": "NodeSocketVector"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Metallic",
+                        "socket_index": 5,
+                        "type": "NodeSocketFloatFactor"
+                    }
+                ],
                 "links": [
                     {
                         "from": 3,
@@ -57518,7 +60009,7 @@
                             {
                                 "default_value": [
                                     0.5000225305557251,
-                                    0.023964539170265198,
+                                    0.07414800673723221,
                                     0.023964539170265198,
                                     1.0
                                 ],
@@ -57529,7 +60020,7 @@
                             {
                                 "default_value": [
                                     0.6254019141197205,
-                                    0.07633601874113083,
+                                    0.3592257797718048,
                                     0.07633601874113083,
                                     1.0
                                 ],
@@ -57701,6 +60192,42 @@
             "name": "RG_Reflection",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": null,
+                        "name": "Shader",
+                        "socket_index": 0,
+                        "type": "NodeSocketShader"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Roughness",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Reflectivity",
+                        "socket_index": 2,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 1.4500000476837158,
+                        "name": "IOR",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Normal",
+                        "socket_index": 4,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 1,
@@ -58190,6 +60717,64 @@
             "name": "RG_SSS",
             "value": {
                 "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.5000225305557251,
+                            0.07414800673723221,
+                            0.023964539170265198,
+                            1.0
+                        ],
+                        "name": "Surface Color",
+                        "socket_index": 0,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "Roughness",
+                        "socket_index": 1,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.800000011920929,
+                            0.800000011920929,
+                            0.800000011920929,
+                            1.0
+                        ],
+                        "name": "SSS Color",
+                        "socket_index": 2,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": 1.0,
+                        "name": "SSS Scale",
+                        "socket_index": 3,
+                        "type": "NodeSocketFloat"
+                    },
+                    {
+                        "default_value": 0.0,
+                        "name": "Texture Blur",
+                        "socket_index": 4,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": 0.5,
+                        "name": "SSS Strenth",
+                        "socket_index": 5,
+                        "type": "NodeSocketFloatFactor"
+                    },
+                    {
+                        "default_value": [
+                            0.0,
+                            0.0,
+                            0.0
+                        ],
+                        "name": "Normal",
+                        "socket_index": 6,
+                        "type": "NodeSocketVector"
+                    }
+                ],
                 "links": [
                     {
                         "from": 4,
@@ -58704,7 +61289,7 @@
                             {
                                 "default_value": [
                                     0.8000000715255737,
-                                    0.054951757192611694,
+                                    0.45874151587486267,
                                     0.054951757192611694,
                                     1.0
                                 ],
@@ -58715,7 +61300,7 @@
                             {
                                 "default_value": [
                                     0.6254019141197205,
-                                    0.07633601874113083,
+                                    0.3592257797718048,
                                     0.07633601874113083,
                                     1.0
                                 ],
@@ -58891,7 +61476,7 @@
                             {
                                 "default_value": [
                                     0.018233012408018112,
-                                    0.011345821432769299,
+                                    0.01702404022216797,
                                     0.011345821432769299,
                                     1.0
                                 ],
@@ -58902,7 +61487,7 @@
                             {
                                 "default_value": [
                                     0.048171836882829666,
-                                    0.016415856778621674,
+                                    0.028759686276316643,
                                     0.016415856778621674,
                                     1.0
                                 ],
@@ -58913,7 +61498,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.014754770323634148,
+                                    0.1480759233236313,
                                     0.014754770323634148,
                                     1.0
                                 ],
@@ -58924,7 +61509,7 @@
                             {
                                 "default_value": [
                                     0.508245587348938,
-                                    0.05428784340620041,
+                                    0.22192531824111938,
                                     0.05428784340620041,
                                     1.0
                                 ],
@@ -58935,7 +61520,7 @@
                             {
                                 "default_value": [
                                     0.508245587348938,
-                                    0.05428784340620041,
+                                    0.22192531824111938,
                                     0.05428784340620041,
                                     1.0
                                 ],
@@ -59043,7 +61628,7 @@
                             {
                                 "default_value": [
                                     0.5171198844909668,
-                                    0.040534891188144684,
+                                    0.18401016294956207,
                                     0.040534891188144684,
                                     1.0
                                 ],
@@ -59054,7 +61639,7 @@
                             {
                                 "default_value": [
                                     0.6254019141197205,
-                                    0.07633601874113083,
+                                    0.3592257797718048,
                                     0.07633601874113083,
                                     1.0
                                 ],
@@ -59214,7 +61799,7 @@
                             {
                                 "default_value": [
                                     0.6038162708282471,
-                                    0.3708575665950775,
+                                    0.5180138945579529,
                                     0.3708575665950775,
                                     1.0
                                 ],
@@ -59225,7 +61810,7 @@
                             {
                                 "default_value": [
                                     0.8000000715255737,
-                                    0.08686286211013794,
+                                    0.40797245502471924,
                                     0.08686286211013794,
                                     1.0
                                 ],
@@ -59236,7 +61821,7 @@
                             {
                                 "default_value": [
                                     0.45753151178359985,
-                                    0.07463523745536804,
+                                    0.05939243733882904,
                                     0.07463523745536804,
                                     1.0
                                 ],
@@ -59247,7 +61832,7 @@
                             {
                                 "default_value": [
                                     0.35055580735206604,
-                                    0.04188697040081024,
+                                    0.028564974665641785,
                                     0.04188697040081024,
                                     1.0
                                 ],
@@ -59573,7 +62158,7 @@
                             {
                                 "default_value": [
                                     0.7552905082702637,
-                                    0.5852549076080322,
+                                    0.7863556742668152,
                                     0.5852549076080322,
                                     1.0
                                 ],
@@ -59584,7 +62169,7 @@
                             {
                                 "default_value": [
                                     0.6814512014389038,
-                                    0.624729573726654,
+                                    0.6954216361045837,
                                     0.624729573726654,
                                     1.0
                                 ],
@@ -59750,7 +62335,7 @@
                             {
                                 "default_value": [
                                     0.8000000715255737,
-                                    0.06067108362913132,
+                                    0.0749443918466568,
                                     0.06067108362913132,
                                     1.0
                                 ],
@@ -59761,7 +62346,7 @@
                             {
                                 "default_value": [
                                     0.6480249166488647,
-                                    0.4080688953399658,
+                                    0.6093754768371582,
                                     0.4080688953399658,
                                     1.0
                                 ],
@@ -59772,7 +62357,7 @@
                             {
                                 "default_value": [
                                     0.6954216361045837,
-                                    0.35993897914886475,
+                                    0.6504405736923218,
                                     0.35993897914886475,
                                     1.0
                                 ],
@@ -59848,7 +62433,7 @@
                             {
                                 "default_value": [
                                     0.39149776101112366,
-                                    0.13551634550094604,
+                                    0.3310618996620178,
                                     0.13551634550094604,
                                     1.0
                                 ],
@@ -59859,7 +62444,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.11935558915138245,
+                                    0.33730655908584595,
                                     0.11935558915138245,
                                     1.0
                                 ],
@@ -59870,7 +62455,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.09421773254871368,
+                                    0.22784750163555145,
                                     0.09421773254871368,
                                     1.0
                                 ],
@@ -59881,7 +62466,7 @@
                             {
                                 "default_value": [
                                     0.3871992230415344,
-                                    0.09231522679328918,
+                                    0.21561460196971893,
                                     0.09231522679328918,
                                     1.0
                                 ],
@@ -59892,7 +62477,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.16450895369052887,
+                                    0.4586332142353058,
                                     0.16450895369052887,
                                     1.0
                                 ],
@@ -59903,7 +62488,7 @@
                             {
                                 "default_value": [
                                     0.2778395414352417,
-                                    0.11415830254554749,
+                                    0.3426298499107361,
                                     0.11415830254554749,
                                     1.0
                                 ],
@@ -59914,7 +62499,7 @@
                             {
                                 "default_value": [
                                     0.08564497530460358,
-                                    0.2558301091194153,
+                                    0.13326400518417358,
                                     0.2558301091194153,
                                     1.0
                                 ],
@@ -60014,7 +62599,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -60025,7 +62610,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -60036,7 +62621,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -60133,7 +62718,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -60144,7 +62729,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -60155,7 +62740,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -60264,7 +62849,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -60275,7 +62860,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -60286,7 +62871,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -60389,7 +62974,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -60400,7 +62985,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -60411,7 +62996,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -60502,7 +63087,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -60513,7 +63098,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -60524,7 +63109,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -60705,7 +63290,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -60716,7 +63301,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -60727,7 +63312,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -60836,7 +63421,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -60847,7 +63432,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -60858,7 +63443,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -60955,7 +63540,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -60966,7 +63551,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -60977,7 +63562,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -61877,7 +64462,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -61888,7 +64473,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -61899,7 +64484,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -62095,7 +64680,7 @@
                             {
                                 "default_value": [
                                     0.34191441535949707,
-                                    0.18447501957416534,
+                                    0.24228113889694214,
                                     0.18447501957416534,
                                     1.0
                                 ],
@@ -62106,7 +64691,7 @@
                             {
                                 "default_value": [
                                     0.14296220242977142,
-                                    0.053180523216724396,
+                                    0.085452139377594,
                                     0.053180523216724396,
                                     1.0
                                 ],
@@ -62117,7 +64702,7 @@
                             {
                                 "default_value": [
                                     0.11792322993278503,
-                                    0.05263402685523033,
+                                    0.07576367259025574,
                                     0.05263402685523033,
                                     1.0
                                 ],
@@ -62175,7 +64760,7 @@
                             {
                                 "default_value": [
                                     0.018233012408018112,
-                                    0.011345821432769299,
+                                    0.01702404022216797,
                                     0.011345821432769299,
                                     1.0
                                 ],
@@ -62186,7 +64771,7 @@
                             {
                                 "default_value": [
                                     0.048171836882829666,
-                                    0.016415856778621674,
+                                    0.028759686276316643,
                                     0.016415856778621674,
                                     1.0
                                 ],
@@ -62197,7 +64782,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.014754770323634148,
+                                    0.1480759233236313,
                                     0.014754770323634148,
                                     1.0
                                 ],
@@ -62208,7 +64793,7 @@
                             {
                                 "default_value": [
                                     0.508245587348938,
-                                    0.05428784340620041,
+                                    0.22192531824111938,
                                     0.05428784340620041,
                                     1.0
                                 ],
@@ -62219,7 +64804,7 @@
                             {
                                 "default_value": [
                                     0.508245587348938,
-                                    0.05428784340620041,
+                                    0.22192531824111938,
                                     0.05428784340620041,
                                     1.0
                                 ],
@@ -62633,7 +65218,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -62644,7 +65229,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -62655,7 +65240,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -62890,7 +65475,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -62901,7 +65486,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -62912,7 +65497,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -63009,7 +65594,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -63020,7 +65605,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -63031,7 +65616,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -63128,7 +65713,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -63139,7 +65724,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -63150,7 +65735,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -63253,7 +65838,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -63264,7 +65849,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -63275,7 +65860,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -63378,7 +65963,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -63389,7 +65974,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -63400,7 +65985,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -63509,7 +66094,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -63520,7 +66105,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -63531,7 +66116,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -63640,7 +66225,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -63651,7 +66236,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -63662,7 +66247,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -63753,7 +66338,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -63764,7 +66349,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -63775,7 +66360,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -63866,7 +66451,7 @@
                             {
                                 "default_value": [
                                     0.9553954005241394,
-                                    0.20943038165569305,
+                                    0.4217880368232727,
                                     0.20943038165569305,
                                     1.0
                                 ],
@@ -63877,7 +66462,7 @@
                             {
                                 "default_value": [
                                     0.5028865933418274,
-                                    0.10074843466281891,
+                                    0.4453256130218506,
                                     0.10074843466281891,
                                     1.0
                                 ],
@@ -63888,7 +66473,7 @@
                             {
                                 "default_value": [
                                     0.5,
-                                    0.03720312938094139,
+                                    0.14809265732765198,
                                     0.03720312938094139,
                                     1.0
                                 ],
@@ -63979,7 +66564,7 @@
                             {
                                 "default_value": [
                                     0.8000000715255737,
-                                    0.0025751744396984577,
+                                    0.0,
                                     0.0025751744396984577,
                                     1.0
                                 ],
@@ -63990,7 +66575,7 @@
                             {
                                 "default_value": [
                                     0.6254019141197205,
-                                    0.07633601874113083,
+                                    0.3592257797718048,
                                     0.07633601874113083,
                                     1.0
                                 ],
@@ -64172,7 +66757,7 @@
                             {
                                 "default_value": [
                                     0.34191441535949707,
-                                    0.18447501957416534,
+                                    0.24228113889694214,
                                     0.18447501957416534,
                                     1.0
                                 ],
@@ -64183,7 +66768,7 @@
                             {
                                 "default_value": [
                                     0.14296220242977142,
-                                    0.053180523216724396,
+                                    0.085452139377594,
                                     0.053180523216724396,
                                     1.0
                                 ],
@@ -64194,7 +66779,7 @@
                             {
                                 "default_value": [
                                     0.11792322993278503,
-                                    0.05263402685523033,
+                                    0.07576367259025574,
                                     0.05263402685523033,
                                     1.0
                                 ],

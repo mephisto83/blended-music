@@ -7,6 +7,17 @@ export default class Materials {
         this.animation = animation;
         return this;
     }
+    static HasShaderOutput(material) {
+        if (material) {
+            if (material.outputs) {
+                return !!Object.keys(material.outputs).find(key => {
+                    return material.outputs[key] === 'NodeSocketShader';
+                })
+            }
+            return true;
+        }
+        return false;
+    }
     out(key) {
         this.$output = key;
         return this;
@@ -32,6 +43,15 @@ export default class Materials {
         return material;
     }
 
+    static StandardOut(material) {
+        if (material && material.outputIndexes) {
+            if (material.outputIndexes['Surface']) {
+                return material.outputIndexes['Surface'];
+            }
+            Object.keys(material.outputs)[0] || 0;
+        }
+        return 0;
+    }
     static Custom(name, customgroup) {
         var material = new Materials(name);
         material.type = 'CUSTOM';

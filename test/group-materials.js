@@ -22,13 +22,16 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "color": "Color",
-  "scale": "Scale",
-  "detail": "Detail",
-  "offset$Color$Strength": "Offset Color Strength"
+  "color": 0,
+  "scale": 1,
+  "detail": 2,
+  "offset$Color$Strength": 3
 }
                 material.outputs = {
   "Color": "NodeSocketColor"
+}
+                material.outputIndexes = {
+  "Color": 0
 }
                 material.color = color;
                 material.scale = scale;
@@ -560,6 +563,37 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "NodeGroupInput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Color",
+      "socket_index": 0,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 5,
+      "name": "Scale",
+      "socket_index": 1,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 5,
+      "name": "Detail",
+      "socket_index": 2,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Offset Color Strength",
+      "socket_index": 3,
+      "type": "NodeSocketFloatFactor"
+    }
   ]
 }
                 return material;
@@ -571,16 +605,19 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "color": "Color",
-  "roughness": "Roughness",
-  "offset$Roughness": "Offset Roughness",
-  "reflectivity": "Reflectivity",
-  "offset$Reflectivity": "Offset Reflectivity",
-  "iOR": "IOR",
-  "normal": "Normal"
+  "color": 0,
+  "roughness": 1,
+  "offset$Roughness": 2,
+  "reflectivity": 3,
+  "offset$Reflectivity": 4,
+  "iOR": 5,
+  "normal": 6
 }
                 material.outputs = {
   "Shader": "NodeSocketShader"
+}
+                material.outputIndexes = {
+  "Shader": 0
 }
                 material.color = color;
                 material.roughness = roughness;
@@ -1242,7 +1279,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.8000000715255737,
-            0.0025751744396984577,
+            0,
             0.0025751744396984577,
             1
           ],
@@ -1527,6 +1564,59 @@ export default class GroupMaterials extends Materials {
       "outputs": [],
       "type": "NodeGroupOutput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "name": "Color",
+      "socket_index": 0,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Roughness",
+      "socket_index": 1,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Offset Roughness",
+      "socket_index": 2,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Reflectivity",
+      "socket_index": 3,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Offset Reflectivity",
+      "socket_index": 4,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0,
+      "name": "IOR",
+      "socket_index": 5,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Normal",
+      "socket_index": 6,
+      "type": "NodeSocketVector"
+    }
   ]
 }
                 return material;
@@ -1538,12 +1628,15 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "roughness": "Roughness",
-  "iOR": "IOR",
-  "normal": "Normal"
+  "roughness": 0,
+  "iOR": 1,
+  "normal": 2
 }
                 material.outputs = {
   "Fac": "NodeSocketFloatFactor"
+}
+                material.outputIndexes = {
+  "Fac": 0
 }
                 material.roughness = roughness;
                 material.iOR = iOR;
@@ -1931,6 +2024,30 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "ShaderNodeFresnel"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": 0.5,
+      "name": "Roughness",
+      "socket_index": 0,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 1.4500000476837158,
+      "name": "IOR",
+      "socket_index": 1,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Normal",
+      "socket_index": 2,
+      "type": "NodeSocketVector"
+    }
   ]
 }
                 return material;
@@ -1942,15 +2059,20 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "rim$Amount": "Rim Amount",
-  "roughness": "Roughness",
-  "iOR": "IOR",
-  "normal": "Normal"
+  "rim$Amount": 0,
+  "roughness": 1,
+  "iOR": 2,
+  "normal": 3
 }
                 material.outputs = {
   "Fresnel": "NodeSocketFloatFactor",
   "Metal Fresnel": "NodeSocketFloat",
   "Rim": "NodeSocketFloat"
+}
+                material.outputIndexes = {
+  "Fresnel": 0,
+  "Metal Fresnel": 1,
+  "Rim": 2
 }
                 material.rim$Amount = rim$Amount;
                 material.roughness = roughness;
@@ -2701,6 +2823,36 @@ export default class GroupMaterials extends Materials {
         }
       ],
       "type": "NodeGroupInput"
+    }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": 0.5,
+      "name": "Rim Amount",
+      "socket_index": 0,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0,
+      "name": "Roughness",
+      "socket_index": 1,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 1.4500000476837158,
+      "name": "IOR",
+      "socket_index": 2,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Normal",
+      "socket_index": 3,
+      "type": "NodeSocketVector"
     }
   ]
 }
@@ -2713,15 +2865,20 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "rim$Amount": "Rim Amount",
-  "roughness": "Roughness",
-  "iOR": "IOR",
-  "normal": "Normal"
+  "rim$Amount": 0,
+  "roughness": 1,
+  "iOR": 2,
+  "normal": 3
 }
                 material.outputs = {
   "Fresnel": "NodeSocketFloatFactor",
   "Metal Fresnel": "NodeSocketFloat",
   "Rim": "NodeSocketFloat"
+}
+                material.outputIndexes = {
+  "Fresnel": 0,
+  "Metal Fresnel": 1,
+  "Rim": 2
 }
                 material.rim$Amount = rim$Amount;
                 material.roughness = roughness;
@@ -3473,6 +3630,36 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "NodeGroupInput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": 0.5,
+      "name": "Rim Amount",
+      "socket_index": 0,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0,
+      "name": "Roughness",
+      "socket_index": 1,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 1.4500000476837158,
+      "name": "IOR",
+      "socket_index": 2,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Normal",
+      "socket_index": 3,
+      "type": "NodeSocketVector"
+    }
   ]
 }
                 return material;
@@ -3484,16 +3671,19 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "metal$Color": "Metal Color",
-  "rim$Color": "Rim Color",
-  "rim$Amount": "Rim Amount",
-  "roughness": "Roughness",
-  "offset$Roughness": "Offset Roughness",
-  "iOR": "IOR",
-  "normal": "Normal"
+  "metal$Color": 0,
+  "rim$Color": 1,
+  "rim$Amount": 2,
+  "roughness": 3,
+  "offset$Roughness": 4,
+  "iOR": 5,
+  "normal": 6
 }
                 material.outputs = {
   "BSDF": "NodeSocketShader"
+}
+                material.outputIndexes = {
+  "BSDF": 0
 }
                 material.metal$Color = metal$Color;
                 material.rim$Color = rim$Color;
@@ -3895,7 +4085,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5000225305557251,
-            0.023964539170265198,
+            0.07414800673723221,
             0.023964539170265198,
             1
           ],
@@ -3906,7 +4096,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6254019141197205,
-            0.07633601874113083,
+            0.3592257797718048,
             0.07633601874113083,
             1
           ],
@@ -3948,7 +4138,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5000225305557251,
-            0.023964539170265198,
+            0.07414800673723221,
             0.023964539170265198,
             1
           ],
@@ -4251,6 +4441,64 @@ export default class GroupMaterials extends Materials {
       "type": "ShaderNodeMath",
       "use_clamp": false
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0.5000225305557251,
+        0.07414800673723221,
+        0.023964539170265198,
+        1
+      ],
+      "name": "Metal Color",
+      "socket_index": 0,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.6254019141197205,
+        0.3592257797718048,
+        0.07633601874113083,
+        1
+      ],
+      "name": "Rim Color",
+      "socket_index": 1,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0.10000002384185791,
+      "name": "Rim Amount",
+      "socket_index": 2,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Roughness",
+      "socket_index": 3,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Offset Roughness",
+      "socket_index": 4,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 1.4500000476837158,
+      "name": "IOR",
+      "socket_index": 5,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Normal",
+      "socket_index": 6,
+      "type": "NodeSocketVector"
+    }
   ]
 }
                 return material;
@@ -4262,19 +4510,19 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "base$Color": "Base Color",
-  "secondary$Color": "Secondary Color",
-  "tertiary$Color": "Tertiary Color",
-  "offset$Color$Strength": "Offset Color Strength",
-  "texture$Scale": "Texture Scale",
-  "detail": "Detail",
-  "lacunarity": "Lacunarity",
-  "detail$Scale": "Detail Scale",
-  "distortion": "Distortion",
-  "bump$Strength": "Bump Strength",
-  "extra$Bump": "Extra Bump",
-  "extra$Bump$Strength": "Extra Bump Strength",
-  "vector": "Vector"
+  "base$Color": 0,
+  "secondary$Color": 1,
+  "tertiary$Color": 2,
+  "offset$Color$Strength": 3,
+  "texture$Scale": 4,
+  "detail": 5,
+  "lacunarity": 6,
+  "detail$Scale": 7,
+  "distortion": 8,
+  "bump$Strength": 9,
+  "extra$Bump": 10,
+  "extra$Bump$Strength": 11,
+  "vector": 12
 }
                 material.outputs = {
   "Checker Color": "NodeSocketColor",
@@ -4304,6 +4552,35 @@ export default class GroupMaterials extends Materials {
   "Voronoi (Intensity) Color": "NodeSocketColor",
   "Voronoi (Intensity) Fac": "NodeSocketFloat",
   "Voronoi (Intensity) Normal": "NodeSocketVector"
+}
+                material.outputIndexes = {
+  "Checker Color": 0,
+  "Checker Fac": 1,
+  "Checker Normal": 2,
+  "Magic Color": 3,
+  "Magic Fac": 4,
+  "Magic Normal": 5,
+  "Mix Color": 6,
+  "Mix Fac": 7,
+  "Mix Normal": 8,
+  "Musgrave Color": 9,
+  "Musgrave Fac": 10,
+  "Musgrave Normal": 11,
+  "Noise Color": 12,
+  "Noise Fac": 13,
+  "Noise Normal": 14,
+  "Waves (Saw) Color": 15,
+  "Waves (Saw) Fac": 16,
+  "Waves (Saw) Normal": 17,
+  "Waves (Sine) Color": 18,
+  "Waves (Sine) Fac": 19,
+  "Waves (Sine) Normal": 20,
+  "Voronoi (Cells) Color": 21,
+  "Voronoi (Cells) Fac": 22,
+  "Voronoi (Cells) Normal": 23,
+  "Voronoi (Intensity) Color": 24,
+  "Voronoi (Intensity) Fac": 25,
+  "Voronoi (Intensity) Normal": 26
 }
                 material.base$Color = base$Color;
                 material.secondary$Color = secondary$Color;
@@ -6373,7 +6650,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -6384,7 +6661,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -6395,7 +6672,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -6491,7 +6768,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -6502,7 +6779,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -6513,7 +6790,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -6603,7 +6880,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -6614,7 +6891,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -6625,7 +6902,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -6727,7 +7004,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -6738,7 +7015,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -6749,7 +7026,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -6845,7 +7122,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -6856,7 +7133,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -6867,7 +7144,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -6975,7 +7252,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -6986,7 +7263,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -6997,7 +7274,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -7087,7 +7364,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -7098,7 +7375,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -7109,7 +7386,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -7211,7 +7488,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -7222,7 +7499,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -7233,7 +7510,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -7428,7 +7705,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -7439,7 +7716,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -7450,7 +7727,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -7795,6 +8072,110 @@ export default class GroupMaterials extends Materials {
       "outputs": [],
       "type": "NodeGroupOutput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0.9553954005241394,
+        0.4217880368232727,
+        0.20943038165569305,
+        1
+      ],
+      "name": "Base Color",
+      "socket_index": 0,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5028865933418274,
+        0.4453256130218506,
+        0.10074843466281891,
+        1
+      ],
+      "name": "Secondary Color",
+      "socket_index": 1,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.14809265732765198,
+        0.03720312938094139,
+        1
+      ],
+      "name": "Tertiary Color",
+      "socket_index": 2,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 1,
+      "name": "Offset Color Strength",
+      "socket_index": 3,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 1,
+      "name": "Texture Scale",
+      "socket_index": 4,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 20,
+      "name": "Detail",
+      "socket_index": 5,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 2,
+      "name": "Lacunarity",
+      "socket_index": 6,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 5,
+      "name": "Detail Scale",
+      "socket_index": 7,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 1,
+      "name": "Distortion",
+      "socket_index": 8,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Bump Strength",
+      "socket_index": 9,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Extra Bump",
+      "socket_index": 10,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0,
+      "name": "Extra Bump Strength",
+      "socket_index": 11,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Vector",
+      "socket_index": 12,
+      "type": "NodeSocketVector"
+    }
   ]
 }
                 return material;
@@ -7806,17 +8187,20 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "surface$Color": "Surface Color",
-  "epidermal$Color": "Epidermal Color",
-  "subdermal$Color": "Subdermal Color",
-  "muscle$Color": "Muscle Color",
-  "opacity": "Opacity",
-  "sSS$Strength": "SSS Strength",
-  "roughness": "Roughness",
-  "normal": "Normal"
+  "surface$Color": 0,
+  "epidermal$Color": 1,
+  "subdermal$Color": 2,
+  "muscle$Color": 3,
+  "opacity": 4,
+  "sSS$Strength": 5,
+  "roughness": 6,
+  "normal": 7
 }
                 material.outputs = {
   "Shader": "NodeSocketShader"
+}
+                material.outputIndexes = {
+  "Shader": 0
 }
                 material.surface$Color = surface$Color;
                 material.epidermal$Color = epidermal$Color;
@@ -8458,7 +8842,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.0033209901303052902,
-            0.8000000715255737,
+            0,
             0.8000000715255737,
             1
           ],
@@ -8530,7 +8914,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.004322738386690617,
-            0,
+            0.8000000715255737,
             0,
             1
           ],
@@ -8635,7 +9019,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.8000000715255737,
-            0.011646291241049767,
+            0.06807360053062439,
             0.011646291241049767,
             1
           ],
@@ -9263,6 +9647,80 @@ export default class GroupMaterials extends Materials {
       "type": "ShaderNodeMath",
       "use_clamp": false
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0.6038162708282471,
+        0.5180138945579529,
+        0.3708575665950775,
+        1
+      ],
+      "name": "Surface Color",
+      "socket_index": 0,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.8000000715255737,
+        0.40797245502471924,
+        0.08686286211013794,
+        1
+      ],
+      "name": "Epidermal Color",
+      "socket_index": 1,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.45753151178359985,
+        0.05939243733882904,
+        0.07463523745536804,
+        1
+      ],
+      "name": "Subdermal Color",
+      "socket_index": 2,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.35055580735206604,
+        0.028564974665641785,
+        0.04188697040081024,
+        1
+      ],
+      "name": "Muscle Color",
+      "socket_index": 3,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 100,
+      "name": "Opacity",
+      "socket_index": 4,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 0.5,
+      "name": "SSS Strength",
+      "socket_index": 5,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Roughness",
+      "socket_index": 6,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Normal",
+      "socket_index": 7,
+      "type": "NodeSocketVector"
+    }
   ]
 }
                 return material;
@@ -9274,19 +9732,22 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "color": "Color",
-  "rim$Color": "Rim Color",
-  "rim$Amount": "Rim Amount",
-  "nonMetal$$Metal": "Non-Metal <-> Metal",
-  "roughness": "Roughness",
-  "offset$Roughness": "Offset Roughness",
-  "reflectivity": "Reflectivity",
-  "offset$Reflectivity": "Offset Reflectivity",
-  "iOR": "IOR",
-  "normal": "Normal"
+  "color": 0,
+  "rim$Color": 1,
+  "rim$Amount": 2,
+  "nonMetal$$Metal": 3,
+  "roughness": 4,
+  "offset$Roughness": 5,
+  "reflectivity": 6,
+  "offset$Reflectivity": 7,
+  "iOR": 8,
+  "normal": 9
 }
                 material.outputs = {
   "Shader": "NodeSocketShader"
+}
+                material.outputIndexes = {
+  "Shader": 0
 }
                 material.color = color;
                 material.rim$Color = rim$Color;
@@ -9811,7 +10272,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5000225305557251,
-            0.023964539170265198,
+            0.07414800673723221,
             0.023964539170265198,
             1
           ],
@@ -9822,7 +10283,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6254019141197205,
-            0.07633601874113083,
+            0.3592257797718048,
             0.07633601874113083,
             1
           ],
@@ -9953,6 +10414,82 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "NodeGroupInput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0.8000000715255737,
+        0,
+        0.0025751744396984577,
+        1
+      ],
+      "name": "Color",
+      "socket_index": 0,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.6254019141197205,
+        0.3592257797718048,
+        0.07633601874113083,
+        1
+      ],
+      "name": "Rim Color",
+      "socket_index": 1,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0.19999992847442627,
+      "name": "Rim Amount",
+      "socket_index": 2,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Non-Metal <-> Metal",
+      "socket_index": 3,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 0,
+      "name": "Roughness",
+      "socket_index": 4,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Offset Roughness",
+      "socket_index": 5,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0.781818151473999,
+      "name": "Reflectivity",
+      "socket_index": 6,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Offset Reflectivity",
+      "socket_index": 7,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 1.4500000476837158,
+      "name": "IOR",
+      "socket_index": 8,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Normal",
+      "socket_index": 9,
+      "type": "NodeSocketVector"
+    }
   ]
 }
                 return material;
@@ -9964,13 +10501,16 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "vector": "Vector",
-  "color$Scale": "Color Scale",
-  "bump$Scale": "Bump Scale",
-  "normal$Strength": "Normal Strength"
+  "vector": 0,
+  "color$Scale": 1,
+  "bump$Scale": 2,
+  "normal$Strength": 3
 }
                 material.outputs = {
   "Shader": "NodeSocketShader"
+}
+                material.outputIndexes = {
+  "Shader": 0
 }
                 material.vector = vector;
                 material.color$Scale = color$Scale;
@@ -10585,7 +11125,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.8000000715255737,
-            0.0025751744396984577,
+            0,
             0.0025751744396984577,
             1
           ],
@@ -10596,7 +11136,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6254019141197205,
-            0.07633601874113083,
+            0.3592257797718048,
             0.07633601874113083,
             1
           ],
@@ -11025,6 +11565,36 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "NodeGroupInput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Vector",
+      "socket_index": 0,
+      "type": "NodeSocketVector"
+    },
+    {
+      "default_value": 1,
+      "name": "Color Scale",
+      "socket_index": 1,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 25,
+      "name": "Bump Scale",
+      "socket_index": 2,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 1,
+      "name": "Normal Strength",
+      "socket_index": 3,
+      "type": "NodeSocketFloatFactor"
+    }
   ]
 }
                 return material;
@@ -11036,20 +11606,25 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "base$Color": "Base Color",
-  "secondary$Color": "Secondary Color",
-  "tertiary$Color": "Tertiary Color",
-  "offset$Color$Strength": "Offset Color Strength",
-  "texture$Scale": "Texture Scale",
-  "bump$Strength": "Bump Strength",
-  "extra$Bump": "Extra Bump",
-  "extra$Bump$Strength": "Extra Bump Strength",
-  "vector": "Vector"
+  "base$Color": 0,
+  "secondary$Color": 1,
+  "tertiary$Color": 2,
+  "offset$Color$Strength": 3,
+  "texture$Scale": 4,
+  "bump$Strength": 5,
+  "extra$Bump": 6,
+  "extra$Bump$Strength": 7,
+  "vector": 8
 }
                 material.outputs = {
   "Color": "NodeSocketColor",
   "Fac": "NodeSocketFloat",
   "Normal": "NodeSocketVector"
+}
+                material.outputIndexes = {
+  "Color": 0,
+  "Fac": 1,
+  "Normal": 2
 }
                 material.base$Color = base$Color;
                 material.secondary$Color = secondary$Color;
@@ -12680,7 +13255,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -12691,7 +13266,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -12733,7 +13308,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.17578952014446259,
+            0.3434239625930786,
             0.17578952014446259,
             1
           ],
@@ -12744,7 +13319,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -13422,6 +13997,86 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "NodeGroupInput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0.9553954005241394,
+        0.4217880368232727,
+        0.20943038165569305,
+        1
+      ],
+      "name": "Base Color",
+      "socket_index": 0,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5028865933418274,
+        0.4453256130218506,
+        0.10074843466281891,
+        1
+      ],
+      "name": "Secondary Color",
+      "socket_index": 1,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.14809265732765198,
+        0.03720312938094139,
+        1
+      ],
+      "name": "Tertiary Color",
+      "socket_index": 2,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Offset Color Strength",
+      "socket_index": 3,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 1,
+      "name": "Texture Scale",
+      "socket_index": 4,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0.8999999761581421,
+      "name": "Bump Strength",
+      "socket_index": 5,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Extra Bump",
+      "socket_index": 6,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0,
+      "name": "Extra Bump Strength",
+      "socket_index": 7,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Vector",
+      "socket_index": 8,
+      "type": "NodeSocketVector"
+    }
   ]
 }
                 return material;
@@ -13433,17 +14088,20 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "vector": "Vector",
-  "primary$Scale": "Primary Scale",
-  "secondary$Scale": "Secondary Scale",
-  "grunge$Scale": "Grunge Scale",
-  "checker$Scale": "Checker Scale",
-  "primary$Color": "Primary Color",
-  "plaster$Primary$Color": "Plaster Primary Color",
-  "plaster$Secondary$Color": "Plaster Secondary Color"
+  "vector": 0,
+  "primary$Scale": 1,
+  "secondary$Scale": 2,
+  "grunge$Scale": 3,
+  "checker$Scale": 4,
+  "primary$Color": 5,
+  "plaster$Primary$Color": 6,
+  "plaster$Secondary$Color": 7
 }
                 material.outputs = {
   "Shader": "NodeSocketShader"
+}
+                material.outputIndexes = {
+  "Shader": 0
 }
                 material.vector = vector;
                 material.primary$Scale = primary$Scale;
@@ -13999,7 +14657,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.8000000715255737,
-            0.06067108362913132,
+            0.0749443918466568,
             0.06067108362913132,
             1
           ],
@@ -14010,7 +14668,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6254019141197205,
-            0.07633601874113083,
+            0.3592257797718048,
             0.07633601874113083,
             1
           ],
@@ -14232,7 +14890,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -14243,7 +14901,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -14254,7 +14912,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -14621,7 +15279,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6480249166488647,
-            0.4080688953399658,
+            0.6093754768371582,
             0.4080688953399658,
             1
           ],
@@ -14632,7 +15290,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6954216361045837,
-            0.35993897914886475,
+            0.6504405736923218,
             0.35993897914886475,
             1
           ],
@@ -14860,6 +15518,75 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "NodeGroupInput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Vector",
+      "socket_index": 0,
+      "type": "NodeSocketVector"
+    },
+    {
+      "default_value": 15,
+      "name": "Primary Scale",
+      "socket_index": 1,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 15,
+      "name": "Secondary Scale",
+      "socket_index": 2,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 1,
+      "name": "Grunge Scale",
+      "socket_index": 3,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 5,
+      "name": "Checker Scale",
+      "socket_index": 4,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": [
+        0.8000000715255737,
+        0.0749443918466568,
+        0.06067108362913132,
+        1
+      ],
+      "name": "Primary Color",
+      "socket_index": 5,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.6480249166488647,
+        0.6093754768371582,
+        0.4080688953399658,
+        1
+      ],
+      "name": "Plaster Primary Color",
+      "socket_index": 6,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.6954216361045837,
+        0.6504405736923218,
+        0.35993897914886475,
+        1
+      ],
+      "name": "Plaster Secondary Color",
+      "socket_index": 7,
+      "type": "NodeSocketColor"
+    }
   ]
 }
                 return material;
@@ -14871,14 +15598,17 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "fluff$Scale": "Fluff Scale",
-  "fluff$Detail": "Fluff Detail",
-  "absorption$Strength": "Absorption Strength",
-  "density": "Density",
-  "color": "Color"
+  "fluff$Scale": 0,
+  "fluff$Detail": 1,
+  "absorption$Strength": 2,
+  "density": 3,
+  "color": 4
 }
                 material.outputs = {
   "Shader": "NodeSocketShader"
+}
+                material.outputIndexes = {
+  "Shader": 0
 }
                 material.fluff$Scale = fluff$Scale;
                 material.fluff$Detail = fluff$Detail;
@@ -15341,6 +16071,43 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "NodeGroupInput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": 3,
+      "name": "Fluff Scale",
+      "socket_index": 0,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 8,
+      "name": "Fluff Detail",
+      "socket_index": 1,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Absorption Strength",
+      "socket_index": 2,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Density",
+      "socket_index": 3,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1
+      ],
+      "name": "Color",
+      "socket_index": 4,
+      "type": "NodeSocketColor"
+    }
   ]
 }
                 return material;
@@ -15352,16 +16119,21 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "vector": "Vector",
-  "scale": "Scale",
-  "base$Color": "Base Color",
-  "dot$Color": "Dot Color",
-  "normal$Strength": "Normal Strength"
+  "vector": 0,
+  "scale": 1,
+  "base$Color": 2,
+  "dot$Color": 3,
+  "normal$Strength": 4
 }
                 material.outputs = {
   "Color": "NodeSocketColor",
   "Fac": "NodeSocketFloatFactor",
   "Normal": "NodeSocketVector"
+}
+                material.outputIndexes = {
+  "Color": 0,
+  "Fac": 1,
+  "Normal": 2
 }
                 material.vector = vector;
                 material.scale = scale;
@@ -15834,6 +16606,52 @@ export default class GroupMaterials extends Materials {
       "type": "ShaderNodeMixRGB",
       "use_clamp": false
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Vector",
+      "socket_index": 0,
+      "type": "NodeSocketVector"
+    },
+    {
+      "default_value": 100,
+      "name": "Scale",
+      "socket_index": 1,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Base Color",
+      "socket_index": 2,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Dot Color",
+      "socket_index": 3,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 1,
+      "name": "Normal Strength",
+      "socket_index": 4,
+      "type": "NodeSocketFloatFactor"
+    }
   ]
 }
                 return material;
@@ -15845,21 +16663,26 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "base$Color": "Base Color",
-  "secondary$Color": "Secondary Color",
-  "tertiary$Color": "Tertiary Color",
-  "offset$Color$Strength": "Offset Color Strength",
-  "texture$Scale": "Texture Scale",
-  "distortion": "Distortion",
-  "bump$Strength": "Bump Strength",
-  "extra$Bump": "Extra Bump",
-  "extra$Bump$Strength": "Extra Bump Strength",
-  "vector": "Vector"
+  "base$Color": 0,
+  "secondary$Color": 1,
+  "tertiary$Color": 2,
+  "offset$Color$Strength": 3,
+  "texture$Scale": 4,
+  "distortion": 5,
+  "bump$Strength": 6,
+  "extra$Bump": 7,
+  "extra$Bump$Strength": 8,
+  "vector": 9
 }
                 material.outputs = {
   "Color": "NodeSocketColor",
   "Fac": "NodeSocketFloat",
   "Normal": "NodeSocketVector"
+}
+                material.outputIndexes = {
+  "Color": 0,
+  "Fac": 1,
+  "Normal": 2
 }
                 material.base$Color = base$Color;
                 material.secondary$Color = secondary$Color;
@@ -17611,7 +18434,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -17622,7 +18445,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -17664,7 +18487,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.17578952014446259,
+            0.3434239625930786,
             0.17578952014446259,
             1
           ],
@@ -17675,7 +18498,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -18295,6 +19118,92 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "NodeGroupInput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0.9553954005241394,
+        0.4217880368232727,
+        0.20943038165569305,
+        1
+      ],
+      "name": "Base Color",
+      "socket_index": 0,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5028865933418274,
+        0.4453256130218506,
+        0.10074843466281891,
+        1
+      ],
+      "name": "Secondary Color",
+      "socket_index": 1,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.14809265732765198,
+        0.03720312938094139,
+        1
+      ],
+      "name": "Tertiary Color",
+      "socket_index": 2,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Offset Color Strength",
+      "socket_index": 3,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 2,
+      "name": "Texture Scale",
+      "socket_index": 4,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 1,
+      "name": "Distortion",
+      "socket_index": 5,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0.8999999761581421,
+      "name": "Bump Strength",
+      "socket_index": 6,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Extra Bump",
+      "socket_index": 7,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0,
+      "name": "Extra Bump Strength",
+      "socket_index": 8,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Vector",
+      "socket_index": 9,
+      "type": "NodeSocketVector"
+    }
   ]
 }
                 return material;
@@ -18306,16 +19215,19 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "vector": "Vector",
-  "scale": "Scale",
-  "base$Color$1": "Base Color 1",
-  "base$Color$2": "Base Color 2",
-  "vein$Color$1": "Vein Color 1",
-  "vein$Color$2": "Vein Color 2",
-  "speckle$Color": "Speckle Color"
+  "vector": 0,
+  "scale": 1,
+  "base$Color$1": 2,
+  "base$Color$2": 3,
+  "vein$Color$1": 4,
+  "vein$Color$2": 5,
+  "speckle$Color": 6
 }
                 material.outputs = {
   "Shader": "NodeSocketShader"
+}
+                material.outputIndexes = {
+  "Shader": 0
 }
                 material.vector = vector;
                 material.scale = scale;
@@ -19296,7 +20208,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.8000000715255737,
-            0.0025751744396984577,
+            0,
             0.0025751744396984577,
             1
           ],
@@ -19307,7 +20219,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6254019141197205,
-            0.07633601874113083,
+            0.3592257797718048,
             0.07633601874113083,
             1
           ],
@@ -20072,7 +20984,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5088812708854675,
-            0.054480284452438354,
+            0.22322800755500793,
             0.054480284452438354,
             1
           ],
@@ -20083,7 +20995,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.508245587348938,
-            0.05428784340620041,
+            0.22192531824111938,
             0.05428784340620041,
             1
           ],
@@ -20196,7 +21108,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.018233012408018112,
-            0.011345821432769299,
+            0.01702404022216797,
             0.011345821432769299,
             1
           ],
@@ -20207,7 +21119,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.048171836882829666,
-            0.016415856778621674,
+            0.028759686276316643,
             0.016415856778621674,
             1
           ],
@@ -20249,7 +21161,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.04804423451423645,
-            0.027943987399339676,
+            0.04446321725845337,
             0.027943987399339676,
             1
           ],
@@ -20260,7 +21172,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.014754770323634148,
+            0.1480759233236313,
             0.014754770323634148,
             1
           ],
@@ -20693,7 +21605,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.2664775848388672,
+            0.4576066732406616,
             0.2664775848388672,
             1
           ],
@@ -20704,7 +21616,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.508245587348938,
-            0.05428784340620041,
+            0.22192531824111938,
             0.05428784340620041,
             1
           ],
@@ -20919,6 +21831,79 @@ export default class GroupMaterials extends Materials {
       "type": "ShaderNodeMath",
       "use_clamp": false
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Vector",
+      "socket_index": 0,
+      "type": "NodeSocketVector"
+    },
+    {
+      "default_value": 3,
+      "name": "Scale",
+      "socket_index": 1,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": [
+        0.018233012408018112,
+        0.01702404022216797,
+        0.011345821432769299,
+        1
+      ],
+      "name": "Base Color 1",
+      "socket_index": 2,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.048171836882829666,
+        0.028759686276316643,
+        0.016415856778621674,
+        1
+      ],
+      "name": "Base Color 2",
+      "socket_index": 3,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.1480759233236313,
+        0.014754770323634148,
+        1
+      ],
+      "name": "Vein Color 1",
+      "socket_index": 4,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.508245587348938,
+        0.22192531824111938,
+        0.05428784340620041,
+        1
+      ],
+      "name": "Vein Color 2",
+      "socket_index": 5,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.508245587348938,
+        0.22192531824111938,
+        0.05428784340620041,
+        1
+      ],
+      "name": "Speckle Color",
+      "socket_index": 6,
+      "type": "NodeSocketColor"
+    }
   ]
 }
                 return material;
@@ -20930,22 +21915,27 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "base$Color": "Base Color",
-  "secondary$Color": "Secondary Color",
-  "tertiary$Color": "Tertiary Color",
-  "offset$Color$Strength": "Offset Color Strength",
-  "texture$Scale": "Texture Scale",
-  "detail": "Detail",
-  "lacunarity": "Lacunarity",
-  "bump$Strength": "Bump Strength",
-  "extra$Bump": "Extra Bump",
-  "extra$Bump$Strength": "Extra Bump Strength",
-  "vector": "Vector"
+  "base$Color": 0,
+  "secondary$Color": 1,
+  "tertiary$Color": 2,
+  "offset$Color$Strength": 3,
+  "texture$Scale": 4,
+  "detail": 5,
+  "lacunarity": 6,
+  "bump$Strength": 7,
+  "extra$Bump": 8,
+  "extra$Bump$Strength": 9,
+  "vector": 10
 }
                 material.outputs = {
   "Color": "NodeSocketColor",
   "Fac": "NodeSocketFloat",
   "Normal": "NodeSocketVector"
+}
+                material.outputIndexes = {
+  "Color": 0,
+  "Fac": 1,
+  "Normal": 2
 }
                 material.base$Color = base$Color;
                 material.secondary$Color = secondary$Color;
@@ -23268,7 +24258,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.17578952014446259,
+            0.3434239625930786,
             0.17578952014446259,
             1
           ],
@@ -23279,7 +24269,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -23321,7 +24311,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -23332,7 +24322,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -23589,6 +24579,98 @@ export default class GroupMaterials extends Materials {
       "type": "ShaderNodeMath",
       "use_clamp": false
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0.9553954005241394,
+        0.4217880368232727,
+        0.20943038165569305,
+        1
+      ],
+      "name": "Base Color",
+      "socket_index": 0,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5028865933418274,
+        0.4453256130218506,
+        0.10074843466281891,
+        1
+      ],
+      "name": "Secondary Color",
+      "socket_index": 1,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.14809265732765198,
+        0.03720312938094139,
+        1
+      ],
+      "name": "Tertiary Color",
+      "socket_index": 2,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Offset Color Strength",
+      "socket_index": 3,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 2,
+      "name": "Texture Scale",
+      "socket_index": 4,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 50,
+      "name": "Detail",
+      "socket_index": 5,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 2,
+      "name": "Lacunarity",
+      "socket_index": 6,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0.8999999761581421,
+      "name": "Bump Strength",
+      "socket_index": 7,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Extra Bump",
+      "socket_index": 8,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0,
+      "name": "Extra Bump Strength",
+      "socket_index": 9,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Vector",
+      "socket_index": 10,
+      "type": "NodeSocketVector"
+    }
   ]
 }
                 return material;
@@ -23600,16 +24682,19 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "vector": "Vector",
-  "color$Scale": "Color Scale",
-  "normal$Scale": "Normal Scale",
-  "base$Color": "Base Color",
-  "secondary$Color": "Secondary Color",
-  "tertiary$Color": "Tertiary Color",
-  "normal$Strength": "Normal Strength"
+  "vector": 0,
+  "color$Scale": 1,
+  "normal$Scale": 2,
+  "base$Color": 3,
+  "secondary$Color": 4,
+  "tertiary$Color": 5,
+  "normal$Strength": 6
 }
                 material.outputs = {
   "Shader": "NodeSocketShader"
+}
+                material.outputIndexes = {
+  "Shader": 0
 }
                 material.vector = vector;
                 material.color$Scale = color$Scale;
@@ -23822,7 +24907,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.3414909243583679,
-            0.1835775524377823,
+            0.24338097870349884,
             0.1835775524377823,
             1
           ],
@@ -23833,7 +24918,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6254019141197205,
-            0.07633601874113083,
+            0.3592257797718048,
             0.07633601874113083,
             1
           ],
@@ -24010,7 +25095,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.34191441535949707,
-            0.18447501957416534,
+            0.24228113889694214,
             0.18447501957416534,
             1
           ],
@@ -24021,7 +25106,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.14296220242977142,
-            0.053180523216724396,
+            0.085452139377594,
             0.053180523216724396,
             1
           ],
@@ -24032,7 +25117,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.11792322993278503,
-            0.05263402685523033,
+            0.07576367259025574,
             0.05263402685523033,
             1
           ],
@@ -24202,6 +25287,69 @@ export default class GroupMaterials extends Materials {
       "outputs": [],
       "type": "NodeGroupOutput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Vector",
+      "socket_index": 0,
+      "type": "NodeSocketVector"
+    },
+    {
+      "default_value": 5,
+      "name": "Color Scale",
+      "socket_index": 1,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 3,
+      "name": "Normal Scale",
+      "socket_index": 2,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": [
+        0.34191441535949707,
+        0.24228113889694214,
+        0.18447501957416534,
+        1
+      ],
+      "name": "Base Color",
+      "socket_index": 3,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.14296220242977142,
+        0.085452139377594,
+        0.053180523216724396,
+        1
+      ],
+      "name": "Secondary Color",
+      "socket_index": 4,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.11792322993278503,
+        0.07576367259025574,
+        0.05263402685523033,
+        1
+      ],
+      "name": "Tertiary Color",
+      "socket_index": 5,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0.6000000238418579,
+      "name": "Normal Strength",
+      "socket_index": 6,
+      "type": "NodeSocketFloatFactor"
+    }
   ]
 }
                 return material;
@@ -24213,22 +25361,27 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "base$Color": "Base Color",
-  "secondary$Color": "Secondary Color",
-  "tertiary$Color": "Tertiary Color",
-  "offset$Color$Strength": "Offset Color Strength",
-  "texture$Scale": "Texture Scale",
-  "detail": "Detail",
-  "lacunarity": "Lacunarity",
-  "bump$Strength": "Bump Strength",
-  "extra$Bump": "Extra Bump",
-  "extra$Bump$Strength": "Extra Bump Strength",
-  "vector": "Vector"
+  "base$Color": 0,
+  "secondary$Color": 1,
+  "tertiary$Color": 2,
+  "offset$Color$Strength": 3,
+  "texture$Scale": 4,
+  "detail": 5,
+  "lacunarity": 6,
+  "bump$Strength": 7,
+  "extra$Bump": 8,
+  "extra$Bump$Strength": 9,
+  "vector": 10
 }
                 material.outputs = {
   "Color": "NodeSocketColor",
   "Fac": "NodeSocketFloat",
   "Normal": "NodeSocketVector"
+}
+                material.outputIndexes = {
+  "Color": 0,
+  "Fac": 1,
+  "Normal": 2
 }
                 material.base$Color = base$Color;
                 material.secondary$Color = secondary$Color;
@@ -26296,7 +27449,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.17578952014446259,
+            0.3434239625930786,
             0.17578952014446259,
             1
           ],
@@ -26307,7 +27460,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -26349,7 +27502,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -26360,7 +27513,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -26963,6 +28116,98 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "NodeReroute"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0.9553954005241394,
+        0.4217880368232727,
+        0.20943038165569305,
+        1
+      ],
+      "name": "Base Color",
+      "socket_index": 0,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5028865933418274,
+        0.4453256130218506,
+        0.10074843466281891,
+        1
+      ],
+      "name": "Secondary Color",
+      "socket_index": 1,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.14809265732765198,
+        0.03720312938094139,
+        1
+      ],
+      "name": "Tertiary Color",
+      "socket_index": 2,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Offset Color Strength",
+      "socket_index": 3,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 1,
+      "name": "Texture Scale",
+      "socket_index": 4,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 20,
+      "name": "Detail",
+      "socket_index": 5,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 2,
+      "name": "Lacunarity",
+      "socket_index": 6,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Bump Strength",
+      "socket_index": 7,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Extra Bump",
+      "socket_index": 8,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0,
+      "name": "Extra Bump Strength",
+      "socket_index": 9,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Vector",
+      "socket_index": 10,
+      "type": "NodeSocketVector"
+    }
   ]
 }
                 return material;
@@ -26974,21 +28219,26 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "base$Color": "Base Color",
-  "secondary$Color": "Secondary Color",
-  "tertiary$Color": "Tertiary Color",
-  "offset$Color$Strength": "Offset Color Strength",
-  "texture$Scale": "Texture Scale",
-  "detail": "Detail",
-  "bump$Strength": "Bump Strength",
-  "extra$Bump": "Extra Bump",
-  "extra$Bump$Strength": "Extra Bump Strength",
-  "vector": "Vector"
+  "base$Color": 0,
+  "secondary$Color": 1,
+  "tertiary$Color": 2,
+  "offset$Color$Strength": 3,
+  "texture$Scale": 4,
+  "detail": 5,
+  "bump$Strength": 6,
+  "extra$Bump": 7,
+  "extra$Bump$Strength": 8,
+  "vector": 9
 }
                 material.outputs = {
   "Color": "NodeSocketColor",
   "Fac": "NodeSocketFloat",
   "Normal": "NodeSocketVector"
+}
+                material.outputIndexes = {
+  "Color": 0,
+  "Fac": 1,
+  "Normal": 2
 }
                 material.base$Color = base$Color;
                 material.secondary$Color = secondary$Color;
@@ -29053,7 +30303,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -29064,7 +30314,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -29106,7 +30356,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.17578952014446259,
+            0.3434239625930786,
             0.17578952014446259,
             1
           ],
@@ -29117,7 +30367,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -29525,6 +30775,92 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "NodeReroute"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0.9553954005241394,
+        0.4217880368232727,
+        0.20943038165569305,
+        1
+      ],
+      "name": "Base Color",
+      "socket_index": 0,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5028865933418274,
+        0.4453256130218506,
+        0.10074843466281891,
+        1
+      ],
+      "name": "Secondary Color",
+      "socket_index": 1,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.14809265732765198,
+        0.03720312938094139,
+        1
+      ],
+      "name": "Tertiary Color",
+      "socket_index": 2,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Offset Color Strength",
+      "socket_index": 3,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 5,
+      "name": "Texture Scale",
+      "socket_index": 4,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 20,
+      "name": "Detail",
+      "socket_index": 5,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0.8999999761581421,
+      "name": "Bump Strength",
+      "socket_index": 6,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Extra Bump",
+      "socket_index": 7,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0,
+      "name": "Extra Bump Strength",
+      "socket_index": 8,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Vector",
+      "socket_index": 9,
+      "type": "NodeSocketVector"
+    }
   ]
 }
                 return material;
@@ -29536,18 +30872,23 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "vector": "Vector",
-  "scale": "Scale",
-  "detail": "Detail",
-  "distortion": "Distortion",
-  "base$Color": "Base Color",
-  "cloud$Color": "Cloud Color",
-  "normal$Strength": "Normal Strength"
+  "vector": 0,
+  "scale": 1,
+  "detail": 2,
+  "distortion": 3,
+  "base$Color": 4,
+  "cloud$Color": 5,
+  "normal$Strength": 6
 }
                 material.outputs = {
   "Color": "NodeSocketColor",
   "Fac": "NodeSocketFloatFactor",
   "Normal": "NodeSocketVector"
+}
+                material.outputIndexes = {
+  "Color": 0,
+  "Fac": 1,
+  "Normal": 2
 }
                 material.vector = vector;
                 material.scale = scale;
@@ -30110,6 +31451,64 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "ShaderNodeTexNoise"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Vector",
+      "socket_index": 0,
+      "type": "NodeSocketVector"
+    },
+    {
+      "default_value": 1,
+      "name": "Scale",
+      "socket_index": 1,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 20,
+      "name": "Detail",
+      "socket_index": 2,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0,
+      "name": "Distortion",
+      "socket_index": 3,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Base Color",
+      "socket_index": 4,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Cloud Color",
+      "socket_index": 5,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 1,
+      "name": "Normal Strength",
+      "socket_index": 6,
+      "type": "NodeSocketFloatFactor"
+    }
   ]
 }
                 return material;
@@ -30121,26 +31520,29 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "vector": "Vector",
-  "biome$1$$Color$1": "Biome 1 | Color 1",
-  "biome$1$$Color$2": "Biome 1 | Color 2",
-  "biome$1$$Color$3": "Biome 1 | Color 3",
-  "biome$2$$Color$1": "Biome 2 | Color 1",
-  "biome$2$$Color$2": "Biome 2 | Color 2",
-  "biome$2$$Color$3": "Biome 2 | Color 3",
-  "ocean$Color": "Ocean Color",
-  "cloud$Color": "Cloud Color",
-  "mountain$Color": "Mountain Color",
-  "mountain$Scale": "Mountain Scale",
-  "mountain$Height": "Mountain Height",
-  "cloud$Scale": "Cloud Scale",
-  "cloud$Density": "Cloud Density",
-  "cloud$Opacity": "Cloud Opacity",
-  "continent$Size": "Continent Size",
-  "continent$Detail": "Continent Detail"
+  "vector": 0,
+  "biome$1$$Color$1": 1,
+  "biome$1$$Color$2": 2,
+  "biome$1$$Color$3": 3,
+  "biome$2$$Color$1": 4,
+  "biome$2$$Color$2": 5,
+  "biome$2$$Color$3": 6,
+  "ocean$Color": 7,
+  "cloud$Color": 8,
+  "mountain$Color": 9,
+  "mountain$Scale": 10,
+  "mountain$Height": 11,
+  "cloud$Scale": 12,
+  "cloud$Density": 13,
+  "cloud$Opacity": 14,
+  "continent$Size": 15,
+  "continent$Detail": 16
 }
                 material.outputs = {
   "Shader": "NodeSocketShader"
+}
+                material.outputIndexes = {
+  "Shader": 0
 }
                 material.vector = vector;
                 material.biome$1$$Color$1 = biome$1$$Color$1;
@@ -31015,7 +32417,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -31026,7 +32428,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -31037,7 +32439,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -31139,7 +32541,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.39149776101112366,
-            0.13551634550094604,
+            0.3310618996620178,
             0.13551634550094604,
             1
           ],
@@ -31150,7 +32552,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.11935558915138245,
+            0.33730655908584595,
             0.11935558915138245,
             1
           ],
@@ -31161,7 +32563,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.09421773254871368,
+            0.22784750163555145,
             0.09421773254871368,
             1
           ],
@@ -31297,7 +32699,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.3871992230415344,
-            0.09231522679328918,
+            0.21561460196971893,
             0.09231522679328918,
             1
           ],
@@ -31308,7 +32710,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.16450895369052887,
+            0.4586332142353058,
             0.16450895369052887,
             1
           ],
@@ -31319,7 +32721,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.2778395414352417,
-            0.11415830254554749,
+            0.3426298499107361,
             0.11415830254554749,
             1
           ],
@@ -31655,7 +33057,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.06717310845851898,
-            0.08895158022642136,
+            0.2558301091194153,
             0.08895158022642136,
             1
           ],
@@ -31666,7 +33068,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6254019141197205,
-            0.07633601874113083,
+            0.3592257797718048,
             0.07633601874113083,
             1
           ],
@@ -31959,7 +33361,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -31970,7 +33372,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -31981,7 +33383,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -32244,7 +33646,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.09869689494371414,
-            0.2558301091194153,
+            0.08660843968391418,
             0.2558301091194153,
             1
           ],
@@ -32255,7 +33657,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6254019141197205,
-            0.07633601874113083,
+            0.3592257797718048,
             0.07633601874113083,
             1
           ],
@@ -32575,6 +33977,159 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "NodeGroupInput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Vector",
+      "socket_index": 0,
+      "type": "NodeSocketVector"
+    },
+    {
+      "default_value": [
+        0.39149776101112366,
+        0.3310618996620178,
+        0.13551634550094604,
+        1
+      ],
+      "name": "Biome 1 | Color 1",
+      "socket_index": 1,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5028865933418274,
+        0.33730655908584595,
+        0.11935558915138245,
+        1
+      ],
+      "name": "Biome 1 | Color 2",
+      "socket_index": 2,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.22784750163555145,
+        0.09421773254871368,
+        1
+      ],
+      "name": "Biome 1 | Color 3",
+      "socket_index": 3,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.3871992230415344,
+        0.21561460196971893,
+        0.09231522679328918,
+        1
+      ],
+      "name": "Biome 2 | Color 1",
+      "socket_index": 4,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5028865933418274,
+        0.4586332142353058,
+        0.16450895369052887,
+        1
+      ],
+      "name": "Biome 2 | Color 2",
+      "socket_index": 5,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.2778395414352417,
+        0.3426298499107361,
+        0.11415830254554749,
+        1
+      ],
+      "name": "Biome 2 | Color 3",
+      "socket_index": 6,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.09869689494371414,
+        0.08660843968391418,
+        0.2558301091194153,
+        1
+      ],
+      "name": "Ocean Color",
+      "socket_index": 7,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1
+      ],
+      "name": "Cloud Color",
+      "socket_index": 8,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.3492913842201233,
+        0.3492913842201233,
+        0.3492913842201233,
+        1
+      ],
+      "name": "Mountain Color",
+      "socket_index": 9,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 5,
+      "name": "Mountain Scale",
+      "socket_index": 10,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0.4000000059604645,
+      "name": "Mountain Height",
+      "socket_index": 11,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 1,
+      "name": "Cloud Scale",
+      "socket_index": 12,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0,
+      "name": "Cloud Density",
+      "socket_index": 13,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0.800000011920929,
+      "name": "Cloud Opacity",
+      "socket_index": 14,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0,
+      "name": "Continent Size",
+      "socket_index": 15,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 2,
+      "name": "Continent Detail",
+      "socket_index": 16,
+      "type": "NodeSocketFloat"
+    }
   ]
 }
                 return material;
@@ -32586,14 +34141,17 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "vector": "Vector",
-  "scale": "Scale",
-  "primary$Color": "Primary Color",
-  "secondary$Color": "Secondary Color",
-  "normal$Strength": "Normal Strength"
+  "vector": 0,
+  "scale": 1,
+  "primary$Color": 2,
+  "secondary$Color": 3,
+  "normal$Strength": 4
 }
                 material.outputs = {
   "Shader": "NodeSocketShader"
+}
+                material.outputIndexes = {
+  "Shader": 0
 }
                 material.vector = vector;
                 material.scale = scale;
@@ -32962,7 +34520,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6814512014389038,
-            0.624729573726654,
+            0.6954216361045837,
             0.624729573726654,
             1
           ],
@@ -33280,7 +34838,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6254019141197205,
-            0.07633601874113083,
+            0.3592257797718048,
             0.07633601874113083,
             1
           ],
@@ -33468,6 +35026,52 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "NodeGroupInput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Vector",
+      "socket_index": 0,
+      "type": "NodeSocketVector"
+    },
+    {
+      "default_value": 10,
+      "name": "Scale",
+      "socket_index": 1,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "name": "Primary Color",
+      "socket_index": 2,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.6814512014389038,
+        0.6954216361045837,
+        0.624729573726654,
+        1
+      ],
+      "name": "Secondary Color",
+      "socket_index": 3,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 1,
+      "name": "Normal Strength",
+      "socket_index": 4,
+      "type": "NodeSocketFloatFactor"
+    }
   ]
 }
                 return material;
@@ -33479,17 +35083,22 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "vector": "Vector",
-  "scale": "Scale",
-  "edge$Pattern$Scale": "Edge Pattern Scale",
-  "base$Color": "Base Color",
-  "puddle$Color": "Puddle Color",
-  "normal$Strength": "Normal Strength"
+  "vector": 0,
+  "scale": 1,
+  "edge$Pattern$Scale": 2,
+  "base$Color": 3,
+  "puddle$Color": 4,
+  "normal$Strength": 5
 }
                 material.outputs = {
   "Color": "NodeSocketColor",
   "Fac": "NodeSocketFloatFactor",
   "Normal": "NodeSocketVector"
+}
+                material.outputIndexes = {
+  "Color": 0,
+  "Fac": 1,
+  "Normal": 2
 }
                 material.vector = vector;
                 material.scale = scale;
@@ -34361,6 +35970,58 @@ export default class GroupMaterials extends Materials {
       "type": "ShaderNodeMixRGB",
       "use_clamp": false
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Vector",
+      "socket_index": 0,
+      "type": "NodeSocketVector"
+    },
+    {
+      "default_value": 5,
+      "name": "Scale",
+      "socket_index": 1,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 10,
+      "name": "Edge Pattern Scale",
+      "socket_index": 2,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Base Color",
+      "socket_index": 3,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Puddle Color",
+      "socket_index": 4,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 1,
+      "name": "Normal Strength",
+      "socket_index": 5,
+      "type": "NodeSocketFloatFactor"
+    }
   ]
 }
                 return material;
@@ -34372,17 +36033,22 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "stripe$Scale": "Stripe Scale",
-  "distortion$Scale": "Distortion Scale",
-  "lacunarity": "Lacunarity",
-  "primary$Color": "Primary Color",
-  "secondary$Color": "Secondary Color",
-  "normal$Strength": "Normal Strength"
+  "stripe$Scale": 0,
+  "distortion$Scale": 1,
+  "lacunarity": 2,
+  "primary$Color": 3,
+  "secondary$Color": 4,
+  "normal$Strength": 5
 }
                 material.outputs = {
   "Color": "NodeSocketColor",
   "Fac": "NodeSocketFloatFactor",
   "Normal": "NodeSocketVector"
+}
+                material.outputIndexes = {
+  "Color": 0,
+  "Fac": 1,
+  "Normal": 2
 }
                 material.stripe$Scale = stripe$Scale;
                 material.distortion$Scale = distortion$Scale;
@@ -35293,6 +36959,54 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "NodeGroupInput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": 3,
+      "name": "Stripe Scale",
+      "socket_index": 0,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 10,
+      "name": "Distortion Scale",
+      "socket_index": 1,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 1.2999999523162842,
+      "name": "Lacunarity",
+      "socket_index": 2,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Primary Color",
+      "socket_index": 3,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Secondary Color",
+      "socket_index": 4,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 1,
+      "name": "Normal Strength",
+      "socket_index": 5,
+      "type": "NodeSocketFloatFactor"
+    }
   ]
 }
                 return material;
@@ -35304,11 +37018,14 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "fluff$Scale": "Fluff Scale",
-  "fluff$Detail": "Fluff Detail"
+  "fluff$Scale": 0,
+  "fluff$Detail": 1
 }
                 material.outputs = {
   "Density": "NodeSocketFloatFactor"
+}
+                material.outputIndexes = {
+  "Density": 0
 }
                 material.fluff$Scale = fluff$Scale;
                 material.fluff$Detail = fluff$Detail;
@@ -36571,6 +38288,20 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "ShaderNodeValToRGB"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": 3,
+      "name": "Fluff Scale",
+      "socket_index": 0,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 8,
+      "name": "Fluff Detail",
+      "socket_index": 1,
+      "type": "NodeSocketFloat"
+    }
   ]
 }
                 return material;
@@ -36582,11 +38313,14 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "fluff$Scale": "Fluff Scale",
-  "fluff$Detail": "Fluff Detail"
+  "fluff$Scale": 0,
+  "fluff$Detail": 1
 }
                 material.outputs = {
   "Density": "NodeSocketFloatFactor"
+}
+                material.outputIndexes = {
+  "Density": 0
 }
                 material.fluff$Scale = fluff$Scale;
                 material.fluff$Detail = fluff$Detail;
@@ -37849,6 +39583,20 @@ export default class GroupMaterials extends Materials {
       "outputs": [],
       "type": "NodeGroupOutput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": 3,
+      "name": "Fluff Scale",
+      "socket_index": 0,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 8,
+      "name": "Fluff Detail",
+      "socket_index": 1,
+      "type": "NodeSocketFloat"
+    }
   ]
 }
                 return material;
@@ -37860,20 +39608,25 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "base$Color": "Base Color",
-  "secondary$Color": "Secondary Color",
-  "tertiary$Color": "Tertiary Color",
-  "offset$Color$Strength": "Offset Color Strength",
-  "texture$Scale": "Texture Scale",
-  "bump$Strength": "Bump Strength",
-  "extra$Bump": "Extra Bump",
-  "extra$Bump$Strength": "Extra Bump Strength",
-  "vector": "Vector"
+  "base$Color": 0,
+  "secondary$Color": 1,
+  "tertiary$Color": 2,
+  "offset$Color$Strength": 3,
+  "texture$Scale": 4,
+  "bump$Strength": 5,
+  "extra$Bump": 6,
+  "extra$Bump$Strength": 7,
+  "vector": 8
 }
                 material.outputs = {
   "Color": "NodeSocketColor",
   "Fac": "NodeSocketFloat",
   "Normal": "NodeSocketVector"
+}
+                material.outputIndexes = {
+  "Color": 0,
+  "Fac": 1,
+  "Normal": 2
 }
                 material.base$Color = base$Color;
                 material.secondary$Color = secondary$Color;
@@ -39547,7 +41300,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -39558,7 +41311,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -39600,7 +41353,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.17578952014446259,
+            0.3434239625930786,
             0.17578952014446259,
             1
           ],
@@ -39611,7 +41364,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -40196,6 +41949,86 @@ export default class GroupMaterials extends Materials {
         }
       ],
       "type": "NodeGroupInput"
+    }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0.9553954005241394,
+        0.4217880368232727,
+        0.20943038165569305,
+        1
+      ],
+      "name": "Base Color",
+      "socket_index": 0,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5028865933418274,
+        0.4453256130218506,
+        0.10074843466281891,
+        1
+      ],
+      "name": "Secondary Color",
+      "socket_index": 1,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.14809265732765198,
+        0.03720312938094139,
+        1
+      ],
+      "name": "Tertiary Color",
+      "socket_index": 2,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Offset Color Strength",
+      "socket_index": 3,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 5,
+      "name": "Texture Scale",
+      "socket_index": 4,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Bump Strength",
+      "socket_index": 5,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Extra Bump",
+      "socket_index": 6,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0,
+      "name": "Extra Bump Strength",
+      "socket_index": 7,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Vector",
+      "socket_index": 8,
+      "type": "NodeSocketVector"
     }
   ]
 }
@@ -40208,20 +42041,25 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "base$Color": "Base Color",
-  "secondary$Color": "Secondary Color",
-  "tertiary$Color": "Tertiary Color",
-  "offset$Color$Strength": "Offset Color Strength",
-  "texture$Scale": "Texture Scale",
-  "bump$Strength": "Bump Strength",
-  "extra$Bump": "Extra Bump",
-  "extra$Bump$Strength": "Extra Bump Strength",
-  "vector": "Vector"
+  "base$Color": 0,
+  "secondary$Color": 1,
+  "tertiary$Color": 2,
+  "offset$Color$Strength": 3,
+  "texture$Scale": 4,
+  "bump$Strength": 5,
+  "extra$Bump": 6,
+  "extra$Bump$Strength": 7,
+  "vector": 8
 }
                 material.outputs = {
   "Color": "NodeSocketColor",
   "Fac": "NodeSocketFloat",
   "Normal": "NodeSocketVector"
+}
+                material.outputIndexes = {
+  "Color": 0,
+  "Fac": 1,
+  "Normal": 2
 }
                 material.base$Color = base$Color;
                 material.secondary$Color = secondary$Color;
@@ -41842,7 +43680,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -41853,7 +43691,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -41895,7 +43733,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.17578952014446259,
+            0.3434239625930786,
             0.17578952014446259,
             1
           ],
@@ -41906,7 +43744,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -42545,6 +44383,86 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "NodeGroupInput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0.9553954005241394,
+        0.4217880368232727,
+        0.20943038165569305,
+        1
+      ],
+      "name": "Base Color",
+      "socket_index": 0,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5028865933418274,
+        0.4453256130218506,
+        0.10074843466281891,
+        1
+      ],
+      "name": "Secondary Color",
+      "socket_index": 1,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.14809265732765198,
+        0.03720312938094139,
+        1
+      ],
+      "name": "Tertiary Color",
+      "socket_index": 2,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Offset Color Strength",
+      "socket_index": 3,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 1,
+      "name": "Texture Scale",
+      "socket_index": 4,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0.8999999761581421,
+      "name": "Bump Strength",
+      "socket_index": 5,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Extra Bump",
+      "socket_index": 6,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0,
+      "name": "Extra Bump Strength",
+      "socket_index": 7,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Vector",
+      "socket_index": 8,
+      "type": "NodeSocketVector"
+    }
   ]
 }
                 return material;
@@ -42556,16 +44474,21 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "vector": "Vector",
-  "scale": "Scale",
-  "base$Color": "Base Color",
-  "ball$Color": "Ball Color",
-  "strength": "Strength"
+  "vector": 0,
+  "scale": 1,
+  "base$Color": 2,
+  "ball$Color": 3,
+  "strength": 4
 }
                 material.outputs = {
   "Color": "NodeSocketColor",
   "Fac": "NodeSocketFloatFactor",
   "Normal": "NodeSocketVector"
+}
+                material.outputIndexes = {
+  "Color": 0,
+  "Fac": 1,
+  "Normal": 2
 }
                 material.vector = vector;
                 material.scale = scale;
@@ -43094,6 +45017,52 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "ShaderNodeBump"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Vector",
+      "socket_index": 0,
+      "type": "NodeSocketVector"
+    },
+    {
+      "default_value": 5,
+      "name": "Scale",
+      "socket_index": 1,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Base Color",
+      "socket_index": 2,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Ball Color",
+      "socket_index": 3,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 1,
+      "name": "Strength",
+      "socket_index": 4,
+      "type": "NodeSocketFloatFactor"
+    }
   ]
 }
                 return material;
@@ -43105,19 +45074,24 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "vector": "Vector",
-  "base$Scale": "Base Scale",
-  "warp$Scale": "Warp Scale",
-  "detail": "Detail",
-  "distortion": "Distortion",
-  "primary$Color": "Primary Color",
-  "secondary$Color": "Secondary Color",
-  "normal$Strength": "Normal Strength"
+  "vector": 0,
+  "base$Scale": 1,
+  "warp$Scale": 2,
+  "detail": 3,
+  "distortion": 4,
+  "primary$Color": 5,
+  "secondary$Color": 6,
+  "normal$Strength": 7
 }
                 material.outputs = {
   "Color": "NodeSocketColor",
   "Fac": "NodeSocketFloatFactor",
   "Normal": "NodeSocketVector"
+}
+                material.outputIndexes = {
+  "Color": 0,
+  "Fac": 1,
+  "Normal": 2
 }
                 material.vector = vector;
                 material.base$Scale = base$Scale;
@@ -44002,6 +45976,70 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "NodeGroupInput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Vector",
+      "socket_index": 0,
+      "type": "NodeSocketVector"
+    },
+    {
+      "default_value": 5,
+      "name": "Base Scale",
+      "socket_index": 1,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 5,
+      "name": "Warp Scale",
+      "socket_index": 2,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 10,
+      "name": "Detail",
+      "socket_index": 3,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0,
+      "name": "Distortion",
+      "socket_index": 4,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Primary Color",
+      "socket_index": 5,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Secondary Color",
+      "socket_index": 6,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 1,
+      "name": "Normal Strength",
+      "socket_index": 7,
+      "type": "NodeSocketFloatFactor"
+    }
   ]
 }
                 return material;
@@ -44013,23 +46051,28 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "base$Color": "Base Color",
-  "secondary$Color": "Secondary Color",
-  "tertiary$Color": "Tertiary Color",
-  "offset$Color$Strength": "Offset Color Strength",
-  "texture$Scale": "Texture Scale",
-  "detail": "Detail",
-  "detail$Scale": "Detail Scale",
-  "distortion": "Distortion",
-  "bump$Strength": "Bump Strength",
-  "extra$Bump": "Extra Bump",
-  "extra$Bump$Strength": "Extra Bump Strength",
-  "vector": "Vector"
+  "base$Color": 0,
+  "secondary$Color": 1,
+  "tertiary$Color": 2,
+  "offset$Color$Strength": 3,
+  "texture$Scale": 4,
+  "detail": 5,
+  "detail$Scale": 6,
+  "distortion": 7,
+  "bump$Strength": 8,
+  "extra$Bump": 9,
+  "extra$Bump$Strength": 10,
+  "vector": 11
 }
                 material.outputs = {
   "Color": "NodeSocketColor",
   "Fac": "NodeSocketFloat",
   "Normal": "NodeSocketVector"
+}
+                material.outputIndexes = {
+  "Color": 0,
+  "Fac": 1,
+  "Normal": 2
 }
                 material.base$Color = base$Color;
                 material.secondary$Color = secondary$Color;
@@ -45895,7 +47938,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -45906,7 +47949,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -45948,7 +47991,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.17578952014446259,
+            0.3434239625930786,
             0.17578952014446259,
             1
           ],
@@ -45959,7 +48002,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -46617,6 +48660,104 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "NodeGroupInput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0.9553954005241394,
+        0.4217880368232727,
+        0.20943038165569305,
+        1
+      ],
+      "name": "Base Color",
+      "socket_index": 0,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5028865933418274,
+        0.4453256130218506,
+        0.10074843466281891,
+        1
+      ],
+      "name": "Secondary Color",
+      "socket_index": 1,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.14809265732765198,
+        0.03720312938094139,
+        1
+      ],
+      "name": "Tertiary Color",
+      "socket_index": 2,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Offset Color Strength",
+      "socket_index": 3,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 1,
+      "name": "Texture Scale",
+      "socket_index": 4,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 2,
+      "name": "Detail",
+      "socket_index": 5,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 1,
+      "name": "Detail Scale",
+      "socket_index": 6,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 1,
+      "name": "Distortion",
+      "socket_index": 7,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0.8999999761581421,
+      "name": "Bump Strength",
+      "socket_index": 8,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Extra Bump",
+      "socket_index": 9,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0,
+      "name": "Extra Bump Strength",
+      "socket_index": 10,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Vector",
+      "socket_index": 11,
+      "type": "NodeSocketVector"
+    }
   ]
 }
                 return material;
@@ -46628,23 +48769,28 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "base$Color": "Base Color",
-  "secondary$Color": "Secondary Color",
-  "tertiary$Color": "Tertiary Color",
-  "offset$Color$Strength": "Offset Color Strength",
-  "texture$Scale": "Texture Scale",
-  "detail": "Detail",
-  "detail$Scale": "Detail Scale",
-  "distortion": "Distortion",
-  "bump$Strength": "Bump Strength",
-  "extra$Bump": "Extra Bump",
-  "extra$Bump$Strength": "Extra Bump Strength",
-  "vector": "Vector"
+  "base$Color": 0,
+  "secondary$Color": 1,
+  "tertiary$Color": 2,
+  "offset$Color$Strength": 3,
+  "texture$Scale": 4,
+  "detail": 5,
+  "detail$Scale": 6,
+  "distortion": 7,
+  "bump$Strength": 8,
+  "extra$Bump": 9,
+  "extra$Bump$Strength": 10,
+  "vector": 11
 }
                 material.outputs = {
   "Color": "NodeSocketColor",
   "Fac": "NodeSocketFloat",
   "Normal": "NodeSocketVector"
+}
+                material.outputIndexes = {
+  "Color": 0,
+  "Fac": 1,
+  "Normal": 2
 }
                 material.base$Color = base$Color;
                 material.secondary$Color = secondary$Color;
@@ -48510,7 +50656,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -48521,7 +50667,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -48563,7 +50709,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.17578952014446259,
+            0.3434239625930786,
             0.17578952014446259,
             1
           ],
@@ -48574,7 +50720,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -49232,6 +51378,104 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "NodeReroute"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0.9553954005241394,
+        0.4217880368232727,
+        0.20943038165569305,
+        1
+      ],
+      "name": "Base Color",
+      "socket_index": 0,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5028865933418274,
+        0.4453256130218506,
+        0.10074843466281891,
+        1
+      ],
+      "name": "Secondary Color",
+      "socket_index": 1,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.14809265732765198,
+        0.03720312938094139,
+        1
+      ],
+      "name": "Tertiary Color",
+      "socket_index": 2,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Offset Color Strength",
+      "socket_index": 3,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 1,
+      "name": "Texture Scale",
+      "socket_index": 4,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 2,
+      "name": "Detail",
+      "socket_index": 5,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 1,
+      "name": "Detail Scale",
+      "socket_index": 6,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 1,
+      "name": "Distortion",
+      "socket_index": 7,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0.8999999761581421,
+      "name": "Bump Strength",
+      "socket_index": 8,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Extra Bump",
+      "socket_index": 9,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0,
+      "name": "Extra Bump Strength",
+      "socket_index": 10,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Vector",
+      "socket_index": 11,
+      "type": "NodeSocketVector"
+    }
   ]
 }
                 return material;
@@ -49243,18 +51487,23 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "vector": "Vector",
-  "scale": "Scale",
-  "detail": "Detail",
-  "distortion": "Distortion",
-  "primary$Color": "Primary Color",
-  "secondary$Color": "Secondary Color",
-  "normal$Strength": "Normal Strength"
+  "vector": 0,
+  "scale": 1,
+  "detail": 2,
+  "distortion": 3,
+  "primary$Color": 4,
+  "secondary$Color": 5,
+  "normal$Strength": 6
 }
                 material.outputs = {
   "Color": "NodeSocketColor",
   "Fac": "NodeSocketFloatFactor",
   "Normal": "NodeSocketVector"
+}
+                material.outputIndexes = {
+  "Color": 0,
+  "Fac": 1,
+  "Normal": 2
 }
                 material.vector = vector;
                 material.scale = scale;
@@ -50366,6 +52615,64 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "NodeGroupInput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Vector",
+      "socket_index": 0,
+      "type": "NodeSocketVector"
+    },
+    {
+      "default_value": 5,
+      "name": "Scale",
+      "socket_index": 1,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 20,
+      "name": "Detail",
+      "socket_index": 2,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0,
+      "name": "Distortion",
+      "socket_index": 3,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Primary Color",
+      "socket_index": 4,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.5,
+        0.5,
+        0.5,
+        1
+      ],
+      "name": "Secondary Color",
+      "socket_index": 5,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 1,
+      "name": "Normal Strength",
+      "socket_index": 6,
+      "type": "NodeSocketFloatFactor"
+    }
   ]
 }
                 return material;
@@ -50377,14 +52684,17 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "shader": "Shader",
-  "roughness": "Roughness",
-  "reflectivity": "Reflectivity",
-  "iOR": "IOR",
-  "normal": "Normal"
+  "shader": 0,
+  "roughness": 1,
+  "reflectivity": 2,
+  "iOR": 3,
+  "normal": 4
 }
                 material.outputs = {
   "Shader": "NodeSocketShader"
+}
+                material.outputIndexes = {
+  "Shader": 0
 }
                 material.shader = shader;
                 material.roughness = roughness;
@@ -50891,6 +53201,42 @@ export default class GroupMaterials extends Materials {
       "type": "ShaderNodeMath",
       "use_clamp": false
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": null,
+      "name": "Shader",
+      "socket_index": 0,
+      "type": "NodeSocketShader"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Roughness",
+      "socket_index": 1,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 0.781818151473999,
+      "name": "Reflectivity",
+      "socket_index": 2,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 1.4500000476837158,
+      "name": "IOR",
+      "socket_index": 3,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Normal",
+      "socket_index": 4,
+      "type": "NodeSocketVector"
+    }
   ]
 }
                 return material;
@@ -50902,21 +53248,21 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "surface$Color": "Surface Color",
-  "surface$Roughness": "Surface Roughness",
-  "surface$Normal": "Surface Normal",
-  "metallic": "Metallic",
-  "rim$Color": "Rim Color",
-  "rim$Strength": "Rim Strength",
-  "sSS$Color": "SSS Color",
-  "sSS$Strength": "SSS Strength",
-  "sSS$Scale": "SSS Scale",
-  "sSS$Texture$Blur": "SSS Texture Blur",
-  "clearcoat$Roughness": "Clearcoat Roughness",
-  "clearcoat$Reflectivity": "Clearcoat Reflectivity",
-  "clearcoat$Normal": "Clearcoat Normal",
-  "displacement": "Displacement",
-  "displacement$Factor": "Displacement Factor"
+  "surface$Color": 0,
+  "surface$Roughness": 1,
+  "surface$Normal": 2,
+  "metallic": 3,
+  "rim$Color": 4,
+  "rim$Strength": 5,
+  "sSS$Color": 6,
+  "sSS$Strength": 7,
+  "sSS$Scale": 8,
+  "sSS$Texture$Blur": 9,
+  "clearcoat$Roughness": 10,
+  "clearcoat$Reflectivity": 11,
+  "clearcoat$Normal": 12,
+  "displacement": 13,
+  "displacement$Factor": 14
 }
                 material.outputs = {
   "Dielectric": "NodeSocketShader",
@@ -50928,6 +53274,17 @@ export default class GroupMaterials extends Materials {
   "Metallic + CC": "NodeSocketShader",
   "SSS + CC": "NodeSocketShader",
   "Displacement": "NodeSocketFloat"
+}
+                material.outputIndexes = {
+  "Dielectric": 0,
+  "Metallic": 1,
+  "Metallic Mix": 2,
+  "SSS": 3,
+  "Glass": 4,
+  "Dielectric + CC": 5,
+  "Metallic + CC": 6,
+  "SSS + CC": 7,
+  "Displacement": 8
 }
                 material.surface$Color = surface$Color;
                 material.surface$Roughness = surface$Roughness;
@@ -54099,7 +56456,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.3698512315750122,
-            0.08733575791120529,
+            0.16514673829078674,
             0.08733575791120529,
             1
           ],
@@ -54116,7 +56473,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.8000000715255737,
-            0.24587178230285645,
+            0.38921207189559937,
             0.24587178230285645,
             1
           ],
@@ -54471,7 +56828,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5000225305557251,
-            0.023964539170265198,
+            0.07414800673723221,
             0.023964539170265198,
             1
           ],
@@ -54482,7 +56839,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6254019141197205,
-            0.07633601874113083,
+            0.3592257797718048,
             0.07633601874113083,
             1
           ],
@@ -54799,7 +57156,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6254019141197205,
-            0.07633601874113083,
+            0.3592257797718048,
             0.07633601874113083,
             1
           ],
@@ -56186,6 +58543,121 @@ export default class GroupMaterials extends Materials {
       "outputs": [],
       "type": "NodeGroupOutput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "name": "Surface Color",
+      "socket_index": 0,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0.10000000149011612,
+      "name": "Surface Roughness",
+      "socket_index": 1,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Surface Normal",
+      "socket_index": 2,
+      "type": "NodeSocketVector"
+    },
+    {
+      "default_value": 0,
+      "name": "Metallic",
+      "socket_index": 3,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "name": "Rim Color",
+      "socket_index": 4,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0,
+      "name": "Rim Strength",
+      "socket_index": 5,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "name": "SSS Color",
+      "socket_index": 6,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0.5,
+      "name": "SSS Strength",
+      "socket_index": 7,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 0.10000000149011612,
+      "name": "SSS Scale",
+      "socket_index": 8,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0,
+      "name": "SSS Texture Blur",
+      "socket_index": 9,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 0,
+      "name": "Clearcoat Roughness",
+      "socket_index": 10,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 0,
+      "name": "Clearcoat Reflectivity",
+      "socket_index": 11,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Clearcoat Normal",
+      "socket_index": 12,
+      "type": "NodeSocketVector"
+    },
+    {
+      "default_value": 0,
+      "name": "Displacement",
+      "socket_index": 13,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 1,
+      "name": "Displacement Factor",
+      "socket_index": 14,
+      "type": "NodeSocketFloatFactor"
+    }
   ]
 }
                 return material;
@@ -56197,12 +58669,15 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "color": "Color",
-  "roughness": "Roughness",
-  "normal": "Normal"
+  "color": 0,
+  "roughness": 1,
+  "normal": 2
 }
                 material.outputs = {
   "Shader": "NodeSocketShader"
+}
+                material.outputIndexes = {
+  "Shader": 0
 }
                 material.color = color;
                 material.roughness = roughness;
@@ -56386,7 +58861,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.8000000715255737,
-            0.0025751744396984577,
+            0,
             0.0025751744396984577,
             1
           ],
@@ -56651,6 +59126,35 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "NodeGroupInput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "name": "Color",
+      "socket_index": 0,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0.10000000149011612,
+      "name": "Roughness",
+      "socket_index": 1,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Normal",
+      "socket_index": 2,
+      "type": "NodeSocketVector"
+    }
   ]
 }
                 return material;
@@ -56662,12 +59166,15 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "roughness": "Roughness",
-  "iOR": "IOR",
-  "normal": "Normal"
+  "roughness": 0,
+  "iOR": 1,
+  "normal": 2
 }
                 material.outputs = {
   "Fac": "NodeSocketFloatFactor"
+}
+                material.outputIndexes = {
+  "Fac": 0
 }
                 material.roughness = roughness;
                 material.iOR = iOR;
@@ -57055,6 +59562,30 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "ShaderNodeNewGeometry"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": 0.5,
+      "name": "Roughness",
+      "socket_index": 0,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 1.4500000476837158,
+      "name": "IOR",
+      "socket_index": 1,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Normal",
+      "socket_index": 2,
+      "type": "NodeSocketVector"
+    }
   ]
 }
                 return material;
@@ -57066,14 +59597,17 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "color": "Color",
-  "rim$Color": "Rim Color",
-  "rim$Strength": "Rim Strength",
-  "roughness": "Roughness",
-  "normal": "Normal"
+  "color": 0,
+  "rim$Color": 1,
+  "rim$Strength": 2,
+  "roughness": 3,
+  "normal": 4
 }
                 material.outputs = {
   "Shader": "NodeSocketShader"
+}
+                material.outputIndexes = {
+  "Shader": 0
 }
                 material.color = color;
                 material.rim$Color = rim$Color;
@@ -57684,6 +60218,52 @@ export default class GroupMaterials extends Materials {
       "type": "ShaderNodeMath",
       "use_clamp": false
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "name": "Color",
+      "socket_index": 0,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "name": "Rim Color",
+      "socket_index": 1,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Rim Strength",
+      "socket_index": 2,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0,
+      "name": "Roughness",
+      "socket_index": 3,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Normal",
+      "socket_index": 4,
+      "type": "NodeSocketVector"
+    }
   ]
 }
                 return material;
@@ -57695,14 +60275,17 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "metal$Color": "Metal Color",
-  "rim$Color": "Rim Color",
-  "rim$Amount": "Rim Amount",
-  "roughness": "Roughness",
-  "normal": "Normal"
+  "metal$Color": 0,
+  "rim$Color": 1,
+  "rim$Amount": 2,
+  "roughness": 3,
+  "normal": 4
 }
                 material.outputs = {
   "BSDF": "NodeSocketShader"
+}
+                material.outputIndexes = {
+  "BSDF": 0
 }
                 material.metal$Color = metal$Color;
                 material.rim$Color = rim$Color;
@@ -58037,7 +60620,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5000225305557251,
-            0.023964539170265198,
+            0.07414800673723221,
             0.023964539170265198,
             1
           ],
@@ -58048,7 +60631,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6254019141197205,
-            0.07633601874113083,
+            0.3592257797718048,
             0.07633601874113083,
             1
           ],
@@ -58090,7 +60673,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5000225305557251,
-            0.023964539170265198,
+            0.07414800673723221,
             0.023964539170265198,
             1
           ],
@@ -58309,6 +60892,52 @@ export default class GroupMaterials extends Materials {
       "type": "ShaderNodeMath",
       "use_clamp": false
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0.5000225305557251,
+        0.07414800673723221,
+        0.023964539170265198,
+        1
+      ],
+      "name": "Metal Color",
+      "socket_index": 0,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": [
+        0.6254019141197205,
+        0.3592257797718048,
+        0.07633601874113083,
+        1
+      ],
+      "name": "Rim Color",
+      "socket_index": 1,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0.10000002384185791,
+      "name": "Rim Amount",
+      "socket_index": 2,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Roughness",
+      "socket_index": 3,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Normal",
+      "socket_index": 4,
+      "type": "NodeSocketVector"
+    }
   ]
 }
                 return material;
@@ -58320,15 +60949,18 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "color": "Color",
-  "roughness": "Roughness",
-  "rim$Color": "Rim Color",
-  "rim$Amount": "Rim Amount",
-  "normal": "Normal",
-  "metallic": "Metallic"
+  "color": 0,
+  "roughness": 1,
+  "rim$Color": 2,
+  "rim$Amount": 3,
+  "normal": 4,
+  "metallic": 5
 }
                 material.outputs = {
   "Shader": "NodeSocketShader"
+}
+                material.outputIndexes = {
+  "Shader": 0
 }
                 material.color = color;
                 material.roughness = roughness;
@@ -58604,7 +61236,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5000225305557251,
-            0.023964539170265198,
+            0.07414800673723221,
             0.023964539170265198,
             1
           ],
@@ -58615,7 +61247,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6254019141197205,
-            0.07633601874113083,
+            0.3592257797718048,
             0.07633601874113083,
             1
           ],
@@ -58780,6 +61412,58 @@ export default class GroupMaterials extends Materials {
       "outputs": [],
       "type": "NodeGroupOutput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "name": "Color",
+      "socket_index": 0,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Roughness",
+      "socket_index": 1,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0.6254019141197205,
+        0.3592257797718048,
+        0.07633601874113083,
+        1
+      ],
+      "name": "Rim Color",
+      "socket_index": 2,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0.6000000238418579,
+      "name": "Rim Amount",
+      "socket_index": 3,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Normal",
+      "socket_index": 4,
+      "type": "NodeSocketVector"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Metallic",
+      "socket_index": 5,
+      "type": "NodeSocketFloatFactor"
+    }
   ]
 }
                 return material;
@@ -58791,14 +61475,17 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "shader": "Shader",
-  "roughness": "Roughness",
-  "reflectivity": "Reflectivity",
-  "iOR": "IOR",
-  "normal": "Normal"
+  "shader": 0,
+  "roughness": 1,
+  "reflectivity": 2,
+  "iOR": 3,
+  "normal": 4
 }
                 material.outputs = {
   "Shader": "NodeSocketShader"
+}
+                material.outputIndexes = {
+  "Shader": 0
 }
                 material.shader = shader;
                 material.roughness = roughness;
@@ -59289,6 +61976,42 @@ export default class GroupMaterials extends Materials {
       "type": "ShaderNodeMath",
       "use_clamp": false
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": null,
+      "name": "Shader",
+      "socket_index": 0,
+      "type": "NodeSocketShader"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Roughness",
+      "socket_index": 1,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 0,
+      "name": "Reflectivity",
+      "socket_index": 2,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 1.4500000476837158,
+      "name": "IOR",
+      "socket_index": 3,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Normal",
+      "socket_index": 4,
+      "type": "NodeSocketVector"
+    }
   ]
 }
                 return material;
@@ -59300,16 +62023,19 @@ export default class GroupMaterials extends Materials {
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = {
-  "surface$Color": "Surface Color",
-  "roughness": "Roughness",
-  "sSS$Color": "SSS Color",
-  "sSS$Scale": "SSS Scale",
-  "texture$Blur": "Texture Blur",
-  "sSS$Strenth": "SSS Strenth",
-  "normal": "Normal"
+  "surface$Color": 0,
+  "roughness": 1,
+  "sSS$Color": 2,
+  "sSS$Scale": 3,
+  "texture$Blur": 4,
+  "sSS$Strenth": 5,
+  "normal": 6
 }
                 material.outputs = {
   "BSDF": "NodeSocketShader"
+}
+                material.outputIndexes = {
+  "BSDF": 0
 }
                 material.surface$Color = surface$Color;
                 material.roughness = roughness;
@@ -59749,6 +62475,64 @@ export default class GroupMaterials extends Materials {
       ],
       "type": "NodeGroupInput"
     }
+  ],
+  "defaultInputs": [
+    {
+      "default_value": [
+        0.5000225305557251,
+        0.07414800673723221,
+        0.023964539170265198,
+        1
+      ],
+      "name": "Surface Color",
+      "socket_index": 0,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 0.5,
+      "name": "Roughness",
+      "socket_index": 1,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0.800000011920929,
+        0.800000011920929,
+        0.800000011920929,
+        1
+      ],
+      "name": "SSS Color",
+      "socket_index": 2,
+      "type": "NodeSocketColor"
+    },
+    {
+      "default_value": 1,
+      "name": "SSS Scale",
+      "socket_index": 3,
+      "type": "NodeSocketFloat"
+    },
+    {
+      "default_value": 0,
+      "name": "Texture Blur",
+      "socket_index": 4,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": 0.5,
+      "name": "SSS Strenth",
+      "socket_index": 5,
+      "type": "NodeSocketFloatFactor"
+    },
+    {
+      "default_value": [
+        0,
+        0,
+        0
+      ],
+      "name": "Normal",
+      "socket_index": 6,
+      "type": "NodeSocketVector"
+    }
   ]
 }
                 return material;
@@ -59762,45 +62546,65 @@ export default class GroupMaterials extends Materials {
                 material.conversion = {
   "pBR_ShaderColor": {
     "node": "Group",
+    "socket_index": 0,
     "input": "Color"
   },
   "pBR_ShaderRim$Color": {
     "node": "Group",
+    "socket_index": 1,
     "input": "Rim Color"
   },
   "pBR_ShaderRim$Amount": {
     "node": "Group",
+    "socket_index": 2,
     "input": "Rim Amount"
   },
   "pBR_ShaderNonMetal$$Metal": {
     "node": "Group",
+    "socket_index": 3,
     "input": "Non-Metal <-> Metal"
   },
   "pBR_ShaderRoughness": {
     "node": "Group",
+    "socket_index": 4,
     "input": "Roughness"
   },
   "pBR_ShaderOffset$Roughness": {
     "node": "Group",
+    "socket_index": 5,
     "input": "Offset Roughness"
   },
   "pBR_ShaderReflectivity": {
     "node": "Group",
+    "socket_index": 6,
     "input": "Reflectivity"
   },
   "pBR_ShaderOffset$Reflectivity": {
     "node": "Group",
+    "socket_index": 7,
     "input": "Offset Reflectivity"
   },
   "pBR_ShaderIOR": {
     "node": "Group",
+    "socket_index": 8,
     "input": "IOR"
   },
   "pBR_ShaderNormal": {
     "node": "Group",
+    "socket_index": 9,
     "input": "Normal"
   }
-}
+};
+                material.outputs = {
+  "Surface": "NodeSocketShader",
+  "Volume": "NodeSocketShader",
+  "Displacement": "NodeSocketVector"
+};
+                material.outputIndexes = {
+  "Surface": 0,
+  "Volume": 1,
+  "Displacement": 2
+};
                 material.pBR_ShaderColor = pBR_ShaderColor;
                 material.pBR_ShaderRim$Color = pBR_ShaderRim$Color;
                 material.pBR_ShaderRim$Amount = pBR_ShaderRim$Amount;
@@ -59834,7 +62638,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Color",
         "type": "NodeSocketColor",
@@ -59850,7 +62653,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Rim Color",
         "type": "NodeSocketColor",
@@ -59866,7 +62668,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Rim Amount",
         "type": "NodeSocketFloat",
@@ -59882,7 +62683,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Non-Metal <-> Metal",
         "type": "NodeSocketFloatFactor",
@@ -59898,7 +62698,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Roughness",
         "type": "NodeSocketFloatFactor",
@@ -59914,7 +62713,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Roughness",
         "type": "NodeSocketFloat",
@@ -59930,7 +62728,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Reflectivity",
         "type": "NodeSocketFloatFactor",
@@ -59946,7 +62743,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Reflectivity",
         "type": "NodeSocketFloat",
@@ -59962,7 +62758,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "IOR",
         "type": "NodeSocketFloat",
@@ -59978,7 +62773,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Normal",
         "type": "NodeSocketVector",
@@ -60042,7 +62836,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.8000000715255737,
-            0.054951757192611694,
+            0.45874151587486267,
             0.054951757192611694,
             1
           ],
@@ -60053,7 +62847,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6254019141197205,
-            0.07633601874113083,
+            0.3592257797718048,
             0.07633601874113083,
             1
           ],
@@ -60147,7 +62941,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.8000000715255737,
-            0.054951757192611694,
+            0.45874151587486267,
             0.054951757192611694,
             1
           ],
@@ -60158,7 +62952,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6254019141197205,
-            0.07633601874113083,
+            0.3592257797718048,
             0.07633601874113083,
             1
           ],
@@ -60226,7 +63020,7 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": [
         0.8000000715255737,
-        0.054951757192611694,
+        0.45874151587486267,
         0.054951757192611694,
         1
       ],
@@ -60237,7 +63031,7 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": [
         0.6254019141197205,
-        0.07633601874113083,
+        0.3592257797718048,
         0.07633601874113083,
         1
       ],
@@ -60310,33 +63104,50 @@ export default class GroupMaterials extends Materials {
                 material.conversion = {
   "pro4_MarbleVector": {
     "node": "Group",
+    "socket_index": 0,
     "input": "Vector"
   },
   "pro4_MarbleScale": {
     "node": "Group",
+    "socket_index": 1,
     "input": "Scale"
   },
   "pro4_MarbleBase$Color$1": {
     "node": "Group",
+    "socket_index": 2,
     "input": "Base Color 1"
   },
   "pro4_MarbleBase$Color$2": {
     "node": "Group",
+    "socket_index": 3,
     "input": "Base Color 2"
   },
   "pro4_MarbleVein$Color$1": {
     "node": "Group",
+    "socket_index": 4,
     "input": "Vein Color 1"
   },
   "pro4_MarbleVein$Color$2": {
     "node": "Group",
+    "socket_index": 5,
     "input": "Vein Color 2"
   },
   "pro4_MarbleSpeckle$Color": {
     "node": "Group",
+    "socket_index": 6,
     "input": "Speckle Color"
   }
-}
+};
+                material.outputs = {
+  "Surface": "NodeSocketShader",
+  "Volume": "NodeSocketShader",
+  "Displacement": "NodeSocketVector"
+};
+                material.outputIndexes = {
+  "Surface": 0,
+  "Volume": 1,
+  "Displacement": 2
+};
                 material.pro4_MarbleVector = pro4_MarbleVector;
                 material.pro4_MarbleScale = pro4_MarbleScale;
                 material.pro4_MarbleBase$Color$1 = pro4_MarbleBase$Color$1;
@@ -60367,7 +63178,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -60383,7 +63193,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Scale",
         "type": "NodeSocketFloat",
@@ -60399,7 +63208,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color 1",
         "type": "NodeSocketColor",
@@ -60415,7 +63223,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color 2",
         "type": "NodeSocketColor",
@@ -60431,7 +63238,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vein Color 1",
         "type": "NodeSocketColor",
@@ -60447,7 +63253,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vein Color 2",
         "type": "NodeSocketColor",
@@ -60463,7 +63268,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Speckle Color",
         "type": "NodeSocketColor",
@@ -60543,7 +63347,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.018233012408018112,
-            0.011345821432769299,
+            0.01702404022216797,
             0.011345821432769299,
             1
           ],
@@ -60554,7 +63358,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.048171836882829666,
-            0.016415856778621674,
+            0.028759686276316643,
             0.016415856778621674,
             1
           ],
@@ -60565,7 +63369,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.014754770323634148,
+            0.1480759233236313,
             0.014754770323634148,
             1
           ],
@@ -60576,7 +63380,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.508245587348938,
-            0.05428784340620041,
+            0.22192531824111938,
             0.05428784340620041,
             1
           ],
@@ -60587,7 +63391,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.508245587348938,
-            0.05428784340620041,
+            0.22192531824111938,
             0.05428784340620041,
             1
           ],
@@ -60645,7 +63449,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.018233012408018112,
-            0.011345821432769299,
+            0.01702404022216797,
             0.011345821432769299,
             1
           ],
@@ -60656,7 +63460,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.048171836882829666,
-            0.016415856778621674,
+            0.028759686276316643,
             0.016415856778621674,
             1
           ],
@@ -60667,7 +63471,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.014754770323634148,
+            0.1480759233236313,
             0.014754770323634148,
             1
           ],
@@ -60678,7 +63482,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.508245587348938,
-            0.05428784340620041,
+            0.22192531824111938,
             0.05428784340620041,
             1
           ],
@@ -60689,7 +63493,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.508245587348938,
-            0.05428784340620041,
+            0.22192531824111938,
             0.05428784340620041,
             1
           ],
@@ -60721,7 +63525,7 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": [
         0.018233012408018112,
-        0.011345821432769299,
+        0.01702404022216797,
         0.011345821432769299,
         1
       ],
@@ -60732,7 +63536,7 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": [
         0.048171836882829666,
-        0.016415856778621674,
+        0.028759686276316643,
         0.016415856778621674,
         1
       ],
@@ -60743,7 +63547,7 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": [
         0.5,
-        0.014754770323634148,
+        0.1480759233236313,
         0.014754770323634148,
         1
       ],
@@ -60754,7 +63558,7 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": [
         0.508245587348938,
-        0.05428784340620041,
+        0.22192531824111938,
         0.05428784340620041,
         1
       ],
@@ -60765,7 +63569,7 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": [
         0.508245587348938,
-        0.05428784340620041,
+        0.22192531824111938,
         0.05428784340620041,
         1
       ],
@@ -60786,45 +63590,65 @@ export default class GroupMaterials extends Materials {
                 material.conversion = {
   "pBR_ShaderColor": {
     "node": "Group",
+    "socket_index": 0,
     "input": "Color"
   },
   "pBR_ShaderRim$Color": {
     "node": "Group",
+    "socket_index": 1,
     "input": "Rim Color"
   },
   "pBR_ShaderRim$Amount": {
     "node": "Group",
+    "socket_index": 2,
     "input": "Rim Amount"
   },
   "pBR_ShaderNonMetal$$Metal": {
     "node": "Group",
+    "socket_index": 3,
     "input": "Non-Metal <-> Metal"
   },
   "pBR_ShaderRoughness": {
     "node": "Group",
+    "socket_index": 4,
     "input": "Roughness"
   },
   "pBR_ShaderOffset$Roughness": {
     "node": "Group",
+    "socket_index": 5,
     "input": "Offset Roughness"
   },
   "pBR_ShaderReflectivity": {
     "node": "Group",
+    "socket_index": 6,
     "input": "Reflectivity"
   },
   "pBR_ShaderOffset$Reflectivity": {
     "node": "Group",
+    "socket_index": 7,
     "input": "Offset Reflectivity"
   },
   "pBR_ShaderIOR": {
     "node": "Group",
+    "socket_index": 8,
     "input": "IOR"
   },
   "pBR_ShaderNormal": {
     "node": "Group",
+    "socket_index": 9,
     "input": "Normal"
   }
-}
+};
+                material.outputs = {
+  "Surface": "NodeSocketShader",
+  "Volume": "NodeSocketShader",
+  "Displacement": "NodeSocketVector"
+};
+                material.outputIndexes = {
+  "Surface": 0,
+  "Volume": 1,
+  "Displacement": 2
+};
                 material.pBR_ShaderColor = pBR_ShaderColor;
                 material.pBR_ShaderRim$Color = pBR_ShaderRim$Color;
                 material.pBR_ShaderRim$Amount = pBR_ShaderRim$Amount;
@@ -60858,7 +63682,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Color",
         "type": "NodeSocketColor",
@@ -60874,7 +63697,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Rim Color",
         "type": "NodeSocketColor",
@@ -60890,7 +63712,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Rim Amount",
         "type": "NodeSocketFloat",
@@ -60906,7 +63727,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Non-Metal <-> Metal",
         "type": "NodeSocketFloatFactor",
@@ -60922,7 +63742,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Roughness",
         "type": "NodeSocketFloatFactor",
@@ -60938,7 +63757,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Roughness",
         "type": "NodeSocketFloat",
@@ -60954,7 +63772,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Reflectivity",
         "type": "NodeSocketFloatFactor",
@@ -60970,7 +63787,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Reflectivity",
         "type": "NodeSocketFloat",
@@ -60986,7 +63802,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "IOR",
         "type": "NodeSocketFloat",
@@ -61002,7 +63817,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Normal",
         "type": "NodeSocketVector",
@@ -61066,7 +63880,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5171198844909668,
-            0.040534891188144684,
+            0.18401016294956207,
             0.040534891188144684,
             1
           ],
@@ -61077,7 +63891,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6254019141197205,
-            0.07633601874113083,
+            0.3592257797718048,
             0.07633601874113083,
             1
           ],
@@ -61171,7 +63985,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5171198844909668,
-            0.040534891188144684,
+            0.18401016294956207,
             0.040534891188144684,
             1
           ],
@@ -61182,7 +63996,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6254019141197205,
-            0.07633601874113083,
+            0.3592257797718048,
             0.07633601874113083,
             1
           ],
@@ -61250,7 +64064,7 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": [
         0.5171198844909668,
-        0.040534891188144684,
+        0.18401016294956207,
         0.040534891188144684,
         1
       ],
@@ -61261,7 +64075,7 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": [
         0.6254019141197205,
-        0.07633601874113083,
+        0.3592257797718048,
         0.07633601874113083,
         1
       ],
@@ -61334,37 +64148,55 @@ export default class GroupMaterials extends Materials {
                 material.conversion = {
   "pBR_Organic_ShaderSurface$Color": {
     "node": "Group",
+    "socket_index": 0,
     "input": "Surface Color"
   },
   "pBR_Organic_ShaderEpidermal$Color": {
     "node": "Group",
+    "socket_index": 1,
     "input": "Epidermal Color"
   },
   "pBR_Organic_ShaderSubdermal$Color": {
     "node": "Group",
+    "socket_index": 2,
     "input": "Subdermal Color"
   },
   "pBR_Organic_ShaderMuscle$Color": {
     "node": "Group",
+    "socket_index": 3,
     "input": "Muscle Color"
   },
   "pBR_Organic_ShaderOpacity": {
     "node": "Group",
+    "socket_index": 4,
     "input": "Opacity"
   },
   "pBR_Organic_ShaderSSS$Strength": {
     "node": "Group",
+    "socket_index": 5,
     "input": "SSS Strength"
   },
   "pBR_Organic_ShaderRoughness": {
     "node": "Group",
+    "socket_index": 6,
     "input": "Roughness"
   },
   "pBR_Organic_ShaderNormal": {
     "node": "Group",
+    "socket_index": 7,
     "input": "Normal"
   }
-}
+};
+                material.outputs = {
+  "Surface": "NodeSocketShader",
+  "Volume": "NodeSocketShader",
+  "Displacement": "NodeSocketVector"
+};
+                material.outputIndexes = {
+  "Surface": 0,
+  "Volume": 1,
+  "Displacement": 2
+};
                 material.pBR_Organic_ShaderSurface$Color = pBR_Organic_ShaderSurface$Color;
                 material.pBR_Organic_ShaderEpidermal$Color = pBR_Organic_ShaderEpidermal$Color;
                 material.pBR_Organic_ShaderSubdermal$Color = pBR_Organic_ShaderSubdermal$Color;
@@ -61396,7 +64228,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Surface Color",
         "type": "NodeSocketColor",
@@ -61412,7 +64243,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Epidermal Color",
         "type": "NodeSocketColor",
@@ -61428,7 +64258,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Subdermal Color",
         "type": "NodeSocketColor",
@@ -61444,7 +64273,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Muscle Color",
         "type": "NodeSocketColor",
@@ -61460,7 +64288,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Opacity",
         "type": "NodeSocketFloatFactor",
@@ -61476,7 +64303,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "SSS Strength",
         "type": "NodeSocketFloatFactor",
@@ -61492,7 +64318,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Roughness",
         "type": "NodeSocketFloatFactor",
@@ -61508,7 +64333,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Normal",
         "type": "NodeSocketVector",
@@ -61572,7 +64396,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6038162708282471,
-            0.3708575665950775,
+            0.5180138945579529,
             0.3708575665950775,
             1
           ],
@@ -61583,7 +64407,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.8000000715255737,
-            0.08686286211013794,
+            0.40797245502471924,
             0.08686286211013794,
             1
           ],
@@ -61594,7 +64418,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.45753151178359985,
-            0.07463523745536804,
+            0.05939243733882904,
             0.07463523745536804,
             1
           ],
@@ -61605,7 +64429,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.35055580735206604,
-            0.04188697040081024,
+            0.028564974665641785,
             0.04188697040081024,
             1
           ],
@@ -61675,7 +64499,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6038162708282471,
-            0.3708575665950775,
+            0.5180138945579529,
             0.3708575665950775,
             1
           ],
@@ -61686,7 +64510,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.8000000715255737,
-            0.08686286211013794,
+            0.40797245502471924,
             0.08686286211013794,
             1
           ],
@@ -61697,7 +64521,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.45753151178359985,
-            0.07463523745536804,
+            0.05939243733882904,
             0.07463523745536804,
             1
           ],
@@ -61708,7 +64532,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.35055580735206604,
-            0.04188697040081024,
+            0.028564974665641785,
             0.04188697040081024,
             1
           ],
@@ -61752,7 +64576,7 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": [
         0.6038162708282471,
-        0.3708575665950775,
+        0.5180138945579529,
         0.3708575665950775,
         1
       ],
@@ -61763,7 +64587,7 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": [
         0.8000000715255737,
-        0.08686286211013794,
+        0.40797245502471924,
         0.08686286211013794,
         1
       ],
@@ -61774,7 +64598,7 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": [
         0.45753151178359985,
-        0.07463523745536804,
+        0.05939243733882904,
         0.07463523745536804,
         1
       ],
@@ -61785,7 +64609,7 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": [
         0.35055580735206604,
-        0.04188697040081024,
+        0.028564974665641785,
         0.04188697040081024,
         1
       ],
@@ -61834,889 +64658,1120 @@ export default class GroupMaterials extends Materials {
                 material.conversion = {
   "pro4_PlasterVector": {
     "node": "Group.021",
+    "socket_index": 0,
     "input": "Vector"
   },
   "pro4_PlasterScale": {
     "node": "Group.021",
+    "socket_index": 1,
     "input": "Scale"
   },
   "pro4_PlasterPrimary$Color": {
     "node": "Group.021",
+    "socket_index": 2,
     "input": "Primary Color"
   },
   "pro4_PlasterSecondary$Color": {
     "node": "Group.021",
+    "socket_index": 3,
     "input": "Secondary Color"
   },
   "pro4_PlasterNormal$Strength": {
     "node": "Group.021",
+    "socket_index": 4,
     "input": "Normal Strength"
   },
   "reroute008Input": {
     "node": "Reroute.008",
+    "socket_index": 0,
     "input": "Input"
   },
   "reroute009Input": {
     "node": "Reroute.009",
+    "socket_index": 0,
     "input": "Input"
   },
   "reroute010Input": {
     "node": "Reroute.010",
+    "socket_index": 0,
     "input": "Input"
   },
   "pro4_CheckeredPlasterVector": {
     "node": "Group.026",
+    "socket_index": 0,
     "input": "Vector"
   },
   "pro4_CheckeredPlasterPrimary$Scale": {
     "node": "Group.026",
+    "socket_index": 1,
     "input": "Primary Scale"
   },
   "pro4_CheckeredPlasterSecondary$Scale": {
     "node": "Group.026",
+    "socket_index": 2,
     "input": "Secondary Scale"
   },
   "pro4_CheckeredPlasterGrunge$Scale": {
     "node": "Group.026",
+    "socket_index": 3,
     "input": "Grunge Scale"
   },
   "pro4_CheckeredPlasterChecker$Scale": {
     "node": "Group.026",
+    "socket_index": 4,
     "input": "Checker Scale"
   },
   "pro4_CheckeredPlasterPrimary$Color": {
     "node": "Group.026",
+    "socket_index": 5,
     "input": "Primary Color"
   },
   "pro4_CheckeredPlasterPlaster$Primary$Color": {
     "node": "Group.026",
+    "socket_index": 6,
     "input": "Plaster Primary Color"
   },
   "pro4_CheckeredPlasterPlaster$Secondary$Color": {
     "node": "Group.026",
+    "socket_index": 7,
     "input": "Plaster Secondary Color"
   },
   "reroute011Input": {
     "node": "Reroute.011",
+    "socket_index": 0,
     "input": "Input"
   },
   "pro4_PlanetGeneratorVector": {
     "node": "Group.034",
+    "socket_index": 0,
     "input": "Vector"
   },
   "pro4_PlanetGeneratorBiome$1$$Color$1": {
     "node": "Group.034",
+    "socket_index": 1,
     "input": "Biome 1 | Color 1"
   },
   "pro4_PlanetGeneratorBiome$1$$Color$2": {
     "node": "Group.034",
+    "socket_index": 2,
     "input": "Biome 1 | Color 2"
   },
   "pro4_PlanetGeneratorBiome$1$$Color$3": {
     "node": "Group.034",
+    "socket_index": 3,
     "input": "Biome 1 | Color 3"
   },
   "pro4_PlanetGeneratorBiome$2$$Color$1": {
     "node": "Group.034",
+    "socket_index": 4,
     "input": "Biome 2 | Color 1"
   },
   "pro4_PlanetGeneratorBiome$2$$Color$2": {
     "node": "Group.034",
+    "socket_index": 5,
     "input": "Biome 2 | Color 2"
   },
   "pro4_PlanetGeneratorBiome$2$$Color$3": {
     "node": "Group.034",
+    "socket_index": 6,
     "input": "Biome 2 | Color 3"
   },
   "pro4_PlanetGeneratorOcean$Color": {
     "node": "Group.034",
+    "socket_index": 7,
     "input": "Ocean Color"
   },
   "pro4_PlanetGeneratorCloud$Color": {
     "node": "Group.034",
+    "socket_index": 8,
     "input": "Cloud Color"
   },
   "pro4_PlanetGeneratorMountain$Color": {
     "node": "Group.034",
+    "socket_index": 9,
     "input": "Mountain Color"
   },
   "pro4_PlanetGeneratorMountain$Scale": {
     "node": "Group.034",
+    "socket_index": 10,
     "input": "Mountain Scale"
   },
   "pro4_PlanetGeneratorMountain$Height": {
     "node": "Group.034",
+    "socket_index": 11,
     "input": "Mountain Height"
   },
   "pro4_PlanetGeneratorCloud$Scale": {
     "node": "Group.034",
+    "socket_index": 12,
     "input": "Cloud Scale"
   },
   "pro4_PlanetGeneratorCloud$Density": {
     "node": "Group.034",
+    "socket_index": 13,
     "input": "Cloud Density"
   },
   "pro4_PlanetGeneratorCloud$Opacity": {
     "node": "Group.034",
+    "socket_index": 14,
     "input": "Cloud Opacity"
   },
   "pro4_PlanetGeneratorContinent$Size": {
     "node": "Group.034",
+    "socket_index": 15,
     "input": "Continent Size"
   },
   "pro4_PlanetGeneratorContinent$Detail": {
     "node": "Group.034",
+    "socket_index": 16,
     "input": "Continent Detail"
   },
   "pro4_MagicBase$Color": {
     "node": "Group.009",
+    "socket_index": 0,
     "input": "Base Color"
   },
   "pro4_MagicSecondary$Color": {
     "node": "Group.009",
+    "socket_index": 1,
     "input": "Secondary Color"
   },
   "pro4_MagicTertiary$Color": {
     "node": "Group.009",
+    "socket_index": 2,
     "input": "Tertiary Color"
   },
   "pro4_MagicOffset$Color$Strength": {
     "node": "Group.009",
+    "socket_index": 3,
     "input": "Offset Color Strength"
   },
   "pro4_MagicTexture$Scale": {
     "node": "Group.009",
+    "socket_index": 4,
     "input": "Texture Scale"
   },
   "pro4_MagicDistortion": {
     "node": "Group.009",
+    "socket_index": 5,
     "input": "Distortion"
   },
   "pro4_MagicBump$Strength": {
     "node": "Group.009",
+    "socket_index": 6,
     "input": "Bump Strength"
   },
   "pro4_MagicExtra$Bump": {
     "node": "Group.009",
+    "socket_index": 7,
     "input": "Extra Bump"
   },
   "pro4_MagicExtra$Bump$Strength": {
     "node": "Group.009",
+    "socket_index": 8,
     "input": "Extra Bump Strength"
   },
   "pro4_MagicVector": {
     "node": "Group.009",
+    "socket_index": 9,
     "input": "Vector"
   },
   "pro4_Waves$SineBase$Color": {
     "node": "Group.013",
+    "socket_index": 0,
     "input": "Base Color"
   },
   "pro4_Waves$SineSecondary$Color": {
     "node": "Group.013",
+    "socket_index": 1,
     "input": "Secondary Color"
   },
   "pro4_Waves$SineTertiary$Color": {
     "node": "Group.013",
+    "socket_index": 2,
     "input": "Tertiary Color"
   },
   "pro4_Waves$SineOffset$Color$Strength": {
     "node": "Group.013",
+    "socket_index": 3,
     "input": "Offset Color Strength"
   },
   "pro4_Waves$SineTexture$Scale": {
     "node": "Group.013",
+    "socket_index": 4,
     "input": "Texture Scale"
   },
   "pro4_Waves$SineDetail": {
     "node": "Group.013",
+    "socket_index": 5,
     "input": "Detail"
   },
   "pro4_Waves$SineDetail$Scale": {
     "node": "Group.013",
+    "socket_index": 6,
     "input": "Detail Scale"
   },
   "pro4_Waves$SineDistortion": {
     "node": "Group.013",
+    "socket_index": 7,
     "input": "Distortion"
   },
   "pro4_Waves$SineBump$Strength": {
     "node": "Group.013",
+    "socket_index": 8,
     "input": "Bump Strength"
   },
   "pro4_Waves$SineExtra$Bump": {
     "node": "Group.013",
+    "socket_index": 9,
     "input": "Extra Bump"
   },
   "pro4_Waves$SineExtra$Bump$Strength": {
     "node": "Group.013",
+    "socket_index": 10,
     "input": "Extra Bump Strength"
   },
   "pro4_Waves$SineVector": {
     "node": "Group.013",
+    "socket_index": 11,
     "input": "Vector"
   },
   "pro4_MixBase$Color": {
     "node": "Group.011",
+    "socket_index": 0,
     "input": "Base Color"
   },
   "pro4_MixSecondary$Color": {
     "node": "Group.011",
+    "socket_index": 1,
     "input": "Secondary Color"
   },
   "pro4_MixTertiary$Color": {
     "node": "Group.011",
+    "socket_index": 2,
     "input": "Tertiary Color"
   },
   "pro4_MixOffset$Color$Strength": {
     "node": "Group.011",
+    "socket_index": 3,
     "input": "Offset Color Strength"
   },
   "pro4_MixTexture$Scale": {
     "node": "Group.011",
+    "socket_index": 4,
     "input": "Texture Scale"
   },
   "pro4_MixDetail": {
     "node": "Group.011",
+    "socket_index": 5,
     "input": "Detail"
   },
   "pro4_MixLacunarity": {
     "node": "Group.011",
+    "socket_index": 6,
     "input": "Lacunarity"
   },
   "pro4_MixBump$Strength": {
     "node": "Group.011",
+    "socket_index": 7,
     "input": "Bump Strength"
   },
   "pro4_MixExtra$Bump": {
     "node": "Group.011",
+    "socket_index": 8,
     "input": "Extra Bump"
   },
   "pro4_MixExtra$Bump$Strength": {
     "node": "Group.011",
+    "socket_index": 9,
     "input": "Extra Bump Strength"
   },
   "pro4_MixVector": {
     "node": "Group.011",
+    "socket_index": 10,
     "input": "Vector"
   },
   "pro4_Voronoi$CellsBase$Color": {
     "node": "Group.016",
+    "socket_index": 0,
     "input": "Base Color"
   },
   "pro4_Voronoi$CellsSecondary$Color": {
     "node": "Group.016",
+    "socket_index": 1,
     "input": "Secondary Color"
   },
   "pro4_Voronoi$CellsTertiary$Color": {
     "node": "Group.016",
+    "socket_index": 2,
     "input": "Tertiary Color"
   },
   "pro4_Voronoi$CellsOffset$Color$Strength": {
     "node": "Group.016",
+    "socket_index": 3,
     "input": "Offset Color Strength"
   },
   "pro4_Voronoi$CellsTexture$Scale": {
     "node": "Group.016",
+    "socket_index": 4,
     "input": "Texture Scale"
   },
   "pro4_Voronoi$CellsBump$Strength": {
     "node": "Group.016",
+    "socket_index": 5,
     "input": "Bump Strength"
   },
   "pro4_Voronoi$CellsExtra$Bump": {
     "node": "Group.016",
+    "socket_index": 6,
     "input": "Extra Bump"
   },
   "pro4_Voronoi$CellsExtra$Bump$Strength": {
     "node": "Group.016",
+    "socket_index": 7,
     "input": "Extra Bump Strength"
   },
   "pro4_Voronoi$CellsVector": {
     "node": "Group.016",
+    "socket_index": 8,
     "input": "Vector"
   },
   "pro4_Voronoi$IntensityBase$Color": {
     "node": "Group.015",
+    "socket_index": 0,
     "input": "Base Color"
   },
   "pro4_Voronoi$IntensitySecondary$Color": {
     "node": "Group.015",
+    "socket_index": 1,
     "input": "Secondary Color"
   },
   "pro4_Voronoi$IntensityTertiary$Color": {
     "node": "Group.015",
+    "socket_index": 2,
     "input": "Tertiary Color"
   },
   "pro4_Voronoi$IntensityOffset$Color$Strength": {
     "node": "Group.015",
+    "socket_index": 3,
     "input": "Offset Color Strength"
   },
   "pro4_Voronoi$IntensityTexture$Scale": {
     "node": "Group.015",
+    "socket_index": 4,
     "input": "Texture Scale"
   },
   "pro4_Voronoi$IntensityBump$Strength": {
     "node": "Group.015",
+    "socket_index": 5,
     "input": "Bump Strength"
   },
   "pro4_Voronoi$IntensityExtra$Bump": {
     "node": "Group.015",
+    "socket_index": 6,
     "input": "Extra Bump"
   },
   "pro4_Voronoi$IntensityExtra$Bump$Strength": {
     "node": "Group.015",
+    "socket_index": 7,
     "input": "Extra Bump Strength"
   },
   "pro4_Voronoi$IntensityVector": {
     "node": "Group.015",
+    "socket_index": 8,
     "input": "Vector"
   },
   "reroute004Input": {
     "node": "Reroute.004",
+    "socket_index": 0,
     "input": "Input"
   },
   "reroute005Input": {
     "node": "Reroute.005",
+    "socket_index": 0,
     "input": "Input"
   },
   "reroute006Input": {
     "node": "Reroute.006",
+    "socket_index": 0,
     "input": "Input"
   },
   "pro4_Waves$SawBase$Color": {
     "node": "Group.014",
+    "socket_index": 0,
     "input": "Base Color"
   },
   "pro4_Waves$SawSecondary$Color": {
     "node": "Group.014",
+    "socket_index": 1,
     "input": "Secondary Color"
   },
   "pro4_Waves$SawTertiary$Color": {
     "node": "Group.014",
+    "socket_index": 2,
     "input": "Tertiary Color"
   },
   "pro4_Waves$SawOffset$Color$Strength": {
     "node": "Group.014",
+    "socket_index": 3,
     "input": "Offset Color Strength"
   },
   "pro4_Waves$SawTexture$Scale": {
     "node": "Group.014",
+    "socket_index": 4,
     "input": "Texture Scale"
   },
   "pro4_Waves$SawDetail": {
     "node": "Group.014",
+    "socket_index": 5,
     "input": "Detail"
   },
   "pro4_Waves$SawDetail$Scale": {
     "node": "Group.014",
+    "socket_index": 6,
     "input": "Detail Scale"
   },
   "pro4_Waves$SawDistortion": {
     "node": "Group.014",
+    "socket_index": 7,
     "input": "Distortion"
   },
   "pro4_Waves$SawBump$Strength": {
     "node": "Group.014",
+    "socket_index": 8,
     "input": "Bump Strength"
   },
   "pro4_Waves$SawExtra$Bump": {
     "node": "Group.014",
+    "socket_index": 9,
     "input": "Extra Bump"
   },
   "pro4_Waves$SawExtra$Bump$Strength": {
     "node": "Group.014",
+    "socket_index": 10,
     "input": "Extra Bump Strength"
   },
   "pro4_Waves$SawVector": {
     "node": "Group.014",
+    "socket_index": 11,
     "input": "Vector"
   },
   "pro4_NoiseBase$Color": {
     "node": "Group.010",
+    "socket_index": 0,
     "input": "Base Color"
   },
   "pro4_NoiseSecondary$Color": {
     "node": "Group.010",
+    "socket_index": 1,
     "input": "Secondary Color"
   },
   "pro4_NoiseTertiary$Color": {
     "node": "Group.010",
+    "socket_index": 2,
     "input": "Tertiary Color"
   },
   "pro4_NoiseOffset$Color$Strength": {
     "node": "Group.010",
+    "socket_index": 3,
     "input": "Offset Color Strength"
   },
   "pro4_NoiseTexture$Scale": {
     "node": "Group.010",
+    "socket_index": 4,
     "input": "Texture Scale"
   },
   "pro4_NoiseDetail": {
     "node": "Group.010",
+    "socket_index": 5,
     "input": "Detail"
   },
   "pro4_NoiseBump$Strength": {
     "node": "Group.010",
+    "socket_index": 6,
     "input": "Bump Strength"
   },
   "pro4_NoiseExtra$Bump": {
     "node": "Group.010",
+    "socket_index": 7,
     "input": "Extra Bump"
   },
   "pro4_NoiseExtra$Bump$Strength": {
     "node": "Group.010",
+    "socket_index": 8,
     "input": "Extra Bump Strength"
   },
   "pro4_NoiseVector": {
     "node": "Group.010",
+    "socket_index": 9,
     "input": "Vector"
   },
   "pro4_MusgraveBase$Color": {
     "node": "Group.012",
+    "socket_index": 0,
     "input": "Base Color"
   },
   "pro4_MusgraveSecondary$Color": {
     "node": "Group.012",
+    "socket_index": 1,
     "input": "Secondary Color"
   },
   "pro4_MusgraveTertiary$Color": {
     "node": "Group.012",
+    "socket_index": 2,
     "input": "Tertiary Color"
   },
   "pro4_MusgraveOffset$Color$Strength": {
     "node": "Group.012",
+    "socket_index": 3,
     "input": "Offset Color Strength"
   },
   "pro4_MusgraveTexture$Scale": {
     "node": "Group.012",
+    "socket_index": 4,
     "input": "Texture Scale"
   },
   "pro4_MusgraveDetail": {
     "node": "Group.012",
+    "socket_index": 5,
     "input": "Detail"
   },
   "pro4_MusgraveLacunarity": {
     "node": "Group.012",
+    "socket_index": 6,
     "input": "Lacunarity"
   },
   "pro4_MusgraveBump$Strength": {
     "node": "Group.012",
+    "socket_index": 7,
     "input": "Bump Strength"
   },
   "pro4_MusgraveExtra$Bump": {
     "node": "Group.012",
+    "socket_index": 8,
     "input": "Extra Bump"
   },
   "pro4_MusgraveExtra$Bump$Strength": {
     "node": "Group.012",
+    "socket_index": 9,
     "input": "Extra Bump Strength"
   },
   "pro4_MusgraveVector": {
     "node": "Group.012",
+    "socket_index": 10,
     "input": "Vector"
   },
   "reroute003Input": {
     "node": "Reroute.003",
+    "socket_index": 0,
     "input": "Input"
   },
   "reroute001Input": {
     "node": "Reroute.001",
+    "socket_index": 0,
     "input": "Input"
   },
   "rerouteInput": {
     "node": "Reroute",
+    "socket_index": 0,
     "input": "Input"
   },
   "pro4_VolumetricClouds1Fluff$Scale": {
     "node": "Group.007",
+    "socket_index": 0,
     "input": "Fluff Scale"
   },
   "pro4_VolumetricClouds1Fluff$Detail": {
     "node": "Group.007",
+    "socket_index": 1,
     "input": "Fluff Detail"
   },
   "pro4_StripsStripe$Scale": {
     "node": "Group.002",
+    "socket_index": 0,
     "input": "Stripe Scale"
   },
   "pro4_StripsDistortion$Scale": {
     "node": "Group.002",
+    "socket_index": 1,
     "input": "Distortion Scale"
   },
   "pro4_StripsLacunarity": {
     "node": "Group.002",
+    "socket_index": 2,
     "input": "Lacunarity"
   },
   "pro4_StripsPrimary$Color": {
     "node": "Group.002",
+    "socket_index": 3,
     "input": "Primary Color"
   },
   "pro4_StripsSecondary$Color": {
     "node": "Group.002",
+    "socket_index": 4,
     "input": "Secondary Color"
   },
   "pro4_StripsNormal$Strength": {
     "node": "Group.002",
+    "socket_index": 5,
     "input": "Normal Strength"
   },
   "pro4_VoronoiOrbVector": {
     "node": "Group.003",
+    "socket_index": 0,
     "input": "Vector"
   },
   "pro4_VoronoiOrbScale": {
     "node": "Group.003",
+    "socket_index": 1,
     "input": "Scale"
   },
   "pro4_VoronoiOrbBase$Color": {
     "node": "Group.003",
+    "socket_index": 2,
     "input": "Base Color"
   },
   "pro4_VoronoiOrbBall$Color": {
     "node": "Group.003",
+    "socket_index": 3,
     "input": "Ball Color"
   },
   "pro4_VoronoiOrbStrength": {
     "node": "Group.003",
+    "socket_index": 4,
     "input": "Strength"
   },
   "pro4_PlanetaryCloudsVector": {
     "node": "Group.005",
+    "socket_index": 0,
     "input": "Vector"
   },
   "pro4_PlanetaryCloudsScale": {
     "node": "Group.005",
+    "socket_index": 1,
     "input": "Scale"
   },
   "pro4_PlanetaryCloudsDetail": {
     "node": "Group.005",
+    "socket_index": 2,
     "input": "Detail"
   },
   "pro4_PlanetaryCloudsDistortion": {
     "node": "Group.005",
+    "socket_index": 3,
     "input": "Distortion"
   },
   "pro4_PlanetaryCloudsBase$Color": {
     "node": "Group.005",
+    "socket_index": 4,
     "input": "Base Color"
   },
   "pro4_PlanetaryCloudsCloud$Color": {
     "node": "Group.005",
+    "socket_index": 5,
     "input": "Cloud Color"
   },
   "pro4_PlanetaryCloudsNormal$Strength": {
     "node": "Group.005",
+    "socket_index": 6,
     "input": "Normal Strength"
   },
   "pro4_PuddlesVector": {
     "node": "Group.001",
+    "socket_index": 0,
     "input": "Vector"
   },
   "pro4_PuddlesScale": {
     "node": "Group.001",
+    "socket_index": 1,
     "input": "Scale"
   },
   "pro4_PuddlesEdge$Pattern$Scale": {
     "node": "Group.001",
+    "socket_index": 2,
     "input": "Edge Pattern Scale"
   },
   "pro4_PuddlesBase$Color": {
     "node": "Group.001",
+    "socket_index": 3,
     "input": "Base Color"
   },
   "pro4_PuddlesPuddle$Color": {
     "node": "Group.001",
+    "socket_index": 4,
     "input": "Puddle Color"
   },
   "pro4_PuddlesNormal$Strength": {
     "node": "Group.001",
+    "socket_index": 5,
     "input": "Normal Strength"
   },
   "pro4_WormTrailsVector": {
     "node": "Group.006",
+    "socket_index": 0,
     "input": "Vector"
   },
   "pro4_WormTrailsScale": {
     "node": "Group.006",
+    "socket_index": 1,
     "input": "Scale"
   },
   "pro4_WormTrailsDetail": {
     "node": "Group.006",
+    "socket_index": 2,
     "input": "Detail"
   },
   "pro4_WormTrailsDistortion": {
     "node": "Group.006",
+    "socket_index": 3,
     "input": "Distortion"
   },
   "pro4_WormTrailsPrimary$Color": {
     "node": "Group.006",
+    "socket_index": 4,
     "input": "Primary Color"
   },
   "pro4_WormTrailsSecondary$Color": {
     "node": "Group.006",
+    "socket_index": 5,
     "input": "Secondary Color"
   },
   "pro4_WormTrailsNormal$Strength": {
     "node": "Group.006",
+    "socket_index": 6,
     "input": "Normal Strength"
   },
   "pro4_VolumetricClouds2Fluff$Scale": {
     "node": "Group.008",
+    "socket_index": 0,
     "input": "Fluff Scale"
   },
   "pro4_VolumetricClouds2Fluff$Detail": {
     "node": "Group.008",
+    "socket_index": 1,
     "input": "Fluff Detail"
   },
   "pro4_WarpVector": {
     "node": "Group.004",
+    "socket_index": 0,
     "input": "Vector"
   },
   "pro4_WarpBase$Scale": {
     "node": "Group.004",
+    "socket_index": 1,
     "input": "Base Scale"
   },
   "pro4_WarpWarp$Scale": {
     "node": "Group.004",
+    "socket_index": 2,
     "input": "Warp Scale"
   },
   "pro4_WarpDetail": {
     "node": "Group.004",
+    "socket_index": 3,
     "input": "Detail"
   },
   "pro4_WarpDistortion": {
     "node": "Group.004",
+    "socket_index": 4,
     "input": "Distortion"
   },
   "pro4_WarpPrimary$Color": {
     "node": "Group.004",
+    "socket_index": 5,
     "input": "Primary Color"
   },
   "pro4_WarpSecondary$Color": {
     "node": "Group.004",
+    "socket_index": 6,
     "input": "Secondary Color"
   },
   "pro4_WarpNormal$Strength": {
     "node": "Group.004",
+    "socket_index": 7,
     "input": "Normal Strength"
   },
   "reroute002Input": {
     "node": "Reroute.002",
+    "socket_index": 0,
     "input": "Input"
   },
   "pro4_DotsVector": {
     "node": "Group",
+    "socket_index": 0,
     "input": "Vector"
   },
   "pro4_DotsScale": {
     "node": "Group",
+    "socket_index": 1,
     "input": "Scale"
   },
   "pro4_DotsBase$Color": {
     "node": "Group",
+    "socket_index": 2,
     "input": "Base Color"
   },
   "pro4_DotsDot$Color": {
     "node": "Group",
+    "socket_index": 3,
     "input": "Dot Color"
   },
   "pro4_DotsNormal$Strength": {
     "node": "Group",
+    "socket_index": 4,
     "input": "Normal Strength"
   },
   "pro4_CheckerBase$Color": {
     "node": "Group.017",
+    "socket_index": 0,
     "input": "Base Color"
   },
   "pro4_CheckerSecondary$Color": {
     "node": "Group.017",
+    "socket_index": 1,
     "input": "Secondary Color"
   },
   "pro4_CheckerTertiary$Color": {
     "node": "Group.017",
+    "socket_index": 2,
     "input": "Tertiary Color"
   },
   "pro4_CheckerOffset$Color$Strength": {
     "node": "Group.017",
+    "socket_index": 3,
     "input": "Offset Color Strength"
   },
   "pro4_CheckerTexture$Scale": {
     "node": "Group.017",
+    "socket_index": 4,
     "input": "Texture Scale"
   },
   "pro4_CheckerBump$Strength": {
     "node": "Group.017",
+    "socket_index": 5,
     "input": "Bump Strength"
   },
   "pro4_CheckerExtra$Bump": {
     "node": "Group.017",
+    "socket_index": 6,
     "input": "Extra Bump"
   },
   "pro4_CheckerExtra$Bump$Strength": {
     "node": "Group.017",
+    "socket_index": 7,
     "input": "Extra Bump Strength"
   },
   "pro4_CheckerVector": {
     "node": "Group.017",
+    "socket_index": 8,
     "input": "Vector"
   },
   "reroute007Input": {
     "node": "Reroute.007",
+    "socket_index": 0,
     "input": "Input"
   },
   "pro4_AsphaltVector": {
     "node": "Group.028",
+    "socket_index": 0,
     "input": "Vector"
   },
   "pro4_AsphaltColor$Scale": {
     "node": "Group.028",
+    "socket_index": 1,
     "input": "Color Scale"
   },
   "pro4_AsphaltBump$Scale": {
     "node": "Group.028",
+    "socket_index": 2,
     "input": "Bump Scale"
   },
   "pro4_AsphaltNormal$Strength": {
     "node": "Group.028",
+    "socket_index": 3,
     "input": "Normal Strength"
   },
   "pro4_MudVector": {
     "node": "Group.024",
+    "socket_index": 0,
     "input": "Vector"
   },
   "pro4_MudColor$Scale": {
     "node": "Group.024",
+    "socket_index": 1,
     "input": "Color Scale"
   },
   "pro4_MudNormal$Scale": {
     "node": "Group.024",
+    "socket_index": 2,
     "input": "Normal Scale"
   },
   "pro4_MudBase$Color": {
     "node": "Group.024",
+    "socket_index": 3,
     "input": "Base Color"
   },
   "pro4_MudSecondary$Color": {
     "node": "Group.024",
+    "socket_index": 4,
     "input": "Secondary Color"
   },
   "pro4_MudTertiary$Color": {
     "node": "Group.024",
+    "socket_index": 5,
     "input": "Tertiary Color"
   },
   "pro4_MudNormal$Strength": {
     "node": "Group.024",
+    "socket_index": 6,
     "input": "Normal Strength"
   },
   "pro4_MarbleVector": {
     "node": "Group.025",
+    "socket_index": 0,
     "input": "Vector"
   },
   "pro4_MarbleScale": {
     "node": "Group.025",
+    "socket_index": 1,
     "input": "Scale"
   },
   "pro4_MarbleBase$Color$1": {
     "node": "Group.025",
+    "socket_index": 2,
     "input": "Base Color 1"
   },
   "pro4_MarbleBase$Color$2": {
     "node": "Group.025",
+    "socket_index": 3,
     "input": "Base Color 2"
   },
   "pro4_MarbleVein$Color$1": {
     "node": "Group.025",
+    "socket_index": 4,
     "input": "Vein Color 1"
   },
   "pro4_MarbleVein$Color$2": {
     "node": "Group.025",
+    "socket_index": 5,
     "input": "Vein Color 2"
   },
   "pro4_MarbleSpeckle$Color": {
     "node": "Group.025",
+    "socket_index": 6,
     "input": "Speckle Color"
   },
   "pro4_CloudsFluff$Scale": {
     "node": "Group.019",
+    "socket_index": 0,
     "input": "Fluff Scale"
   },
   "pro4_CloudsFluff$Detail": {
     "node": "Group.019",
+    "socket_index": 1,
     "input": "Fluff Detail"
   },
   "pro4_CloudsAbsorption$Strength": {
     "node": "Group.019",
+    "socket_index": 2,
     "input": "Absorption Strength"
   },
   "pro4_CloudsDensity": {
     "node": "Group.019",
+    "socket_index": 3,
     "input": "Density"
   },
   "pro4_CloudsColor": {
     "node": "Group.019",
+    "socket_index": 4,
     "input": "Color"
   },
   "rG$PBR$Shader$v21Surface$Color": {
     "node": "Group.018",
+    "socket_index": 0,
     "input": "Surface Color"
   },
   "rG$PBR$Shader$v21Surface$Roughness": {
     "node": "Group.018",
+    "socket_index": 1,
     "input": "Surface Roughness"
   },
   "rG$PBR$Shader$v21Surface$Normal": {
     "node": "Group.018",
+    "socket_index": 2,
     "input": "Surface Normal"
   },
   "rG$PBR$Shader$v21Metallic": {
     "node": "Group.018",
+    "socket_index": 3,
     "input": "Metallic"
   },
   "rG$PBR$Shader$v21Rim$Color": {
     "node": "Group.018",
+    "socket_index": 4,
     "input": "Rim Color"
   },
   "rG$PBR$Shader$v21Rim$Strength": {
     "node": "Group.018",
+    "socket_index": 5,
     "input": "Rim Strength"
   },
   "rG$PBR$Shader$v21SSS$Color": {
     "node": "Group.018",
+    "socket_index": 6,
     "input": "SSS Color"
   },
   "rG$PBR$Shader$v21SSS$Strength": {
     "node": "Group.018",
+    "socket_index": 7,
     "input": "SSS Strength"
   },
   "rG$PBR$Shader$v21SSS$Scale": {
     "node": "Group.018",
+    "socket_index": 8,
     "input": "SSS Scale"
   },
   "rG$PBR$Shader$v21SSS$Texture$Blur": {
     "node": "Group.018",
+    "socket_index": 9,
     "input": "SSS Texture Blur"
   },
   "rG$PBR$Shader$v21Clearcoat$Roughness": {
     "node": "Group.018",
+    "socket_index": 10,
     "input": "Clearcoat Roughness"
   },
   "rG$PBR$Shader$v21Clearcoat$Reflectivity": {
     "node": "Group.018",
+    "socket_index": 11,
     "input": "Clearcoat Reflectivity"
   },
   "rG$PBR$Shader$v21Clearcoat$Normal": {
     "node": "Group.018",
+    "socket_index": 12,
     "input": "Clearcoat Normal"
   },
   "rG$PBR$Shader$v21Displacement": {
     "node": "Group.018",
+    "socket_index": 13,
     "input": "Displacement"
   },
   "rG$PBR$Shader$v21Displacement$Factor": {
     "node": "Group.018",
+    "socket_index": 14,
     "input": "Displacement Factor"
   }
-}
+};
+                material.outputs = {
+  "Surface": "NodeSocketShader",
+  "Volume": "NodeSocketShader",
+  "Displacement": "NodeSocketVector"
+};
+                material.outputIndexes = {
+  "Surface": 0,
+  "Volume": 1,
+  "Displacement": 2
+};
                 material.pro4_PlasterVector = pro4_PlasterVector;
                 material.pro4_PlasterScale = pro4_PlasterScale;
                 material.pro4_PlasterPrimary$Color = pro4_PlasterPrimary$Color;
@@ -62961,7 +66016,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -62977,7 +66031,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Scale",
         "type": "NodeSocketFloat",
@@ -62993,7 +66046,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Primary Color",
         "type": "NodeSocketColor",
@@ -63009,7 +66061,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -63025,7 +66076,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Normal Strength",
         "type": "NodeSocketFloatFactor",
@@ -63041,7 +66091,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Input",
         "type": "NodeSocketFloat",
@@ -63057,7 +66106,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Input",
         "type": "NodeSocketFloat",
@@ -63073,7 +66121,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Input",
         "type": "NodeSocketFloat",
@@ -63089,7 +66136,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -63105,7 +66151,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Primary Scale",
         "type": "NodeSocketFloat",
@@ -63121,7 +66166,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Scale",
         "type": "NodeSocketFloat",
@@ -63137,7 +66181,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Grunge Scale",
         "type": "NodeSocketFloat",
@@ -63153,7 +66196,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Checker Scale",
         "type": "NodeSocketFloat",
@@ -63169,7 +66211,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Primary Color",
         "type": "NodeSocketColor",
@@ -63185,7 +66226,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Plaster Primary Color",
         "type": "NodeSocketColor",
@@ -63201,7 +66241,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Plaster Secondary Color",
         "type": "NodeSocketColor",
@@ -63217,7 +66256,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Input",
         "type": "NodeSocketFloat",
@@ -63233,7 +66271,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -63249,7 +66286,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Biome 1 | Color 1",
         "type": "NodeSocketColor",
@@ -63265,7 +66301,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Biome 1 | Color 2",
         "type": "NodeSocketColor",
@@ -63281,7 +66316,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Biome 1 | Color 3",
         "type": "NodeSocketColor",
@@ -63297,7 +66331,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Biome 2 | Color 1",
         "type": "NodeSocketColor",
@@ -63313,7 +66346,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Biome 2 | Color 2",
         "type": "NodeSocketColor",
@@ -63329,7 +66361,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Biome 2 | Color 3",
         "type": "NodeSocketColor",
@@ -63345,7 +66376,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Ocean Color",
         "type": "NodeSocketColor",
@@ -63361,7 +66391,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Cloud Color",
         "type": "NodeSocketColor",
@@ -63377,7 +66406,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Mountain Color",
         "type": "NodeSocketColor",
@@ -63393,7 +66421,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Mountain Scale",
         "type": "NodeSocketFloat",
@@ -63409,7 +66436,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Mountain Height",
         "type": "NodeSocketFloatFactor",
@@ -63425,7 +66451,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Cloud Scale",
         "type": "NodeSocketFloat",
@@ -63441,7 +66466,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Cloud Density",
         "type": "NodeSocketFloat",
@@ -63457,7 +66481,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Cloud Opacity",
         "type": "NodeSocketFloat",
@@ -63473,7 +66496,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Continent Size",
         "type": "NodeSocketFloatFactor",
@@ -63489,7 +66511,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Continent Detail",
         "type": "NodeSocketFloat",
@@ -63505,7 +66526,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -63521,7 +66541,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -63537,7 +66556,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Tertiary Color",
         "type": "NodeSocketColor",
@@ -63553,7 +66571,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Color Strength",
         "type": "NodeSocketFloatFactor",
@@ -63569,7 +66586,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Texture Scale",
         "type": "NodeSocketFloat",
@@ -63585,7 +66601,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Distortion",
         "type": "NodeSocketFloat",
@@ -63601,7 +66616,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -63617,7 +66631,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump",
         "type": "NodeSocketColor",
@@ -63633,7 +66646,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -63649,7 +66661,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -63665,7 +66676,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -63681,7 +66691,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -63697,7 +66706,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Tertiary Color",
         "type": "NodeSocketColor",
@@ -63713,7 +66721,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Color Strength",
         "type": "NodeSocketFloatFactor",
@@ -63729,7 +66736,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Texture Scale",
         "type": "NodeSocketFloat",
@@ -63745,7 +66751,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Detail",
         "type": "NodeSocketFloat",
@@ -63761,7 +66766,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Detail Scale",
         "type": "NodeSocketFloat",
@@ -63777,7 +66781,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Distortion",
         "type": "NodeSocketFloat",
@@ -63793,7 +66796,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -63809,7 +66811,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump",
         "type": "NodeSocketColor",
@@ -63825,7 +66826,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -63841,7 +66841,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -63857,7 +66856,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -63873,7 +66871,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -63889,7 +66886,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Tertiary Color",
         "type": "NodeSocketColor",
@@ -63905,7 +66901,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Color Strength",
         "type": "NodeSocketFloatFactor",
@@ -63921,7 +66916,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Texture Scale",
         "type": "NodeSocketFloat",
@@ -63937,7 +66931,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Detail",
         "type": "NodeSocketFloat",
@@ -63953,7 +66946,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Lacunarity",
         "type": "NodeSocketFloat",
@@ -63969,7 +66961,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -63985,7 +66976,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump",
         "type": "NodeSocketColor",
@@ -64001,7 +66991,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -64017,7 +67006,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -64033,7 +67021,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -64049,7 +67036,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -64065,7 +67051,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Tertiary Color",
         "type": "NodeSocketColor",
@@ -64081,7 +67066,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Color Strength",
         "type": "NodeSocketFloatFactor",
@@ -64097,7 +67081,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Texture Scale",
         "type": "NodeSocketFloat",
@@ -64113,7 +67096,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -64129,7 +67111,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump",
         "type": "NodeSocketColor",
@@ -64145,7 +67126,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -64161,7 +67141,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -64177,7 +67156,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -64193,7 +67171,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -64209,7 +67186,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Tertiary Color",
         "type": "NodeSocketColor",
@@ -64225,7 +67201,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Color Strength",
         "type": "NodeSocketFloatFactor",
@@ -64241,7 +67216,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Texture Scale",
         "type": "NodeSocketFloat",
@@ -64257,7 +67231,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -64273,7 +67246,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump",
         "type": "NodeSocketColor",
@@ -64289,7 +67261,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -64305,7 +67276,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -64321,7 +67291,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Input",
         "type": "NodeSocketFloat",
@@ -64337,7 +67306,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Input",
         "type": "NodeSocketFloat",
@@ -64353,7 +67321,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Input",
         "type": "NodeSocketFloat",
@@ -64369,7 +67336,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -64385,7 +67351,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -64401,7 +67366,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Tertiary Color",
         "type": "NodeSocketColor",
@@ -64417,7 +67381,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Color Strength",
         "type": "NodeSocketFloatFactor",
@@ -64433,7 +67396,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Texture Scale",
         "type": "NodeSocketFloat",
@@ -64449,7 +67411,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Detail",
         "type": "NodeSocketFloat",
@@ -64465,7 +67426,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Detail Scale",
         "type": "NodeSocketFloat",
@@ -64481,7 +67441,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Distortion",
         "type": "NodeSocketFloat",
@@ -64497,7 +67456,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -64513,7 +67471,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump",
         "type": "NodeSocketColor",
@@ -64529,7 +67486,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -64545,7 +67501,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -64561,7 +67516,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -64577,7 +67531,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -64593,7 +67546,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Tertiary Color",
         "type": "NodeSocketColor",
@@ -64609,7 +67561,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Color Strength",
         "type": "NodeSocketFloatFactor",
@@ -64625,7 +67576,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Texture Scale",
         "type": "NodeSocketFloat",
@@ -64641,7 +67591,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Detail",
         "type": "NodeSocketFloat",
@@ -64657,7 +67606,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -64673,7 +67621,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump",
         "type": "NodeSocketColor",
@@ -64689,7 +67636,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -64705,7 +67651,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -64721,7 +67666,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -64737,7 +67681,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -64753,7 +67696,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Tertiary Color",
         "type": "NodeSocketColor",
@@ -64769,7 +67711,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Color Strength",
         "type": "NodeSocketFloatFactor",
@@ -64785,7 +67726,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Texture Scale",
         "type": "NodeSocketFloat",
@@ -64801,7 +67741,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Detail",
         "type": "NodeSocketFloat",
@@ -64817,7 +67756,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Lacunarity",
         "type": "NodeSocketFloatFactor",
@@ -64833,7 +67771,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -64849,7 +67786,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump",
         "type": "NodeSocketColor",
@@ -64865,7 +67801,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -64881,7 +67816,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -64897,7 +67831,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Input",
         "type": "NodeSocketFloat",
@@ -64913,7 +67846,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Input",
         "type": "NodeSocketFloat",
@@ -64929,7 +67861,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Input",
         "type": "NodeSocketFloat",
@@ -64945,7 +67876,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Fluff Scale",
         "type": "NodeSocketFloat",
@@ -64961,7 +67891,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Fluff Detail",
         "type": "NodeSocketFloat",
@@ -64977,7 +67906,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Stripe Scale",
         "type": "NodeSocketFloat",
@@ -64993,7 +67921,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Distortion Scale",
         "type": "NodeSocketFloat",
@@ -65009,7 +67936,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Lacunarity",
         "type": "NodeSocketFloat",
@@ -65025,7 +67951,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Primary Color",
         "type": "NodeSocketColor",
@@ -65041,7 +67966,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -65057,7 +67981,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Normal Strength",
         "type": "NodeSocketFloatFactor",
@@ -65073,7 +67996,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -65089,7 +68011,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Scale",
         "type": "NodeSocketFloat",
@@ -65105,7 +68026,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -65121,7 +68041,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Ball Color",
         "type": "NodeSocketColor",
@@ -65137,7 +68056,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Strength",
         "type": "NodeSocketFloatFactor",
@@ -65153,7 +68071,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -65169,7 +68086,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Scale",
         "type": "NodeSocketFloat",
@@ -65185,7 +68101,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Detail",
         "type": "NodeSocketFloat",
@@ -65201,7 +68116,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Distortion",
         "type": "NodeSocketFloat",
@@ -65217,7 +68131,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -65233,7 +68146,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Cloud Color",
         "type": "NodeSocketColor",
@@ -65249,7 +68161,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Normal Strength",
         "type": "NodeSocketFloatFactor",
@@ -65265,7 +68176,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -65281,7 +68191,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Scale",
         "type": "NodeSocketFloat",
@@ -65297,7 +68206,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Edge Pattern Scale",
         "type": "NodeSocketFloat",
@@ -65313,7 +68221,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -65329,7 +68236,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Puddle Color",
         "type": "NodeSocketColor",
@@ -65345,7 +68251,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Normal Strength",
         "type": "NodeSocketFloatFactor",
@@ -65361,7 +68266,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -65377,7 +68281,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Scale",
         "type": "NodeSocketFloat",
@@ -65393,7 +68296,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Detail",
         "type": "NodeSocketFloat",
@@ -65409,7 +68311,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Distortion",
         "type": "NodeSocketFloat",
@@ -65425,7 +68326,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Primary Color",
         "type": "NodeSocketColor",
@@ -65441,7 +68341,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -65457,7 +68356,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Normal Strength",
         "type": "NodeSocketFloatFactor",
@@ -65473,7 +68371,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Fluff Scale",
         "type": "NodeSocketFloat",
@@ -65489,7 +68386,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Fluff Detail",
         "type": "NodeSocketFloat",
@@ -65505,7 +68401,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -65521,7 +68416,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Scale",
         "type": "NodeSocketFloat",
@@ -65537,7 +68431,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Warp Scale",
         "type": "NodeSocketFloat",
@@ -65553,7 +68446,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Detail",
         "type": "NodeSocketFloat",
@@ -65569,7 +68461,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Distortion",
         "type": "NodeSocketFloat",
@@ -65585,7 +68476,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Primary Color",
         "type": "NodeSocketColor",
@@ -65601,7 +68491,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -65617,7 +68506,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Normal Strength",
         "type": "NodeSocketFloatFactor",
@@ -65633,7 +68521,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Input",
         "type": "NodeSocketFloat",
@@ -65649,7 +68536,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -65665,7 +68551,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Scale",
         "type": "NodeSocketFloat",
@@ -65681,7 +68566,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -65697,7 +68581,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Dot Color",
         "type": "NodeSocketColor",
@@ -65713,7 +68596,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Normal Strength",
         "type": "NodeSocketFloatFactor",
@@ -65729,7 +68611,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -65745,7 +68626,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -65761,7 +68641,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Tertiary Color",
         "type": "NodeSocketColor",
@@ -65777,7 +68656,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Color Strength",
         "type": "NodeSocketFloatFactor",
@@ -65793,7 +68671,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Texture Scale",
         "type": "NodeSocketFloat",
@@ -65809,7 +68686,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -65825,7 +68701,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump",
         "type": "NodeSocketColor",
@@ -65841,7 +68716,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -65857,7 +68731,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -65873,7 +68746,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Input",
         "type": "NodeSocketFloat",
@@ -65889,7 +68761,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -65905,7 +68776,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Color Scale",
         "type": "NodeSocketFloat",
@@ -65921,7 +68791,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Bump Scale",
         "type": "NodeSocketFloat",
@@ -65937,7 +68806,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Normal Strength",
         "type": "NodeSocketFloatFactor",
@@ -65953,7 +68821,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -65969,7 +68836,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Color Scale",
         "type": "NodeSocketFloat",
@@ -65985,7 +68851,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Normal Scale",
         "type": "NodeSocketFloat",
@@ -66001,7 +68866,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -66017,7 +68881,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -66033,7 +68896,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Tertiary Color",
         "type": "NodeSocketColor",
@@ -66049,7 +68911,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Normal Strength",
         "type": "NodeSocketFloatFactor",
@@ -66065,7 +68926,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -66081,7 +68941,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Scale",
         "type": "NodeSocketFloat",
@@ -66097,7 +68956,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color 1",
         "type": "NodeSocketColor",
@@ -66113,7 +68971,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color 2",
         "type": "NodeSocketColor",
@@ -66129,7 +68986,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vein Color 1",
         "type": "NodeSocketColor",
@@ -66145,7 +69001,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vein Color 2",
         "type": "NodeSocketColor",
@@ -66161,7 +69016,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Speckle Color",
         "type": "NodeSocketColor",
@@ -66177,7 +69031,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Fluff Scale",
         "type": "NodeSocketFloat",
@@ -66193,7 +69046,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Fluff Detail",
         "type": "NodeSocketFloat",
@@ -66209,7 +69061,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Absorption Strength",
         "type": "NodeSocketFloatFactor",
@@ -66225,7 +69076,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Density",
         "type": "NodeSocketFloatFactor",
@@ -66241,7 +69091,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Color",
         "type": "NodeSocketColor",
@@ -66257,7 +69106,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Surface Color",
         "type": "NodeSocketColor",
@@ -66273,7 +69121,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Surface Roughness",
         "type": "NodeSocketFloatFactor",
@@ -66289,7 +69136,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Surface Normal",
         "type": "NodeSocketVector",
@@ -66305,7 +69151,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Metallic",
         "type": "NodeSocketFloatFactor",
@@ -66321,7 +69166,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Rim Color",
         "type": "NodeSocketColor",
@@ -66337,7 +69181,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Rim Strength",
         "type": "NodeSocketFloatFactor",
@@ -66353,7 +69196,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "SSS Color",
         "type": "NodeSocketColor",
@@ -66369,7 +69211,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "SSS Strength",
         "type": "NodeSocketFloatFactor",
@@ -66385,7 +69226,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "SSS Scale",
         "type": "NodeSocketFloat",
@@ -66401,7 +69241,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "SSS Texture Blur",
         "type": "NodeSocketFloatFactor",
@@ -66417,7 +69256,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Clearcoat Roughness",
         "type": "NodeSocketFloatFactor",
@@ -66433,7 +69271,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Clearcoat Reflectivity",
         "type": "NodeSocketFloatFactor",
@@ -66449,7 +69286,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Clearcoat Normal",
         "type": "NodeSocketVector",
@@ -66465,7 +69301,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Displacement",
         "type": "NodeSocketFloatFactor",
@@ -66481,7 +69316,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 43,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Displacement Factor",
         "type": "NodeSocketFloatFactor",
@@ -66612,7 +69446,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.7552905082702637,
-            0.5852549076080322,
+            0.7863556742668152,
             0.5852549076080322,
             1
           ],
@@ -66623,7 +69457,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6814512014389038,
-            0.624729573726654,
+            0.6954216361045837,
             0.624729573726654,
             1
           ],
@@ -66789,7 +69623,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.8000000715255737,
-            0.06067108362913132,
+            0.0749443918466568,
             0.06067108362913132,
             1
           ],
@@ -66800,7 +69634,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6480249166488647,
-            0.4080688953399658,
+            0.6093754768371582,
             0.4080688953399658,
             1
           ],
@@ -66811,7 +69645,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6954216361045837,
-            0.35993897914886475,
+            0.6504405736923218,
             0.35993897914886475,
             1
           ],
@@ -66887,7 +69721,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.39149776101112366,
-            0.13551634550094604,
+            0.3310618996620178,
             0.13551634550094604,
             1
           ],
@@ -66898,7 +69732,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.11935558915138245,
+            0.33730655908584595,
             0.11935558915138245,
             1
           ],
@@ -66909,7 +69743,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.09421773254871368,
+            0.22784750163555145,
             0.09421773254871368,
             1
           ],
@@ -66920,7 +69754,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.3871992230415344,
-            0.09231522679328918,
+            0.21561460196971893,
             0.09231522679328918,
             1
           ],
@@ -66931,7 +69765,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.16450895369052887,
+            0.4586332142353058,
             0.16450895369052887,
             1
           ],
@@ -66942,7 +69776,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.2778395414352417,
-            0.11415830254554749,
+            0.3426298499107361,
             0.11415830254554749,
             1
           ],
@@ -66953,7 +69787,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.08564497530460358,
-            0.2558301091194153,
+            0.13326400518417358,
             0.2558301091194153,
             1
           ],
@@ -67053,7 +69887,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -67064,7 +69898,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -67075,7 +69909,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -67172,7 +70006,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -67183,7 +70017,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -67194,7 +70028,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -67303,7 +70137,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -67314,7 +70148,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -67325,7 +70159,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -67428,7 +70262,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -67439,7 +70273,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -67450,7 +70284,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -67541,7 +70375,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -67552,7 +70386,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -67563,7 +70397,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -67744,7 +70578,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -67755,7 +70589,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -67766,7 +70600,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -67875,7 +70709,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -67886,7 +70720,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -67897,7 +70731,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -67994,7 +70828,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -68005,7 +70839,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -68016,7 +70850,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -68916,7 +71750,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -68927,7 +71761,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -68938,7 +71772,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -69134,7 +71968,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.34191441535949707,
-            0.18447501957416534,
+            0.24228113889694214,
             0.18447501957416534,
             1
           ],
@@ -69145,7 +71979,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.14296220242977142,
-            0.053180523216724396,
+            0.085452139377594,
             0.053180523216724396,
             1
           ],
@@ -69156,7 +71990,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.11792322993278503,
-            0.05263402685523033,
+            0.07576367259025574,
             0.05263402685523033,
             1
           ],
@@ -69214,7 +72048,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.018233012408018112,
-            0.011345821432769299,
+            0.01702404022216797,
             0.011345821432769299,
             1
           ],
@@ -69225,7 +72059,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.048171836882829666,
-            0.016415856778621674,
+            0.028759686276316643,
             0.016415856778621674,
             1
           ],
@@ -69236,7 +72070,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.014754770323634148,
+            0.1480759233236313,
             0.014754770323634148,
             1
           ],
@@ -69247,7 +72081,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.508245587348938,
-            0.05428784340620041,
+            0.22192531824111938,
             0.05428784340620041,
             1
           ],
@@ -69258,7 +72092,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.508245587348938,
-            0.05428784340620041,
+            0.22192531824111938,
             0.05428784340620041,
             1
           ],
@@ -69592,7 +72426,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.7552905082702637,
-            0.5852549076080322,
+            0.7863556742668152,
             0.5852549076080322,
             1
           ],
@@ -69603,7 +72437,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6814512014389038,
-            0.624729573726654,
+            0.6954216361045837,
             0.624729573726654,
             1
           ],
@@ -69672,7 +72506,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.8000000715255737,
-            0.06067108362913132,
+            0.0749443918466568,
             0.06067108362913132,
             1
           ],
@@ -69683,7 +72517,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6480249166488647,
-            0.4080688953399658,
+            0.6093754768371582,
             0.4080688953399658,
             1
           ],
@@ -69694,7 +72528,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6954216361045837,
-            0.35993897914886475,
+            0.6504405736923218,
             0.35993897914886475,
             1
           ],
@@ -69721,7 +72555,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.39149776101112366,
-            0.13551634550094604,
+            0.3310618996620178,
             0.13551634550094604,
             1
           ],
@@ -69732,7 +72566,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.11935558915138245,
+            0.33730655908584595,
             0.11935558915138245,
             1
           ],
@@ -69743,7 +72577,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.09421773254871368,
+            0.22784750163555145,
             0.09421773254871368,
             1
           ],
@@ -69754,7 +72588,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.3871992230415344,
-            0.09231522679328918,
+            0.21561460196971893,
             0.09231522679328918,
             1
           ],
@@ -69765,7 +72599,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.16450895369052887,
+            0.4586332142353058,
             0.16450895369052887,
             1
           ],
@@ -69776,7 +72610,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.2778395414352417,
-            0.11415830254554749,
+            0.3426298499107361,
             0.11415830254554749,
             1
           ],
@@ -69787,7 +72621,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.08564497530460358,
-            0.2558301091194153,
+            0.13326400518417358,
             0.2558301091194153,
             1
           ],
@@ -69862,7 +72696,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -69873,7 +72707,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -69884,7 +72718,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -69946,7 +72780,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -69957,7 +72791,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -69968,7 +72802,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -70042,7 +72876,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -70053,7 +72887,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -70064,7 +72898,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -70132,7 +72966,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -70143,7 +72977,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -70154,7 +72988,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -70210,7 +73044,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -70221,7 +73055,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -70232,7 +73066,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -70306,7 +73140,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -70317,7 +73151,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -70328,7 +73162,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -70402,7 +73236,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -70413,7 +73247,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -70424,7 +73258,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -70486,7 +73320,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -70497,7 +73331,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -70508,7 +73342,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -70982,7 +73816,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -70993,7 +73827,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -71004,7 +73838,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -71116,7 +73950,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.34191441535949707,
-            0.18447501957416534,
+            0.24228113889694214,
             0.18447501957416534,
             1
           ],
@@ -71127,7 +73961,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.14296220242977142,
-            0.053180523216724396,
+            0.085452139377594,
             0.053180523216724396,
             1
           ],
@@ -71138,7 +73972,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.11792322993278503,
-            0.05263402685523033,
+            0.07576367259025574,
             0.05263402685523033,
             1
           ],
@@ -71171,7 +74005,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.018233012408018112,
-            0.011345821432769299,
+            0.01702404022216797,
             0.011345821432769299,
             1
           ],
@@ -71182,7 +74016,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.048171836882829666,
-            0.016415856778621674,
+            0.028759686276316643,
             0.016415856778621674,
             1
           ],
@@ -71193,7 +74027,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.014754770323634148,
+            0.1480759233236313,
             0.014754770323634148,
             1
           ],
@@ -71204,7 +74038,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.508245587348938,
-            0.05428784340620041,
+            0.22192531824111938,
             0.05428784340620041,
             1
           ],
@@ -71215,7 +74049,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.508245587348938,
-            0.05428784340620041,
+            0.22192531824111938,
             0.05428784340620041,
             1
           ],
@@ -71395,7 +74229,7 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": [
         0.7552905082702637,
-        0.5852549076080322,
+        0.7863556742668152,
         0.5852549076080322,
         1
       ],
@@ -71406,7 +74240,7 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": [
         0.6814512014389038,
-        0.624729573726654,
+        0.6954216361045837,
         0.624729573726654,
         1
       ],
@@ -71423,19 +74257,19 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": 0,
       "name": "Input",
-      "socket_index": 0,
+      "socket_index": 5,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0,
       "name": "Input",
-      "socket_index": 0,
+      "socket_index": 6,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0,
       "name": "Input",
-      "socket_index": 0,
+      "socket_index": 7,
       "type": "NodeSocketFloat"
     },
     {
@@ -71445,70 +74279,70 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 0,
+      "socket_index": 8,
       "type": "NodeSocketVector"
     },
     {
       "default_value": 15,
       "name": "Primary Scale",
-      "socket_index": 1,
+      "socket_index": 9,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 15,
       "name": "Secondary Scale",
-      "socket_index": 2,
+      "socket_index": 10,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 1,
       "name": "Grunge Scale",
-      "socket_index": 3,
+      "socket_index": 11,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 5,
       "name": "Checker Scale",
-      "socket_index": 4,
+      "socket_index": 12,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": [
         0.8000000715255737,
-        0.06067108362913132,
+        0.0749443918466568,
         0.06067108362913132,
         1
       ],
       "name": "Primary Color",
-      "socket_index": 5,
+      "socket_index": 13,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.6480249166488647,
-        0.4080688953399658,
+        0.6093754768371582,
         0.4080688953399658,
         1
       ],
       "name": "Plaster Primary Color",
-      "socket_index": 6,
+      "socket_index": 14,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.6954216361045837,
-        0.35993897914886475,
+        0.6504405736923218,
         0.35993897914886475,
         1
       ],
       "name": "Plaster Secondary Color",
-      "socket_index": 7,
+      "socket_index": 15,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0,
       "name": "Input",
-      "socket_index": 0,
+      "socket_index": 16,
       "type": "NodeSocketFloat"
     },
     {
@@ -71518,84 +74352,84 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 0,
+      "socket_index": 17,
       "type": "NodeSocketVector"
     },
     {
       "default_value": [
         0.39149776101112366,
-        0.13551634550094604,
+        0.3310618996620178,
         0.13551634550094604,
         1
       ],
       "name": "Biome 1 | Color 1",
-      "socket_index": 1,
+      "socket_index": 18,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5028865933418274,
-        0.11935558915138245,
+        0.33730655908584595,
         0.11935558915138245,
         1
       ],
       "name": "Biome 1 | Color 2",
-      "socket_index": 2,
+      "socket_index": 19,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5,
-        0.09421773254871368,
+        0.22784750163555145,
         0.09421773254871368,
         1
       ],
       "name": "Biome 1 | Color 3",
-      "socket_index": 3,
+      "socket_index": 20,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.3871992230415344,
-        0.09231522679328918,
+        0.21561460196971893,
         0.09231522679328918,
         1
       ],
       "name": "Biome 2 | Color 1",
-      "socket_index": 4,
+      "socket_index": 21,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5028865933418274,
-        0.16450895369052887,
+        0.4586332142353058,
         0.16450895369052887,
         1
       ],
       "name": "Biome 2 | Color 2",
-      "socket_index": 5,
+      "socket_index": 22,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.2778395414352417,
-        0.11415830254554749,
+        0.3426298499107361,
         0.11415830254554749,
         1
       ],
       "name": "Biome 2 | Color 3",
-      "socket_index": 6,
+      "socket_index": 23,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.08564497530460358,
-        0.2558301091194153,
+        0.13326400518417358,
         0.2558301091194153,
         1
       ],
       "name": "Ocean Color",
-      "socket_index": 7,
+      "socket_index": 24,
       "type": "NodeSocketColor"
     },
     {
@@ -71606,7 +74440,7 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Cloud Color",
-      "socket_index": 8,
+      "socket_index": 25,
       "type": "NodeSocketColor"
     },
     {
@@ -71617,106 +74451,106 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Mountain Color",
-      "socket_index": 9,
+      "socket_index": 26,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 5,
       "name": "Mountain Scale",
-      "socket_index": 10,
+      "socket_index": 27,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0.4000000059604645,
       "name": "Mountain Height",
-      "socket_index": 11,
+      "socket_index": 28,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 1,
       "name": "Cloud Scale",
-      "socket_index": 12,
+      "socket_index": 29,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0,
       "name": "Cloud Density",
-      "socket_index": 13,
+      "socket_index": 30,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 1,
       "name": "Cloud Opacity",
-      "socket_index": 14,
+      "socket_index": 31,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0.5,
       "name": "Continent Size",
-      "socket_index": 15,
+      "socket_index": 32,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 2,
       "name": "Continent Detail",
-      "socket_index": 16,
+      "socket_index": 33,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": [
         0.9553954005241394,
-        0.20943038165569305,
+        0.4217880368232727,
         0.20943038165569305,
         1
       ],
       "name": "Base Color",
-      "socket_index": 0,
+      "socket_index": 34,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5028865933418274,
-        0.10074843466281891,
+        0.4453256130218506,
         0.10074843466281891,
         1
       ],
       "name": "Secondary Color",
-      "socket_index": 1,
+      "socket_index": 35,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5,
-        0.03720312938094139,
+        0.14809265732765198,
         0.03720312938094139,
         1
       ],
       "name": "Tertiary Color",
-      "socket_index": 2,
+      "socket_index": 36,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0.5,
       "name": "Offset Color Strength",
-      "socket_index": 3,
+      "socket_index": 37,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 2,
       "name": "Texture Scale",
-      "socket_index": 4,
+      "socket_index": 38,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 1,
       "name": "Distortion",
-      "socket_index": 5,
+      "socket_index": 39,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0.20000000298023224,
       "name": "Bump Strength",
-      "socket_index": 6,
+      "socket_index": 40,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -71727,13 +74561,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Extra Bump",
-      "socket_index": 7,
+      "socket_index": 41,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0,
       "name": "Extra Bump Strength",
-      "socket_index": 8,
+      "socket_index": 42,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -71743,76 +74577,76 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 9,
+      "socket_index": 43,
       "type": "NodeSocketVector"
     },
     {
       "default_value": [
         0.9553954005241394,
-        0.20943038165569305,
+        0.4217880368232727,
         0.20943038165569305,
         1
       ],
       "name": "Base Color",
-      "socket_index": 0,
+      "socket_index": 44,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5028865933418274,
-        0.10074843466281891,
+        0.4453256130218506,
         0.10074843466281891,
         1
       ],
       "name": "Secondary Color",
-      "socket_index": 1,
+      "socket_index": 45,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5,
-        0.03720312938094139,
+        0.14809265732765198,
         0.03720312938094139,
         1
       ],
       "name": "Tertiary Color",
-      "socket_index": 2,
+      "socket_index": 46,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0.5,
       "name": "Offset Color Strength",
-      "socket_index": 3,
+      "socket_index": 47,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 1,
       "name": "Texture Scale",
-      "socket_index": 4,
+      "socket_index": 48,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 2,
       "name": "Detail",
-      "socket_index": 5,
+      "socket_index": 49,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 5,
       "name": "Detail Scale",
-      "socket_index": 6,
+      "socket_index": 50,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 5,
       "name": "Distortion",
-      "socket_index": 7,
+      "socket_index": 51,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0.5,
       "name": "Bump Strength",
-      "socket_index": 8,
+      "socket_index": 52,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -71823,13 +74657,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Extra Bump",
-      "socket_index": 9,
+      "socket_index": 53,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0,
       "name": "Extra Bump Strength",
-      "socket_index": 10,
+      "socket_index": 54,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -71839,70 +74673,70 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 11,
+      "socket_index": 55,
       "type": "NodeSocketVector"
     },
     {
       "default_value": [
         0.9553954005241394,
-        0.20943038165569305,
+        0.4217880368232727,
         0.20943038165569305,
         1
       ],
       "name": "Base Color",
-      "socket_index": 0,
+      "socket_index": 56,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5028865933418274,
-        0.10074843466281891,
+        0.4453256130218506,
         0.10074843466281891,
         1
       ],
       "name": "Secondary Color",
-      "socket_index": 1,
+      "socket_index": 57,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5,
-        0.03720312938094139,
+        0.14809265732765198,
         0.03720312938094139,
         1
       ],
       "name": "Tertiary Color",
-      "socket_index": 2,
+      "socket_index": 58,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0.5,
       "name": "Offset Color Strength",
-      "socket_index": 3,
+      "socket_index": 59,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 3,
       "name": "Texture Scale",
-      "socket_index": 4,
+      "socket_index": 60,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 50,
       "name": "Detail",
-      "socket_index": 5,
+      "socket_index": 61,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 2,
       "name": "Lacunarity",
-      "socket_index": 6,
+      "socket_index": 62,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0.20000000298023224,
       "name": "Bump Strength",
-      "socket_index": 7,
+      "socket_index": 63,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -71913,13 +74747,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Extra Bump",
-      "socket_index": 8,
+      "socket_index": 64,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0,
       "name": "Extra Bump Strength",
-      "socket_index": 9,
+      "socket_index": 65,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -71929,58 +74763,58 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 10,
+      "socket_index": 66,
       "type": "NodeSocketVector"
     },
     {
       "default_value": [
         0.9553954005241394,
-        0.20943038165569305,
+        0.4217880368232727,
         0.20943038165569305,
         1
       ],
       "name": "Base Color",
-      "socket_index": 0,
+      "socket_index": 67,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5028865933418274,
-        0.10074843466281891,
+        0.4453256130218506,
         0.10074843466281891,
         1
       ],
       "name": "Secondary Color",
-      "socket_index": 1,
+      "socket_index": 68,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5,
-        0.03720312938094139,
+        0.14809265732765198,
         0.03720312938094139,
         1
       ],
       "name": "Tertiary Color",
-      "socket_index": 2,
+      "socket_index": 69,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0.5,
       "name": "Offset Color Strength",
-      "socket_index": 3,
+      "socket_index": 70,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 5,
       "name": "Texture Scale",
-      "socket_index": 4,
+      "socket_index": 71,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0.5,
       "name": "Bump Strength",
-      "socket_index": 5,
+      "socket_index": 72,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -71991,13 +74825,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Extra Bump",
-      "socket_index": 6,
+      "socket_index": 73,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0,
       "name": "Extra Bump Strength",
-      "socket_index": 7,
+      "socket_index": 74,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -72007,58 +74841,58 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 8,
+      "socket_index": 75,
       "type": "NodeSocketVector"
     },
     {
       "default_value": [
         0.9553954005241394,
-        0.20943038165569305,
+        0.4217880368232727,
         0.20943038165569305,
         1
       ],
       "name": "Base Color",
-      "socket_index": 0,
+      "socket_index": 76,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5028865933418274,
-        0.10074843466281891,
+        0.4453256130218506,
         0.10074843466281891,
         1
       ],
       "name": "Secondary Color",
-      "socket_index": 1,
+      "socket_index": 77,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5,
-        0.03720312938094139,
+        0.14809265732765198,
         0.03720312938094139,
         1
       ],
       "name": "Tertiary Color",
-      "socket_index": 2,
+      "socket_index": 78,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0.5,
       "name": "Offset Color Strength",
-      "socket_index": 3,
+      "socket_index": 79,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 5,
       "name": "Texture Scale",
-      "socket_index": 4,
+      "socket_index": 80,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0.20000000298023224,
       "name": "Bump Strength",
-      "socket_index": 5,
+      "socket_index": 81,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -72069,13 +74903,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Extra Bump",
-      "socket_index": 6,
+      "socket_index": 82,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0,
       "name": "Extra Bump Strength",
-      "socket_index": 7,
+      "socket_index": 83,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -72085,94 +74919,94 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 8,
+      "socket_index": 84,
       "type": "NodeSocketVector"
     },
     {
       "default_value": 0,
       "name": "Input",
-      "socket_index": 0,
+      "socket_index": 85,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0,
       "name": "Input",
-      "socket_index": 0,
+      "socket_index": 86,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0,
       "name": "Input",
-      "socket_index": 0,
+      "socket_index": 87,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": [
         0.9553954005241394,
-        0.20943038165569305,
+        0.4217880368232727,
         0.20943038165569305,
         1
       ],
       "name": "Base Color",
-      "socket_index": 0,
+      "socket_index": 88,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5028865933418274,
-        0.10074843466281891,
+        0.4453256130218506,
         0.10074843466281891,
         1
       ],
       "name": "Secondary Color",
-      "socket_index": 1,
+      "socket_index": 89,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5,
-        0.03720312938094139,
+        0.14809265732765198,
         0.03720312938094139,
         1
       ],
       "name": "Tertiary Color",
-      "socket_index": 2,
+      "socket_index": 90,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0.5,
       "name": "Offset Color Strength",
-      "socket_index": 3,
+      "socket_index": 91,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 1,
       "name": "Texture Scale",
-      "socket_index": 4,
+      "socket_index": 92,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 10,
       "name": "Detail",
-      "socket_index": 5,
+      "socket_index": 93,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 3,
       "name": "Detail Scale",
-      "socket_index": 6,
+      "socket_index": 94,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 3,
       "name": "Distortion",
-      "socket_index": 7,
+      "socket_index": 95,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0.5,
       "name": "Bump Strength",
-      "socket_index": 8,
+      "socket_index": 96,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -72183,13 +75017,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Extra Bump",
-      "socket_index": 9,
+      "socket_index": 97,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0,
       "name": "Extra Bump Strength",
-      "socket_index": 10,
+      "socket_index": 98,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -72199,64 +75033,64 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 11,
+      "socket_index": 99,
       "type": "NodeSocketVector"
     },
     {
       "default_value": [
         0.9553954005241394,
-        0.20943038165569305,
+        0.4217880368232727,
         0.20943038165569305,
         1
       ],
       "name": "Base Color",
-      "socket_index": 0,
+      "socket_index": 100,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5028865933418274,
-        0.10074843466281891,
+        0.4453256130218506,
         0.10074843466281891,
         1
       ],
       "name": "Secondary Color",
-      "socket_index": 1,
+      "socket_index": 101,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5,
-        0.03720312938094139,
+        0.14809265732765198,
         0.03720312938094139,
         1
       ],
       "name": "Tertiary Color",
-      "socket_index": 2,
+      "socket_index": 102,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0.5,
       "name": "Offset Color Strength",
-      "socket_index": 3,
+      "socket_index": 103,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 5,
       "name": "Texture Scale",
-      "socket_index": 4,
+      "socket_index": 104,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 20,
       "name": "Detail",
-      "socket_index": 5,
+      "socket_index": 105,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0.5953367948532104,
       "name": "Bump Strength",
-      "socket_index": 6,
+      "socket_index": 106,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -72267,13 +75101,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Extra Bump",
-      "socket_index": 7,
+      "socket_index": 107,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0,
       "name": "Extra Bump Strength",
-      "socket_index": 8,
+      "socket_index": 108,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -72283,70 +75117,70 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 9,
+      "socket_index": 109,
       "type": "NodeSocketVector"
     },
     {
       "default_value": [
         0.9553954005241394,
-        0.20943038165569305,
+        0.4217880368232727,
         0.20943038165569305,
         1
       ],
       "name": "Base Color",
-      "socket_index": 0,
+      "socket_index": 110,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5028865933418274,
-        0.10074843466281891,
+        0.4453256130218506,
         0.10074843466281891,
         1
       ],
       "name": "Secondary Color",
-      "socket_index": 1,
+      "socket_index": 111,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5,
-        0.03720312938094139,
+        0.14809265732765198,
         0.03720312938094139,
         1
       ],
       "name": "Tertiary Color",
-      "socket_index": 2,
+      "socket_index": 112,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 1,
       "name": "Offset Color Strength",
-      "socket_index": 3,
+      "socket_index": 113,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 1,
       "name": "Texture Scale",
-      "socket_index": 4,
+      "socket_index": 114,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 20,
       "name": "Detail",
-      "socket_index": 5,
+      "socket_index": 115,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 2,
       "name": "Lacunarity",
-      "socket_index": 6,
+      "socket_index": 116,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 0.5,
       "name": "Bump Strength",
-      "socket_index": 7,
+      "socket_index": 117,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -72357,13 +75191,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Extra Bump",
-      "socket_index": 8,
+      "socket_index": 118,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0,
       "name": "Extra Bump Strength",
-      "socket_index": 9,
+      "socket_index": 119,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -72373,55 +75207,55 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 10,
+      "socket_index": 120,
       "type": "NodeSocketVector"
     },
     {
       "default_value": 0,
       "name": "Input",
-      "socket_index": 0,
+      "socket_index": 121,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0,
       "name": "Input",
-      "socket_index": 0,
+      "socket_index": 122,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0,
       "name": "Input",
-      "socket_index": 0,
+      "socket_index": 123,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 3,
       "name": "Fluff Scale",
-      "socket_index": 0,
+      "socket_index": 124,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 8,
       "name": "Fluff Detail",
-      "socket_index": 1,
+      "socket_index": 125,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 3,
       "name": "Stripe Scale",
-      "socket_index": 0,
+      "socket_index": 126,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 10,
       "name": "Distortion Scale",
-      "socket_index": 1,
+      "socket_index": 127,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 1.2999999523162842,
       "name": "Lacunarity",
-      "socket_index": 2,
+      "socket_index": 128,
       "type": "NodeSocketFloat"
     },
     {
@@ -72432,7 +75266,7 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Primary Color",
-      "socket_index": 3,
+      "socket_index": 129,
       "type": "NodeSocketColor"
     },
     {
@@ -72443,13 +75277,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Secondary Color",
-      "socket_index": 4,
+      "socket_index": 130,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 1,
       "name": "Normal Strength",
-      "socket_index": 5,
+      "socket_index": 131,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -72459,13 +75293,13 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 0,
+      "socket_index": 132,
       "type": "NodeSocketVector"
     },
     {
       "default_value": 5,
       "name": "Scale",
-      "socket_index": 1,
+      "socket_index": 133,
       "type": "NodeSocketFloat"
     },
     {
@@ -72476,7 +75310,7 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Base Color",
-      "socket_index": 2,
+      "socket_index": 134,
       "type": "NodeSocketColor"
     },
     {
@@ -72487,13 +75321,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Ball Color",
-      "socket_index": 3,
+      "socket_index": 135,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 1,
       "name": "Strength",
-      "socket_index": 4,
+      "socket_index": 136,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -72503,25 +75337,25 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 0,
+      "socket_index": 137,
       "type": "NodeSocketVector"
     },
     {
       "default_value": 1,
       "name": "Scale",
-      "socket_index": 1,
+      "socket_index": 138,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 20,
       "name": "Detail",
-      "socket_index": 2,
+      "socket_index": 139,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0,
       "name": "Distortion",
-      "socket_index": 3,
+      "socket_index": 140,
       "type": "NodeSocketFloat"
     },
     {
@@ -72532,7 +75366,7 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Base Color",
-      "socket_index": 4,
+      "socket_index": 141,
       "type": "NodeSocketColor"
     },
     {
@@ -72543,13 +75377,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Cloud Color",
-      "socket_index": 5,
+      "socket_index": 142,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 1,
       "name": "Normal Strength",
-      "socket_index": 6,
+      "socket_index": 143,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -72559,19 +75393,19 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 0,
+      "socket_index": 144,
       "type": "NodeSocketVector"
     },
     {
       "default_value": 5,
       "name": "Scale",
-      "socket_index": 1,
+      "socket_index": 145,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 5,
       "name": "Edge Pattern Scale",
-      "socket_index": 2,
+      "socket_index": 146,
       "type": "NodeSocketFloat"
     },
     {
@@ -72582,7 +75416,7 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Base Color",
-      "socket_index": 3,
+      "socket_index": 147,
       "type": "NodeSocketColor"
     },
     {
@@ -72593,13 +75427,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Puddle Color",
-      "socket_index": 4,
+      "socket_index": 148,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 1,
       "name": "Normal Strength",
-      "socket_index": 5,
+      "socket_index": 149,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -72609,25 +75443,25 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 0,
+      "socket_index": 150,
       "type": "NodeSocketVector"
     },
     {
       "default_value": 3,
       "name": "Scale",
-      "socket_index": 1,
+      "socket_index": 151,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 20,
       "name": "Detail",
-      "socket_index": 2,
+      "socket_index": 152,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0,
       "name": "Distortion",
-      "socket_index": 3,
+      "socket_index": 153,
       "type": "NodeSocketFloat"
     },
     {
@@ -72638,7 +75472,7 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Primary Color",
-      "socket_index": 4,
+      "socket_index": 154,
       "type": "NodeSocketColor"
     },
     {
@@ -72649,25 +75483,25 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Secondary Color",
-      "socket_index": 5,
+      "socket_index": 155,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 1,
       "name": "Normal Strength",
-      "socket_index": 6,
+      "socket_index": 156,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 3,
       "name": "Fluff Scale",
-      "socket_index": 0,
+      "socket_index": 157,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 8,
       "name": "Fluff Detail",
-      "socket_index": 1,
+      "socket_index": 158,
       "type": "NodeSocketFloat"
     },
     {
@@ -72677,31 +75511,31 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 0,
+      "socket_index": 159,
       "type": "NodeSocketVector"
     },
     {
       "default_value": 5,
       "name": "Base Scale",
-      "socket_index": 1,
+      "socket_index": 160,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 5,
       "name": "Warp Scale",
-      "socket_index": 2,
+      "socket_index": 161,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 10,
       "name": "Detail",
-      "socket_index": 3,
+      "socket_index": 162,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0,
       "name": "Distortion",
-      "socket_index": 4,
+      "socket_index": 163,
       "type": "NodeSocketFloat"
     },
     {
@@ -72712,7 +75546,7 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Primary Color",
-      "socket_index": 5,
+      "socket_index": 164,
       "type": "NodeSocketColor"
     },
     {
@@ -72723,19 +75557,19 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Secondary Color",
-      "socket_index": 6,
+      "socket_index": 165,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 1,
       "name": "Normal Strength",
-      "socket_index": 7,
+      "socket_index": 166,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 0,
       "name": "Input",
-      "socket_index": 0,
+      "socket_index": 167,
       "type": "NodeSocketFloat"
     },
     {
@@ -72745,13 +75579,13 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 0,
+      "socket_index": 168,
       "type": "NodeSocketVector"
     },
     {
       "default_value": 50,
       "name": "Scale",
-      "socket_index": 1,
+      "socket_index": 169,
       "type": "NodeSocketFloat"
     },
     {
@@ -72762,7 +75596,7 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Base Color",
-      "socket_index": 2,
+      "socket_index": 170,
       "type": "NodeSocketColor"
     },
     {
@@ -72773,64 +75607,64 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Dot Color",
-      "socket_index": 3,
+      "socket_index": 171,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 1,
       "name": "Normal Strength",
-      "socket_index": 4,
+      "socket_index": 172,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": [
         0.9553954005241394,
-        0.20943038165569305,
+        0.4217880368232727,
         0.20943038165569305,
         1
       ],
       "name": "Base Color",
-      "socket_index": 0,
+      "socket_index": 173,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5028865933418274,
-        0.10074843466281891,
+        0.4453256130218506,
         0.10074843466281891,
         1
       ],
       "name": "Secondary Color",
-      "socket_index": 1,
+      "socket_index": 174,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5,
-        0.03720312938094139,
+        0.14809265732765198,
         0.03720312938094139,
         1
       ],
       "name": "Tertiary Color",
-      "socket_index": 2,
+      "socket_index": 175,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0.5,
       "name": "Offset Color Strength",
-      "socket_index": 3,
+      "socket_index": 176,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 5,
       "name": "Texture Scale",
-      "socket_index": 4,
+      "socket_index": 177,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 1,
       "name": "Bump Strength",
-      "socket_index": 5,
+      "socket_index": 178,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -72841,13 +75675,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Extra Bump",
-      "socket_index": 6,
+      "socket_index": 179,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0,
       "name": "Extra Bump Strength",
-      "socket_index": 7,
+      "socket_index": 180,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -72857,13 +75691,13 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 8,
+      "socket_index": 181,
       "type": "NodeSocketVector"
     },
     {
       "default_value": 0,
       "name": "Input",
-      "socket_index": 0,
+      "socket_index": 182,
       "type": "NodeSocketFloat"
     },
     {
@@ -72873,25 +75707,25 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 0,
+      "socket_index": 183,
       "type": "NodeSocketVector"
     },
     {
       "default_value": 1,
       "name": "Color Scale",
-      "socket_index": 1,
+      "socket_index": 184,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 25,
       "name": "Bump Scale",
-      "socket_index": 2,
+      "socket_index": 185,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 1,
       "name": "Normal Strength",
-      "socket_index": 3,
+      "socket_index": 186,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -72901,58 +75735,58 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 0,
+      "socket_index": 187,
       "type": "NodeSocketVector"
     },
     {
       "default_value": 5,
       "name": "Color Scale",
-      "socket_index": 1,
+      "socket_index": 188,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 3,
       "name": "Normal Scale",
-      "socket_index": 2,
+      "socket_index": 189,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": [
         0.34191441535949707,
-        0.18447501957416534,
+        0.24228113889694214,
         0.18447501957416534,
         1
       ],
       "name": "Base Color",
-      "socket_index": 3,
+      "socket_index": 190,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.14296220242977142,
-        0.053180523216724396,
+        0.085452139377594,
         0.053180523216724396,
         1
       ],
       "name": "Secondary Color",
-      "socket_index": 4,
+      "socket_index": 191,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.11792322993278503,
-        0.05263402685523033,
+        0.07576367259025574,
         0.05263402685523033,
         1
       ],
       "name": "Tertiary Color",
-      "socket_index": 5,
+      "socket_index": 192,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0.6000000238418579,
       "name": "Normal Strength",
-      "socket_index": 6,
+      "socket_index": 193,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -72962,92 +75796,92 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 0,
+      "socket_index": 194,
       "type": "NodeSocketVector"
     },
     {
       "default_value": 3,
       "name": "Scale",
-      "socket_index": 1,
+      "socket_index": 195,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": [
         0.018233012408018112,
-        0.011345821432769299,
+        0.01702404022216797,
         0.011345821432769299,
         1
       ],
       "name": "Base Color 1",
-      "socket_index": 2,
+      "socket_index": 196,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.048171836882829666,
-        0.016415856778621674,
+        0.028759686276316643,
         0.016415856778621674,
         1
       ],
       "name": "Base Color 2",
-      "socket_index": 3,
+      "socket_index": 197,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5,
-        0.014754770323634148,
+        0.1480759233236313,
         0.014754770323634148,
         1
       ],
       "name": "Vein Color 1",
-      "socket_index": 4,
+      "socket_index": 198,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.508245587348938,
-        0.05428784340620041,
+        0.22192531824111938,
         0.05428784340620041,
         1
       ],
       "name": "Vein Color 2",
-      "socket_index": 5,
+      "socket_index": 199,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.508245587348938,
-        0.05428784340620041,
+        0.22192531824111938,
         0.05428784340620041,
         1
       ],
       "name": "Speckle Color",
-      "socket_index": 6,
+      "socket_index": 200,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 3,
       "name": "Fluff Scale",
-      "socket_index": 0,
+      "socket_index": 201,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 8,
       "name": "Fluff Detail",
-      "socket_index": 1,
+      "socket_index": 202,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0.5,
       "name": "Absorption Strength",
-      "socket_index": 2,
+      "socket_index": 203,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 0.5,
       "name": "Density",
-      "socket_index": 3,
+      "socket_index": 204,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -73058,7 +75892,7 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Color",
-      "socket_index": 4,
+      "socket_index": 205,
       "type": "NodeSocketColor"
     },
     {
@@ -73069,13 +75903,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Surface Color",
-      "socket_index": 0,
+      "socket_index": 206,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0.10000000149011612,
       "name": "Surface Roughness",
-      "socket_index": 1,
+      "socket_index": 207,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -73085,13 +75919,13 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Surface Normal",
-      "socket_index": 2,
+      "socket_index": 208,
       "type": "NodeSocketVector"
     },
     {
       "default_value": 0,
       "name": "Metallic",
-      "socket_index": 3,
+      "socket_index": 209,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -73102,13 +75936,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Rim Color",
-      "socket_index": 4,
+      "socket_index": 210,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0,
       "name": "Rim Strength",
-      "socket_index": 5,
+      "socket_index": 211,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -73119,37 +75953,37 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "SSS Color",
-      "socket_index": 6,
+      "socket_index": 212,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0.5,
       "name": "SSS Strength",
-      "socket_index": 7,
+      "socket_index": 213,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 0.10000000149011612,
       "name": "SSS Scale",
-      "socket_index": 8,
+      "socket_index": 214,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0,
       "name": "SSS Texture Blur",
-      "socket_index": 9,
+      "socket_index": 215,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 0,
       "name": "Clearcoat Roughness",
-      "socket_index": 10,
+      "socket_index": 216,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 0,
       "name": "Clearcoat Reflectivity",
-      "socket_index": 11,
+      "socket_index": 217,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -73159,19 +75993,19 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Clearcoat Normal",
-      "socket_index": 12,
+      "socket_index": 218,
       "type": "NodeSocketVector"
     },
     {
       "default_value": 0,
       "name": "Displacement",
-      "socket_index": 13,
+      "socket_index": 219,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 1,
       "name": "Displacement Factor",
-      "socket_index": 14,
+      "socket_index": 220,
       "type": "NodeSocketFloatFactor"
     }
   ]
@@ -73187,469 +76021,595 @@ export default class GroupMaterials extends Materials {
                 material.conversion = {
   "p_Pro_MasterNodeBase$Color": {
     "node": "Group.019",
+    "socket_index": 0,
     "input": "Base Color"
   },
   "p_Pro_MasterNodeSecondary$Color": {
     "node": "Group.019",
+    "socket_index": 1,
     "input": "Secondary Color"
   },
   "p_Pro_MasterNodeTertiary$Color": {
     "node": "Group.019",
+    "socket_index": 2,
     "input": "Tertiary Color"
   },
   "p_Pro_MasterNodeOffset$Color$Strength": {
     "node": "Group.019",
+    "socket_index": 3,
     "input": "Offset Color Strength"
   },
   "p_Pro_MasterNodeTexture$Scale": {
     "node": "Group.019",
+    "socket_index": 4,
     "input": "Texture Scale"
   },
   "p_Pro_MasterNodeDetail": {
     "node": "Group.019",
+    "socket_index": 5,
     "input": "Detail"
   },
   "p_Pro_MasterNodeLacunarity": {
     "node": "Group.019",
+    "socket_index": 6,
     "input": "Lacunarity"
   },
   "p_Pro_MasterNodeDetail$Scale": {
     "node": "Group.019",
+    "socket_index": 7,
     "input": "Detail Scale"
   },
   "p_Pro_MasterNodeDistortion": {
     "node": "Group.019",
+    "socket_index": 8,
     "input": "Distortion"
   },
   "p_Pro_MasterNodeBump$Strength": {
     "node": "Group.019",
+    "socket_index": 9,
     "input": "Bump Strength"
   },
   "p_Pro_MasterNodeExtra$Bump": {
     "node": "Group.019",
+    "socket_index": 10,
     "input": "Extra Bump"
   },
   "p_Pro_MasterNodeExtra$Bump$Strength": {
     "node": "Group.019",
+    "socket_index": 11,
     "input": "Extra Bump Strength"
   },
   "p_Pro_MasterNodeVector": {
     "node": "Group.019",
+    "socket_index": 12,
     "input": "Vector"
   },
   "pro4_MagicBase$Color": {
     "node": "Group.004",
+    "socket_index": 0,
     "input": "Base Color"
   },
   "pro4_MagicSecondary$Color": {
     "node": "Group.004",
+    "socket_index": 1,
     "input": "Secondary Color"
   },
   "pro4_MagicTertiary$Color": {
     "node": "Group.004",
+    "socket_index": 2,
     "input": "Tertiary Color"
   },
   "pro4_MagicOffset$Color$Strength": {
     "node": "Group.004",
+    "socket_index": 3,
     "input": "Offset Color Strength"
   },
   "pro4_MagicTexture$Scale": {
     "node": "Group.004",
+    "socket_index": 4,
     "input": "Texture Scale"
   },
   "pro4_MagicDistortion": {
     "node": "Group.004",
+    "socket_index": 5,
     "input": "Distortion"
   },
   "pro4_MagicBump$Strength": {
     "node": "Group.004",
+    "socket_index": 6,
     "input": "Bump Strength"
   },
   "pro4_MagicExtra$Bump": {
     "node": "Group.004",
+    "socket_index": 7,
     "input": "Extra Bump"
   },
   "pro4_MagicExtra$Bump$Strength": {
     "node": "Group.004",
+    "socket_index": 8,
     "input": "Extra Bump Strength"
   },
   "pro4_MagicVector": {
     "node": "Group.004",
+    "socket_index": 9,
     "input": "Vector"
   },
   "pro4_NoiseBase$Color": {
     "node": "Group.001",
+    "socket_index": 0,
     "input": "Base Color"
   },
   "pro4_NoiseSecondary$Color": {
     "node": "Group.001",
+    "socket_index": 1,
     "input": "Secondary Color"
   },
   "pro4_NoiseTertiary$Color": {
     "node": "Group.001",
+    "socket_index": 2,
     "input": "Tertiary Color"
   },
   "pro4_NoiseOffset$Color$Strength": {
     "node": "Group.001",
+    "socket_index": 3,
     "input": "Offset Color Strength"
   },
   "pro4_NoiseTexture$Scale": {
     "node": "Group.001",
+    "socket_index": 4,
     "input": "Texture Scale"
   },
   "pro4_NoiseDetail": {
     "node": "Group.001",
+    "socket_index": 5,
     "input": "Detail"
   },
   "pro4_NoiseBump$Strength": {
     "node": "Group.001",
+    "socket_index": 6,
     "input": "Bump Strength"
   },
   "pro4_NoiseExtra$Bump": {
     "node": "Group.001",
+    "socket_index": 7,
     "input": "Extra Bump"
   },
   "pro4_NoiseExtra$Bump$Strength": {
     "node": "Group.001",
+    "socket_index": 8,
     "input": "Extra Bump Strength"
   },
   "pro4_NoiseVector": {
     "node": "Group.001",
+    "socket_index": 9,
     "input": "Vector"
   },
   "pro4_MixBase$Color": {
     "node": "Group.008",
+    "socket_index": 0,
     "input": "Base Color"
   },
   "pro4_MixSecondary$Color": {
     "node": "Group.008",
+    "socket_index": 1,
     "input": "Secondary Color"
   },
   "pro4_MixTertiary$Color": {
     "node": "Group.008",
+    "socket_index": 2,
     "input": "Tertiary Color"
   },
   "pro4_MixOffset$Color$Strength": {
     "node": "Group.008",
+    "socket_index": 3,
     "input": "Offset Color Strength"
   },
   "pro4_MixTexture$Scale": {
     "node": "Group.008",
+    "socket_index": 4,
     "input": "Texture Scale"
   },
   "pro4_MixDetail": {
     "node": "Group.008",
+    "socket_index": 5,
     "input": "Detail"
   },
   "pro4_MixLacunarity": {
     "node": "Group.008",
+    "socket_index": 6,
     "input": "Lacunarity"
   },
   "pro4_MixBump$Strength": {
     "node": "Group.008",
+    "socket_index": 7,
     "input": "Bump Strength"
   },
   "pro4_MixExtra$Bump": {
     "node": "Group.008",
+    "socket_index": 8,
     "input": "Extra Bump"
   },
   "pro4_MixExtra$Bump$Strength": {
     "node": "Group.008",
+    "socket_index": 9,
     "input": "Extra Bump Strength"
   },
   "pro4_MixVector": {
     "node": "Group.008",
+    "socket_index": 10,
     "input": "Vector"
   },
   "pro4_MusgraveBase$Color": {
     "node": "Group",
+    "socket_index": 0,
     "input": "Base Color"
   },
   "pro4_MusgraveSecondary$Color": {
     "node": "Group",
+    "socket_index": 1,
     "input": "Secondary Color"
   },
   "pro4_MusgraveTertiary$Color": {
     "node": "Group",
+    "socket_index": 2,
     "input": "Tertiary Color"
   },
   "pro4_MusgraveOffset$Color$Strength": {
     "node": "Group",
+    "socket_index": 3,
     "input": "Offset Color Strength"
   },
   "pro4_MusgraveTexture$Scale": {
     "node": "Group",
+    "socket_index": 4,
     "input": "Texture Scale"
   },
   "pro4_MusgraveDetail": {
     "node": "Group",
+    "socket_index": 5,
     "input": "Detail"
   },
   "pro4_MusgraveLacunarity": {
     "node": "Group",
+    "socket_index": 6,
     "input": "Lacunarity"
   },
   "pro4_MusgraveBump$Strength": {
     "node": "Group",
+    "socket_index": 7,
     "input": "Bump Strength"
   },
   "pro4_MusgraveExtra$Bump": {
     "node": "Group",
+    "socket_index": 8,
     "input": "Extra Bump"
   },
   "pro4_MusgraveExtra$Bump$Strength": {
     "node": "Group",
+    "socket_index": 9,
     "input": "Extra Bump Strength"
   },
   "pro4_MusgraveVector": {
     "node": "Group",
+    "socket_index": 10,
     "input": "Vector"
   },
   "pro4_Waves$SineBase$Color": {
     "node": "Group.005",
+    "socket_index": 0,
     "input": "Base Color"
   },
   "pro4_Waves$SineSecondary$Color": {
     "node": "Group.005",
+    "socket_index": 1,
     "input": "Secondary Color"
   },
   "pro4_Waves$SineTertiary$Color": {
     "node": "Group.005",
+    "socket_index": 2,
     "input": "Tertiary Color"
   },
   "pro4_Waves$SineOffset$Color$Strength": {
     "node": "Group.005",
+    "socket_index": 3,
     "input": "Offset Color Strength"
   },
   "pro4_Waves$SineTexture$Scale": {
     "node": "Group.005",
+    "socket_index": 4,
     "input": "Texture Scale"
   },
   "pro4_Waves$SineDetail": {
     "node": "Group.005",
+    "socket_index": 5,
     "input": "Detail"
   },
   "pro4_Waves$SineDetail$Scale": {
     "node": "Group.005",
+    "socket_index": 6,
     "input": "Detail Scale"
   },
   "pro4_Waves$SineDistortion": {
     "node": "Group.005",
+    "socket_index": 7,
     "input": "Distortion"
   },
   "pro4_Waves$SineBump$Strength": {
     "node": "Group.005",
+    "socket_index": 8,
     "input": "Bump Strength"
   },
   "pro4_Waves$SineExtra$Bump": {
     "node": "Group.005",
+    "socket_index": 9,
     "input": "Extra Bump"
   },
   "pro4_Waves$SineExtra$Bump$Strength": {
     "node": "Group.005",
+    "socket_index": 10,
     "input": "Extra Bump Strength"
   },
   "pro4_Waves$SineVector": {
     "node": "Group.005",
+    "socket_index": 11,
     "input": "Vector"
   },
   "pro4_Waves$SawBase$Color": {
     "node": "Group.007",
+    "socket_index": 0,
     "input": "Base Color"
   },
   "pro4_Waves$SawSecondary$Color": {
     "node": "Group.007",
+    "socket_index": 1,
     "input": "Secondary Color"
   },
   "pro4_Waves$SawTertiary$Color": {
     "node": "Group.007",
+    "socket_index": 2,
     "input": "Tertiary Color"
   },
   "pro4_Waves$SawOffset$Color$Strength": {
     "node": "Group.007",
+    "socket_index": 3,
     "input": "Offset Color Strength"
   },
   "pro4_Waves$SawTexture$Scale": {
     "node": "Group.007",
+    "socket_index": 4,
     "input": "Texture Scale"
   },
   "pro4_Waves$SawDetail": {
     "node": "Group.007",
+    "socket_index": 5,
     "input": "Detail"
   },
   "pro4_Waves$SawDetail$Scale": {
     "node": "Group.007",
+    "socket_index": 6,
     "input": "Detail Scale"
   },
   "pro4_Waves$SawDistortion": {
     "node": "Group.007",
+    "socket_index": 7,
     "input": "Distortion"
   },
   "pro4_Waves$SawBump$Strength": {
     "node": "Group.007",
+    "socket_index": 8,
     "input": "Bump Strength"
   },
   "pro4_Waves$SawExtra$Bump": {
     "node": "Group.007",
+    "socket_index": 9,
     "input": "Extra Bump"
   },
   "pro4_Waves$SawExtra$Bump$Strength": {
     "node": "Group.007",
+    "socket_index": 10,
     "input": "Extra Bump Strength"
   },
   "pro4_Waves$SawVector": {
     "node": "Group.007",
+    "socket_index": 11,
     "input": "Vector"
   },
   "pro4_Voronoi$IntensityBase$Color": {
     "node": "Group.003",
+    "socket_index": 0,
     "input": "Base Color"
   },
   "pro4_Voronoi$IntensitySecondary$Color": {
     "node": "Group.003",
+    "socket_index": 1,
     "input": "Secondary Color"
   },
   "pro4_Voronoi$IntensityTertiary$Color": {
     "node": "Group.003",
+    "socket_index": 2,
     "input": "Tertiary Color"
   },
   "pro4_Voronoi$IntensityOffset$Color$Strength": {
     "node": "Group.003",
+    "socket_index": 3,
     "input": "Offset Color Strength"
   },
   "pro4_Voronoi$IntensityTexture$Scale": {
     "node": "Group.003",
+    "socket_index": 4,
     "input": "Texture Scale"
   },
   "pro4_Voronoi$IntensityBump$Strength": {
     "node": "Group.003",
+    "socket_index": 5,
     "input": "Bump Strength"
   },
   "pro4_Voronoi$IntensityExtra$Bump": {
     "node": "Group.003",
+    "socket_index": 6,
     "input": "Extra Bump"
   },
   "pro4_Voronoi$IntensityExtra$Bump$Strength": {
     "node": "Group.003",
+    "socket_index": 7,
     "input": "Extra Bump Strength"
   },
   "pro4_Voronoi$IntensityVector": {
     "node": "Group.003",
+    "socket_index": 8,
     "input": "Vector"
   },
   "pro4_Voronoi$CellsBase$Color": {
     "node": "Group.002",
+    "socket_index": 0,
     "input": "Base Color"
   },
   "pro4_Voronoi$CellsSecondary$Color": {
     "node": "Group.002",
+    "socket_index": 1,
     "input": "Secondary Color"
   },
   "pro4_Voronoi$CellsTertiary$Color": {
     "node": "Group.002",
+    "socket_index": 2,
     "input": "Tertiary Color"
   },
   "pro4_Voronoi$CellsOffset$Color$Strength": {
     "node": "Group.002",
+    "socket_index": 3,
     "input": "Offset Color Strength"
   },
   "pro4_Voronoi$CellsTexture$Scale": {
     "node": "Group.002",
+    "socket_index": 4,
     "input": "Texture Scale"
   },
   "pro4_Voronoi$CellsBump$Strength": {
     "node": "Group.002",
+    "socket_index": 5,
     "input": "Bump Strength"
   },
   "pro4_Voronoi$CellsExtra$Bump": {
     "node": "Group.002",
+    "socket_index": 6,
     "input": "Extra Bump"
   },
   "pro4_Voronoi$CellsExtra$Bump$Strength": {
     "node": "Group.002",
+    "socket_index": 7,
     "input": "Extra Bump Strength"
   },
   "pro4_Voronoi$CellsVector": {
     "node": "Group.002",
+    "socket_index": 8,
     "input": "Vector"
   },
   "pro4_CheckerBase$Color": {
     "node": "Group.009",
+    "socket_index": 0,
     "input": "Base Color"
   },
   "pro4_CheckerSecondary$Color": {
     "node": "Group.009",
+    "socket_index": 1,
     "input": "Secondary Color"
   },
   "pro4_CheckerTertiary$Color": {
     "node": "Group.009",
+    "socket_index": 2,
     "input": "Tertiary Color"
   },
   "pro4_CheckerOffset$Color$Strength": {
     "node": "Group.009",
+    "socket_index": 3,
     "input": "Offset Color Strength"
   },
   "pro4_CheckerTexture$Scale": {
     "node": "Group.009",
+    "socket_index": 4,
     "input": "Texture Scale"
   },
   "pro4_CheckerBump$Strength": {
     "node": "Group.009",
+    "socket_index": 5,
     "input": "Bump Strength"
   },
   "pro4_CheckerExtra$Bump": {
     "node": "Group.009",
+    "socket_index": 6,
     "input": "Extra Bump"
   },
   "pro4_CheckerExtra$Bump$Strength": {
     "node": "Group.009",
+    "socket_index": 7,
     "input": "Extra Bump Strength"
   },
   "pro4_CheckerVector": {
     "node": "Group.009",
+    "socket_index": 8,
     "input": "Vector"
   },
   "pBR_ShaderColor": {
     "node": "Group.006",
+    "socket_index": 0,
     "input": "Color"
   },
   "pBR_ShaderRim$Color": {
     "node": "Group.006",
+    "socket_index": 1,
     "input": "Rim Color"
   },
   "pBR_ShaderRim$Amount": {
     "node": "Group.006",
+    "socket_index": 2,
     "input": "Rim Amount"
   },
   "pBR_ShaderNonMetal$$Metal": {
     "node": "Group.006",
+    "socket_index": 3,
     "input": "Non-Metal <-> Metal"
   },
   "pBR_ShaderRoughness": {
     "node": "Group.006",
+    "socket_index": 4,
     "input": "Roughness"
   },
   "pBR_ShaderOffset$Roughness": {
     "node": "Group.006",
+    "socket_index": 5,
     "input": "Offset Roughness"
   },
   "pBR_ShaderReflectivity": {
     "node": "Group.006",
+    "socket_index": 6,
     "input": "Reflectivity"
   },
   "pBR_ShaderOffset$Reflectivity": {
     "node": "Group.006",
+    "socket_index": 7,
     "input": "Offset Reflectivity"
   },
   "pBR_ShaderIOR": {
     "node": "Group.006",
+    "socket_index": 8,
     "input": "IOR"
   },
   "pBR_ShaderNormal": {
     "node": "Group.006",
+    "socket_index": 9,
     "input": "Normal"
   }
-}
+};
+                material.outputs = {
+  "Surface": "NodeSocketShader",
+  "Volume": "NodeSocketShader",
+  "Displacement": "NodeSocketVector"
+};
+                material.outputIndexes = {
+  "Surface": 0,
+  "Volume": 1,
+  "Displacement": 2
+};
                 material.p_Pro_MasterNodeBase$Color = p_Pro_MasterNodeBase$Color;
                 material.p_Pro_MasterNodeSecondary$Color = p_Pro_MasterNodeSecondary$Color;
                 material.p_Pro_MasterNodeTertiary$Color = p_Pro_MasterNodeTertiary$Color;
@@ -73789,7 +76749,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -73805,7 +76764,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -73821,7 +76779,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Tertiary Color",
         "type": "NodeSocketColor",
@@ -73837,7 +76794,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Color Strength",
         "type": "NodeSocketFloatFactor",
@@ -73853,7 +76809,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Texture Scale",
         "type": "NodeSocketFloat",
@@ -73869,7 +76824,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Detail",
         "type": "NodeSocketFloat",
@@ -73885,7 +76839,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Lacunarity",
         "type": "NodeSocketFloatFactor",
@@ -73901,7 +76854,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Detail Scale",
         "type": "NodeSocketFloat",
@@ -73917,7 +76869,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Distortion",
         "type": "NodeSocketFloat",
@@ -73933,7 +76884,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -73949,7 +76899,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump",
         "type": "NodeSocketColor",
@@ -73965,7 +76914,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -73981,7 +76929,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -73997,7 +76944,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -74013,7 +76959,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -74029,7 +76974,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Tertiary Color",
         "type": "NodeSocketColor",
@@ -74045,7 +76989,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Color Strength",
         "type": "NodeSocketFloatFactor",
@@ -74061,7 +77004,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Texture Scale",
         "type": "NodeSocketFloat",
@@ -74077,7 +77019,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Distortion",
         "type": "NodeSocketFloat",
@@ -74093,7 +77034,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -74109,7 +77049,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump",
         "type": "NodeSocketColor",
@@ -74125,7 +77064,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -74141,7 +77079,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -74157,7 +77094,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -74173,7 +77109,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -74189,7 +77124,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Tertiary Color",
         "type": "NodeSocketColor",
@@ -74205,7 +77139,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Color Strength",
         "type": "NodeSocketFloatFactor",
@@ -74221,7 +77154,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Texture Scale",
         "type": "NodeSocketFloat",
@@ -74237,7 +77169,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Detail",
         "type": "NodeSocketFloat",
@@ -74253,7 +77184,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -74269,7 +77199,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump",
         "type": "NodeSocketColor",
@@ -74285,7 +77214,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -74301,7 +77229,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -74317,7 +77244,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -74333,7 +77259,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -74349,7 +77274,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Tertiary Color",
         "type": "NodeSocketColor",
@@ -74365,7 +77289,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Color Strength",
         "type": "NodeSocketFloatFactor",
@@ -74381,7 +77304,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Texture Scale",
         "type": "NodeSocketFloat",
@@ -74397,7 +77319,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Detail",
         "type": "NodeSocketFloat",
@@ -74413,7 +77334,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Lacunarity",
         "type": "NodeSocketFloat",
@@ -74429,7 +77349,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -74445,7 +77364,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump",
         "type": "NodeSocketColor",
@@ -74461,7 +77379,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -74477,7 +77394,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -74493,7 +77409,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -74509,7 +77424,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -74525,7 +77439,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Tertiary Color",
         "type": "NodeSocketColor",
@@ -74541,7 +77454,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Color Strength",
         "type": "NodeSocketFloatFactor",
@@ -74557,7 +77469,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Texture Scale",
         "type": "NodeSocketFloat",
@@ -74573,7 +77484,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Detail",
         "type": "NodeSocketFloat",
@@ -74589,7 +77499,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Lacunarity",
         "type": "NodeSocketFloatFactor",
@@ -74605,7 +77514,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -74621,7 +77529,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump",
         "type": "NodeSocketColor",
@@ -74637,7 +77544,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -74653,7 +77559,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -74669,7 +77574,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -74685,7 +77589,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -74701,7 +77604,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Tertiary Color",
         "type": "NodeSocketColor",
@@ -74717,7 +77619,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Color Strength",
         "type": "NodeSocketFloatFactor",
@@ -74733,7 +77634,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Texture Scale",
         "type": "NodeSocketFloat",
@@ -74749,7 +77649,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Detail",
         "type": "NodeSocketFloat",
@@ -74765,7 +77664,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Detail Scale",
         "type": "NodeSocketFloat",
@@ -74781,7 +77679,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Distortion",
         "type": "NodeSocketFloat",
@@ -74797,7 +77694,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -74813,7 +77709,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump",
         "type": "NodeSocketColor",
@@ -74829,7 +77724,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -74845,7 +77739,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -74861,7 +77754,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -74877,7 +77769,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -74893,7 +77784,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Tertiary Color",
         "type": "NodeSocketColor",
@@ -74909,7 +77799,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Color Strength",
         "type": "NodeSocketFloatFactor",
@@ -74925,7 +77814,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Texture Scale",
         "type": "NodeSocketFloat",
@@ -74941,7 +77829,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Detail",
         "type": "NodeSocketFloat",
@@ -74957,7 +77844,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Detail Scale",
         "type": "NodeSocketFloat",
@@ -74973,7 +77859,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Distortion",
         "type": "NodeSocketFloat",
@@ -74989,7 +77874,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -75005,7 +77889,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump",
         "type": "NodeSocketColor",
@@ -75021,7 +77904,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -75037,7 +77919,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -75053,7 +77934,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -75069,7 +77949,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -75085,7 +77964,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Tertiary Color",
         "type": "NodeSocketColor",
@@ -75101,7 +77979,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Color Strength",
         "type": "NodeSocketFloatFactor",
@@ -75117,7 +77994,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Texture Scale",
         "type": "NodeSocketFloat",
@@ -75133,7 +78009,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -75149,7 +78024,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump",
         "type": "NodeSocketColor",
@@ -75165,7 +78039,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -75181,7 +78054,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -75197,7 +78069,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -75213,7 +78084,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -75229,7 +78099,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Tertiary Color",
         "type": "NodeSocketColor",
@@ -75245,7 +78114,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Color Strength",
         "type": "NodeSocketFloatFactor",
@@ -75261,7 +78129,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Texture Scale",
         "type": "NodeSocketFloat",
@@ -75277,7 +78144,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -75293,7 +78159,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump",
         "type": "NodeSocketColor",
@@ -75309,7 +78174,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -75325,7 +78189,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -75341,7 +78204,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -75357,7 +78219,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -75373,7 +78234,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Tertiary Color",
         "type": "NodeSocketColor",
@@ -75389,7 +78249,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Color Strength",
         "type": "NodeSocketFloatFactor",
@@ -75405,7 +78264,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Texture Scale",
         "type": "NodeSocketFloat",
@@ -75421,7 +78279,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -75437,7 +78294,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump",
         "type": "NodeSocketColor",
@@ -75453,7 +78309,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Extra Bump Strength",
         "type": "NodeSocketFloatFactor",
@@ -75469,7 +78324,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -75485,7 +78339,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Color",
         "type": "NodeSocketColor",
@@ -75501,7 +78354,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Rim Color",
         "type": "NodeSocketColor",
@@ -75517,7 +78369,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Rim Amount",
         "type": "NodeSocketFloat",
@@ -75533,7 +78384,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Non-Metal <-> Metal",
         "type": "NodeSocketFloatFactor",
@@ -75549,7 +78399,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Roughness",
         "type": "NodeSocketFloatFactor",
@@ -75565,7 +78414,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Roughness",
         "type": "NodeSocketFloat",
@@ -75581,7 +78429,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Reflectivity",
         "type": "NodeSocketFloatFactor",
@@ -75597,7 +78444,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Offset Reflectivity",
         "type": "NodeSocketFloat",
@@ -75613,7 +78459,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "IOR",
         "type": "NodeSocketFloat",
@@ -75629,7 +78474,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 12,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Normal",
         "type": "NodeSocketVector",
@@ -75693,7 +78537,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -75704,7 +78548,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -75715,7 +78559,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -75950,7 +78794,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -75961,7 +78805,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -75972,7 +78816,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -76069,7 +78913,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -76080,7 +78924,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -76091,7 +78935,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -76188,7 +79032,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -76199,7 +79043,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -76210,7 +79054,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -76313,7 +79157,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -76324,7 +79168,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -76335,7 +79179,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -76438,7 +79282,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -76449,7 +79293,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -76460,7 +79304,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -76569,7 +79413,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -76580,7 +79424,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -76591,7 +79435,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -76700,7 +79544,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -76711,7 +79555,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -76722,7 +79566,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -76813,7 +79657,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -76824,7 +79668,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -76835,7 +79679,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -76926,7 +79770,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -76937,7 +79781,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -76948,7 +79792,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -77039,7 +79883,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.8000000715255737,
-            0.0025751744396984577,
+            0,
             0.0025751744396984577,
             1
           ],
@@ -77050,7 +79894,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6254019141197205,
-            0.07633601874113083,
+            0.3592257797718048,
             0.07633601874113083,
             1
           ],
@@ -77144,7 +79988,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -77155,7 +79999,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -77166,7 +80010,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -77246,7 +80090,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -77257,7 +80101,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -77268,7 +80112,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -77330,7 +80174,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -77341,7 +80185,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -77352,7 +80196,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -77414,7 +80258,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -77425,7 +80269,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -77436,7 +80280,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -77504,7 +80348,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -77515,7 +80359,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -77526,7 +80370,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -77594,7 +80438,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -77605,7 +80449,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -77616,7 +80460,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -77690,7 +80534,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -77701,7 +80545,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -77712,7 +80556,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -77786,7 +80630,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -77797,7 +80641,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -77808,7 +80652,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -77864,7 +80708,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -77875,7 +80719,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -77886,7 +80730,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -77942,7 +80786,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.9553954005241394,
-            0.20943038165569305,
+            0.4217880368232727,
             0.20943038165569305,
             1
           ],
@@ -77953,7 +80797,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5028865933418274,
-            0.10074843466281891,
+            0.4453256130218506,
             0.10074843466281891,
             1
           ],
@@ -77964,7 +80808,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.5,
-            0.03720312938094139,
+            0.14809265732765198,
             0.03720312938094139,
             1
           ],
@@ -78020,7 +80864,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.8000000715255737,
-            0.0025751744396984577,
+            0,
             0.0025751744396984577,
             1
           ],
@@ -78031,7 +80875,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.6254019141197205,
-            0.07633601874113083,
+            0.3592257797718048,
             0.07633601874113083,
             1
           ],
@@ -78099,7 +80943,7 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": [
         0.9553954005241394,
-        0.20943038165569305,
+        0.4217880368232727,
         0.20943038165569305,
         1
       ],
@@ -78110,7 +80954,7 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": [
         0.5028865933418274,
-        0.10074843466281891,
+        0.4453256130218506,
         0.10074843466281891,
         1
       ],
@@ -78121,7 +80965,7 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": [
         0.5,
-        0.03720312938094139,
+        0.14809265732765198,
         0.03720312938094139,
         1
       ],
@@ -78201,58 +81045,58 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": [
         0.9553954005241394,
-        0.20943038165569305,
+        0.4217880368232727,
         0.20943038165569305,
         1
       ],
       "name": "Base Color",
-      "socket_index": 0,
+      "socket_index": 13,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5028865933418274,
-        0.10074843466281891,
+        0.4453256130218506,
         0.10074843466281891,
         1
       ],
       "name": "Secondary Color",
-      "socket_index": 1,
+      "socket_index": 14,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5,
-        0.03720312938094139,
+        0.14809265732765198,
         0.03720312938094139,
         1
       ],
       "name": "Tertiary Color",
-      "socket_index": 2,
+      "socket_index": 15,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0.5,
       "name": "Offset Color Strength",
-      "socket_index": 3,
+      "socket_index": 16,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 2,
       "name": "Texture Scale",
-      "socket_index": 4,
+      "socket_index": 17,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 1,
       "name": "Distortion",
-      "socket_index": 5,
+      "socket_index": 18,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0.20000000298023224,
       "name": "Bump Strength",
-      "socket_index": 6,
+      "socket_index": 19,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -78263,13 +81107,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Extra Bump",
-      "socket_index": 7,
+      "socket_index": 20,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0,
       "name": "Extra Bump Strength",
-      "socket_index": 8,
+      "socket_index": 21,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -78279,64 +81123,64 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 9,
+      "socket_index": 22,
       "type": "NodeSocketVector"
     },
     {
       "default_value": [
         0.9553954005241394,
-        0.20943038165569305,
+        0.4217880368232727,
         0.20943038165569305,
         1
       ],
       "name": "Base Color",
-      "socket_index": 0,
+      "socket_index": 23,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5028865933418274,
-        0.10074843466281891,
+        0.4453256130218506,
         0.10074843466281891,
         1
       ],
       "name": "Secondary Color",
-      "socket_index": 1,
+      "socket_index": 24,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5,
-        0.03720312938094139,
+        0.14809265732765198,
         0.03720312938094139,
         1
       ],
       "name": "Tertiary Color",
-      "socket_index": 2,
+      "socket_index": 25,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0.5,
       "name": "Offset Color Strength",
-      "socket_index": 3,
+      "socket_index": 26,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 5,
       "name": "Texture Scale",
-      "socket_index": 4,
+      "socket_index": 27,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 20,
       "name": "Detail",
-      "socket_index": 5,
+      "socket_index": 28,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0.5953367948532104,
       "name": "Bump Strength",
-      "socket_index": 6,
+      "socket_index": 29,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -78347,13 +81191,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Extra Bump",
-      "socket_index": 7,
+      "socket_index": 30,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0,
       "name": "Extra Bump Strength",
-      "socket_index": 8,
+      "socket_index": 31,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -78363,70 +81207,70 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 9,
+      "socket_index": 32,
       "type": "NodeSocketVector"
     },
     {
       "default_value": [
         0.9553954005241394,
-        0.20943038165569305,
+        0.4217880368232727,
         0.20943038165569305,
         1
       ],
       "name": "Base Color",
-      "socket_index": 0,
+      "socket_index": 33,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5028865933418274,
-        0.10074843466281891,
+        0.4453256130218506,
         0.10074843466281891,
         1
       ],
       "name": "Secondary Color",
-      "socket_index": 1,
+      "socket_index": 34,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5,
-        0.03720312938094139,
+        0.14809265732765198,
         0.03720312938094139,
         1
       ],
       "name": "Tertiary Color",
-      "socket_index": 2,
+      "socket_index": 35,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0.5,
       "name": "Offset Color Strength",
-      "socket_index": 3,
+      "socket_index": 36,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 3,
       "name": "Texture Scale",
-      "socket_index": 4,
+      "socket_index": 37,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 50,
       "name": "Detail",
-      "socket_index": 5,
+      "socket_index": 38,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 2,
       "name": "Lacunarity",
-      "socket_index": 6,
+      "socket_index": 39,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0.20000000298023224,
       "name": "Bump Strength",
-      "socket_index": 7,
+      "socket_index": 40,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -78437,13 +81281,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Extra Bump",
-      "socket_index": 8,
+      "socket_index": 41,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0,
       "name": "Extra Bump Strength",
-      "socket_index": 9,
+      "socket_index": 42,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -78453,70 +81297,70 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 10,
+      "socket_index": 43,
       "type": "NodeSocketVector"
     },
     {
       "default_value": [
         0.9553954005241394,
-        0.20943038165569305,
+        0.4217880368232727,
         0.20943038165569305,
         1
       ],
       "name": "Base Color",
-      "socket_index": 0,
+      "socket_index": 44,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5028865933418274,
-        0.10074843466281891,
+        0.4453256130218506,
         0.10074843466281891,
         1
       ],
       "name": "Secondary Color",
-      "socket_index": 1,
+      "socket_index": 45,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5,
-        0.03720312938094139,
+        0.14809265732765198,
         0.03720312938094139,
         1
       ],
       "name": "Tertiary Color",
-      "socket_index": 2,
+      "socket_index": 46,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 1,
       "name": "Offset Color Strength",
-      "socket_index": 3,
+      "socket_index": 47,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 1,
       "name": "Texture Scale",
-      "socket_index": 4,
+      "socket_index": 48,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 20,
       "name": "Detail",
-      "socket_index": 5,
+      "socket_index": 49,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 2,
       "name": "Lacunarity",
-      "socket_index": 6,
+      "socket_index": 50,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 0.5,
       "name": "Bump Strength",
-      "socket_index": 7,
+      "socket_index": 51,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -78527,13 +81371,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Extra Bump",
-      "socket_index": 8,
+      "socket_index": 52,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0,
       "name": "Extra Bump Strength",
-      "socket_index": 9,
+      "socket_index": 53,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -78543,76 +81387,76 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 10,
+      "socket_index": 54,
       "type": "NodeSocketVector"
     },
     {
       "default_value": [
         0.9553954005241394,
-        0.20943038165569305,
+        0.4217880368232727,
         0.20943038165569305,
         1
       ],
       "name": "Base Color",
-      "socket_index": 0,
+      "socket_index": 55,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5028865933418274,
-        0.10074843466281891,
+        0.4453256130218506,
         0.10074843466281891,
         1
       ],
       "name": "Secondary Color",
-      "socket_index": 1,
+      "socket_index": 56,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5,
-        0.03720312938094139,
+        0.14809265732765198,
         0.03720312938094139,
         1
       ],
       "name": "Tertiary Color",
-      "socket_index": 2,
+      "socket_index": 57,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0.5,
       "name": "Offset Color Strength",
-      "socket_index": 3,
+      "socket_index": 58,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 1,
       "name": "Texture Scale",
-      "socket_index": 4,
+      "socket_index": 59,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 2,
       "name": "Detail",
-      "socket_index": 5,
+      "socket_index": 60,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 5,
       "name": "Detail Scale",
-      "socket_index": 6,
+      "socket_index": 61,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 5,
       "name": "Distortion",
-      "socket_index": 7,
+      "socket_index": 62,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0.5,
       "name": "Bump Strength",
-      "socket_index": 8,
+      "socket_index": 63,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -78623,13 +81467,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Extra Bump",
-      "socket_index": 9,
+      "socket_index": 64,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0,
       "name": "Extra Bump Strength",
-      "socket_index": 10,
+      "socket_index": 65,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -78639,76 +81483,76 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 11,
+      "socket_index": 66,
       "type": "NodeSocketVector"
     },
     {
       "default_value": [
         0.9553954005241394,
-        0.20943038165569305,
+        0.4217880368232727,
         0.20943038165569305,
         1
       ],
       "name": "Base Color",
-      "socket_index": 0,
+      "socket_index": 67,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5028865933418274,
-        0.10074843466281891,
+        0.4453256130218506,
         0.10074843466281891,
         1
       ],
       "name": "Secondary Color",
-      "socket_index": 1,
+      "socket_index": 68,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5,
-        0.03720312938094139,
+        0.14809265732765198,
         0.03720312938094139,
         1
       ],
       "name": "Tertiary Color",
-      "socket_index": 2,
+      "socket_index": 69,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0.5,
       "name": "Offset Color Strength",
-      "socket_index": 3,
+      "socket_index": 70,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 1,
       "name": "Texture Scale",
-      "socket_index": 4,
+      "socket_index": 71,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 10,
       "name": "Detail",
-      "socket_index": 5,
+      "socket_index": 72,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 3,
       "name": "Detail Scale",
-      "socket_index": 6,
+      "socket_index": 73,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 3,
       "name": "Distortion",
-      "socket_index": 7,
+      "socket_index": 74,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0.5,
       "name": "Bump Strength",
-      "socket_index": 8,
+      "socket_index": 75,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -78719,13 +81563,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Extra Bump",
-      "socket_index": 9,
+      "socket_index": 76,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0,
       "name": "Extra Bump Strength",
-      "socket_index": 10,
+      "socket_index": 77,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -78735,58 +81579,58 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 11,
+      "socket_index": 78,
       "type": "NodeSocketVector"
     },
     {
       "default_value": [
         0.9553954005241394,
-        0.20943038165569305,
+        0.4217880368232727,
         0.20943038165569305,
         1
       ],
       "name": "Base Color",
-      "socket_index": 0,
+      "socket_index": 79,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5028865933418274,
-        0.10074843466281891,
+        0.4453256130218506,
         0.10074843466281891,
         1
       ],
       "name": "Secondary Color",
-      "socket_index": 1,
+      "socket_index": 80,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5,
-        0.03720312938094139,
+        0.14809265732765198,
         0.03720312938094139,
         1
       ],
       "name": "Tertiary Color",
-      "socket_index": 2,
+      "socket_index": 81,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0.5,
       "name": "Offset Color Strength",
-      "socket_index": 3,
+      "socket_index": 82,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 5,
       "name": "Texture Scale",
-      "socket_index": 4,
+      "socket_index": 83,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0.20000000298023224,
       "name": "Bump Strength",
-      "socket_index": 5,
+      "socket_index": 84,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -78797,13 +81641,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Extra Bump",
-      "socket_index": 6,
+      "socket_index": 85,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0,
       "name": "Extra Bump Strength",
-      "socket_index": 7,
+      "socket_index": 86,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -78813,58 +81657,58 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 8,
+      "socket_index": 87,
       "type": "NodeSocketVector"
     },
     {
       "default_value": [
         0.9553954005241394,
-        0.20943038165569305,
+        0.4217880368232727,
         0.20943038165569305,
         1
       ],
       "name": "Base Color",
-      "socket_index": 0,
+      "socket_index": 88,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5028865933418274,
-        0.10074843466281891,
+        0.4453256130218506,
         0.10074843466281891,
         1
       ],
       "name": "Secondary Color",
-      "socket_index": 1,
+      "socket_index": 89,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5,
-        0.03720312938094139,
+        0.14809265732765198,
         0.03720312938094139,
         1
       ],
       "name": "Tertiary Color",
-      "socket_index": 2,
+      "socket_index": 90,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0.5,
       "name": "Offset Color Strength",
-      "socket_index": 3,
+      "socket_index": 91,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 5,
       "name": "Texture Scale",
-      "socket_index": 4,
+      "socket_index": 92,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0.5,
       "name": "Bump Strength",
-      "socket_index": 5,
+      "socket_index": 93,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -78875,13 +81719,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Extra Bump",
-      "socket_index": 6,
+      "socket_index": 94,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0,
       "name": "Extra Bump Strength",
-      "socket_index": 7,
+      "socket_index": 95,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -78891,58 +81735,58 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 8,
+      "socket_index": 96,
       "type": "NodeSocketVector"
     },
     {
       "default_value": [
         0.9553954005241394,
-        0.20943038165569305,
+        0.4217880368232727,
         0.20943038165569305,
         1
       ],
       "name": "Base Color",
-      "socket_index": 0,
+      "socket_index": 97,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5028865933418274,
-        0.10074843466281891,
+        0.4453256130218506,
         0.10074843466281891,
         1
       ],
       "name": "Secondary Color",
-      "socket_index": 1,
+      "socket_index": 98,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.5,
-        0.03720312938094139,
+        0.14809265732765198,
         0.03720312938094139,
         1
       ],
       "name": "Tertiary Color",
-      "socket_index": 2,
+      "socket_index": 99,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0.5,
       "name": "Offset Color Strength",
-      "socket_index": 3,
+      "socket_index": 100,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 5,
       "name": "Texture Scale",
-      "socket_index": 4,
+      "socket_index": 101,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 1,
       "name": "Bump Strength",
-      "socket_index": 5,
+      "socket_index": 102,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -78953,13 +81797,13 @@ export default class GroupMaterials extends Materials {
         1
       ],
       "name": "Extra Bump",
-      "socket_index": 6,
+      "socket_index": 103,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0,
       "name": "Extra Bump Strength",
-      "socket_index": 7,
+      "socket_index": 104,
       "type": "NodeSocketFloatFactor"
     },
     {
@@ -78969,71 +81813,71 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Vector",
-      "socket_index": 8,
+      "socket_index": 105,
       "type": "NodeSocketVector"
     },
     {
       "default_value": [
         0.8000000715255737,
-        0.0025751744396984577,
+        0,
         0.0025751744396984577,
         1
       ],
       "name": "Color",
-      "socket_index": 0,
+      "socket_index": 106,
       "type": "NodeSocketColor"
     },
     {
       "default_value": [
         0.6254019141197205,
-        0.07633601874113083,
+        0.3592257797718048,
         0.07633601874113083,
         1
       ],
       "name": "Rim Color",
-      "socket_index": 1,
+      "socket_index": 107,
       "type": "NodeSocketColor"
     },
     {
       "default_value": 0.19999992847442627,
       "name": "Rim Amount",
-      "socket_index": 2,
+      "socket_index": 108,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0,
       "name": "Non-Metal <-> Metal",
-      "socket_index": 3,
+      "socket_index": 109,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 0,
       "name": "Roughness",
-      "socket_index": 4,
+      "socket_index": 110,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 0,
       "name": "Offset Roughness",
-      "socket_index": 5,
+      "socket_index": 111,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 0,
       "name": "Reflectivity",
-      "socket_index": 6,
+      "socket_index": 112,
       "type": "NodeSocketFloatFactor"
     },
     {
       "default_value": 0,
       "name": "Offset Reflectivity",
-      "socket_index": 7,
+      "socket_index": 113,
       "type": "NodeSocketFloat"
     },
     {
       "default_value": 1.4500000476837158,
       "name": "IOR",
-      "socket_index": 8,
+      "socket_index": 114,
       "type": "NodeSocketFloat"
     },
     {
@@ -79043,7 +81887,7 @@ export default class GroupMaterials extends Materials {
         0
       ],
       "name": "Normal",
-      "socket_index": 9,
+      "socket_index": 115,
       "type": "NodeSocketVector"
     }
   ]
@@ -79059,33 +81903,50 @@ export default class GroupMaterials extends Materials {
                 material.conversion = {
   "pro4_MudVector": {
     "node": "Group",
+    "socket_index": 0,
     "input": "Vector"
   },
   "pro4_MudColor$Scale": {
     "node": "Group",
+    "socket_index": 1,
     "input": "Color Scale"
   },
   "pro4_MudNormal$Scale": {
     "node": "Group",
+    "socket_index": 2,
     "input": "Normal Scale"
   },
   "pro4_MudBase$Color": {
     "node": "Group",
+    "socket_index": 3,
     "input": "Base Color"
   },
   "pro4_MudSecondary$Color": {
     "node": "Group",
+    "socket_index": 4,
     "input": "Secondary Color"
   },
   "pro4_MudTertiary$Color": {
     "node": "Group",
+    "socket_index": 5,
     "input": "Tertiary Color"
   },
   "pro4_MudNormal$Strength": {
     "node": "Group",
+    "socket_index": 6,
     "input": "Normal Strength"
   }
-}
+};
+                material.outputs = {
+  "Surface": "NodeSocketShader",
+  "Volume": "NodeSocketShader",
+  "Displacement": "NodeSocketVector"
+};
+                material.outputIndexes = {
+  "Surface": 0,
+  "Volume": 1,
+  "Displacement": 2
+};
                 material.pro4_MudVector = pro4_MudVector;
                 material.pro4_MudColor$Scale = pro4_MudColor$Scale;
                 material.pro4_MudNormal$Scale = pro4_MudNormal$Scale;
@@ -79116,7 +81977,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Vector",
         "type": "NodeSocketVector",
@@ -79132,7 +81992,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Color Scale",
         "type": "NodeSocketFloat",
@@ -79148,7 +82007,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Normal Scale",
         "type": "NodeSocketFloat",
@@ -79164,7 +82022,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Base Color",
         "type": "NodeSocketColor",
@@ -79180,7 +82037,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Secondary Color",
         "type": "NodeSocketColor",
@@ -79196,7 +82052,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Tertiary Color",
         "type": "NodeSocketColor",
@@ -79212,7 +82067,6 @@ export default class GroupMaterials extends Materials {
     {
       "from": 2,
       "from_node": "Group Input",
-      "o": "true",
       "from_socket": {
         "name": "Normal Strength",
         "type": "NodeSocketFloatFactor",
@@ -79298,7 +82152,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.34191441535949707,
-            0.18447501957416534,
+            0.24228113889694214,
             0.18447501957416534,
             1
           ],
@@ -79309,7 +82163,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.14296220242977142,
-            0.053180523216724396,
+            0.085452139377594,
             0.053180523216724396,
             1
           ],
@@ -79320,7 +82174,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.11792322993278503,
-            0.05263402685523033,
+            0.07576367259025574,
             0.05263402685523033,
             1
           ],
@@ -79390,7 +82244,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.34191441535949707,
-            0.18447501957416534,
+            0.24228113889694214,
             0.18447501957416534,
             1
           ],
@@ -79401,7 +82255,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.14296220242977142,
-            0.053180523216724396,
+            0.085452139377594,
             0.053180523216724396,
             1
           ],
@@ -79412,7 +82266,7 @@ export default class GroupMaterials extends Materials {
         {
           "default_value": [
             0.11792322993278503,
-            0.05263402685523033,
+            0.07576367259025574,
             0.05263402685523033,
             1
           ],
@@ -79456,7 +82310,7 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": [
         0.34191441535949707,
-        0.18447501957416534,
+        0.24228113889694214,
         0.18447501957416534,
         1
       ],
@@ -79467,7 +82321,7 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": [
         0.14296220242977142,
-        0.053180523216724396,
+        0.085452139377594,
         0.053180523216724396,
         1
       ],
@@ -79478,7 +82332,7 @@ export default class GroupMaterials extends Materials {
     {
       "default_value": [
         0.11792322993278503,
-        0.05263402685523033,
+        0.07576367259025574,
         0.05263402685523033,
         1
       ],
