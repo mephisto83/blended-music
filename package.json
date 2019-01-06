@@ -11,6 +11,7 @@
     "random": "node --experimental-modules ./test/random.mjs",
     "createmat": "node --experimental-modules ./test/createmat.mjs",
     "defense": "node  --experimental-modules ./test/defense.mjs",
+    "cleanup": "node  --experimental-modules ./test/cleanup.mjs",
     "install": "node --experimental-modules ./test/install.mjs",
     "voronoi": "node --experimental-modules ./test/voronoi.mjs",
     "midi-to-json": "node --experimental-modules ./test/midi-to-json.mjs"

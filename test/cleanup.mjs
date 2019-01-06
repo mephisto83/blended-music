@@ -9,7 +9,7 @@ var __dirname = path.resolve(path.dirname(''));
 
 (async function () {
         try {
-        await BlendedMusic.YouTubePresentationDefender.run({
+        await BlendedMusic.RemoveBadYoutubeMovies.run({
             credentialDirectory: `D:${path.sep}creds`,
             videoInputDir: __dirname + `${path.sep}test${path.sep}movies`,
             count: 30,
