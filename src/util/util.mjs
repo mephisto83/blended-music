@@ -129,6 +129,13 @@ export default class Util {
             });
         });
     }
+    static async pause(seconds) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve();
+            }, seconds * 1000)
+        })
+    }
     static async fileExists(dir) {
         return await new Promise((resolve, fail) => {
             fs.exists(dir, (res) => {
@@ -285,7 +292,7 @@ export default class Util {
             });
 
             child.stderr.on('data', function (data) {
-               console.log('stderr: ' + data);
+                console.log('stderr: ' + data);
             });
 
             child.on('exit', function (code) {

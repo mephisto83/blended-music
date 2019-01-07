@@ -1,6 +1,7 @@
 import MidiToJson from './conversion/midi-to-json';
 import JsonToPresentation from './conversion/json-to-presentation';
-import Install from './install'
+import Install from './install';
+import InstallFleet from './installfleet';
 import PresentationToYouTube from './upload/presentation-to-youtube';
 import YouTubePresentationDefender from './defense/youtube-presentation-defender';
 import RemoveBadYoutubeMovies from './defense/remove-bad-youtube-movies';
@@ -14,6 +15,7 @@ export default {
     PresentationToYouTube,
     BitMidi,
     Harvest,
+    InstallFleet, 
     YouTubePresentationDefender,
     PresentationToYouTubePuppeteer,
     RemoveBadYoutubeMovies

@@ -101,9 +101,11 @@ export default class JsonToPresentationJson {
                 var existsAlready = await Util.directoryExists(dir_path);
                 if (!existsAlready) {
 
-                    var movie = await builder.buildMovie(file_path, file, info);
                     log(`creating directory: ${dir_path}`);
                     await Util.ensureDirectoryDeep(outpath, [folderName, infobuilder.name, infobuilder.version]);
+                    me.options._dir_path = dir_path;
+                    var movie = await builder.buildMovie(file_path, file, info, me.options);
+
                     let videoOutputDir = await Util.ensureDirectoryDeep(me.options.videoOutputDir, [folderName, infobuilder.name, infobuilder.version]);
                     log('built folder structure');
                     await JsonToPresentationJson.saveMidiMovie({
