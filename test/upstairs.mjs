@@ -4,6 +4,7 @@ import path from 'path';
 import Util from '../src/util/util.mjs';
 import Basic from '../src/movie/basic.mjs';
 import SingleFrameBasic from '../src/movie/single-frame-basic.mjs';
+import VoronoiFaces from '../src/movie/voronoi-face.mjs'
 
 (async function () {
     //var converter = new BlendedMusic.MidiToJson();
@@ -83,7 +84,7 @@ import SingleFrameBasic from '../src/movie/single-frame-basic.mjs';
                     inputDir: __dirname + `${path.sep}${projects}${path.sep}raw_json`,
                     outputDir: __dirname + `${path.sep}${projects}${path.sep}movie_json`,
                     videoOutputDir: __dirname + `${path.sep}${projects}${path.sep}movies`,
-                    movieBuilders: [Basic, SingleFrameBasic],
+                    movieBuilders: [VoronoiFaces, Basic, SingleFrameBasic],
                     midiDir: __dirname + `${path.sep}${projects}${path.sep}midi`,
                     count: 1,
                     debounce: 1000
