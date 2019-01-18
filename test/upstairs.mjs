@@ -3,6 +3,7 @@ import MidiJsonInformation from '../src/movie/midi-json-information';
 import path from 'path';
 import Util from '../src/util/util.mjs';
 import Basic from '../src/movie/basic.mjs';
+import RaceCarMovie from '../src/movie/racetrack';
 import SingleFrameBasic from '../src/movie/single-frame-basic.mjs';
 import VoronoiFaces from '../src/movie/voronoi-face.mjs'
 
@@ -15,6 +16,7 @@ import VoronoiFaces from '../src/movie/voronoi-face.mjs'
     await Util.ensureDirectory(path.join(__dirname, projects));
 
     const presentation_dir = 'E:\\dev\\Presentation';
+    const blender279 = 'C:\\Program Files\\Blender Foundation\\Blender';
     const blender = 'E:\\blender-2.80-d5c751012b3-win64\\blender-2.80.0-git.d5c751012b3-windows64';
     const creds = `E:${path.sep}creds`;
     var installationProblems = 10;
@@ -37,6 +39,18 @@ import VoronoiFaces from '../src/movie/voronoi-face.mjs'
                 installationProblems--;
                 console.log('installation issues')
                 console.log(e);
+            }
+            try {
+                await BlendedMusic.InstallFleet.run({
+                    blender: 'C:\\Program Files\\Blender Foundation\\Blender',
+                    version: "2.79",
+                    presentation: {
+                        directory: presentation_dir
+                    }
+                })
+            } catch (e) {
+                installationProblems--;
+                console.log('fleet installation issues')
             }
             if (true) {
 
@@ -81,10 +95,13 @@ import VoronoiFaces from '../src/movie/voronoi-face.mjs'
             try {
                 await BlendedMusic.JsonToPresentation.run({
                     blender,
+                    blender279,
                     inputDir: __dirname + `${path.sep}${projects}${path.sep}raw_json`,
                     outputDir: __dirname + `${path.sep}${projects}${path.sep}movie_json`,
                     videoOutputDir: __dirname + `${path.sep}${projects}${path.sep}movies`,
-                    movieBuilders: [VoronoiFaces, Basic, SingleFrameBasic],
+                    movieBuilders: [RaceCarMovie, VoronoiFaces, Basic, SingleFrameBasic],
+                    racetrackSrc: __dirname + `${path.sep}resources${path.sep}`,
+                    shipFileName: 'Shipwright.0006.blend',
                     midiDir: __dirname + `${path.sep}${projects}${path.sep}midi`,
                     count: 1,
                     debounce: 1000
