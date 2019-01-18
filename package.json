@@ -14,7 +14,8 @@
     "cleanup": "node  --experimental-modules ./test/cleanup.mjs",
     "install": "node --experimental-modules ./test/install.mjs",
     "voronoi": "node --experimental-modules ./test/voronoi.mjs",
-    "midi-to-json": "node --experimental-modules ./test/midi-to-json.mjs"
+    "midi-to-json": "node --experimental-modules ./test/midi-to-json.mjs",
+    "cannon-farm":"node --experimental-modules ./test/cannon-farm.mjs"
   },
   "repository": {
     "type": "git",
