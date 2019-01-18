@@ -101,6 +101,7 @@ import VoronoiFaces from '../src/movie/voronoi-face.mjs'
                     videoOutputDir: __dirname + `${path.sep}${projects}${path.sep}movies`,
                     movieBuilders: [RaceCarMovie, VoronoiFaces, Basic, SingleFrameBasic],
                     racetrackSrc: __dirname + `${path.sep}resources${path.sep}`,
+                    raceSrc: ['//192.168.1.113', 'Public', 'cannon-farm'].join(path.sep) + path.sep,
                     shipFileName: 'Shipwright.0006.blend',
                     midiDir: __dirname + `${path.sep}${projects}${path.sep}midi`,
                     count: 1,

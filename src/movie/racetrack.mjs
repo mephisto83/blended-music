@@ -21,18 +21,27 @@ export default class RaceTrack extends Basic {
 
     static async  buildMovie(filepath, filename, info, ops) {
         var basic = new RaceTrack();
-        var files = await Util.readDir(ops.racetrackSrc);
-        var file = files[Math.floor(Math.random() * files.length)];
-        var trackInfo = await Util.readJson(`${ops.racetrackSrc}${path.sep}${file}`);
-        basic.trackInfo = trackInfo;
+        var files = await Util.readDir(ops.raceSrc);
+        try {
 
-        var { actors } = trackInfo;
+            var file = files[Math.floor(Math.random() * files.length)];
+            var trackInfo = await Util.readJson(`${ops.raceSrc}${path.sep}${file}`);
+            basic.trackInfo = trackInfo;
 
-        await basic.createShipActors(actors, ops);
-        basic.ops = ops;
-        return Promise.resolve().then(() => {
-            return basic._buildMovie(filepath, filename, info, ops);
-        });
+            var { actors } = trackInfo;
+
+            await basic.createShipActors(actors, ops);
+            basic.ops = ops;
+            return Promise.resolve().then(() => {
+                return basic._buildMovie(filepath, filename, info, ops);
+            });
+        }
+        catch (e) {
+            console.log('something went wrong');
+            console.error(e);
+            throw e;
+        }
+
     }
     async createShipActors(actors, ops) {
         var { racetrackSrc, shipFileName, _dir_path } = ops;
