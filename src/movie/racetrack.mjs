@@ -21,7 +21,9 @@ export default class RaceTrack extends Basic {
 
     static async  buildMovie(filepath, filename, info, ops) {
         var basic = new RaceTrack();
-        var trackInfo = await Util.readJson(`${ops.racetrackSrc}${path.sep}track_race_1.json`);
+        var files = await Util.readDir(ops.racetrackSrc);
+        var file = files[Math.floor(Math.random() * files.length)];
+        var trackInfo = await Util.readJson(`${ops.racetrackSrc}${path.sep}${file}`);
         basic.trackInfo = trackInfo;
 
         var { actors } = trackInfo;
