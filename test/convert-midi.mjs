@@ -46,6 +46,7 @@ var __dirname = path.resolve(path.dirname(''));
             outputDir: __dirname + `${path.sep}test${path.sep}movie_json`,
             videoOutputDir: __dirname + `${path.sep}test${path.sep}movies`,
             movieBuilders: [MaterialMovie, RaceCarMovie],
+            raceSrc: __dirname + `${path.sep}resources${path.sep}`,
             racetrackSrc: __dirname + `${path.sep}resources${path.sep}`,
             shipFileName: 'Shipwright.0006.blend',
             midiDir: __dirname + `${path.sep}test${path.sep}midi`,

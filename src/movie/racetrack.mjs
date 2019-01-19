@@ -4,6 +4,8 @@ import V from '../tools/voronoi';
 import { VoronoiWeb } from '../tools/voronoi';
 import * as ProceduralNode from '../tools/math';
 import Materials from './materials';
+import GroupMaterials from './group-materials.mjs';
+import EeveeMaterials from './eevee-materials.mjs';
 import Util from '../util/util'
 export default class RaceTrack extends Basic {
     constructor() {
@@ -23,7 +25,7 @@ export default class RaceTrack extends Basic {
         var basic = new RaceTrack();
         var files = await Util.readDir(ops.raceSrc);
         try {
-
+            files = files.filter(x => x.indexOf('.json') !== -1)
             var file = files[Math.floor(Math.random() * files.length)];
             var trackInfo = await Util.readJson(`${ops.raceSrc}${path.sep}${file}`);
             basic.trackInfo = trackInfo;
@@ -199,7 +201,37 @@ export default class RaceTrack extends Basic {
         }
         return temp;
     }
-
+    getShipMaterials() {
+        var gmat = EeveeMaterials.BlenderEeveeSimpleShaderGroup();
+        return [
+            {
+                name: 'standard',
+                default: true,
+                config: Materials.Output(`standard`,
+                    Materials.Custom(
+                        `material-custom-standard`,
+                        gmat.out(Materials.StandardOut(gmat))
+                    )
+                )
+            }, {
+                name: 'special',
+                selector: [
+                    "eng.body.fish",
+                    "hardpoint.base",
+                    "hull.fish",
+                    "Rail_Runner",
+                    "Bridge.BeerBelly",
+                    "Fish_Engine"
+                ],
+                config: Materials.Output(`special`,
+                    Materials.Custom(
+                        `material-custom-special`,
+                        gmat.out(Materials.StandardOut(gmat))
+                    )
+                )
+            }
+        ];
+    }
     constructMovie(raw) {
         var me = this;
 
@@ -270,6 +302,7 @@ export default class RaceTrack extends Basic {
                 name,
                 type: "bespoke",
                 folder: _dir_path,
+                materials: this.getShipMaterials(),
                 file: this.getActorName(actorName),
                 position: {
                     x: 0,
@@ -356,5 +389,13 @@ export default class RaceTrack extends Basic {
         }
 
         return res;
+    }
+
+    getMaterialGroups() {
+        return [...GroupMaterials.MaterialNames().map(name => {
+            return GroupMaterials[name]();
+        }), ...EeveeMaterials.MaterialNames().map(name => {
+            return EeveeMaterials[name]();
+        })];
     }
 }
