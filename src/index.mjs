@@ -4,6 +4,7 @@ import Install from './install';
 import InstallFleet from './installfleet';
 import PresentationToYouTube from './upload/presentation-to-youtube';
 import YouTubePresentationDefender from './defense/youtube-presentation-defender';
+import NameGenerator from './scooper/name-generator'
 import RemoveBadYoutubeMovies from './defense/remove-bad-youtube-movies';
 import CannonFarm from './puppeteer/cannon-farm'
 import BitMidi from './scooper/bitmidi';
@@ -18,6 +19,7 @@ export default {
     BitMidi,
     Harvest,
     InstallFleet, 
+    NameGenerator,
     YouTubePresentationDefender,
     PresentationToYouTubePuppeteer,
     RemoveBadYoutubeMovies

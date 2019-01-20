@@ -15,7 +15,8 @@
     "install": "node --experimental-modules ./test/install.mjs",
     "voronoi": "node --experimental-modules ./test/voronoi.mjs",
     "midi-to-json": "node --experimental-modules ./test/midi-to-json.mjs",
-    "cannon-farm":"node --experimental-modules ./test/cannon-farm.mjs"
+    "race-car-name-gen": "node --experimental-modules ./test/name-generator.mjs",
+    "cannon-farm": "node --experimental-modules ./test/cannon-farm.mjs"
   },
   "repository": {
     "type": "git",

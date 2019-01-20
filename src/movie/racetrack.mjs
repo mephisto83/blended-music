@@ -7,11 +7,13 @@ import Materials from './materials';
 import GroupMaterials from './group-materials.mjs';
 import SimpleMaterials from './simple-materials.mjs';
 import EeveeMaterials from './eevee-materials.mjs';
-import Util from '../util/util'
+import Util from '../util/util';
+
+var usecube = true;
 export default class RaceTrack extends Basic {
     constructor() {
         super();
-        this.levelHeight = 20;
+        this.levelHeight = 40;
         this.midi2dim = 100;
         this.frameMultiplier = 2;
     }
@@ -32,8 +34,8 @@ export default class RaceTrack extends Basic {
             basic.trackInfo = trackInfo;
 
             var { actors } = trackInfo;
-
-            await basic.createShipActors(actors, ops);
+            if (!usecube)
+                await basic.createShipActors(actors, ops);
             basic.ops = ops;
             return Promise.resolve().then(() => {
                 return basic._buildMovie(filepath, filename, info, ops);
@@ -137,7 +139,7 @@ export default class RaceTrack extends Basic {
             "translate": {
                 "x": 0,
                 "y": 1.83428,
-                "z": 9.82836,
+                "z": 0,
                 ...handles
             }
         };
@@ -159,29 +161,42 @@ export default class RaceTrack extends Basic {
 
 
         var { trackInfo } = this;
-        var { track, actors } = trackInfo;
+        var { track, actors, scores } = trackInfo;
         var sortedActors = Object.keys(actors).sort((b, a) => {
             return actors[a].length - actors[b].length;
-        })
-
+        }).filter(x => actors[x].length > 2)
+        var frameLength = actors[sortedActors[0]].length;
         var levelHeight = this.levelHeight;
-        var actorName = sortedActors[0];
-
+        var checked_scores = scores.filter(x => x.score > (scores[0].score / 2));
+        var actorName = scores[0].id;
         var frameMultiplier = this.frameMultiplier;
 
         var actor = actors[actorName];
-        actor.map((_, findex) => {
+        [... new Array(frameLength)].map((_, findex) => {
             let keyframe = me.getKeyFrame(findex * frameMultiplier);
+            var checked_scores_index = Math.floor((checked_scores.length) * ((findex / frameLength))) || 0;
+            console.log(`findex  : ${findex}`)
+            console.log(`frameLength  : ${frameLength}`)
+            console.log(`checked_scores_index  : ${checked_scores_index}`)
+            actorName = checked_scores[checked_scores.length - checked_scores_index - 1].id;
+            actor = actors[actorName];
             var f = actor[findex + 0];
             if (f) {
-                keyframe.objects.push({
+                var temp = {
                     name: 'default_empty',
                     position: {
                         x: f.x,
                         y: f.y,
                         z: track[f.trackIndex] ? ((track[f.trackIndex].level * levelHeight) + .1) : 0
                     }
-                })
+                }
+                // if (f.trackIndex === 0 || track[f.trackIndex] && track[f.trackIndex].transitionLevel) {
+                //     temp.position.z = track[f.trackIndex] ? ((track[f.trackIndex].level * levelHeight) + .8) : 0;
+                // }
+                // if (track[f.trackIndex + 1] && track[f.trackIndex + 1].transitionLevel) {
+                //     temp.position.z = track[f.trackIndex + 1] ? ((track[f.trackIndex + 1].level * levelHeight) + .8) : 0;
+                // }
+                keyframe.objects.push(temp);
             }
             f = actor[findex + -3];
             if (f) {
@@ -190,7 +205,7 @@ export default class RaceTrack extends Basic {
                     position: {
                         x: f.x,
                         y: f.y,
-                        z: track[f.trackIndex] ? ((track[f.trackIndex].level * levelHeight) + 6) : 0
+                        z: track[f.trackIndex] ? ((track[f.trackIndex].level * levelHeight) + 1) : 0
                     }
                 });
             }
@@ -279,6 +294,12 @@ export default class RaceTrack extends Basic {
             )
         }];
     }
+    samePoint(p1, p2) {
+        if (p1 && p2 && p1.x === p2.x && p1.y === p2.y) {
+            return true;
+        }
+        return false;
+    }
     constructMovie(raw) {
         var me = this;
 
@@ -295,35 +316,110 @@ export default class RaceTrack extends Basic {
         var levelHeight = this.levelHeight;
         track.map((_track, tindex) => {
             var face = [];
-            var name = `tracksection-${tindex}`
+            const trackSectionName = `tracksection-${tindex}`
+            let nextTrackTransitions = track[tindex + 1] && track[tindex + 1].transitionLevel;
+            let trackTransitions = track[tindex].transitionLevel;
+            let extrafaces = [];
             _track.wall.subset(0, 4).map((wall, i) => {
-                if (i === 0) {
-                    face.push({ x: wall.p1.x, y: wall.p1.y, z: (_track.level || 0) * levelHeight - (levelHeight / 2) })
+                let z2 = (_track.level || 0) * levelHeight - (levelHeight / 2);
+                let z1 = z2;
+                if (wall && nextTrackTransitions) {
+                    let openwall = _track.wall.subset(0, 4).find(x => x.open);
+
+                    if (wall.open) {
+                        // z2 = ((_track.level + 1) || 0) * levelHeight - (levelHeight / 2);
+                        // z1 = z2;
+                        extrafaces.push([{
+                            x: wall.p1.x,
+                            y: wall.p1.y,
+                            z: z1
+                        }, {
+                            x: wall.p2.x,
+                            y: wall.p2.y,
+                            z: z1
+                        }, {
+                            x: wall.p2.x,
+                            y: wall.p2.y,
+                            z: (_track.level + 1 || 0) * levelHeight - (levelHeight / 2)
+                        }, {
+                            x: wall.p1.x,
+                            y: wall.p1.y,
+                            z: (_track.level + 1 || 0) * levelHeight - (levelHeight / 2)
+                        }])
+                    }
                 }
-                face.push({ x: wall.p2.x, y: wall.p2.y, z: (_track.level || 0) * levelHeight - (levelHeight / 2) })
+
+                if (i === 0) {
+                    face.push({
+                        x: wall.p1.x,
+                        y: wall.p1.y,
+                        z: z1
+                    });
+                }
+
+                face.push({
+                    x: wall.p2.x,
+                    y: wall.p2.y,
+                    z: z2
+                });
             });
 
             objects.push({
-                name,
+                name: trackSectionName,
                 type: "ngon",
                 vertices: [...face]
             });
 
-            var matter = SimpleMaterials.Metal(Materials.Color(`material-f-value-${name}`, [Math.random(), Math.random(), Math.random(), 1]));
+            extrafaces.map((extraface, iface) => {
+                objects.push({
+                    name: `${trackSectionName}-extra-faces-${iface}`,
+                    type: 'ngon',
+                    vertices: [...extraface]
+                });
+
+                var matter_extra_face = SimpleMaterials.Metal(Materials.Color(`material-xf-value-${trackSectionName}-${iface}`, [Math.random(), Math.random(), Math.random(), 1]));
+                var matter_extra_face_cmatter = Materials.Custom(
+                    `material-xff-mat1-${trackSectionName}-${iface}`,
+                    matter_extra_face.out(Materials.StandardOut(matter_extra_face))
+                )
+                var res = {
+                    name: `${trackSectionName}-extra-faces-${iface}`,
+                    materialConfig: Materials.Output(`material-${trackSectionName}--${iface}xf`,
+                        Materials.Mix(`material-mix-${trackSectionName}-xf-${iface}`,
+                            Materials.Value(`material-mix-${trackSectionName}-mix-xf-${iface}`, me.getNumber(.1, .2)),
+                            matter_extra_face_cmatter,
+                            Materials.Emission(
+                                `material-xf-light-${trackSectionName}-${iface}`,
+                                Materials.Color(`material-light-color-${trackSectionName}-${iface}`, [!trackTransitions ? 0 : 1, !nextTrackTransitions ? 0 : 1, 0, 1]),
+                                Materials.Value(`material-light-strength-${trackSectionName}-${iface}`, 1)
+                            )
+                        )
+                    ),
+                    position: {
+                        y: 0,
+                        x: 0,
+                        z: 0
+                    }
+                }
+                let keyframe = me.getKeyFrame(1);
+                keyframe.objects.push(res);
+            });
+
+            var matter = SimpleMaterials.Metal(Materials.Color(`material-f-value-${trackSectionName}`, [Math.random(), Math.random(), Math.random(), 1]));
             var cmatter = Materials.Custom(
-                `material-ff-mat1-${name}`,
+                `material-ff-mat1-${trackSectionName}`,
                 matter.out(Materials.StandardOut(matter))
             )
             var res = {
-                name: name,
-                materialConfig: Materials.Output(`material-${name}`,
-                    Materials.Mix(`material-mix-${name}`,
-                        Materials.Value(`material-mix-${name}-mix`, me.getNumber(.1, .2)),
+                name: trackSectionName,
+                materialConfig: Materials.Output(`material-${trackSectionName}`,
+                    Materials.Mix(`material-mix-${trackSectionName}`,
+                        Materials.Value(`material-mix-${trackSectionName}-mix`, me.getNumber(.8, .9)),
                         cmatter,
                         Materials.Emission(
-                            `material-light-${name}`,
-                            Materials.Color(`material-light-color-${name}`, [1, 1, 1, 1]),
-                            Materials.Value(`material-light-strength-${name}`, 1)
+                            `material-light-${trackSectionName}`,
+                            Materials.Color(`material-light-color-${trackSectionName}`, [!trackTransitions ? 0 : 1, !nextTrackTransitions ? 0 : 1, 0, 1]),
+                            Materials.Value(`material-light-strength-${trackSectionName}`, 1)
                         )
                     )
                 ),
@@ -337,10 +433,10 @@ export default class RaceTrack extends Basic {
             keyframe.objects.push(res);
         });
         Object.keys(actors).map((actorName, index) => {
-            var name = `actor-${actorName}-${index}`
-
+            const name = `actor-${actorName}-${index}`
+            const targetName = `${name}-target`;
             objects.push({
-                name: `${name}-target`,
+                name: targetName,
                 type: "empty",
                 position: {
                     x: 0,
@@ -348,23 +444,36 @@ export default class RaceTrack extends Basic {
                     z: 0
                 }
             });
-            objects.push({
-                name,
-                type: "bespoke",
-                folder: _dir_path,
-                materials: this.getShipMaterials(),
-                file: this.getActorName(actorName),
-                position: {
-                    x: 0,
-                    y: 0,
-                    z: 0
-                },
-                scale: {
-                    x: .1,
-                    y: .1,
-                    z: .1
-                }
-            });
+            if (usecube) {
+                objects.push({
+                    name: name,
+                    type: "cube",
+                    position: {
+                        x: 0,
+                        y: 0,
+                        z: 0
+                    }
+                });
+            }
+            else {
+                objects.push({
+                    name: name,
+                    type: "bespoke",
+                    folder: _dir_path,
+                    materials: this.getShipMaterials(),
+                    file: this.getActorName(actorName),
+                    position: {
+                        x: 0,
+                        y: 0,
+                        z: 0
+                    },
+                    scale: {
+                        x: .1,
+                        y: .1,
+                        z: .1
+                    }
+                });
+            }
             var scale = this.getNumber(.1, .3);
             var res = {
                 name: name,
@@ -372,6 +481,8 @@ export default class RaceTrack extends Basic {
                     y: 0,
                     x: 0,
                     z: 0
+                }, track_to: {
+                    target: targetName
                 },
                 scale: {
                     x: scale,
@@ -379,18 +490,26 @@ export default class RaceTrack extends Basic {
                     z: scale
                 }
             }
-            if (!index) {
-                delete res.materialConfig
-            }
+
             let keyframe = me.getKeyFrame(1);
             keyframe.objects.push(res);
+            var restarget = {
+                name: targetName,
+                position: {
+                    y: 0,
+                    x: 0,
+                    z: 0
+                }
+            }
+            keyframe.objects.push(restarget);
+
             var actor = actors[actorName];
             actor.map((f, findex) => {
                 let keyframe = me.getKeyFrame(findex * me.frameMultiplier);
                 var _f = actor[findex + 1];
                 if (_f) {
                     keyframe.objects.push({
-                        name: `${name}-target`,
+                        name: targetName,
                         position: {
                             x: _f.x,
                             y: _f.y,
@@ -399,18 +518,18 @@ export default class RaceTrack extends Basic {
                     })
                 }
 
+                console.log(`adding keyframe for actor ${targetName}  ${findex}`);
+
                 keyframe.objects.push({
-                    name,
-                    track_to: {
-                        target: `${name}-target`
-                    },
+                    name: name,
+
                     position: {
                         x: f.x,
                         y: f.y,
                         z: track[f.trackIndex] ? track[f.trackIndex].level * levelHeight : 0
                     }
-                })
-            })
+                });
+            });
         })
         me.addLamps();
     }

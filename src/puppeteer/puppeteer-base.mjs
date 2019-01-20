@@ -17,7 +17,7 @@ export default class PuppeteerBase {
             headless: false,
             // args: ['--start-fullscreen'], 
             defaultViewport: {
-                height: 1024,
+                height: 1224,
                 width: 2024
             }
         });

@@ -112,8 +112,12 @@ export default class Util {
         });
     }
     static async readJson(filePath) {
-        var re = await Util.readFile(filePath);
-        return JSON.parse(re);
+        try {
+            var re = await Util.readFile(filePath);
+            return JSON.parse(re);
+        } catch (e) {
+            return null;
+        }
     }
     static async wait(time) {
         return await new Promise((resolve) => {
@@ -180,13 +184,14 @@ export default class Util {
         await Util.ensureDirectory(root);
         var current = root;
         var promise = Promise.resolve();
-        paths.map(async p => {
-            current = current + path.sep + p;
-            var t = current;
-            promise = promise.then(async () => {
-                return await Util.ensureDirectory(t);
+        if (paths)
+            paths.map(async p => {
+                current = current + path.sep + p;
+                var t = current;
+                promise = promise.then(async () => {
+                    return await Util.ensureDirectory(t);
+                });
             });
-        });
 
         await promise;
 
@@ -197,6 +202,7 @@ export default class Util {
         if (alreadyExists) {
             return;
         }
+        console.log(dir)
         return await new Promise((resolve, fail) => {
             var res = fs.existsSync(dir)
             if (!res) {
