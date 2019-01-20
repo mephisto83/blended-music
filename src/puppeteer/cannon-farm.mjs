@@ -40,11 +40,11 @@ export default class CannonFarm extends PuppeteerBase {
         await this.start();
         let {
             outputDir,
-            minok = 7,
-            maxScore = 100,
+            minok = 4,
+            maxScore = 1000,
             newagent = 2,
             keep = 8,
-            agents = 18,
+            agents = 10,
             maxThrust = .5
         } = this.options;
         await this.open((this.options.url || 'http://192.168.1.118:8080/demos/rawcarworldgen.html') + `?minok=${minok}&new=${newagent}&keep=${keep}&trackSize=${maxScore}&agents=${agents}&maxThrust=${maxThrust}`);
