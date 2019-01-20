@@ -160,8 +160,8 @@ export default class RaceTrack extends Basic {
 
         var { trackInfo } = this;
         var { track, actors } = trackInfo;
-        var sortedActors = Object.keys(actors).sort((a, b) => {
-            return a.length - b.length;
+        var sortedActors = Object.keys(actors).sort((b, a) => {
+            return actors[a].length - actors[b].length;
         })
 
         var levelHeight = this.levelHeight;
@@ -179,7 +179,7 @@ export default class RaceTrack extends Basic {
                     position: {
                         x: f.x,
                         y: f.y,
-                        z: track[f.trackIndex] ? ((track[f.trackIndex].level * levelHeight) + 1) : 0
+                        z: track[f.trackIndex] ? ((track[f.trackIndex].level * levelHeight) + .1) : 0
                     }
                 })
             }
@@ -233,14 +233,14 @@ export default class RaceTrack extends Basic {
             "Fish_Engine"
         ];
         var parts1 = ['hull.beard.', 'hull.rib.', 'Outrigger.', 'hull.knuckle',
-        'hull.horse.', 'double-block.', 'hull.bullHead.', 'hull.tall.', 'eng.body.', 'Fin_Runner.']
-        var parts2 = ['Fore-Bridge.', 'hull.slick.', 'hull.large.', 'hull.block_split.', 
-        'eng.strut.ladder',
-        'Instrument_Mast',
-        'hull.hangar.',
-        'PE-Wing',
-        'eng.strut.cylindar',
-        'hull.v.', 'Crab_face', 'Bridge-1', 'actor-', 'Build-up_Block', 'hull.long']
+            'hull.horse.', 'double-block.', 'hull.bullHead.', 'hull.tall.', 'eng.body.', 'Fin_Runner.']
+        var parts2 = ['Fore-Bridge.', 'hull.slick.', 'hull.large.', 'hull.block_split.',
+            'eng.strut.ladder',
+            'Instrument_Mast',
+            'hull.hangar.',
+            'PE-Wing',
+            'eng.strut.cylindar',
+            'hull.v.', 'Crab_face', 'Bridge-1', 'actor-', 'Build-up_Block', 'hull.long']
         return [{
             name: 'mat1',
             selector: parts1,
@@ -318,7 +318,7 @@ export default class RaceTrack extends Basic {
                 name: name,
                 materialConfig: Materials.Output(`material-${name}`,
                     Materials.Mix(`material-mix-${name}`,
-                        Materials.Value(`material-mix-${name}-mix`, me.getNumber(.1,.2)),
+                        Materials.Value(`material-mix-${name}-mix`, me.getNumber(.1, .2)),
                         cmatter,
                         Materials.Emission(
                             `material-light-${name}`,
@@ -365,7 +365,7 @@ export default class RaceTrack extends Basic {
                     z: .1
                 }
             });
-            var scale = this.getNumber(.1,.3);
+            var scale = this.getNumber(.1, .3);
             var res = {
                 name: name,
                 position: {
