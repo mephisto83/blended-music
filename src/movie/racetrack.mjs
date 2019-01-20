@@ -5,6 +5,7 @@ import { VoronoiWeb } from '../tools/voronoi';
 import * as ProceduralNode from '../tools/math';
 import Materials from './materials';
 import GroupMaterials from './group-materials.mjs';
+import SimpleMaterials from './simple-materials.mjs';
 import EeveeMaterials from './eevee-materials.mjs';
 import Util from '../util/util'
 export default class RaceTrack extends Basic {
@@ -79,7 +80,7 @@ export default class RaceTrack extends Basic {
             `${_dir_path}${path.sep}generateship.py`,
             '--',
             Math.floor(Math.random() * 10000),
-            51, 61, name
+            Math.floor(Math.random() * 50) + 10, Math.floor(Math.random() * 50) + 11, name
         ], {
                 detached: true
             });
@@ -202,35 +203,81 @@ export default class RaceTrack extends Basic {
         return temp;
     }
     getShipMaterials() {
-        var gmat = EeveeMaterials.BlenderEeveeSimpleShaderGroup();
-        return [
-            {
-                name: 'standard',
-                default: true,
-                config: Materials.Output(`standard`,
-                    Materials.Custom(
-                        `material-custom-standard`,
-                        gmat.out(Materials.StandardOut(gmat))
-                    )
-                )
-            }, {
-                name: 'special',
-                selector: [
-                    "eng.body.fish",
-                    "hardpoint.base",
-                    "hull.fish",
-                    "Rail_Runner",
-                    "Bridge.BeerBelly",
-                    "Fish_Engine"
-                ],
-                config: Materials.Output(`special`,
-                    Materials.Custom(
-                        `material-custom-special`,
-                        gmat.out(Materials.StandardOut(gmat))
-                    )
-                )
-            }
+        var gmat1 = SimpleMaterials.Metal(Materials.Color('gmat1-color', [.05, .01, .015, 1]));
+        var gmat2 = SimpleMaterials.Metal(Materials.Color('gmat2-color', [.1, .1, .15, 1]));
+        var gmat3 = SimpleMaterials.Metal(Materials.Color('gmat3-color', [.1, .15, .1, 1]));
+        var gmat4 = SimpleMaterials.Metal(Materials.Color('gmat4-color', [.15, .1, .1, 1]));
+
+        var parts4 = ['Fin_Wing.',
+            'Window_Block.', '5-Engine.',
+            'hull.duckHead',
+            'hull.lump.',
+            'Side_Bridge.',
+            'Beard_Block.',
+            'hull.duckHead.',
+            'Tank',
+            'hull.joined.',
+            'hull.joined',
+            'Hangar.', 'bridge.compact.', 'hull.cruise.', 'hull.fish.']
+        var parts3 = [
+            'Small_Gun',
+            'Curve_Wing',
+            "eng.body.fish",
+            "hardpoint.base",
+            "Rail_Runner",
+            'G_block',
+            'hull.slick',
+            'Dog_Ear.',
+            'Beard',
+            "Bridge.BeerBelly",
+            "Fish_Engine"
         ];
+        var parts1 = ['hull.beard.', 'hull.rib.', 'Outrigger.', 'hull.knuckle',
+        'hull.horse.', 'double-block.', 'hull.bullHead.', 'hull.tall.', 'eng.body.', 'Fin_Runner.']
+        var parts2 = ['Fore-Bridge.', 'hull.slick.', 'hull.large.', 'hull.block_split.', 
+        'eng.strut.ladder',
+        'Instrument_Mast',
+        'hull.hangar.',
+        'PE-Wing',
+        'eng.strut.cylindar',
+        'hull.v.', 'Crab_face', 'Bridge-1', 'actor-', 'Build-up_Block', 'hull.long']
+        return [{
+            name: 'mat1',
+            selector: parts1,
+            config: Materials.Output(`mat1`,
+                Materials.Custom(
+                    `material-custom-mat1`,
+                    gmat1.out(Materials.StandardOut(gmat1))
+                )
+            )
+        }, {
+            name: 'mat2',
+            selector: parts2,
+            config: Materials.Output(`mat2`,
+                Materials.Custom(
+                    `material-custom-mat2`,
+                    gmat2.out(Materials.StandardOut(gmat2))
+                )
+            )
+        }, {
+            name: 'mat3',
+            selector: parts3,
+            config: Materials.Output(`mat3`,
+                Materials.Custom(
+                    `material-custom-mat3`,
+                    gmat3.out(Materials.StandardOut(gmat3))
+                )
+            )
+        }, {
+            name: 'mat4',
+            selector: parts4,
+            config: Materials.Output(`mat4`,
+                Materials.Custom(
+                    `material-custom-mat4`,
+                    gmat4.out(Materials.StandardOut(gmat4))
+                )
+            )
+        }];
     }
     constructMovie(raw) {
         var me = this;
@@ -262,14 +309,17 @@ export default class RaceTrack extends Basic {
                 vertices: [...face]
             });
 
+            var matter = SimpleMaterials.Metal(Materials.Color(`material-f-value-${name}`, [Math.random(), Math.random(), Math.random(), 1]));
+            var cmatter = Materials.Custom(
+                `material-ff-mat1-${name}`,
+                matter.out(Materials.StandardOut(matter))
+            )
             var res = {
                 name: name,
                 materialConfig: Materials.Output(`material-${name}`,
                     Materials.Mix(`material-mix-${name}`,
-                        Materials.Value(`material-light-value-${name}`, .5),
-                        Materials.Diffuse(`material-light-diff-${name}`,
-                            Materials.Color(`material-light-color-${name}`, [0, 0, 0, 1]),
-                        ),
+                        Materials.Value(`material-mix-${name}-mix`, me.getNumber(.1,.2)),
+                        cmatter,
                         Materials.Emission(
                             `material-light-${name}`,
                             Materials.Color(`material-light-color-${name}`, [1, 1, 1, 1]),
@@ -310,31 +360,23 @@ export default class RaceTrack extends Basic {
                     z: 0
                 },
                 scale: {
-                    x: 1,
-                    y: 1,
-                    z: 1
+                    x: .1,
+                    y: .1,
+                    z: .1
                 }
             });
-
+            var scale = this.getNumber(.1,.3);
             var res = {
                 name: name,
-                // materialConfig: Materials.Output(`material-${name}`,
-                //     Materials.Mix(`material-mix-${name}`,
-                //         Materials.Value(`material-light-value-${name}`, .5),
-                //         Materials.Diffuse(`material-light-diff-${name}`,
-                //             Materials.Color(`material-light-color-${name}`, [Math.random(), Math.random(), Math.random(), 1]),
-                //         ),
-                //         Materials.Emission(
-                //             `material-light-${name}`,
-                //             Materials.Color(`material-light-color-${name}`, [Math.random(), Math.random(), Math.random(), 1]),
-                //             Materials.Value(`material-light-strength-${name}`, 1)
-                //         )
-                //     )
-                // ),
                 position: {
                     y: 0,
                     x: 0,
                     z: 0
+                },
+                scale: {
+                    x: scale,
+                    y: scale,
+                    z: scale
                 }
             }
             if (!index) {
@@ -392,10 +434,8 @@ export default class RaceTrack extends Basic {
     }
 
     getMaterialGroups() {
-        return [...GroupMaterials.MaterialNames().map(name => {
-            return GroupMaterials[name]();
-        }), ...EeveeMaterials.MaterialNames().map(name => {
-            return EeveeMaterials[name]();
+        return [...SimpleMaterials.MaterialNames().map(name => {
+            return SimpleMaterials[name]();
         })];
     }
 }

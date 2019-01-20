@@ -330,11 +330,14 @@ export default class Basic {
             camera
         }
     }
-    getMaterialGroups(){
+    getMaterialGroups() {
         return null;
     }
     getMaterials() {
         return null;
+    }
+    getNumber(min, max) {
+        return (Math.random() * (max - min)) + min;
     }
     getWorlds() {
         return {

@@ -7,7 +7,7 @@ export default class EeveeMaterials extends Materials {
         this.type = null;
     }
     static MaterialNames(){
-        return ["BlenderEeveeSimpleShaderGroup","Material"]
+        return ["BlenderEeveeSimpleShaderGroup","EeveeDefaultMaterial"]
     }
     static Types() {
        var res = super.Types();
@@ -979,8 +979,8 @@ export default class EeveeMaterials extends Materials {
             }
             
     
-            static Material(blenderEeveeSimpleShaderVoronoi$Scale,blenderEeveeSimpleShaderNoise$Scale,blenderEeveeSimpleShaderHue,blenderEeveeSimpleShaderBump) {
-                var material = new EeveeMaterials('Material')
+            static EeveeDefaultMaterial(blenderEeveeSimpleShaderVoronoi$Scale,blenderEeveeSimpleShaderNoise$Scale,blenderEeveeSimpleShaderHue,blenderEeveeSimpleShaderBump) {
+                var material = new EeveeMaterials('EeveeDefaultMaterial')
                 material.isGroup = true;
                 material.type = 'GROUP';
                 material.conversion = {
