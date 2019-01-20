@@ -9,13 +9,13 @@ import SimpleMaterials from './simple-materials.mjs';
 import EeveeMaterials from './eevee-materials.mjs';
 import Util from '../util/util';
 
-var usecube = true;
+var usecube = false;
 export default class RaceTrack extends Basic {
     constructor() {
         super();
         this.levelHeight = 40;
         this.midi2dim = 100;
-        this.frameMultiplier = 2;
+        this.frameMultiplier = 1;
     }
     static info() {
         return {
