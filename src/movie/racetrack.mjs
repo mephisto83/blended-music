@@ -20,7 +20,7 @@ export default class RaceTrack extends Basic {
     static info() {
         return {
             name: 'Race Track',
-            version: '0.0.1'
+            version: '0.0.3'
         }
     }
 
