@@ -45,9 +45,10 @@ export default class CannonFarm extends PuppeteerBase {
             newagent = 2,
             keep = 8,
             agents = 10,
-            maxThrust = .5
+            maxThrust = .5,
+            maxFriction = .2
         } = this.options;
-        await this.open((this.options.url || 'http://192.168.1.118:8080/demos/rawcarworldgen.html') + `?minok=${minok}&new=${newagent}&keep=${keep}&trackSize=${maxScore}&agents=${agents}&maxThrust=${maxThrust}`);
+        await this.open((this.options.url || 'http://192.168.1.118:8080/demos/rawcarworldgen.html') + `?maxFriction=${maxFriction}&minok=${minok}&new=${newagent}&keep=${keep}&trackSize=${maxScore}&agents=${agents}&maxThrust=${maxThrust}`);
         let done = false;
         await this.page.evaluate(() => {
             window.skipRender = false;
@@ -59,8 +60,9 @@ export default class CannonFarm extends PuppeteerBase {
                 console.log('checking');
                 return window.RECORDINGS.find(recording => {
                     if (recording && recording.scores && recording.scores.length >= agents) {
-                        var res = recording.scores.filter(x => x.score > (maxScore * .5)).length >= minok && recording.scores.filter(x => x.score >= (maxScore - 1)).length >= 1;
-                        if (recording.scores.filter(x => x.score > (maxScore * .5)).length >= minok) {
+                        var res = recording.scores.filter(x => x.score > (maxScore * .75)).length >= minok &&
+                            recording.scores.filter(x => x.score >= (maxScore - 1)).length >= 1;
+                        if (recording.scores.filter(x => x.score > (maxScore * .75)).length >= minok) {
                             console.log('enough ok cars');
                         }
                         else {
