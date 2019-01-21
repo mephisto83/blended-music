@@ -9,7 +9,7 @@ import SimpleMaterials from './simple-materials.mjs';
 import EeveeMaterials from './eevee-materials.mjs';
 import Util from '../util/util';
 
-var usecube = false;
+var usecube = true;
 export default class RaceTrack extends Basic {
     constructor() {
         super();
@@ -325,10 +325,7 @@ export default class RaceTrack extends Basic {
                 let z1 = z2;
                 if (wall && nextTrackTransitions) {
                     let openwall = _track.wall.subset(0, 4).find(x => x.open);
-
-                    if (wall.open) {
-                        // z2 = ((_track.level + 1) || 0) * levelHeight - (levelHeight / 2);
-                        // z1 = z2;
+                    function addWall() {
                         extrafaces.push([{
                             x: wall.p1.x,
                             y: wall.p1.y,
@@ -346,6 +343,24 @@ export default class RaceTrack extends Basic {
                             y: wall.p1.y,
                             z: (_track.level + 1 || 0) * levelHeight - (levelHeight / 2)
                         }])
+                    }
+                    if (wall.open) {
+                        // z2 = ((_track.level + 1) || 0) * levelHeight - (levelHeight / 2);
+                        // z1 = z2;
+                        addWall();
+                    }
+                    switch (_track.direction) {
+                        case 'UP':
+                        case 'DOWN':
+                            if (wall.position === 'RIGHT' || wall.position === 'LEFT') {
+                                addWall();
+                            }
+                            break;
+                        default:
+                            if (wall.position === 'TOP' || wall.position === 'DOWN') {
+                                addWall();
+                            }
+                            break;
                     }
                 }
 
