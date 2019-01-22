@@ -6,10 +6,16 @@ import * as ProceduralNode from '../tools/math';
 import Materials from './materials';
 import GroupMaterials from './group-materials.mjs';
 import SimpleMaterials from './simple-materials.mjs';
+import MaterialBlendMaterials from './material-blend-materials.mjs';
 import EeveeMaterials from './eevee-materials.mjs';
 import Util from '../util/util';
 
 var usecube = true;
+
+const UP = 'UP';
+const DOWN = 'DOWN';
+const LEFT = 'LEFT';
+const RIGHT = 'RIGHT';
 export default class RaceTrack extends Basic {
     constructor() {
         super();
@@ -300,6 +306,38 @@ export default class RaceTrack extends Basic {
         }
         return false;
     }
+    sameWall(wall1, wall2) {
+        return (
+            this.samePoint(wall1.p1, wall2.p1) && this.samePoint(wall1.p2, wall2.p2) ||
+            this.samePoint(wall2.p1, wall1.p2) || this.samePoint(wall2.p2, wall1.p1)
+        );
+    }
+    seemWalls(wall1, wall2) {
+        switch (wall1.position) {
+            case UP:
+                return wall2.position === DOWN;
+            case DOWN:
+                return wall2.position === UP;
+            case RIGHT:
+                return wall2.position === LEFT;
+            case LEFT:
+                return wall2.position === RIGHT;
+        }
+    }
+    getEntryWall(track, prev) {
+        var wall = prev.wall.subset(0, 4).find(x => x.open);
+
+        switch (wall.position) {
+            case UP:
+                return track.wall.find(x => x.position === 'DOWN');
+            case DOWN:
+                return track.wall.find(x => x.position === 'UP');
+            case LEFT:
+                return track.wall.find(x => x.position === 'RIGHT');
+            case RIGHT:
+                return track.wall.find(x => x.position === 'LEFT');
+        }
+    }
     constructMovie(raw) {
         var me = this;
 
@@ -320,48 +358,56 @@ export default class RaceTrack extends Basic {
             let nextTrackTransitions = track[tindex + 1] && track[tindex + 1].transitionLevel;
             let trackTransitions = track[tindex].transitionLevel;
             let extrafaces = [];
+            let previousTrack = null;
+            let nextTrack = null;
+            let previousopenwall = null;
+            let nextTrackEntryWall = null;
+            if (tindex) {
+                previousTrack = track[tindex - 1];
+                previousopenwall = track[tindex - 1].wall.subset(0, 4).find(x => x.open);
+                if (!previousopenwall) {
+                    throw 'there needs to be an exit wall';
+                }
+            }
+            if (track[tindex + 1]) {
+                nextTrack = track[tindex + 1];
+                nextTrackEntryWall = this.getEntryWall(nextTrack, _track);
+                if (!nextTrackEntryWall) {
+                    throw 'there needs to be an entry wall';
+                }
+            }
             _track.wall.subset(0, 4).map((wall, i) => {
                 let z2 = (_track.level || 0) * levelHeight - (levelHeight / 2);
                 let z1 = z2;
+                function addWall() {
+                    extrafaces.push([{
+                        x: wall.p1.x,
+                        y: wall.p1.y,
+                        z: z1
+                    }, {
+                        x: wall.p2.x,
+                        y: wall.p2.y,
+                        z: z1
+                    }, {
+                        x: wall.p2.x,
+                        y: wall.p2.y,
+                        z: (_track.level + 1 || 0) * levelHeight - (levelHeight / 2)
+                    }, {
+                        x: wall.p1.x,
+                        y: wall.p1.y,
+                        z: (_track.level + 1 || 0) * levelHeight - (levelHeight / 2)
+                    }])
+                }
                 if (wall && nextTrackTransitions) {
-                    let openwall = _track.wall.subset(0, 4).find(x => x.open);
-                    function addWall() {
-                        extrafaces.push([{
-                            x: wall.p1.x,
-                            y: wall.p1.y,
-                            z: z1
-                        }, {
-                            x: wall.p2.x,
-                            y: wall.p2.y,
-                            z: z1
-                        }, {
-                            x: wall.p2.x,
-                            y: wall.p2.y,
-                            z: (_track.level + 1 || 0) * levelHeight - (levelHeight / 2)
-                        }, {
-                            x: wall.p1.x,
-                            y: wall.p1.y,
-                            z: (_track.level + 1 || 0) * levelHeight - (levelHeight / 2)
-                        }])
-                    }
                     if (wall.open) {
                         // z2 = ((_track.level + 1) || 0) * levelHeight - (levelHeight / 2);
                         // z1 = z2;
                         addWall();
                     }
-                    switch (_track.direction) {
-                        case 'UP':
-                        case 'DOWN':
-                            if (wall.position === 'RIGHT' || wall.position === 'LEFT') {
-                                addWall();
-                            }
-                            break;
-                        default:
-                            if (wall.position === 'TOP' || wall.position === 'DOWN') {
-                                addWall();
-                            }
-                            break;
-                    }
+                }
+                if ((!nextTrackEntryWall || !this.seemWalls(wall, nextTrackEntryWall)) &&
+                    (!previousopenwall || !this.seemWalls(previousopenwall, wall))) {
+                    addWall();
                 }
 
                 if (i === 0) {
@@ -420,7 +466,8 @@ export default class RaceTrack extends Basic {
                 keyframe.objects.push(res);
             });
 
-            var matter = SimpleMaterials.Metal(Materials.Color(`material-f-value-${trackSectionName}`, [Math.random(), Math.random(), Math.random(), 1]));
+            var matter = MaterialBlendMaterials.Checker_Metal_Mat(Materials.Color(`material-f-value-${trackSectionName}`, [Math.random() * .999, Math.random() * .999, Math.random() * .999, 1]),
+                Materials.Color(`material-f-value-${trackSectionName}`, [Math.random(), Math.random(), Math.random(), 1]));
             var cmatter = Materials.Custom(
                 `material-ff-mat1-${trackSectionName}`,
                 matter.out(Materials.StandardOut(matter))
@@ -570,6 +617,8 @@ export default class RaceTrack extends Basic {
     getMaterialGroups() {
         return [...SimpleMaterials.MaterialNames().map(name => {
             return SimpleMaterials[name]();
+        }), ...MaterialBlendMaterials.MaterialNames().map(name => {
+            return MaterialBlendMaterials[name]();
         })];
     }
 }

@@ -1,0 +1,1243 @@
+{
+    "library": [
+        {
+            "name": "Checker Metal",
+            "value": {
+                "children": [],
+                "defaultInputs": [
+                    {
+                        "default_value": [
+                            0.8000000715255737,
+                            0.6884651780128479,
+                            0.5692787170410156,
+                            1.0
+                        ],
+                        "name": "Color1",
+                        "socket_index": 0,
+                        "type": "NodeSocketColor"
+                    },
+                    {
+                        "default_value": [
+                            0.022711284458637238,
+                            0.0,
+                            0.8000000715255737,
+                            1.0
+                        ],
+                        "name": "Color2",
+                        "socket_index": 1,
+                        "type": "NodeSocketColor"
+                    }
+                ],
+                "links": [
+                    {
+                        "from": 2,
+                        "from_node": "Principled BSDF",
+                        "from_socket": {
+                            "name": "BSDF",
+                            "socket_index": 0,
+                            "type": "NodeSocketShader"
+                        },
+                        "to": 1,
+                        "to_node": "Mix Shader",
+                        "to_socket": {
+                            "name": "Shader",
+                            "socket_index": 2,
+                            "type": "NodeSocketShader"
+                        }
+                    },
+                    {
+                        "from": 1,
+                        "from_node": "Mix Shader",
+                        "from_socket": {
+                            "name": "Shader",
+                            "socket_index": 0,
+                            "type": "NodeSocketShader"
+                        },
+                        "to": 0,
+                        "to_node": "Material Output",
+                        "to_socket": {
+                            "name": "Surface",
+                            "socket_index": 0,
+                            "type": "NodeSocketShader"
+                        }
+                    },
+                    {
+                        "from": 7,
+                        "from_node": "Principled BSDF.001",
+                        "from_socket": {
+                            "name": "BSDF",
+                            "socket_index": 0,
+                            "type": "NodeSocketShader"
+                        },
+                        "to": 1,
+                        "to_node": "Mix Shader",
+                        "to_socket": {
+                            "name": "Shader",
+                            "socket_index": 1,
+                            "type": "NodeSocketShader"
+                        }
+                    },
+                    {
+                        "from": 3,
+                        "from_node": "Checker Texture.001",
+                        "from_socket": {
+                            "name": "Fac",
+                            "socket_index": 1,
+                            "type": "NodeSocketFloatFactor"
+                        },
+                        "to": 1,
+                        "to_node": "Mix Shader",
+                        "to_socket": {
+                            "name": "Fac",
+                            "socket_index": 0,
+                            "type": "NodeSocketFloatFactor"
+                        }
+                    },
+                    {
+                        "from": 4,
+                        "from_node": "Noise Texture",
+                        "from_socket": {
+                            "name": "Fac",
+                            "socket_index": 1,
+                            "type": "NodeSocketFloatFactor"
+                        },
+                        "to": 7,
+                        "to_node": "Principled BSDF.001",
+                        "to_socket": {
+                            "name": "Metallic",
+                            "socket_index": 4,
+                            "type": "NodeSocketFloatFactor"
+                        }
+                    },
+                    {
+                        "from": 4,
+                        "from_node": "Noise Texture",
+                        "from_socket": {
+                            "name": "Fac",
+                            "socket_index": 1,
+                            "type": "NodeSocketFloatFactor"
+                        },
+                        "to": 7,
+                        "to_node": "Principled BSDF.001",
+                        "to_socket": {
+                            "name": "Specular",
+                            "socket_index": 5,
+                            "type": "NodeSocketFloatFactor"
+                        }
+                    },
+                    {
+                        "from": 4,
+                        "from_node": "Noise Texture",
+                        "from_socket": {
+                            "name": "Fac",
+                            "socket_index": 1,
+                            "type": "NodeSocketFloatFactor"
+                        },
+                        "to": 5,
+                        "to_node": "Math",
+                        "to_socket": {
+                            "name": "Value",
+                            "socket_index": 0,
+                            "type": "NodeSocketFloat"
+                        }
+                    },
+                    {
+                        "from": 4,
+                        "from_node": "Noise Texture",
+                        "from_socket": {
+                            "name": "Fac",
+                            "socket_index": 1,
+                            "type": "NodeSocketFloatFactor"
+                        },
+                        "to": 7,
+                        "to_node": "Principled BSDF.001",
+                        "to_socket": {
+                            "name": "Clearcoat",
+                            "socket_index": 12,
+                            "type": "NodeSocketFloatFactor"
+                        }
+                    },
+                    {
+                        "from": 5,
+                        "from_node": "Math",
+                        "from_socket": {
+                            "name": "Value",
+                            "socket_index": 0,
+                            "type": "NodeSocketFloat"
+                        },
+                        "to": 2,
+                        "to_node": "Principled BSDF",
+                        "to_socket": {
+                            "name": "Metallic",
+                            "socket_index": 4,
+                            "type": "NodeSocketFloatFactor"
+                        }
+                    },
+                    {
+                        "from": 5,
+                        "from_node": "Math",
+                        "from_socket": {
+                            "name": "Value",
+                            "socket_index": 0,
+                            "type": "NodeSocketFloat"
+                        },
+                        "to": 2,
+                        "to_node": "Principled BSDF",
+                        "to_socket": {
+                            "name": "Specular",
+                            "socket_index": 5,
+                            "type": "NodeSocketFloatFactor"
+                        }
+                    },
+                    {
+                        "from": 8,
+                        "from_node": "Group Input",
+                        "from_socket": {
+                            "name": "Color1",
+                            "socket_index": 0,
+                            "type": "NodeSocketColor"
+                        },
+                        "to": 7,
+                        "to_node": "Principled BSDF.001",
+                        "to_socket": {
+                            "name": "Base Color",
+                            "socket_index": 0,
+                            "type": "NodeSocketColor"
+                        }
+                    },
+                    {
+                        "from": 8,
+                        "from_node": "Group Input",
+                        "from_socket": {
+                            "name": "Color2",
+                            "socket_index": 1,
+                            "type": "NodeSocketColor"
+                        },
+                        "to": 2,
+                        "to_node": "Principled BSDF",
+                        "to_socket": {
+                            "name": "Base Color",
+                            "socket_index": 0,
+                            "type": "NodeSocketColor"
+                        }
+                    },
+                    {
+                        "from": 1,
+                        "from_node": "Mix Shader",
+                        "from_socket": {
+                            "name": "Shader",
+                            "socket_index": 0,
+                            "type": "NodeSocketShader"
+                        },
+                        "to": 6,
+                        "to_node": "Group Output",
+                        "to_socket": {
+                            "name": "Shader",
+                            "socket_index": 0,
+                            "type": "NodeSocketShader"
+                        }
+                    }
+                ],
+                "nodes": [
+                    {
+                        "dimensions": {
+                            "height": 119.03630065917969,
+                            "width": 140.0
+                        },
+                        "id": 0,
+                        "inputs": [
+                            {
+                                "name": "Surface",
+                                "socket_index": 0,
+                                "type": "NodeSocketShader"
+                            },
+                            {
+                                "name": "Volume",
+                                "socket_index": 1,
+                                "type": "NodeSocketShader"
+                            },
+                            {
+                                "default_value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "name": "Displacement",
+                                "socket_index": 2,
+                                "type": "NodeSocketVector"
+                            }
+                        ],
+                        "location": {
+                            "x": 511.13568115234375,
+                            "y": 172.0363006591797
+                        },
+                        "name": "Material Output",
+                        "options": {},
+                        "outputs": [],
+                        "type": "ShaderNodeOutputMaterial"
+                    },
+                    {
+                        "dimensions": {
+                            "height": 119.41487121582031,
+                            "width": 140.0
+                        },
+                        "id": 1,
+                        "inputs": [
+                            {
+                                "default_value": 0.5,
+                                "name": "Fac",
+                                "socket_index": 0,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "name": "Shader",
+                                "socket_index": 1,
+                                "type": "NodeSocketShader"
+                            },
+                            {
+                                "name": "Shader",
+                                "socket_index": 2,
+                                "type": "NodeSocketShader"
+                            }
+                        ],
+                        "location": {
+                            "x": 239.35980224609375,
+                            "y": 162.4148712158203
+                        },
+                        "name": "Mix Shader",
+                        "options": {},
+                        "outputs": [
+                            {
+                                "name": "Shader",
+                                "socket_index": 0,
+                                "type": "NodeSocketShader"
+                            }
+                        ],
+                        "type": "ShaderNodeMixShader"
+                    },
+                    {
+                        "dimensions": {
+                            "height": 529.6696166992188,
+                            "width": 240.0
+                        },
+                        "distribution": "GGX",
+                        "id": 2,
+                        "inputs": [
+                            {
+                                "default_value": [
+                                    0.022711284458637238,
+                                    0.0,
+                                    0.8000000715255737,
+                                    1.0
+                                ],
+                                "name": "Base Color",
+                                "socket_index": 0,
+                                "type": "NodeSocketColor"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Subsurface",
+                                "socket_index": 1,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": [
+                                    1.0,
+                                    0.20000000298023224,
+                                    0.10000000149011612
+                                ],
+                                "name": "Subsurface Radius",
+                                "socket_index": 2,
+                                "type": "NodeSocketVector"
+                            },
+                            {
+                                "default_value": [
+                                    0.800000011920929,
+                                    0.800000011920929,
+                                    0.800000011920929,
+                                    1.0
+                                ],
+                                "name": "Subsurface Color",
+                                "socket_index": 3,
+                                "type": "NodeSocketColor"
+                            },
+                            {
+                                "default_value": 0.04285728931427002,
+                                "name": "Metallic",
+                                "socket_index": 4,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.08571428060531616,
+                                "name": "Specular",
+                                "socket_index": 5,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Specular Tint",
+                                "socket_index": 6,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.5,
+                                "name": "Roughness",
+                                "socket_index": 7,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Anisotropic",
+                                "socket_index": 8,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Anisotropic Rotation",
+                                "socket_index": 9,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Sheen",
+                                "socket_index": 10,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.5,
+                                "name": "Sheen Tint",
+                                "socket_index": 11,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Clearcoat",
+                                "socket_index": 12,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.029999999329447746,
+                                "name": "Clearcoat Roughness",
+                                "socket_index": 13,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 1.4500000476837158,
+                                "name": "IOR",
+                                "socket_index": 14,
+                                "type": "NodeSocketFloat"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Transmission",
+                                "socket_index": 15,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Transmission Roughness",
+                                "socket_index": 16,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "name": "Normal",
+                                "socket_index": 17,
+                                "type": "NodeSocketVector"
+                            },
+                            {
+                                "default_value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "name": "Clearcoat Normal",
+                                "socket_index": 18,
+                                "type": "NodeSocketVector"
+                            },
+                            {
+                                "default_value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "name": "Tangent",
+                                "socket_index": 19,
+                                "type": "NodeSocketVector"
+                            }
+                        ],
+                        "location": {
+                            "x": -253.32217407226562,
+                            "y": 50.669612884521484
+                        },
+                        "name": "Principled BSDF",
+                        "options": {},
+                        "outputs": [
+                            {
+                                "name": "BSDF",
+                                "socket_index": 0,
+                                "type": "NodeSocketShader"
+                            }
+                        ],
+                        "type": "ShaderNodeBsdfPrincipled"
+                    },
+                    {
+                        "dimensions": {
+                            "height": 163.5744171142578,
+                            "width": 140.0
+                        },
+                        "id": 3,
+                        "inputs": [
+                            {
+                                "default_value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "name": "Vector",
+                                "socket_index": 0,
+                                "type": "NodeSocketVector"
+                            },
+                            {
+                                "default_value": [
+                                    0.800000011920929,
+                                    0.800000011920929,
+                                    0.800000011920929,
+                                    1.0
+                                ],
+                                "name": "Color1",
+                                "socket_index": 1,
+                                "type": "NodeSocketColor"
+                            },
+                            {
+                                "default_value": [
+                                    0.20000000298023224,
+                                    0.20000000298023224,
+                                    0.20000000298023224,
+                                    1.0
+                                ],
+                                "name": "Color2",
+                                "socket_index": 2,
+                                "type": "NodeSocketColor"
+                            },
+                            {
+                                "default_value": 5.0,
+                                "name": "Scale",
+                                "socket_index": 3,
+                                "type": "NodeSocketFloat"
+                            }
+                        ],
+                        "location": {
+                            "x": -805.6700439453125,
+                            "y": 197.5744171142578
+                        },
+                        "name": "Checker Texture.001",
+                        "options": {},
+                        "outputs": [
+                            {
+                                "name": "Color",
+                                "socket_index": 0,
+                                "type": "NodeSocketColor"
+                            },
+                            {
+                                "name": "Fac",
+                                "socket_index": 1,
+                                "type": "NodeSocketFloatFactor"
+                            }
+                        ],
+                        "type": "ShaderNodeTexChecker"
+                    },
+                    {
+                        "dimensions": {
+                            "height": 158.0225830078125,
+                            "width": 140.0
+                        },
+                        "id": 4,
+                        "inputs": [
+                            {
+                                "default_value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "name": "Vector",
+                                "socket_index": 0,
+                                "type": "NodeSocketVector"
+                            },
+                            {
+                                "default_value": 1.0,
+                                "name": "Scale",
+                                "socket_index": 1,
+                                "type": "NodeSocketFloat"
+                            },
+                            {
+                                "default_value": 2.0,
+                                "name": "Detail",
+                                "socket_index": 2,
+                                "type": "NodeSocketFloat"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Distortion",
+                                "socket_index": 3,
+                                "type": "NodeSocketFloat"
+                            }
+                        ],
+                        "location": {
+                            "x": -1366.79541015625,
+                            "y": -173.9774169921875
+                        },
+                        "name": "Noise Texture",
+                        "options": {},
+                        "outputs": [
+                            {
+                                "name": "Color",
+                                "socket_index": 0,
+                                "type": "NodeSocketColor"
+                            },
+                            {
+                                "name": "Fac",
+                                "socket_index": 1,
+                                "type": "NodeSocketFloatFactor"
+                            }
+                        ],
+                        "type": "ShaderNodeTexNoise"
+                    },
+                    {
+                        "dimensions": {
+                            "height": 150.67257690429688,
+                            "width": 140.0
+                        },
+                        "id": 5,
+                        "inputs": [
+                            {
+                                "default_value": 0.5,
+                                "name": "Value",
+                                "socket_index": 0,
+                                "type": "NodeSocketFloat"
+                            },
+                            {
+                                "default_value": 0.10000000149011612,
+                                "name": "Value",
+                                "socket_index": 1,
+                                "type": "NodeSocketFloat"
+                            }
+                        ],
+                        "location": {
+                            "x": -1146.7952880859375,
+                            "y": -295.3274230957031
+                        },
+                        "name": "Math",
+                        "operation": "MULTIPLY",
+                        "options": {},
+                        "outputs": [
+                            {
+                                "name": "Value",
+                                "socket_index": 0,
+                                "type": "NodeSocketFloat"
+                            }
+                        ],
+                        "type": "ShaderNodeMath",
+                        "use_clamp": false
+                    },
+                    {
+                        "dimensions": {
+                            "height": 65.12348937988281,
+                            "width": 140.0
+                        },
+                        "id": 6,
+                        "inputs": [
+                            {
+                                "name": "Shader",
+                                "socket_index": 0,
+                                "type": "NodeSocketShader"
+                            },
+                            {
+                                "name": "",
+                                "socket_index": 1,
+                                "type": "NodeSocketVirtual"
+                            }
+                        ],
+                        "location": {
+                            "x": 711.1357421875,
+                            "y": -48.87650680541992
+                        },
+                        "name": "Group Output",
+                        "options": {},
+                        "outputs": [],
+                        "type": "NodeGroupOutput"
+                    },
+                    {
+                        "dimensions": {
+                            "height": 528.8631591796875,
+                            "width": 240.0
+                        },
+                        "distribution": "GGX",
+                        "id": 7,
+                        "inputs": [
+                            {
+                                "default_value": [
+                                    0.8000000715255737,
+                                    0.6884651780128479,
+                                    0.5692787170410156,
+                                    1.0
+                                ],
+                                "name": "Base Color",
+                                "socket_index": 0,
+                                "type": "NodeSocketColor"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Subsurface",
+                                "socket_index": 1,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": [
+                                    1.0,
+                                    0.20000000298023224,
+                                    0.10000000149011612
+                                ],
+                                "name": "Subsurface Radius",
+                                "socket_index": 2,
+                                "type": "NodeSocketVector"
+                            },
+                            {
+                                "default_value": [
+                                    0.800000011920929,
+                                    0.800000011920929,
+                                    0.800000011920929,
+                                    1.0
+                                ],
+                                "name": "Subsurface Color",
+                                "socket_index": 3,
+                                "type": "NodeSocketColor"
+                            },
+                            {
+                                "default_value": 0.5476190447807312,
+                                "name": "Metallic",
+                                "socket_index": 4,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.5,
+                                "name": "Specular",
+                                "socket_index": 5,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Specular Tint",
+                                "socket_index": 6,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.5,
+                                "name": "Roughness",
+                                "socket_index": 7,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Anisotropic",
+                                "socket_index": 8,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Anisotropic Rotation",
+                                "socket_index": 9,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Sheen",
+                                "socket_index": 10,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.5,
+                                "name": "Sheen Tint",
+                                "socket_index": 11,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Clearcoat",
+                                "socket_index": 12,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.029999999329447746,
+                                "name": "Clearcoat Roughness",
+                                "socket_index": 13,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 1.4500000476837158,
+                                "name": "IOR",
+                                "socket_index": 14,
+                                "type": "NodeSocketFloat"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Transmission",
+                                "socket_index": 15,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Transmission Roughness",
+                                "socket_index": 16,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "name": "Normal",
+                                "socket_index": 17,
+                                "type": "NodeSocketVector"
+                            },
+                            {
+                                "default_value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "name": "Clearcoat Normal",
+                                "socket_index": 18,
+                                "type": "NodeSocketVector"
+                            },
+                            {
+                                "default_value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "name": "Tangent",
+                                "socket_index": 19,
+                                "type": "NodeSocketVector"
+                            }
+                        ],
+                        "location": {
+                            "x": -894.9328002929688,
+                            "y": 5.863137245178223
+                        },
+                        "name": "Principled BSDF.001",
+                        "options": {},
+                        "outputs": [
+                            {
+                                "name": "BSDF",
+                                "socket_index": 0,
+                                "type": "NodeSocketShader"
+                            }
+                        ],
+                        "type": "ShaderNodeBsdfPrincipled"
+                    },
+                    {
+                        "dimensions": {
+                            "height": 91.12348937988281,
+                            "width": 140.0
+                        },
+                        "id": 8,
+                        "inputs": [],
+                        "location": {
+                            "x": -1566.79541015625,
+                            "y": -48.87650680541992
+                        },
+                        "name": "Group Input",
+                        "options": {},
+                        "outputs": [
+                            {
+                                "name": "Color1",
+                                "socket_index": 0,
+                                "type": "NodeSocketColor"
+                            },
+                            {
+                                "name": "Color2",
+                                "socket_index": 1,
+                                "type": "NodeSocketColor"
+                            },
+                            {
+                                "name": "",
+                                "socket_index": 2,
+                                "type": "NodeSocketVirtual"
+                            }
+                        ],
+                        "type": "NodeGroupInput"
+                    }
+                ]
+            }
+        }
+    ],
+    "materials": [
+        {
+            "name": "Checker Metal Mat",
+            "value": {
+                "children": [
+                    {
+                        "name": "Material Output"
+                    },
+                    {
+                        "name": "Checker Metal"
+                    }
+                ],
+                "links": [
+                    {
+                        "from": 1,
+                        "from_node": "Group",
+                        "from_node_name": "Checker Metal",
+                        "from_socket": {
+                            "name": "Shader",
+                            "socket_index": 0,
+                            "type": "NodeSocketShader"
+                        },
+                        "to": 0,
+                        "to_node": "Material Output",
+                        "to_socket": {
+                            "name": "Surface",
+                            "socket_index": 0,
+                            "type": "NodeSocketShader"
+                        }
+                    }
+                ],
+                "nodes": [
+                    {
+                        "child_def": 0,
+                        "dimensions": {
+                            "height": 119.8861083984375,
+                            "width": 140.0
+                        },
+                        "id": 0,
+                        "inputs": [
+                            {
+                                "name": "Surface",
+                                "socket_index": 0,
+                                "type": "NodeSocketShader"
+                            },
+                            {
+                                "name": "Volume",
+                                "socket_index": 1,
+                                "type": "NodeSocketShader"
+                            },
+                            {
+                                "default_value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "name": "Displacement",
+                                "socket_index": 2,
+                                "type": "NodeSocketVector"
+                            }
+                        ],
+                        "location": {
+                            "x": 201.75674438476562,
+                            "y": 272.8861083984375
+                        },
+                        "name": "Material Output",
+                        "options": {},
+                        "outputs": [],
+                        "type": "ShaderNodeOutputMaterial"
+                    },
+                    {
+                        "child_def": 1,
+                        "dimensions": {
+                            "height": 127.03440856933594,
+                            "width": 140.0
+                        },
+                        "id": 0,
+                        "inputs": [
+                            {
+                                "default_value": [
+                                    0.8000000715255737,
+                                    0.6884651780128479,
+                                    0.5692787170410156,
+                                    1.0
+                                ],
+                                "name": "Color1",
+                                "socket_index": 0,
+                                "type": "NodeSocketColor"
+                            },
+                            {
+                                "default_value": [
+                                    0.022711284458637238,
+                                    0.0,
+                                    0.8000000715255737,
+                                    1.0
+                                ],
+                                "name": "Color2",
+                                "socket_index": 1,
+                                "type": "NodeSocketColor"
+                            }
+                        ],
+                        "location": {
+                            "x": -178.98153686523438,
+                            "y": 147.03440856933594
+                        },
+                        "name": "Group",
+                        "node_name": "Checker Metal",
+                        "options": {},
+                        "outputs": [
+                            {
+                                "name": "Shader",
+                                "socket_index": 0,
+                                "type": "NodeSocketShader"
+                            }
+                        ],
+                        "type": "ShaderNodeGroup"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Material",
+            "value": {
+                "children": [
+                    {
+                        "name": "Material Output"
+                    },
+                    {
+                        "name": "Principled BSDF"
+                    }
+                ],
+                "links": [
+                    {
+                        "from": 1,
+                        "from_node": "Principled BSDF",
+                        "from_socket": {
+                            "name": "BSDF",
+                            "socket_index": 0,
+                            "type": "NodeSocketShader"
+                        },
+                        "to": 0,
+                        "to_node": "Material Output",
+                        "to_socket": {
+                            "name": "Surface",
+                            "socket_index": 0,
+                            "type": "NodeSocketShader"
+                        }
+                    }
+                ],
+                "nodes": [
+                    {
+                        "child_def": 0,
+                        "dimensions": {
+                            "height": 119.0,
+                            "width": 140.0
+                        },
+                        "id": 0,
+                        "inputs": [
+                            {
+                                "name": "Surface",
+                                "socket_index": 0,
+                                "type": "NodeSocketShader"
+                            },
+                            {
+                                "name": "Volume",
+                                "socket_index": 1,
+                                "type": "NodeSocketShader"
+                            },
+                            {
+                                "default_value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "name": "Displacement",
+                                "socket_index": 2,
+                                "type": "NodeSocketVector"
+                            }
+                        ],
+                        "location": {
+                            "x": 300.0,
+                            "y": 300.0
+                        },
+                        "name": "Material Output",
+                        "options": {},
+                        "outputs": [],
+                        "type": "ShaderNodeOutputMaterial"
+                    },
+                    {
+                        "child_def": 1,
+                        "dimensions": {
+                            "height": 537.0,
+                            "width": 240.0
+                        },
+                        "distribution": "GGX",
+                        "id": 0,
+                        "inputs": [
+                            {
+                                "default_value": [
+                                    0.8000000715255737,
+                                    0.014457959681749344,
+                                    0.17630505561828613,
+                                    1.0
+                                ],
+                                "name": "Base Color",
+                                "socket_index": 0,
+                                "type": "NodeSocketColor"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Subsurface",
+                                "socket_index": 1,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": [
+                                    1.0,
+                                    0.20000000298023224,
+                                    0.10000000149011612
+                                ],
+                                "name": "Subsurface Radius",
+                                "socket_index": 2,
+                                "type": "NodeSocketVector"
+                            },
+                            {
+                                "default_value": [
+                                    0.800000011920929,
+                                    0.800000011920929,
+                                    0.800000011920929,
+                                    1.0
+                                ],
+                                "name": "Subsurface Color",
+                                "socket_index": 3,
+                                "type": "NodeSocketColor"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Metallic",
+                                "socket_index": 4,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.5,
+                                "name": "Specular",
+                                "socket_index": 5,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Specular Tint",
+                                "socket_index": 6,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.5,
+                                "name": "Roughness",
+                                "socket_index": 7,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Anisotropic",
+                                "socket_index": 8,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Anisotropic Rotation",
+                                "socket_index": 9,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Sheen",
+                                "socket_index": 10,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.5,
+                                "name": "Sheen Tint",
+                                "socket_index": 11,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Clearcoat",
+                                "socket_index": 12,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.029999999329447746,
+                                "name": "Clearcoat Roughness",
+                                "socket_index": 13,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 1.4500000476837158,
+                                "name": "IOR",
+                                "socket_index": 14,
+                                "type": "NodeSocketFloat"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Transmission",
+                                "socket_index": 15,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": 0.0,
+                                "name": "Transmission Roughness",
+                                "socket_index": 16,
+                                "type": "NodeSocketFloatFactor"
+                            },
+                            {
+                                "default_value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "name": "Normal",
+                                "socket_index": 17,
+                                "type": "NodeSocketVector"
+                            },
+                            {
+                                "default_value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "name": "Clearcoat Normal",
+                                "socket_index": 18,
+                                "type": "NodeSocketVector"
+                            },
+                            {
+                                "default_value": [
+                                    0.0,
+                                    0.0,
+                                    0.0
+                                ],
+                                "name": "Tangent",
+                                "socket_index": 19,
+                                "type": "NodeSocketVector"
+                            }
+                        ],
+                        "location": {
+                            "x": 10.0,
+                            "y": 300.0
+                        },
+                        "name": "Principled BSDF",
+                        "options": {},
+                        "outputs": [
+                            {
+                                "name": "BSDF",
+                                "socket_index": 0,
+                                "type": "NodeSocketShader"
+                            }
+                        ],
+                        "type": "ShaderNodeBsdfPrincipled"
+                    }
+                ]
+            }
+        }
+    ]
+}
