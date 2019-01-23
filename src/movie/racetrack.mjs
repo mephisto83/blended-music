@@ -497,6 +497,10 @@ export default class RaceTrack extends Basic {
         Object.keys(actors).map((actorName, index) => {
             const name = `actor-${actorName}-${index}`
             const targetName = `${name}-target`;
+            const sub_object = `sub-1-${name}`;
+            let s_object_name = `${sub_object}-name`;
+            let s_object_name_text = `${s_object_name}-text`;
+            let actor_name = actors[actorName][0].name;
             objects.push({
                 name: targetName,
                 type: "empty",
@@ -506,9 +510,31 @@ export default class RaceTrack extends Basic {
                     z: 0
                 }
             });
+            objects.push({
+                name: name,
+                type: "empty",
+                position: {
+                    x: 0,
+                    y: 0,
+                    z: 0
+                }
+            });
+            objects.push({
+                name: s_object_name,
+                parent: name,
+                type: 'empty'
+            });
+            objects.push({
+                name: s_object_name_text,
+                parent: s_object_name,
+                type: 'text',
+                value: actor_name || 'unknown'
+            })
+
             if (usecube) {
                 objects.push({
-                    name: name,
+                    name: sub_object,
+                    parent: name,
                     type: "cube",
                     position: {
                         x: 0,
@@ -519,7 +545,8 @@ export default class RaceTrack extends Basic {
             }
             else {
                 objects.push({
-                    name: name,
+                    name: sub_object,
+                    parent: name,
                     type: "bespoke",
                     folder: _dir_path,
                     materials: this.getShipMaterials(),
@@ -536,7 +563,7 @@ export default class RaceTrack extends Basic {
                     }
                 });
             }
-            var scale = this.getNumber(.1, .3);
+            var scale = this.getNumber(.2, .4);
             var res = {
                 name: name,
                 position: {
@@ -552,9 +579,45 @@ export default class RaceTrack extends Basic {
                     z: scale
                 }
             }
+            { }
 
             let keyframe = me.getKeyFrame(1);
             keyframe.objects.push(res);
+            keyframe.objects.push({
+                name: sub_object,
+                position: { x: 0, y: 0, z: 0 }
+            });
+            keyframe.objects.push({
+                name: s_object_name,
+                scale: {
+                    x: 1,
+                    y: 1,
+                    z: 1
+                },
+                position: {
+                    x: 0,
+                    y: 2,
+                    z: 3
+                },
+                rotation: {
+                    x: 90
+                }
+            });
+            keyframe.objects.push({
+                name: s_object_name_text,
+                position: {
+                    y: 0,
+                    x: 0,
+                    z: 0
+                },
+                materialConfig: Materials.Output(`material-${s_object_name_text}`,
+                    Materials.Emission(
+                        `xf-light-${s_object_name_text}`,
+                        Materials.Color(`light-color-${s_object_name_text}`, [1, 1, 1, 1]),
+                        Materials.Value(`light-strength-${s_object_name_text}`, 1)
+                    )
+                ),
+            })
             var restarget = {
                 name: targetName,
                 position: {
