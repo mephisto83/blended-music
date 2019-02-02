@@ -40,8 +40,8 @@ export default class CannonFarm extends PuppeteerBase {
         await this.start();
         let {
             outputDir,
-            minok = 10,
-            maxScore = 10,
+            minok = 6,
+            maxScore = 800,
             newagent = 2,
             keep = 12,
             agents = 20,

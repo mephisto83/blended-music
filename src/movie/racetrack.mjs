@@ -614,7 +614,7 @@ export default class RaceTrack extends Basic {
                     Materials.Emission(
                         `xf-light-${s_object_name_text}`,
                         Materials.Color(`light-color-${s_object_name_text}`, [1, 1, 1, 1]),
-                        Materials.Value(`light-strength-${s_object_name_text}`, 1)
+                        Materials.Value(`light-strength-${s_object_name_text}`, 10)
                     )
                 ),
             })
