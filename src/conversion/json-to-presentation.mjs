@@ -25,6 +25,7 @@ export default class JsonToPresentationJson {
                 "samples": "200",
                 "Device": "GPU",
                 "MaterialGroups": movieDefinition.materialGroups || null,
+                "CompositeGroups": movieDefinition.compositeGroups || null,
                 ...(BlendObjects ? {
                     "Objects": {
                         "File": "//objects.blend",
@@ -37,6 +38,7 @@ export default class JsonToPresentationJson {
                 "name": "default",
                 "world": "SkyWorld",
                 "world-config": movieDefinition.world,
+                'scene-composite': movieDefinition.composite,
                 "objects": movieDefinition.objects,
                 "keyframes": movieDefinition.keyframes
             }]
@@ -49,7 +51,9 @@ export default class JsonToPresentationJson {
             movieBuilders,
             count,
             debounce,
-            videoOutputDir
+            videoOutputDir,
+            workingDir,
+            textureDir
         } = ops;
 
         log(`ensuring directory:${outputDir} exists`)
@@ -58,6 +62,13 @@ export default class JsonToPresentationJson {
         await Util.ensureDirectory(inputDir);
         log(`ensuring directory:${inputDir} exists`)
         await Util.ensureDirectory(videoOutputDir);
+
+        if (textureDir) {
+            await Util.ensureDirectory(textureDir);
+        }
+        if(workingDir) {
+            await Util.ensureDirectory(workingDir);
+        }
 
         var converter = new JsonToPresentationJson();
         converter.options = ops;
@@ -170,10 +181,12 @@ export default class JsonToPresentationJson {
             movieDefinition,
             BlendObjects,
             Materials,
+            textureDir,
             blender,
             outputDirectory,
             midiDir,
             file,
+            printTexture,
             vlclocation,
             midiInfo,
             infobuilder,
@@ -271,45 +284,67 @@ export default class JsonToPresentationJson {
         //     detached: true,
         //     cwd: outputDirectory
         // });
-
-        var renderedChunks = await JsonToPresentationJson.renderMapping({
-            blender,
-            blendfile,
-            startFrame,
-            endFrame,
-            camera,
-            mapping,
-            outputDirectory,
-            fileName
-        })
-
-        await Util.writeFile(`${outputDirectory}${path.sep}renderanim.bat`, _blenderAnimationRenderTemplate);
-        await Util.executeCmd(`renderanim.bat`, {
-            detached: true,
-            cwd: outputDirectory
-        });
-        var chunk_mapping_path = `${outputDirectory}${path.sep}chunks.json`;
-        var image_mapping_path = `${outputDirectory}${path.sep}image_mappins.json`;
-        //blender --background -P anim_video_editor.py -- "{{py_output}}" {{endframe}} "{{py_audio_output}}" "{{name}}" "{{render_out_path}}"
-        await Util.writeJsonToFile(chunk_mapping_path, renderedChunks)
-        await Util.writeJsonToFile(image_mapping_path, mapping)
-        //collect images and write to video file.
-        await Util.executeSpawnCmd(`${blender}${path.sep}blender`, [
-            '--background',
-            '-P',
-            'anim_video_editor.py',
-            '--',
-            '\\output\\' + 'presentation-bl-' + fileName + '\\',
-            endframe,
-            '\\output\\audio\\',
-            Util.fileToFolder(fileName),
-            `${videoOutputDir}${path.sep}${Util.fileToFolder(fileName)}`,
-            chunk_mapping_path,
-            image_mapping_path
-        ], {
+        var renderedChunks;
+        if (printTexture) {
+            renderedChunks = await JsonToPresentationJson.renderMapping({
+                blender,
+                blendfile,
+                camera,
+                mapping: { 1: 1 },
+                outputDirectory,
+                fileName
+            });
+        }
+        else {
+            renderedChunks = await JsonToPresentationJson.renderMapping({
+                blender,
+                blendfile,
+                startFrame,
+                endFrame,
+                camera,
+                mapping,
+                outputDirectory,
+                fileName
+            });
+        }
+        if (!printTexture) {
+            await Util.writeFile(`${outputDirectory}${path.sep}renderanim.bat`, _blenderAnimationRenderTemplate);
+            await Util.executeCmd(`renderanim.bat`, {
                 detached: true,
                 cwd: outputDirectory
             });
+            var chunk_mapping_path = `${outputDirectory}${path.sep}chunks.json`;
+            var image_mapping_path = `${outputDirectory}${path.sep}image_mappins.json`;
+            //blender --background -P anim_video_editor.py -- "{{py_output}}" {{endframe}} "{{py_audio_output}}" "{{name}}" "{{render_out_path}}"
+            await Util.writeJsonToFile(chunk_mapping_path, renderedChunks)
+            await Util.writeJsonToFile(image_mapping_path, mapping)
+            //collect images and write to video file.
+            await Util.executeSpawnCmd(`${blender}${path.sep}blender`, [
+                '--background',
+                '-P',
+                'anim_video_editor.py',
+                '--',
+                '\\output\\' + 'presentation-bl-' + fileName + '\\',
+                endframe,
+                '\\output\\audio\\',
+                Util.fileToFolder(fileName),
+                `${videoOutputDir}${path.sep}${Util.fileToFolder(fileName)}`,
+                chunk_mapping_path,
+                image_mapping_path
+            ], {
+                    detached: true,
+                    cwd: outputDirectory
+                });
+        }
+        else {
+            if (textureDir) {
+                let tempDir = `${outputDirectory}${path.sep}output${path.sep}presentation-bl-${fileName}`;
+                var files = await Util.readDir(tempDir);
+                for (var i = 0; i < files.length; i++) {
+                    await Util.copyFile(`${tempDir}${path.sep}${files[i]}`, `${textureDir}${path.sep}${files[i]}`)
+                }
+            }
+        }
         var tracksInfo = [];
         if (midiInfo) {
             var { raw } = midiInfo;
@@ -344,17 +379,89 @@ export default class JsonToPresentationJson {
             startFrame: 1,
             endFrame: endframe,
             tracks: tracksInfo
-        })
+        });
 
         await Util.clearDirectory(`${outputDirectory}${path.sep}*`);
     }
+    static async renderTextures(ops) {
+        var {  
+            blender,
+            camera,
+            textureDir,
+            outputDirectory,
+            fileName,
+            movieDefinition
+        } = ops;
+        
+        var jsonFileName = 'presentation-json-' + fileName + '.json';
+        var blendfile = 'presentation-bl-' + fileName + '.blend';
+        var pyfile = 'presentation-py-' + fileName + '.py';
+        var batfile = 'presentation-blend-' + fileName + '.bat';
 
+        var presentation = JsonToPresentationJson.createJsonFrom(movieDefinition, `${outputDirectory}`);
+        await Util.ensureDirectory(outputDirectory);
+
+        await Util.writeJsonToFile(`${outputDirectory}${path.sep}${jsonFileName}`, presentation);
+
+        var pythonScripeTemplate = await JsonToPresentationJson.getPythonScriptTemplate();
+        var batFileTemplate = await JsonToPresentationJson.getBatFileTemplate();
+        var renderTemplate = await JsonToPresentationJson.getFile('render.tpl');
+        var blenderAnimationRenderTemplate = await JsonToPresentationJson.getFile('blender-render.tpl');
+
+        var pythonFile = Template.bindTemplate(pythonScripeTemplate, {
+            jsonfile: jsonFileName,
+            blendfile: blendfile
+        });
+
+        var _batFileTemplate = Template.bindTemplate(batFileTemplate, {
+            pythonFile: pyfile
+        });
+        
+        var renderpy = Template.bindTemplate(renderTemplate, {
+            camera: camera
+        });
+
+        await Util.writeFile(`${outputDirectory}${path.sep}render.py`, renderpy);
+
+        log(`write python file`);
+        await Util.writeFile(`${outputDirectory}${path.sep}${pyfile}`, pythonFile);
+
+        log(`write bat file`);
+        await Util.writeFile(`${outputDirectory}${path.sep}${batfile}`, _batFileTemplate);
+        //blender --background --python ".\\{{pythonFile}}" 
+
+        await Util.executeSpawnCmd(`${blender}${path.sep}blender`, [
+            '--background',
+            '--python',
+            `.\\${pyfile}`
+        ], {
+                detached: true,
+                cwd: outputDirectory
+            });
+
+        var renderedChunks = await JsonToPresentationJson.renderMapping({
+            blender,
+            blendfile,
+            camera,
+            mapping: { 1: 1 },
+            outputDirectory,
+            fileName
+        });
+
+        if (textureDir) {
+            let tempDir = `${outputDirectory}${path.sep}output${path.sep}presentation-bl-${fileName}${path.sep}`;
+            var files = await Util.readDir(tempDir);
+            for (var i = 0; i < files.length; i++) {
+                await Util.copyFile(`${tempDir}${path.sep}${files[i]}`, `${textureDir}${path.sep}${files[i]}`)
+            }
+            
+            // await Util.clearDirectory(`${outputDirectory}${path.sep}*`);
+        }
+    }
     static async renderMapping(ops) {
         var {
             blender,
             blendfile,
-            startFrame,
-            endFrame,
             camera,
             fileName,
             mapping,

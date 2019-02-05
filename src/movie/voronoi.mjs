@@ -163,7 +163,7 @@ export default class VoronoiMovie extends Basic {
             keyframes
         }
     }
-    constructMovie(raw) {
+    async   constructMovie(raw) {
         var me = this;
 
         var objects = me.objects;

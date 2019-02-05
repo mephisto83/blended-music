@@ -654,7 +654,7 @@ export class VoronoiBase {
             keyframes
         }
     }
-    constructMovie(raw) {
+    async   constructMovie(raw) {
         var me = this;
 
         var objects = me.objects;

@@ -46,6 +46,8 @@ var __dirname = path.resolve(path.dirname(''));
             inputDir: __dirname + `${path.sep}test${path.sep}raw_json`,
             outputDir: __dirname + `${path.sep}test${path.sep}movie_json`,
             videoOutputDir: __dirname + `${path.sep}test${path.sep}movies`,
+            textureDir:  __dirname + `${path.sep}test${path.sep}textures`,// [PRINT TEXTURE]
+            workingDir:  __dirname + `${path.sep}test${path.sep}working`,// [PRINT TEXTURE]
             movieBuilders: [CompositeExampleMovie],//[MaterialMovie, RaceCarMovie],
             raceSrc: __dirname + `${path.sep}resources${path.sep}`,
             racetrackSrc: __dirname + `${path.sep}resources${path.sep}`,
@@ -54,28 +56,7 @@ var __dirname = path.resolve(path.dirname(''));
             count: 1,
             debounce: 1000
         });
-        if (false)
-            await BlendedMusic.PresentationToYouTube.run({
-                credentialDirectory: `D:${path.sep}creds`,
-                videoInputDir: __dirname + `${path.sep}test${path.sep}movies`,
-                count: 1,
-                debounce: 1000
-            })
-        else if (false) {
-            await BlendedMusic.PresentationToYouTubePuppeteer.run({
-                credentialDirectory: `D:${path.sep}creds`,
-                videoInputDir: __dirname + `${path.sep}test${path.sep}movies`,
-                count: 1,
-                debounce: 1000
-            })
-        }
     } catch (e) {
         console.log(e);
     }
-    // var files = await Util.readDirectory(__dirname + '/test/output');
-    // var filename = `${__dirname}${path.sep}test${path.sep}output${path.sep}${files[0]}`;
-    // var json = await Util.readJson(filename);
-    // var info = MidiJsonInformation.getInformation(json);
-    // var movieJson = Basic.buildMovie(files[0], filename, info);
-    // console.log(movieJson);
 })();

@@ -15,25 +15,24 @@ function cleanName(name) {
     return _name
 }
 
-export default class MaterialReader {
+export default class CompositeReader {
 
-    static async  readMaterial(filePath, outpath, className) {
-        className = className || 'DefaultMaterialCls';
+    static async  readComposite(filePath, outpath, compositeclass = "CompositeClass") {
         var json = await Util.readJson(filePath);
         var illegalChars = '.- +<>|(){}[]';
-        var { library, materials } = json;
+        var { library, composite } = json;
         var materialNames = [];
         var lib = library.map(group => {
             var { name, value } = group;
             var _name = cleanName(name + 'Group');
             var { links, nodes, defaultInputs } = value;
             var groupInputNode = nodes.find(t => t.type === 'NodeGroupInput');
-            var { outputs } = groupInputNode;
+            var { outputs } = (groupInputNode || {});
             var conversion = {};
             var _outputs = {};
             var __outputs = {};
             var groupOutputNode = nodes.find(t => t.type === 'NodeGroupOutput');
-            var _arguments = outputs.filter(x => x.name).map((t, index) => {
+            var _arguments = (outputs || []).filter(x => x.name).map((t, index) => {
                 var name = `${lowerCaseFirstLetter(cleanName(t.name))}_${index}`;
                 conversion[name] = t.socket_index;
                 return name;
@@ -51,15 +50,19 @@ export default class MaterialReader {
                 potentialInputs = [...groupInputNode.outputs];
             }
 
-            var propSets = _arguments.map((arg, aindex) => {
-                return `material.${arg} = ${arg}_${aindex};
+            var propSets = _arguments.map(arg => {
+                return `material.${arg} = ${arg};
                 `
             }).join('');
 
             materialNames.push(_name);
             const MaterialFuncTemplate = `
+            static ${_name}_(args) {
+                var {${_arguments.join()}} = args;
+                return ${compositeclass}.${_name}(${_arguments.join()});
+            }
             static ${_name}(${_arguments.join()}) {
-                var material = new ${className}('${name}')
+                var material = new ${compositeclass}('${name}')
                 material.type = 'GROUP';
                 material.isGroup = true;
                 material.conversion = ${JSON.stringify(conversion, null, 2)}
@@ -78,21 +81,13 @@ export default class MaterialReader {
         }).join(`
         `);
 
-        var mat_lib = materials.map(material => {
+        var mat_lib = composite.map(material => {
             var { name, value } = material;
             var _name = name.split(' ').join('_');
             illegalChars.split('').map(y => {
                 _name = _name.split(y).join('')
             });
             var { links, nodes } = value;
-            // var groupInputNode = nodes.find(t => t.type === 'GROUP_INPUT');
-            // var { outputs } = groupInputNode;
-            // var _arguments = outputs.filter(x => x.name).map(t => {
-            //     illegalChars.split('').map(y => {
-            //         t.name = t.name.split(y).join('')
-            //     })
-            //     return { name: lowerCaseFirstLetter(t.name), defaultvalue: t.defaultvalue || null };
-            // })
             var _arguments = [];
 
             var potentialInputs = [];
@@ -103,18 +98,21 @@ export default class MaterialReader {
             nodes.map(nod => {
                 nod.id = nod.child_def || nod.id;
             })
+            nodes = nodes.sort((a, b) => a.id - b.id);
 
             nodes.map(node => {
                 node.inputs.map(input => {
                     if (!links.find(link => {
                         return link.to === node.id && link.to_socket && input.socket_index === link.to_socket.socket_index
                     })) {
-                        if (node.type !== 'ShaderNodeOutputMaterial')
-                            potentialInputs.push({
-                                node,
-                                id: node.id,
-                                input
-                            });
+
+
+                        //if (node.type !== 'CompositorNodeComposite')
+                        potentialInputs.push({
+                            node,
+                            id: node.id,
+                            input
+                        });
                     }
                 });
                 node.outputs.map(output => {
@@ -135,9 +133,10 @@ export default class MaterialReader {
                 let { node, input } = pi;
                 var node_name = node.node_name || node.name;
                 var argname = `${lowerCaseFirstLetter(cleanName(`${node_name}${input.name}`))}_${index}`;
-                _arguments.push(`${argname}`);
+                _arguments.push(argname);
                 conversion[argname] = {
                     node: `${node.name}`,
+                    node_index: nodes.indexOf(node),
                     socket_index: input.socket_index,
                     input_index: index,
                     input: input.name
@@ -153,7 +152,7 @@ export default class MaterialReader {
             // })
 
 
-            var _out_put_node = nodes.find(x => x.type === 'ShaderNodeOutputMaterial');
+            var _out_put_node = nodes.find(x => x.type === 'CompositorNodeComposite');
             var __outputs = {};
             var ___outputs = {};
             _out_put_node.inputs.map(out_ins => {
@@ -163,16 +162,16 @@ export default class MaterialReader {
             // return `material.outputs = ${JSON.stringify(__outputs, null, 2)}
             // `
             var pOutputs = {
-                "name": "Group Output",
-                "options": {},
-                "type": "NodeGroupOutput"
+                //"name": "Group Output",
+                //"options": {},
+                //"type": "NodeGroupOutput"
             };
 
             Object.assign(_out_put_node, pOutputs)
             links = [...links.map(t => {
-                if (t.to === _out_put_node.id) {
-                    t.to_node = 'Group Output';
-                }
+                // if (t.to === _out_put_node.id) {
+                //     t.to_node = 'Group Output';
+                // }
                 return t;
             })];
             var inputGroupId = nodes.length;
@@ -199,36 +198,18 @@ export default class MaterialReader {
                 ],
                 "type": "NodeGroupInput"
             };
-            nodes.push(pInputs);
-            links = [...links, ...potentialInputs.map((x, inputSocketIndex) => {
-                return {
-                    "from": inputGroupId,
-                    "from_node": "Group Input",
-                    "from_socket": {
-                        "name": x.input.name,
-                        "type": x.input.type,
-                        socket_index: inputSocketIndex
-                    },
-                    "to": x.id,
-                    "to_node": x.name,
-                    "to_socket": {
-                        "name": x.input.name,
-                        "type": x.input.type,
-                        socket_index: x.input.socket_index
-                    }
-                };
-            })];
-            nodes = nodes.sort((a, b) => a.id - b.id);
+            // nodes.push(pInputs);
+            links = [...links];
             materialNames.push(_name);
 
             const MaterialFuncTemplate = `
             static ${_name}_(args) {
-                let { ${_arguments.join()} } = args;
-                return ${className}.${_name}(${_arguments.join()})
+                var {${_arguments.join()}} = args;
+                return ${compositeclass}.${_name}(${_arguments.join()});
             }
             static ${_name}(${_arguments.join()}) {
-                var material = new ${className}('${name}')
-                material.isGroup = true;
+                var material = new ${compositeclass}('${name}')
+                material.isGroup = false;
                 material.type = 'GROUP';
                 material.conversion = ${JSON.stringify(conversion, null, 2)};
                 material.outputs = ${JSON.stringify(__outputs, null, 2)};
@@ -238,7 +219,7 @@ export default class MaterialReader {
                 links, nodes, defaultInputs: [...potentialInputs.map((x, index) => {
                     return {
                         ...x.input,
-                        ...{ socket_index: index }
+                        node_index: nodes.indexOf(x.node)
 
                         //,
                         // name: x.input.name,
@@ -256,13 +237,13 @@ export default class MaterialReader {
         `);
         var grouptemplate = `
         import Materials from '../materials';
-export default class ${className} extends Materials {
+export default class ${compositeclass} extends Materials {
     constructor(name) {
         super(name);
         this.name = name;
         this.type = null;
     }
-    static MaterialNames(){
+    static CompositeNames(){
         return ${JSON.stringify(materialNames)}
     }
     static Types() {

@@ -338,7 +338,7 @@ export default class RaceTrack extends Basic {
                 return track.wall.find(x => x.position === 'LEFT');
         }
     }
-    constructMovie(raw) {
+    async   constructMovie(raw) {
         var me = this;
 
         var { racetrackSrc, shipFileName, _dir_path } = this.ops;
