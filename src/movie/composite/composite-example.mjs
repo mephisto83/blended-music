@@ -64,28 +64,28 @@ export default class CompositeClass extends Materials {
       },
       "mix001Fac_5": {
         "node": "Mix.001",
-        "node_index": 6,
+        "node_index": 5,
         "socket_index": 0,
         "input_index": 5,
         "input": "Fac"
       },
       "math001Value_6": {
         "node": "Math.001",
-        "node_index": 8,
+        "node_index": 7,
         "socket_index": 1,
         "input_index": 6,
         "input": "Value"
       },
       "compositeAlpha_7": {
         "node": "Composite",
-        "node_index": 9,
+        "node_index": 8,
         "socket_index": 1,
         "input_index": 7,
         "input": "Alpha"
       },
       "compositeZ_8": {
         "node": "Composite",
-        "node_index": 9,
+        "node_index": 8,
         "socket_index": 2,
         "input_index": 8,
         "input": "Z"
@@ -114,7 +114,7 @@ export default class CompositeClass extends Materials {
     material.definition = {
       "links": [
         {
-          "from": 7,
+          "from": 6,
           "from_node": "Render Layers",
           "from_socket": {
             "name": "Image",
@@ -201,7 +201,7 @@ export default class CompositeClass extends Materials {
             "socket_index": 0,
             "type": "NodeSocketFloat"
           },
-          "to": 5,
+          "to": 9,
           "to_node": "Math",
           "to_socket": {
             "name": "Value",
@@ -217,7 +217,7 @@ export default class CompositeClass extends Materials {
             "socket_index": 0,
             "type": "NodeSocketFloat"
           },
-          "to": 5,
+          "to": 9,
           "to_node": "Math",
           "to_socket": {
             "name": "Value",
@@ -226,14 +226,14 @@ export default class CompositeClass extends Materials {
           }
         },
         {
-          "from": 5,
+          "from": 9,
           "from_node": "Math",
           "from_socket": {
             "name": "Value",
             "socket_index": 0,
             "type": "NodeSocketFloat"
           },
-          "to": 6,
+          "to": 5,
           "to_node": "Mix.001",
           "to_socket": {
             "name": "Image",
@@ -242,14 +242,14 @@ export default class CompositeClass extends Materials {
           }
         },
         {
-          "from": 6,
+          "from": 5,
           "from_node": "Mix.001",
           "from_socket": {
             "name": "Image",
             "socket_index": 0,
             "type": "NodeSocketColor"
           },
-          "to": 8,
+          "to": 7,
           "to_node": "Math.001",
           "to_socket": {
             "name": "Value",
@@ -258,14 +258,14 @@ export default class CompositeClass extends Materials {
           }
         },
         {
-          "from": 5,
+          "from": 9,
           "from_node": "Math",
           "from_socket": {
             "name": "Value",
             "socket_index": 0,
             "type": "NodeSocketFloat"
           },
-          "to": 6,
+          "to": 5,
           "to_node": "Mix.001",
           "to_socket": {
             "name": "Image",
@@ -274,24 +274,8 @@ export default class CompositeClass extends Materials {
           }
         },
         {
-          "from": 8,
-          "from_node": "Math.001",
-          "from_socket": {
-            "name": "Value",
-            "socket_index": 0,
-            "type": "NodeSocketFloat"
-          },
-          "to": 9,
-          "to_node": "Composite",
-          "to_socket": {
-            "name": "Image",
-            "socket_index": 0,
-            "type": "NodeSocketColor"
-          }
-        },
-        {
-          "from": 8,
-          "from_node": "Math.001",
+          "from": 9,
+          "from_node": "Math",
           "from_socket": {
             "name": "Value",
             "socket_index": 0,
@@ -299,6 +283,22 @@ export default class CompositeClass extends Materials {
           },
           "to": 1,
           "to_node": "Viewer",
+          "to_socket": {
+            "name": "Image",
+            "socket_index": 0,
+            "type": "NodeSocketColor"
+          }
+        },
+        {
+          "from": 9,
+          "from_node": "Math",
+          "from_socket": {
+            "name": "Value",
+            "socket_index": 0,
+            "type": "NodeSocketFloat"
+          },
+          "to": 8,
+          "to_node": "Composite",
           "to_socket": {
             "name": "Image",
             "socket_index": 0,
@@ -532,51 +532,13 @@ export default class CompositeClass extends Materials {
           "type": "CompositorNodeRGBToBW"
         },
         {
-          "child_def": 5,
-          "dimensions": {
-            "height": 152.99996948242188,
-            "width": 140
-          },
-          "id": 5,
-          "inputs": [
-            {
-              "default_value": 0.5,
-              "name": "Value",
-              "socket_index": 0,
-              "type": "NodeSocketFloat"
-            },
-            {
-              "default_value": 0.5,
-              "name": "Value",
-              "socket_index": 1,
-              "type": "NodeSocketFloat"
-            }
-          ],
-          "location": {
-            "x": 539.5479125976562,
-            "y": 216.99996948242188
-          },
-          "name": "Math",
-          "operation": "ADD",
-          "options": {},
-          "outputs": [
-            {
-              "name": "Value",
-              "socket_index": 0,
-              "type": "NodeSocketFloat"
-            }
-          ],
-          "type": "CompositorNodeMath",
-          "use_clamp": false
-        },
-        {
           "blend_type": "ADD",
-          "child_def": 6,
+          "child_def": 5,
           "dimensions": {
             "height": 171.84423828125,
             "width": 140
           },
-          "id": 6,
+          "id": 5,
           "inputs": [
             {
               "default_value": 1,
@@ -624,12 +586,12 @@ export default class CompositeClass extends Materials {
           "use_clamp": false
         },
         {
-          "child_def": 7,
+          "child_def": 6,
           "dimensions": {
             "height": 284.0254821777344,
             "width": 240
           },
-          "id": 7,
+          "id": 6,
           "inputs": [],
           "location": {
             "x": -479.22802734375,
@@ -797,12 +759,12 @@ export default class CompositeClass extends Materials {
           "type": "CompositorNodeRLayers"
         },
         {
-          "child_def": 8,
+          "child_def": 7,
           "dimensions": {
             "height": 152.85140991210938,
             "width": 139.99993896484375
           },
-          "id": 8,
+          "id": 7,
           "inputs": [
             {
               "default_value": 0.5,
@@ -835,12 +797,12 @@ export default class CompositeClass extends Materials {
           "use_clamp": true
         },
         {
-          "child_def": 9,
+          "child_def": 8,
           "dimensions": {
             "height": 119.949462890625,
             "width": 140
           },
-          "id": 9,
+          "id": 8,
           "inputs": [
             {
               "default_value": [
@@ -874,6 +836,44 @@ export default class CompositeClass extends Materials {
           "options": {},
           "outputs": [],
           "type": "CompositorNodeComposite"
+        },
+        {
+          "child_def": 9,
+          "dimensions": {
+            "height": 152.99996948242188,
+            "width": 140
+          },
+          "id": 9,
+          "inputs": [
+            {
+              "default_value": 0.5,
+              "name": "Value",
+              "socket_index": 0,
+              "type": "NodeSocketFloat"
+            },
+            {
+              "default_value": 0.5,
+              "name": "Value",
+              "socket_index": 1,
+              "type": "NodeSocketFloat"
+            }
+          ],
+          "location": {
+            "x": 539.5479125976562,
+            "y": 216.99996948242188
+          },
+          "name": "Math",
+          "operation": "ADD",
+          "options": {},
+          "outputs": [
+            {
+              "name": "Value",
+              "socket_index": 0,
+              "type": "NodeSocketFloat"
+            }
+          ],
+          "type": "CompositorNodeMath",
+          "use_clamp": false
         }
       ],
       "defaultInputs": [
@@ -917,28 +917,28 @@ export default class CompositeClass extends Materials {
           "name": "Fac",
           "socket_index": 0,
           "type": "NodeSocketFloatFactor",
-          "node_index": 6
+          "node_index": 5
         },
         {
           "default_value": 0.10000000149011612,
           "name": "Value",
           "socket_index": 1,
           "type": "NodeSocketFloat",
-          "node_index": 8
+          "node_index": 7
         },
         {
           "default_value": 1,
           "name": "Alpha",
           "socket_index": 1,
           "type": "NodeSocketFloat",
-          "node_index": 9
+          "node_index": 8
         },
         {
           "default_value": 1,
           "name": "Z",
           "socket_index": 2,
           "type": "NodeSocketFloat",
-          "node_index": 9
+          "node_index": 8
         }
       ]
     }

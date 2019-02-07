@@ -155,6 +155,7 @@ export default class CompositeExample extends MaterialMovie {
             world: me.getWorlds(),
             composite,
             file: filename,
+            file_format: 'OPEN_EXR',
             start: 1,
             orginalName: filename,
             end: 1,
@@ -172,7 +173,7 @@ export default class CompositeExample extends MaterialMovie {
         var objs = me.buildObjects();
         objs.map(t => {
             me.createNoteKeyFrame(t.name);
-        }); 
+        });
         me.objects.push(...objs);
         me.objects.push(...me.addLamps());
 

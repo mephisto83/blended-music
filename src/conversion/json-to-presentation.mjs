@@ -26,6 +26,7 @@ export default class JsonToPresentationJson {
                 "Device": "GPU",
                 "MaterialGroups": movieDefinition.materialGroups || null,
                 "CompositeGroups": movieDefinition.compositeGroups || null,
+                "file_format" : movieDefinition.file_format || 'PNG',
                 ...(BlendObjects ? {
                     "Objects": {
                         "File": "//objects.blend",

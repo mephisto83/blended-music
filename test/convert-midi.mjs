@@ -46,6 +46,8 @@ var __dirname = path.resolve(path.dirname(''));
             inputDir: __dirname + `${path.sep}test${path.sep}raw_json`,
             outputDir: __dirname + `${path.sep}test${path.sep}movie_json`,
             videoOutputDir: __dirname + `${path.sep}test${path.sep}movies`,
+            textureDir:  __dirname + `${path.sep}test${path.sep}textures`,// [PRINT TEXTURE]
+            workingDir:  __dirname + `${path.sep}test${path.sep}working`,// [PRINT TEXTURE]
             movieBuilders: [CompositeExampleMovie],//[MaterialMovie, RaceCarMovie],
             raceSrc: __dirname + `${path.sep}resources${path.sep}`,
             racetrackSrc: __dirname + `${path.sep}resources${path.sep}`,
