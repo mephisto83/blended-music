@@ -10,7 +10,7 @@ import MaterialBlendMaterials from './material-blend-materials.mjs';
 import EeveeMaterials from './eevee-materials.mjs';
 import Util from '../util/util';
 
-var usecube = true;
+var usecube = false;
 
 const UP = 'UP';
 const DOWN = 'DOWN';

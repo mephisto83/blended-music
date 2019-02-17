@@ -92,12 +92,13 @@ import VoronoiFaces from '../src/movie/voronoi-face.mjs'
 
             }
             try {
-                await BlendedMusic.YouTubePresentationDefender.run({
-                    credentialDirectory: creds,
-                    videoInputDir: __dirname + `${path.sep}${projects}${path.sep}movies`,
-                    count: 30,
-                    debounce: 10000
-                });
+                if (false)
+                    await BlendedMusic.YouTubePresentationDefender.run({
+                        credentialDirectory: creds,
+                        videoInputDir: __dirname + `${path.sep}${projects}${path.sep}movies`,
+                        count: 30,
+                        debounce: 10000
+                    });
             } catch (e) {
                 console.log(e);
             }
