@@ -6,10 +6,13 @@
   "@std/esm": "cjs",
   "scripts": {
     "test": "node --experimental-modules ./test/convert-midi.mjs",
+    "texture": "node --experimental-modules ./test/create-texture.mjs",
     "upstairs": "node --experimental-modules ./test/upstairs.mjs",
+    "binstall": "node --experimental-modules ./test/install.mjs",
     "farm": "node --experimental-modules ./test/midi-farm.mjs",
     "random": "node --experimental-modules ./test/random.mjs",
     "createmat": "node --experimental-modules ./test/createmat.mjs",
+    "createcomposite": "node --experimental-modules ./test/createcomposite.mjs",
     "defense": "node  --experimental-modules ./test/defense.mjs",
     "cleanup": "node  --experimental-modules ./test/cleanup.mjs",
     "install": "node --experimental-modules ./test/install.mjs",

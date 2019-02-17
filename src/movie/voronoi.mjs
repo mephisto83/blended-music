@@ -12,7 +12,7 @@ export default class VoronoiMovie extends Basic {
     static info() {
         return {
             name: 'Voronoi Roots',
-            version: '0.0.1'
+            version: '0.0.2'
         }
     }
 
@@ -163,7 +163,7 @@ export default class VoronoiMovie extends Basic {
             keyframes
         }
     }
-    constructMovie(raw) {
+    async   constructMovie(raw) {
         var me = this;
 
         var objects = me.objects;

@@ -28,8 +28,8 @@ export default class SingleFrameBasic extends Basic {
     midiToDimension(midi) {
         return this.midi2dim * ((midi / 127) - .5);
     }
-    constructMovie(raw) {
-        super.constructMovie(raw);
+    async  constructMovie(raw) {
+     await   super.constructMovie(raw);
         var me = this;
         me.addGround();
     }

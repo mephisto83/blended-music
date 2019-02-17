@@ -164,7 +164,7 @@ export default class MaterialMovie extends Basic {
             keyframes
         }
     }
-    constructMovie(raw) {
+    async constructMovie(raw) {
         var me = this;
 
         var objects = me.objects;
@@ -179,7 +179,7 @@ export default class MaterialMovie extends Basic {
 
             if (raw.tracks) {
 
-                var { faces } = VoronoiWeb.run({ level: 300, height: 10, width: 10 });
+                var { faces } = VoronoiWeb.run({ level: this.level || 300, height: 10, width: 10 });
 
                 faceLib = {};
                 faces.forEach((face, index) => {
@@ -242,6 +242,12 @@ export default class MaterialMovie extends Basic {
         return res;
     }
 
+    getComposite() {
+        return super.getComposite();
+    }
+    getCompositeGroups() {
+        return [];
+    }
     getMaterialGroups() {
         return GroupMaterials.MaterialNames().map(name => {
             return GroupMaterials[name]();

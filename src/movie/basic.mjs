@@ -9,6 +9,7 @@ export default class Basic {
         this.midi2dim = 127;
         this.time2dim = 10;
         this.framesPerSecond = 24;
+        this._composite = null;
         this.duration = 10;
     }
     static info() {
@@ -259,7 +260,14 @@ export default class Basic {
             return basic._buildMovie(filepath, filename, info, ops);
         });
     }
-    constructMovie(raw) {
+    async pause() {
+        await new Promise((res) => {
+            setTimeout(() => {
+                res()
+            }, 5000);
+        })
+    }
+    async constructMovie(raw) {
         var me = this;
         var objects = me.objects;
         if (raw.tracks) {
@@ -295,11 +303,12 @@ export default class Basic {
         }
         return result;
     }
-    _buildMovie(filepath, filename, info, ops) {
+    async _buildMovie(filepath, filename, info, ops) {
         var me = this;
         ops = ops || {};
         var { raw, duration } = info;
         ops = { framesPerSecond: 24, ...ops };
+        me.options = ops;
         me.framesPerSecond = ops.framesPerSecond;
         var lastFrame = Math.ceil(ops.framesPerSecond * duration);
         me.duration = duration;
@@ -308,15 +317,17 @@ export default class Basic {
         var objects = me.objects;
         var keyframes = me.keyframes;
         //if (false)
-        me.constructMovie(raw);
-
+        await me.constructMovie(raw);
+        var composite = me.getComposite();
         var camera = me.addCamera();
         var mapping = me.getMapping();
         return {
             mapping,
             materialGroups: me.getMaterialGroups(),
+            compositeGroups: me.getCompositeGroups(),
             materials: me.getMaterials(),
             world: me.getWorlds(),
+            composite,
             file: filename,
             start: 1,
             orginalName: filename,
@@ -329,6 +340,11 @@ export default class Basic {
             renderEngine: me.renderEngine(),
             camera
         }
+    }
+    getComposite() {
+    }
+    getCompositeGroups(){
+        return null;
     }
     getMaterialGroups() {
         return null;

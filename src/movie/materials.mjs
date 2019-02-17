@@ -26,6 +26,7 @@ export default class Materials {
         return {
             Emission: "ShaderNodeEmission",
             Output: "ShaderNodeOutputMaterial",
+            CompositeOutput: "CompositorNodeComposite",
             Color: "ShaderNodeMixRGB",
             Value: "ShaderNodeValue",
             Mix: "ShaderNodeMixShader",
@@ -34,7 +35,12 @@ export default class Materials {
             Background: "ShaderNodeBackground"
         }
     }
-
+    static CompositeOutput(name, image) {
+        var composite = new Materials(name);
+        composite.type = Materials.Types().CompositeOutput;
+        composite.image = image;
+        return composite;
+    }
     static Output(name, surface) {
         var material = new Materials(name);
         material.type = Materials.Types().Output;
@@ -42,7 +48,7 @@ export default class Materials {
 
         return material;
     }
-
+    
     static StandardOut(material) {
         if (material && material.outputIndexes) {
             if (material.outputIndexes['Surface']) {
@@ -55,6 +61,14 @@ export default class Materials {
     static Custom(name, customgroup) {
         var material = new Materials(name);
         material.type = 'CUSTOM';
+        material.custom = customgroup;
+
+        return material;
+    }
+
+    static Composite(name, customgroup) {
+        var material = new Materials(name);
+        material.type = 'CUSTOM_COMPOSITE';
         material.custom = customgroup;
 
         return material;

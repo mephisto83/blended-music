@@ -518,11 +518,21 @@ export class VoronoiBase {
                 return cell.site;
             }),
             faces: seed.diagram.cells.map(cell => {
-                return cell.halfedges.map(he => {
-                    return he.edge.va;
-                });
+                return [this.getStartpoint(cell.halfedges[0].edge, cell.halfedges[0].site)
+                    , ...cell.halfedges.map((he) => {
+                        return this.getEndpoint(he.edge, he.site);
+                    })];
             })
         };
+    }
+    getStartpoint(edge, site) {
+        // if(edge.lSite === site){
+        //     console.log('equalled lSite')
+        // }
+        return edge.lSite === site ? edge.va : edge.vb;
+    }
+    getEndpoint(edge, site) {
+        return edge.lSite === site ? edge.vb : edge.va;
     }
     createVoronoiSeed() {
         var Voronoi = V();
@@ -654,7 +664,7 @@ export class VoronoiBase {
             keyframes
         }
     }
-    constructMovie(raw) {
+    async   constructMovie(raw) {
         var me = this;
 
         var objects = me.objects;
@@ -722,7 +732,10 @@ export class VoronoiWeb extends VoronoiBase {
         var sy = height / 800;
         var sx = width / 800;
         return {
-            edges: edges.map(edge => M.Edge.run({ a: edge.va, b: edge.vb })).map(edge => Edge.run({
+            edges: edges.map(edge => M.Edge.run({
+                a: edge.va,
+                b: edge.vb
+            })).map(edge => Edge.run({
                 a: Vector.run({
                     x: edge.a.x * sx,
                     y: edge.a.y * sy,
