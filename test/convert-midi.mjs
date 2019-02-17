@@ -6,7 +6,8 @@ import Basic from '../src/movie/basic.mjs';
 import MaterialMovie from '../src/movie/material-movie';
 import CompositeExampleMovie from '../src/movie/examples/composite-example';
 import RaceCarMovie from '../src/movie/racetrack';
-import VoronoiFace from '../src/movie/voronoi-face'
+import VoronoiFace from '../src/movie/voronoi-face';
+import VoronoiExtrudeFace from '../src/movie/voronoi-extrude-face';
 import Voronoi from '../src/movie/voronoi.mjs';
 import SingleFrameBasic from '../src/movie/single-frame-basic.mjs';
 
@@ -46,9 +47,12 @@ var __dirname = path.resolve(path.dirname(''));
             inputDir: __dirname + `${path.sep}test${path.sep}raw_json`,
             outputDir: __dirname + `${path.sep}test${path.sep}movie_json`,
             videoOutputDir: __dirname + `${path.sep}test${path.sep}movies`,
-            textureDir:  __dirname + `${path.sep}test${path.sep}textures`,// [PRINT TEXTURE]
-            workingDir:  __dirname + `${path.sep}test${path.sep}working`,// [PRINT TEXTURE]
-            movieBuilders: [CompositeExampleMovie],//[MaterialMovie, RaceCarMovie],
+            python: `C:${path.sep}Users${path.sep}mephisto${path.sep}AppData${path.sep}Local${path.sep}Programs${path.sep}Python${path.sep}Python37-32${path.sep}python.exe`,
+            extPyr: `D:${path.sep}dev${path.sep}git${path.sep}exr-py-read${path.sep}process.py`,
+            extPyrDir: `D:${path.sep}dev${path.sep}git${path.sep}exr-py-read`,
+            textureDir: __dirname + `${path.sep}test${path.sep}textures`,// [PRINT TEXTURE]
+            workingDir: __dirname + `${path.sep}test${path.sep}working`,// [PRINT TEXTURE]
+            movieBuilders: [VoronoiExtrudeFace],//[CompositeExampleMovie, MaterialMovie, RaceCarMovie],
             raceSrc: __dirname + `${path.sep}resources${path.sep}`,
             racetrackSrc: __dirname + `${path.sep}resources${path.sep}`,
             shipFileName: 'Shipwright.0006.blend',

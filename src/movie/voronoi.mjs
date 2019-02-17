@@ -12,7 +12,7 @@ export default class VoronoiMovie extends Basic {
     static info() {
         return {
             name: 'Voronoi Roots',
-            version: '0.0.1'
+            version: '0.0.2'
         }
     }
 

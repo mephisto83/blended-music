@@ -123,7 +123,7 @@ export default class Util {
         return await new Promise((resolve) => {
             setTimeout(() => {
                 resolve();
-            }, time);
+            }, time || 5000);
         })
     }
     static async directoryExists(dir) {

@@ -1,26 +1,23 @@
 import Composites from '../composites.mjs';
 import Materials from '../materials.mjs';
-import path from 'path';
 import MaterialMovie from '../material-movie.mjs';
 import JsonToPresentation from '../../conversion/json-to-presentation';
-import Util from '../../util/util';
 import CompositeExampleComp from '../composite/composite-example.mjs';
 import TreeRoot from '../materials/tree-root.mjs';
-import MainRoots from '../rootsystem/main_roots.mjs';
-export default class CompositeExample extends MaterialMovie {
+export default class MainRoots extends MaterialMovie {
     constructor() {
         super();
         this.level = 3;
     }
     static info() {
         return {
-            name: 'Composite Example Movie',
+            name: 'Main Roots Movie',
             version: '0.0.1'
         }
     }
 
     static async  buildMovie(filepath, filename, info, ops) {
-        var basic = new CompositeExample();
+        var basic = new MainRoots();
 
         return Promise.resolve().then(() => {
             return basic._buildMovie(filepath, filename, info, ops);
@@ -73,7 +70,7 @@ export default class CompositeExample extends MaterialMovie {
     getComposite() {
         super.getComposite();
         var compl = CompositeExampleComp.Scene_({
-            blurSize_3: Composites.Value('comp1-blur-size', .078)
+            blurSize_3: Composites.Value('comp1-blur-size', this.compositeBlurSize || 1)
         });
         compl.isGroup = false;
         this._composite = {
@@ -98,91 +95,64 @@ export default class CompositeExample extends MaterialMovie {
     }
 
     async buildResources() {
+        await this.buildMainRootSystem();
 
-        await this.buildMainRootSystem({
-            fileName: 'alt_root_0'
-        });
-        await this.buildMainRootSystem({
-            fileName: 'alt_root_1',
-            noise: 4,
-            compositeBlurSize: .2,
-            voronoi: 0.590003,
-            noiseDetail: 0.15,
-            noiseDistortion: .87,
-            mathValue: 0.44
-        });
-        await this.buildMainRootSystem({
-            fileName: 'alt_root_2',
-            compositeBlurSize: .3,
-            noise: 8,
-            voronoi: 0.690003,
-            noiseDetail: 0.35,
-            noiseDistortion: .97,
-            mathValue: 0.64
-        });
-        var files = ['alt_root_0', 'alt_root_1', 'alt_root_2'].map(t => `${this.options.workingDir}${path.sep}output${path.sep}${t}${path.sep}0001.exr`);
-        var height_map_file = "height_map.json";
-        var operations = {
-            "height_map": height_map_file,
-            "scale_z": 1,
-            "scale_x": .01,
-            "scale_y": .01,
-            "files": files,// ["rootsystem_0001.exr", "alt_root_1_0001.exr", "alt_root_2_0001.exr"],
-            "height": 1080,
-            "width": 1920,
-            "ops": [{
-                "op": "add",
-                "objects": files,
-                "out": `${this.options.workingDir}${path.sep}_new.exr`
-            }],
-            "result": "new",
-            "outfile": this.options.workingDir
-        };
-
-        let jsonFile = `${this.options.extPyrDir}${path.sep}py-exr.json`;
-        await Util.writeJsonToFile(jsonFile, operations);
-        await Util.executeSpawnCmd(`${this.options.python}`, [
-            this.options.extPyr,
-            jsonFile
-        ], {
-                detached: true,
-                cwd: this.options.workingDir
-            });
-
-        await Util.copyFile(`${this.options.workingDir}${path.sep}${height_map_file}`, `${this.options._dir_path}${path.sep}${height_map_file}`)
-
-        await Util.clearDirectory(`${this.options.workingDir}${path.sep}*`);
-        // 
-        /*
-        operations = {
-            "height_map": "height_map.json",
-            "files": ["rootsystem_0001.exr", "alt_root_1_0001.exr", "alt_root_2_0001.exr"],
-            "height": 1080,
-            "width": 1920,
-            "ops": [{"op":"add", "objects": ["rootsystem_0001.exr", "alt_root_1_0001.exr", "alt_root_2_0001.exr"], "out": "new.exr" }],
-            "result": "new",
-            "outfolder": None
-        }
-         */
     }
-    async buildMainRootSystem(ops) {
+    async buildMainRootSystem() {
         var me = this;
-        var innerComposite = new MainRoots();
-        if (ops) {
-            Object.assign(innerComposite, ops);
+        var fileName = this.fileName || 'rootsystem';
+        var rootSystemComposite = CompositeExampleComp.Scene_({
+            blurSize_3: Composites.Value('comp1-blur-size', .078)
+        });
+        rootSystemComposite.isGroup = false;
+        var _composite = {
+            name: "composite-example",
+            config: Materials.Composite('compl', rootSystemComposite)
+        };
+        var rootTextureJson = await me.buildTexture(fileName, {
+            duration: 1,
+            composite: _composite
+        }, null, () => {
+            let objects = [];
+            let name = `root_system`;
+            objects.push({
+                name,
+                type: "plane",
+                scale: {
+                    x: 10,
+                    y: 10,
+                    z: 10
+                }
+            });
+            return objects;
+        }, (n) => {
+            me.attachMaterial(n);
+        });
+        if (!rootTextureJson) {
+            throw 'no root texture json';
         }
-        innerComposite.options = { ... this.options };
-        await innerComposite.buildMainRootSystem();
+        if (!rootTextureJson.camera) {
+            throw 'no camera in json';
+        }
+        await JsonToPresentation.renderTextures({
+            outputDirectory: this.options.workingDir,
+            textureDir: this.options.textureDir,
+            fileName: fileName,
+            movieDefinition: rootTextureJson,
+            blender: this.options.blender,
+            camera: rootTextureJson.camera
+        });
 
+        return rootTextureJson;
     }
     attachMaterial(name) {
         var me = this;
         var gmat = TreeRoot.Roots_({
-            noise$TextureScale_22: Materials.Value(`root-${name}-value1`, 5),
-            voronoi$TextureScale_19: Materials.Value(`root-${name}-val2ue`, 0.690003),
-            noise$TextureDetail_23: Materials.Value(`root-${name}-valu3e`, 0.1),
-            noise$TextureDistortion_24: Materials.Value(`root-${name}-4value`, 0.7),
-            math003Value_25: Materials.Value(`root-${name}-valu5e`, 0.4)
+            noise$TextureScale_22: Materials.Value(`root-${name}-value1`, me.noise || 1.6),
+            voronoi$TextureScale_19: Materials.Value(`root-${name}-val2ue`, me.voronoi || 0.410003),
+            noise$TextureDetail_23: Materials.Value(`root-${name}-valu3e`, me.noiseDetail || 1.0),
+            noise$TextureDistortion_24: Materials.Value(`root-${name}-4value`, me.noiseDistortion || 2.0),
+            math003Value_25: Materials.Value(`root-${name}-valu5e`, me.mathValue || 0.4)
         });
 
         var res = {
@@ -252,7 +222,7 @@ export default class CompositeExample extends MaterialMovie {
         me.objects.push(...objs);
         me.objects.push(...me.addLamps());
 
-        await me.buildResources();
+        // await me.buildResources();
     }
     addLamps() {
         var me = this;
@@ -285,12 +255,11 @@ export default class CompositeExample extends MaterialMovie {
             let name = `face-${index}`;
             objects.push({
                 name,
-                type: "ngon-surface",
-                file: `${this.options._dir_path}${path.sep}height_map.json`,
+                type: "plane",
                 scale: {
-                    x: 1,
-                    y: 1,
-                    z: 1
+                    x: 10,
+                    y: 10,
+                    z: 10
                 }
             });
         }

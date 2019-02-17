@@ -260,6 +260,13 @@ export default class Basic {
             return basic._buildMovie(filepath, filename, info, ops);
         });
     }
+    async pause() {
+        await new Promise((res) => {
+            setTimeout(() => {
+                res()
+            }, 5000);
+        })
+    }
     async constructMovie(raw) {
         var me = this;
         var objects = me.objects;
@@ -335,6 +342,9 @@ export default class Basic {
         }
     }
     getComposite() {
+    }
+    getCompositeGroups(){
+        return null;
     }
     getMaterialGroups() {
         return null;

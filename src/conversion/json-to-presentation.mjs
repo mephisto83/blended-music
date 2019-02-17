@@ -197,7 +197,7 @@ export default class JsonToPresentationJson {
         var audio_file = fileName.split('').subset(0, fileName.lastIndexOf('.')).join('') + '.mp3';
 
         var jsonFileName = 'presentation-json-' + fileName + '.json';
-        var blendfile = 'presentation-bl-' + fileName + '.blend';
+        var blendfile = '' + fileName + '.blend';
         var pyfile = 'presentation-py-' + fileName + '.py';
         var batfile = 'presentation-blend-' + fileName + '.bat';
 
@@ -256,7 +256,7 @@ export default class JsonToPresentationJson {
         var cameraCommands = '\r\n' + Template.bindTemplate(cameraTemplate, {
             blender: `${blender}${path.sep}`,
             file: blendfile,
-            output: '//output/' + 'presentation-bl-' + fileName + '/',
+            output: '//output/' + '' + fileName + '/',
             startframe: startFrame,
             endframe,
             camera: camera
@@ -267,7 +267,7 @@ export default class JsonToPresentationJson {
         });
 
         await Util.writeFile(`${outputDirectory}${path.sep}render.py`, renderpy);
-        await Util.ensureDirectoryDeep(outputDirectory, ['output', 'presentation-bl-' + fileName]);
+        await Util.ensureDirectoryDeep(outputDirectory, ['output', '' + fileName]);
 
         var jobResources = ['anim_video_editor.py', 'mat.blend', 'objects.blend'];
         console.log(cameraCommands);
@@ -280,7 +280,7 @@ export default class JsonToPresentationJson {
 
             await Util.copyFile(resourceFilePath, `${outputDirectory}${path.sep}${resource}`)
         }));
-        //  presentation-bl-god_chpn_op10_e01.mid.blend  -P render.py  -x 1 -o //output/presentation-bl-god_chpn_op10_e01.mid/  -s 1 -e 40 -a  -- 1 40 "default_camera"
+        //  god_chpn_op10_e01.mid.blend  -P render.py  -x 1 -o //output/god_chpn_op10_e01.mid/  -s 1 -e 40 -a  -- 1 40 "default_camera"
         // await Util.executeSpawnCmd(`render.bat`, {
         //     detached: true,
         //     cwd: outputDirectory
@@ -325,7 +325,7 @@ export default class JsonToPresentationJson {
                 '-P',
                 'anim_video_editor.py',
                 '--',
-                '\\output\\' + 'presentation-bl-' + fileName + '\\',
+                '\\output\\' + '' + fileName + '\\',
                 endframe,
                 '\\output\\audio\\',
                 Util.fileToFolder(fileName),
@@ -339,7 +339,7 @@ export default class JsonToPresentationJson {
         }
         else {
             if (textureDir) {
-                let tempDir = `${outputDirectory}${path.sep}output${path.sep}presentation-bl-${fileName}`;
+                let tempDir = `${outputDirectory}${path.sep}output${path.sep}${fileName}`;
                 var files = await Util.readDir(tempDir);
                 for (var i = 0; i < files.length; i++) {
                     await Util.copyFile(`${tempDir}${path.sep}${files[i]}`, `${textureDir}${path.sep}${files[i]}`)
@@ -395,7 +395,7 @@ export default class JsonToPresentationJson {
         } = ops;
         
         var jsonFileName = 'presentation-json-' + fileName + '.json';
-        var blendfile = 'presentation-bl-' + fileName + '.blend';
+        var blendfile = '' + fileName + '.blend';
         var pyfile = 'presentation-py-' + fileName + '.py';
         var batfile = 'presentation-blend-' + fileName + '.bat';
 
@@ -450,7 +450,7 @@ export default class JsonToPresentationJson {
         });
 
         if (textureDir) {
-            let tempDir = `${outputDirectory}${path.sep}output${path.sep}presentation-bl-${fileName}${path.sep}`;
+            let tempDir = `${outputDirectory}${path.sep}output${path.sep}${fileName}${path.sep}`;
             var files = await Util.readDir(tempDir);
             for (var i = 0; i < files.length; i++) {
                 await Util.copyFile(`${tempDir}${path.sep}${files[i]}`, `${textureDir}${path.sep}${files[i]}`)
@@ -553,7 +553,7 @@ export default class JsonToPresentationJson {
                 '-x',
                 1,
                 '-o',
-                '//output/' + 'presentation-bl-' + fileName + '/',
+                '//output/' + '' + fileName + '/',
                 '-s',
                 start,
                 '-e',
