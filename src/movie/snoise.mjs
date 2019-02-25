@@ -124,7 +124,7 @@ export default class SNoise extends Basic {
                         y: y / height * scale_y,
                         z: 0
                     });
-                    [].interpolate(0, 5000, u_time => {
+                    [].interpolate(0, Math.min(me.lastFrame, 5000), u_time => {
                         var z = Maths.Vector.lavaLamp({
                             time: u_time / 25,
                             x: (((x / width) - .5) * 3.10),

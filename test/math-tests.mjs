@@ -44,6 +44,7 @@ var tests = [
     test_floor,
     test_vector,
     test_lavaLamp,
+    test_lavaLamp2,
     test_sub];
 
 function test_lavaLamp() {
@@ -95,6 +96,22 @@ function test_dot() {
     var res = Maths.Vector.dot({ a: v, b: b })
     assert.truthy(res, 'didnt give expected value');
     assert.truthy(typeof (res) === 'number', 'not a number');
+}
+
+function test_lavaLamp2() {
+    var width = 100;
+    var height = 100;
+    for (var u_time = 0; u_time < 5000; u_time++) {
+        var x = Math.floor(Math.random() * width);
+        var y = Math.floor(Math.random() * height);
+
+        var z = Maths.Vector.lavaLamp({
+            time: u_time / 25,
+            x: (((x / width) - .5) * 3.10),
+            y: (((y / height) - .5) * 3.10)
+        });
+       
+    }
 }
 
 function test_Snoise() {
