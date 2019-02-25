@@ -132,22 +132,60 @@ export default class VoronoiExtrudeFace extends Basic {
             });
             var faceCount = 10;
             var { faces } = VoronoiWeb.run({ level: faceCount, height: 10, width: 10 });
-            var center = ProceduralNode.Vector.run({ x: 5, y: 5, z: 0 });
-            var sortedFaces = faces.sort((a, b) => {
-                return ProceduralNode.VectorDistance(a.center, center) -
-                    ProceduralNode.VectorDistance(b.center, center);
+
+            var extruded_faces = ProceduralNode.Map.run({
+                collection: faces,
+                function: (face, index) => {
+                    return ProceduralNode.Face.extrude({
+                        face,
+                        scale: .9,
+                        index
+                    });
+                }
             });
 
-            [].interpolate(0, sortedFaces.length, (index) => {
-
-                let name = `track-${index}-${index}`;
+            var facees = ProceduralNode.Flatten.run({ collection: extruded_faces.collection, selector: function (x) { return x.outer } });
+            var { collection } = ProceduralNode.Map.run({
+                collection: facees, function(face) {
+                    var distance = ProceduralNode.Face.distanceBetween({
+                        face,
+                        frontBack: true
+                    });
+                    console.log(distance);
+                    return ProceduralNode.Face.run({
+                        ...face,
+                        collection: face.collection
+                    })
+                }
+            });
+            facees = collection;
+            ProceduralNode.Face.run();
+            var sortedFaces = facees;
+            var ngonsurface = true;
+            if (ngonsurface) {
+                //ngon-surface
+                let name = `track-ngon-surface`;
                 objects.push({
                     name,
-                    type: "ngon",
-                    vertices: [...sortedFaces[index].collection]
+                    type: "ngon-surface",
+                    faces: facees.map(face => {
+                        return face.collection.map(t => ProceduralNode.Vector.array(t));
+                    })
                 });
                 me.createNoteKeyFrame(name, []);
-            });
+            }
+            else {
+                [].interpolate(0, sortedFaces.length, (index) => {
+
+                    let name = `track-${index}-${index}`;
+                    objects.push({
+                        name,
+                        type: "ngon",
+                        vertices: [...sortedFaces[index].collection]
+                    });
+                    me.createNoteKeyFrame(name, []);
+                });
+            }
         }
         me.addLamps();
     }

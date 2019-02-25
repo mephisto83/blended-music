@@ -760,13 +760,16 @@ export class VoronoiWeb extends VoronoiBase {
                     y: res.center.y * sy,
                     z: res.center.z
                 })
-                res.collection = [...res.collection.map(vector => {
+                res.collection = [...res.collection.map((vector, index) => {
+                    if (index === res.collection.length - 1) {
+                        return false;
+                    }
                     return Vector.run({
                         x: vector.x * sx,
                         y: vector.y * sy,
                         z: vector.z
                     })
-                })]
+                })].filter(e => e)
 
                 return res;
             })

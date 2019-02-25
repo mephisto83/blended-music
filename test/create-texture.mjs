@@ -48,7 +48,7 @@ var __dirname = path.resolve(path.dirname(''));
             videoOutputDir: __dirname + `${path.sep}test${path.sep}movies`,
             textureDir:  __dirname + `${path.sep}test${path.sep}textures`,// [PRINT TEXTURE]
             workingDir:  __dirname + `${path.sep}test${path.sep}working`,// [PRINT TEXTURE]
-            movieBuilders: [CompositeExampleMovie],//[MaterialMovie, RaceCarMovie],
+            movieBuilders: [SNoise],//[CompositeExampleMovie,MaterialMovie, RaceCarMovie],
             raceSrc: __dirname + `${path.sep}resources${path.sep}`,
             racetrackSrc: __dirname + `${path.sep}resources${path.sep}`,
             shipFileName: 'Shipwright.0006.blend',

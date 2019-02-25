@@ -10,6 +10,7 @@ import VoronoiFace from '../src/movie/voronoi-face';
 import VoronoiExtrudeFace from '../src/movie/voronoi-extrude-face';
 import Voronoi from '../src/movie/voronoi.mjs';
 import SingleFrameBasic from '../src/movie/single-frame-basic.mjs';
+import SNoise from '../src/movie/snoise.mjs';
 
 var __dirname = path.resolve(path.dirname(''));
 
@@ -52,7 +53,7 @@ var __dirname = path.resolve(path.dirname(''));
             extPyrDir: `D:${path.sep}dev${path.sep}git${path.sep}exr-py-read`,
             textureDir: __dirname + `${path.sep}test${path.sep}textures`,// [PRINT TEXTURE]
             workingDir: __dirname + `${path.sep}test${path.sep}working`,// [PRINT TEXTURE]
-            movieBuilders: [VoronoiExtrudeFace],//[CompositeExampleMovie, MaterialMovie, RaceCarMovie],
+            movieBuilders: [SNoise],//[VoronoiExtrudeFace, CompositeExampleMovie, MaterialMovie, RaceCarMovie],
             raceSrc: __dirname + `${path.sep}resources${path.sep}`,
             racetrackSrc: __dirname + `${path.sep}resources${path.sep}`,
             shipFileName: 'Shipwright.0006.blend',

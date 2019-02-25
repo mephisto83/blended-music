@@ -9,6 +9,8 @@ const OTHER_FEATURES = 'Other features';
 const STATUS_AND_FEATURES = 'Status and features';
 const FILE_A_DISPUTE = 'File a dispute';
 
+const copyrightnotices = "https://www.youtube.com/my_videos_copyright?o=U&ar=2";
+
 export default class YoutubePresentationDefender extends YouTube {
     constructor(directory, credentialDirectory) {
         super(directory, credentialDirectory);
@@ -56,28 +58,31 @@ export default class YoutubePresentationDefender extends YouTube {
 
     async process(directory, outpath) {
         var me = this;
-        await this.clickOn('#avatar-btn');
-        await this.wait();
-        await this.waitFor('yt-formatted-string', YOUTUBE_STUDIO);
-        await this.clickOn('yt-formatted-string', YOUTUBE_STUDIO);
-        await this.wait();
-        await this.waitFor('.ytcp-navigation-drawer', OTHER_FEATURES);
-        await this.hoverOver('#missing-features-item');
-        await this.wait();
-        await this.waitFor('span.ytcp-missing-features-menu', STATUS_AND_FEATURES);
-        await this.clickOn('span.ytcp-missing-features-menu', STATUS_AND_FEATURES);
-        var switchedPage = this.switchToNewPage();
-        await switchedPage;
-        console.log('page has switched');
+        // await this.clickOn('#avatar-btn');
+        // await this.wait();
+        // await this.waitFor('yt-formatted-string', YOUTUBE_STUDIO);
+        // await this.clickOn('yt-formatted-string', YOUTUBE_STUDIO);
+        // await this.wait();
+        // await this.waitFor('.ytcp-navigation-drawer', OTHER_FEATURES);
+        // await this.hoverOver('#missing-features-item');
+        // await this.wait();
+        // await this.waitFor('span.ytcp-missing-features-menu', STATUS_AND_FEATURES);
+        // await this.clickOn('span.ytcp-missing-features-menu', STATUS_AND_FEATURES);
+        // var switchedPage = this.switchToNewPage();
+        // await switchedPage;
+        // console.log('page has switched');
+        await this.open(copyrightnotices);
         await this.wait();
         await this.clickOn('span', 'VIDEO MANAGER');
         await this.wait();
         await this.clickOn('span', 'Copyright Notices');
         await this.wait();
+        console.log('is there a Includes copyrighted content text')
         if (await this.isThere('.yt-uix-sessionlink', 'Includes copyrighted content')) {
             await this.clickOn('.yt-uix-sessionlink', 'Includes copyrighted content')
+            console.log('this is ')
             await this.wait();
-            switchedPage = this.switchToNewPage();
+            var switchedPage = this.switchToNewPage();
             await this.wait();
             console.log('is there a file a dispute linke');
             console.log('yepps');

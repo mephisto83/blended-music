@@ -5,6 +5,7 @@
   "main": "index.js",
   "@std/esm": "cjs",
   "scripts": {
+    "math": "node --experimental-modules ./test/math-tests.mjs",
     "test": "node --experimental-modules ./test/convert-midi.mjs",
     "texture": "node --experimental-modules ./test/create-texture.mjs",
     "upstairs": "node --experimental-modules ./test/upstairs.mjs",
