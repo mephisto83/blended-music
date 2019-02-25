@@ -130,7 +130,7 @@ export default class SNoise extends Basic {
                             x: (((x / width) - .5) * 3.10),
                             y: (((y / height) - .5) * 3.10)
                         });
-                        console.log(`z: ${z}, u_time: ${u_time}, x: ${(x / width * 3)}, y: ${(y / height * 3)}`);
+                        // console.log(`z: ${z}, u_time: ${u_time}, x: ${(x / width * 3)}, y: ${(y / height * 3)}`);
                         me.createNoteKeyFrame(name, {
                             z: 1 - z
                         }, 1 * (u_time + 1));
