@@ -86,6 +86,13 @@ export default class Util {
         })
     }
 
+    static async writeJsonToFileSync(filePath, json) {
+
+        console.log('writing json to file');
+        console.log(filePath);
+        fs.writeFileSync(filePath, JSON.stringify(json));
+    }
+
     static async writeFile(filePath, data) {
         return await new Promise((resolve, fail) => {
             fs.writeFile(filePath, data, function (err, data) {

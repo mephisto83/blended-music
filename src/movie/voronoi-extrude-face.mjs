@@ -145,32 +145,42 @@ export default class VoronoiExtrudeFace extends Basic {
             });
 
             var facees = ProceduralNode.Flatten.run({ collection: extruded_faces.collection, selector: function (x) { return x.outer } });
-            var { collection } = ProceduralNode.Map.run({
-                collection: facees, function(face) {
-                    var distance = ProceduralNode.Face.distanceBetween({
-                        face,
-                        frontBack: true
-                    });
-                    console.log(distance);
-                    return ProceduralNode.Face.run({
-                        ...face,
-                        collection: face.collection
-                    })
-                }
-            });
-            facees = collection;
-            ProceduralNode.Face.run();
             var sortedFaces = facees;
             var ngonsurface = true;
             if (ngonsurface) {
                 //ngon-surface
                 let name = `track-ngon-surface`;
+                var vertices = [];
+                var _faces = facees.map(face => {
+                    console.log(face);
+                    return face.collection.map(t => {
+                        console.log(t);
+                        var vector = ProceduralNode.Vector.array(t);
+                        var vectorIndex = vertices.findIndex(v => {
+                            if (v.length === vector.length) {
+                                for (var i = 0; i < v.length; i++) {
+                                    if (v[i] !== vector[i]) {
+                                        return false;
+                                    }
+                                }
+                                return true;
+                            }
+                            return false;
+                        });
+                        if (vectorIndex !== -1) {
+                            return vectorIndex;
+                        }
+                        else {
+                            vertices.push(vector);
+                            return vertices.length - 1;
+                        }
+                    });
+                });
                 objects.push({
                     name,
                     type: "ngon-surface",
-                    faces: facees.map(face => {
-                        return face.collection.map(t => ProceduralNode.Vector.array(t));
-                    })
+                    vertices,
+                    faces: _faces
                 });
                 me.createNoteKeyFrame(name, []);
             }

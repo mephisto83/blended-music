@@ -45,8 +45,10 @@ var tests = [
     test_vector,
     test_lavaLamp,
     test_lavaLamp2,
-    test_sub];
-
+    test_sub,
+    test1];
+    
+    
 function test_lavaLamp() {
     var res = Maths.Vector.lavaLamp({
         time: .3,
@@ -189,9 +191,9 @@ function test1() {
             });
         }
     });
-    // console.log(res);
+     console.log(res);
     var facees = Maths.Flatten.run({ collection: res.collection, selector: function (x) { return x.outer } });
-    console.log(facees.length);
+    console.log(facees);
 
     var { collection } = Maths.Map.run({
         collection: facees, function(face) {
@@ -199,13 +201,14 @@ function test1() {
                 face,
                 frontBack: true
             });
-            console.log(distance);
+            // console.log(distance);
             return Maths.Face.run({
                 ...face,
                 collection: face.collection
             })
         }
     });
+    // console.log(collection);
 }
 tests.map(tes => {
     try {
