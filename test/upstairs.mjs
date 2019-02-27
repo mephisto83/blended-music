@@ -6,6 +6,7 @@ import Basic from '../src/movie/basic.mjs';
 import RaceCarMovie from '../src/movie/racetrack';
 import SingleFrameBasic from '../src/movie/single-frame-basic.mjs';
 import SNoise from '../src/movie/snoise';
+import SNoise_points from '../src/movie/snoise_points';
 import VoronoiFaces from '../src/movie/voronoi-face.mjs'
 
 (async function () {
@@ -110,7 +111,7 @@ import VoronoiFaces from '../src/movie/voronoi-face.mjs'
                     inputDir: __dirname + `${path.sep}${projects}${path.sep}raw_json`,
                     outputDir: __dirname + `${path.sep}${projects}${path.sep}movie_json`,
                     videoOutputDir: __dirname + `${path.sep}${projects}${path.sep}movies`,
-                    movieBuilders: [SNoise, VoronoiFaces, RaceCarMovie, Basic, SingleFrameBasic],
+                    movieBuilders: [SNoise_points, SNoise, VoronoiFaces, RaceCarMovie, Basic, SingleFrameBasic],
                     racetrackSrc: __dirname + `${path.sep}resources${path.sep}`,
                     raceSrc: ['//192.168.1.113', 'Public', 'cannon-farm'].join(path.sep) + path.sep,
                     shipFileName: 'Shipwright.0006.blend',
