@@ -29,8 +29,8 @@ export default class SNoise_points extends SNoise {
 
         if (raw.tracks) {
 
-            var width = 50;
-            var height = 50;
+            var width = 100;
+            var height = 100;
             var scale_x = 10;
             var scale_y = 10;
             var faces = [];
