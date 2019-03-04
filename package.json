@@ -6,9 +6,9 @@
   "@std/esm": "cjs",
   "scripts": {
     "math": "node --experimental-modules ./test/math-tests.mjs",
-    "test": "node --experimental-modules ./test/convert-midi.mjs",
+    "test": "node --max_old_space_size=8192 --experimental-modules ./test/convert-midi.mjs",
     "texture": "node --experimental-modules ./test/create-texture.mjs",
-    "upstairs": "node --experimental-modules ./test/upstairs.mjs",
+    "upstairs": "node --max_old_space_size=8192 --experimental-modules ./test/upstairs.mjs",
     "binstall": "node --experimental-modules ./test/install.mjs",
     "farm": "node --experimental-modules ./test/midi-farm.mjs",
     "random": "node --experimental-modules ./test/random.mjs",
