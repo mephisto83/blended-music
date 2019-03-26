@@ -4,20 +4,20 @@ import Materials from './materials.mjs';
 import SNoise from './snoise';
 
 import * as Maths from '../tools/math'
-export default class SNoise_points extends SNoise {
+export default class PNoise extends SNoise {
     constructor() {
         super();
     }
     static info() {
         return {
-            name: 'S Noise Points',
-            version: '0.0.1'
+            name: 'P Noise Points',
+            version: '0.0.12'
         }
     }
 
     static async buildMovie(filepath, filename, info, ops) {
         Maths.Seed(Math.random());
-        var basic = new SNoise_points();
+        var basic = new PNoise();
 
         return Promise.resolve().then(() => {
             return basic._buildMovie(filepath, filename, info, ops);
@@ -31,8 +31,8 @@ export default class SNoise_points extends SNoise {
 
         if (raw.tracks) {
 
-            var width = 100;
-            var height = 100;
+            var width = 250;
+            var height = 250;
             var scale_x = 10;
             var scale_y = 10;
             var faces = [];
@@ -68,15 +68,22 @@ export default class SNoise_points extends SNoise {
                 var index = 0;
                 [].interpolate(0, width, (x) => {
                     [].interpolate(0, height, (y) => {
-                        var z = Maths.Vector.lavaLamp({
-                            time: u_time / 25,
-                            x: (((x / width) - .5) * 3.10),
-                            y: (((y / height) - .5) * 3.10)
+                        var z = Maths.Vector.pnoise({
+                            vector: {
+                                x: (((x / width) - .5) * 3) + u_time / width,
+                                y: (((y / height) - .5) * 3)
+                            }
+                        });
+                        var z2 = Maths.Vector.pnoise({
+                            vector: {
+                                x: (((x / width) - .5) * 15) + u_time / width,
+                                y: (((y / height) - .5) * 15)
+                            }
                         });
 
                         _vertices.push({
                             index: index,
-                            position: [vertices[index][0], vertices[index][1], 1 - z]
+                            position: [vertices[index][0], vertices[index][1], z + (z2 / 5)]
                         });
                         index++;
                     })

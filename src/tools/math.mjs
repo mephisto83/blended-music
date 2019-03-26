@@ -1,6 +1,9 @@
 import * as rando from './random.mjs';
 import SNoise from './noise';
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
+export function Seed(f) {
+    SNoise.noise.seed(f);
+}
 export class Lerp {
     static edge(ops) {
         if (!ops) {
@@ -457,6 +460,34 @@ export const Types = {
     FACE: 'FACE',
     EDGE: 'EDGE'
 }
+
+
+
+export class Blend {
+    static Multiply(a, b) {
+        return a * b;
+    }
+    static Screen(a, b) {
+        return 1 - (1 - a) * (1 - b);
+    }
+    static Overlay(a, b) {
+        if (a < .5) {
+            return 2 * a * b;
+        }
+        return 1 - (2 * (1 - a) * (1 - b));
+    }
+    static SoftLight(a, b) {
+        if (b < .5) {
+            return (2 * a * b + (a * a) * (1 - 2 * b));
+        }
+
+        return (2 * a * (1 - b)) + (Math.sqrt(a) * (2 * b - 1))
+    }
+    static SoftLightPegtop(a, b) {
+        return ((1 - (2 * b)) * a * a) + (2 * b * a);
+    }
+}
+
 export class Vector {
     constructor(x, y, z, w) {
         this._type = Types.VECTOR;
@@ -600,117 +631,12 @@ export class Vector {
         var { vector } = ops;
         return SNoise.noise.simplex2(vector.x, vector.y);
     }
-    static _snoise(ops) {
+
+    static pnoise(ops) {
         var { vector } = ops;
-        var v = vector;
-        const C = Vector.run({
-            x: 0.211324865405187,  // (3.0-sqrt(3.0))/6.0
-            y: 0.366025403784439,  // 0.5*(sqrt(3.0)-1.0)
-            z: -0.577350269189626,  // -1.0 + 2.0 * C.x
-            w: 0.024390243902439
-        }); // 1.0 / 41.0
-
-        var i = Vector.floor({
-            vector: Vector.add({
-                collection: [v], factor: Vector.dot({ a: v, b: C.yy })
-            })
-        });
-
-        //vec2 x0 = v -   i + dot(i, C.xx);
-        var x0 = Vector.sub({
-            collection: [v,
-                Vector.add({
-                    collection: [
-                        Vector.run({
-                            value: Vector.dot({ a: i, b: C.xx })
-                        }),
-                        i
-                    ]
-                })
-            ]
-        })
-
-        //vec2 i1;
-        // i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
-        var i1;
-        if (x0.x > x0.y) {
-            i1 = Vector.run({ x: 1 });
-        }
-        else {
-            i1 = Vector.run({ y: 1 });
-        }
-        // vec4 x12 = x0.xyxy + C.xxzz;
-        var x12 = Vector.add({ collection: [x0.xyxy, C.xxzz] });
-
-        //x12.xy -= i1;
-        var temp = Vector.sub({ collection: [x12, i1] });
-        x12.x = temp.x;
-        x12.y = temp.y;
-
-        //i = mod289(i); // Avoid truncation effects in permutation
-        i = Vector.mod289({ vector: i });
-
-        //vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
-        //+ i.x + vec3(0.0, i1.x, 1.0 ));
-        var p_i = Vector.add({ collection: [Vector.run({ value: i.y }), Vector.run({ y: i1.y, z: 1 })] })
-        var permute_i = Vector.permute({ vector: p_i });
-        var p_i2 = Vector.add({ collection: [Vector.run({ x: i.x }), Vector.run({ x: 0, y: i1.x, z: 1 })] })
-        var perm = Vector.add({ collection: [permute_i, p_i2] });
-
-        var p = Vector.permute({ vector: perm });
-        // vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
-        var cmp1 = .5 - Vector.dot({ a: x0, b: x0 });
-        var cmp2 = .5 - Vector.dot({ a: x12.xy, b: x12.xy });
-        var cmp3 = .5 - Vector.dot({ a: x12.zw, b: x12.zw });
-
-        var m = Vector.run({
-            x: Math.max(cmp1, 0),
-            y: Math.max(cmp2, 0),
-            z: Math.max(cmp3, 0)
-        });
-        // m = m*m ;
-        // m = m*m ;
-        m = Vector.mul({ a: m, b: m });
-        m = Vector.mul({ a: m, b: m });
-
-        //vec3 x = 2.0 * fract(p * C.www) - 1.0; 
-        var pCwww = Vector.mul({ a: p, b: C.www });
-        var fract_ = Vector.fract({ vector: pCwww });
-        var x = Vector.sub({
-            factor: 1,
-            vector: Vector.mul({
-                factor: 2,
-                a: fract_
-            })
-        });
-        // vec3 h = abs(x) - 0.5;
-        var h = Vector.sub({ factor: .5, vector: Vector.abs({ vector: x }) });
-
-        // vec3 ox = floor(x + 0.5);
-        var ox = Vector.floor({ vector: Vector.add({ vector: x, factor: .5 }) });
-
-        // vec3 a0 = x - ox;
-        var a0 = Vector.sub({ collection: [x, ox] });
-
-        //m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
-        var part1 = Vector.mul({ a: a0, b: a0 });
-        var part2 = Vector.mul({ a: h, b: h });
-        var part12 = Vector.add({ collection: [part1, part2] });
-        var part3 = Vector.mul({ a: part12, factor: -.85373472095314 });
-        var bigpart = Vector.add({ factor: 1.79284291400159, vector: part3 });
-        m = Vector.mul({ a: m, b: bigpart });
-        // vec3 g;
-        var g = Vector.run({});
-        // g.x  = a0.x  * x0.x  + h.x  * x0.y;
-        g.x = a0.x * x0.x + h.x * x0.y;
-        // g.yz = a0.yz * x12.xz + h.yz * x12.yw;
-        g.yz = Vector.add({
-            collection: [Vector.mul({ a: a0.yz, b: x12.xz }), Vector.mul({ a: h.yz, b: x12.yw })]
-        });
-
-        //  return 130.0 * dot(m, g);
-        return 130 * Vector.dot({ a: m, b: g });
+        return SNoise.noise.perlin2(vector.x, vector.y);
     }
+
     static permute(ops) {
         var { vector } = ops;
         var v1 = Vector.mul({
@@ -842,7 +768,8 @@ export class Vector {
             z: vector.z / divisor
         })
     }
-    static lavaP1(ops) {
+
+    static plavaLamp(ops) {
         var { time, x, y } = ops;
         var u_time = time;
         var DF = 0;
@@ -852,15 +779,17 @@ export class Vector {
             y: y
         });
         var vel = Vector.run({ x: u_time * .01, y: u_time * .01 });
-        DF += (Vector.snoise({
+        DF += Vector.pnoise({
             vector: Vector.add({
                 collection: [
                     pos,
                     vel
                 ]
             })
-        }) * .25) + .25;
+        }) * .25 + .25;
 
+        // Add a random position
+        // a = pnoise(pos * vec2(cos(u_time * 0.15), sin(u_time * 0.1)) * 0.1) * 3.1415;
         var part1 = Vector.mul({
             a: pos,
             b: Vector.mul({
@@ -872,22 +801,24 @@ export class Vector {
             })
         });
 
-        a = Vector.snoise({ vector: part1 }) * 3.1415;
-
+        a = Vector.pnoise({ vector: part1 }) * 3.1415;
+        // vel = vec2(cos(a), sin(a));
         vel = Vector.run({
             x: Math.cos(a),
             y: Math.sin(a)
         });
-        // DF += snoise(pos + vel) * .25 + .25;
+        // DF += pnoise(pos + vel) * .25 + .25;
         var posvel = Vector.add({
             collection: [pos, vel]
         });
-        DF += Vector.snoise({ vector: posvel }) * .25 + .25;
+        DF += Vector.pnoise({ vector: posvel }) * .25 + .25;
 
-        var z = Vector.smoothstep(.5, .6, Vector.fract({ value: DF }));
-
+        // color = vec3(smoothstep(.7, .75, fract(DF)));
+        // = vec3(smoothstep(.7, .75, fract(DF)));
+        var z = Vector.smoothstep(.7, .75, Vector.fract({ value: DF }));
         return z;
     }
+
     static lavaLamp(ops) {
         var { time, x, y } = ops;
         var u_time = time;
