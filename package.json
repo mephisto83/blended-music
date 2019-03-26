@@ -8,7 +8,7 @@
     "math": "node --experimental-modules ./test/math-tests.mjs",
     "test": "node --experimental-modules ./test/convert-midi.mjs",
     "texture": "node --experimental-modules ./test/create-texture.mjs",
-    "upstairs": "node --experimental-modules ./test/upstairs.mjs",
+    "upstairs": "node --max-old-space-size=16000 --experimental-modules ./test/upstairs.mjs",
     "binstall": "node --experimental-modules ./test/install.mjs",
     "farm": "node --experimental-modules ./test/midi-farm.mjs",
     "random": "node --experimental-modules ./test/random.mjs",
