@@ -18,6 +18,9 @@ function cleanName(name) {
 export default class MaterialReader {
 
     static async  readMaterial(filePath, outpath, className) {
+        console.log(filePath)
+        console.log(outpath)
+        console.log(className)
         className = className || 'DefaultMaterialCls';
         var json = await Util.readJson(filePath);
         var illegalChars = '.- +<>|(){}[]';
@@ -52,7 +55,7 @@ export default class MaterialReader {
             }
 
             var propSets = _arguments.map((arg, aindex) => {
-                return `material.${arg} = ${arg}_${aindex};
+                return `material.${arg} = ${arg};
                 `
             }).join('');
 
@@ -70,7 +73,7 @@ export default class MaterialReader {
                 links,
                 nodes, defaultInputs
             }, null, 2)}
-                return material;
+                return Layout.process(material);
             }
             `;
 
@@ -247,7 +250,7 @@ export default class MaterialReader {
                     }
                 })]
             }, null, 2)}
-                return material;
+                return Layout.process(material);
             }
             `;
 
@@ -256,6 +259,7 @@ export default class MaterialReader {
         `);
         var grouptemplate = `
         import Materials from '../materials';
+        import Layout from '../../layout/graphlayout';
 export default class ${className} extends Materials {
     constructor(name) {
         super(name);

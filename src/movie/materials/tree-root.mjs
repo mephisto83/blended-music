@@ -1938,7 +1938,7 @@ export default class TreeRoot extends Materials {
         }
       ]
     }
-    return material;
+    return Layout.process(material);
   }
 
 }

@@ -5,6 +5,7 @@
   "main": "index.js",
   "@std/esm": "cjs",
   "scripts": {
+    "layout": "node  --experimental-modules ./test/test-layout.mjs",
     "math": "node --experimental-modules ./test/math-tests.mjs",
     "test": "node --max_old_space_size=8192 --experimental-modules ./test/convert-midi.mjs",
     "texture": "node --experimental-modules ./test/create-texture.mjs",
@@ -39,7 +40,8 @@
     "jsmidgen": "^0.1.5",
     "midi-file-parser": "^1.0.0",
     "puppeteer": "^1.10.0",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "webcola": "^3.3.9"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.1.6",

@@ -1,7 +1,14 @@
+import Layout from "../layout/graphlayout";
+
 export default class Materials {
     constructor(name) {
         this.name = name;
         this.type = null;
+        this.location = { x: 0, y: 0 };
+        this.dimensions = {
+            width: 200,
+            height: 200
+        }
     }
     animate(animation) {
         this.animation = animation;
@@ -35,6 +42,50 @@ export default class Materials {
             Background: "ShaderNodeBackground"
         }
     }
+    static Reroute(name) {
+        var something =
+        {
+            "child_def": 4,
+            "dimensions": {
+                "height": 16,
+                "width": 16
+            },
+            "id": 4,
+            "inputs": [
+                {
+                    "default_value": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "name": "Input",
+                    "socket_index": 0,
+                    "type": "NodeSocketColor"
+                }
+            ],
+            "location": {
+                "x": -119.59759521484375,
+                "y": 718.4248046875
+            },
+            "name": "Reroute",
+            "options": {},
+            "outputs": [
+                {
+                    "default_value": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "name": "Output",
+                    "socket_index": 0,
+                    "type": "NodeSocketColor"
+                }
+            ],
+            "type": "NodeReroute"
+        };
+    }
     static CompositeOutput(name, image) {
         var composite = new Materials(name);
         composite.type = Materials.Types().CompositeOutput;
@@ -46,9 +97,9 @@ export default class Materials {
         material.type = Materials.Types().Output;
         material.surface = surface;
 
-        return material;
+        return Layout.processMat(material);
     }
-    
+
     static StandardOut(material) {
         if (material && material.outputIndexes) {
             if (material.outputIndexes['Surface']) {

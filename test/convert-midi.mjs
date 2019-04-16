@@ -13,6 +13,7 @@ import SingleFrameBasic from '../src/movie/single-frame-basic.mjs';
 import SNoise from '../src/movie/snoise.mjs';
 import SNoise_points from '../src/movie/snoise_points.mjs';
 import PNoise from '../src/movie/pnoise';
+import BasicHexField from '../src/movie/basic_hexfield.mjs';
 
 var __dirname = path.resolve(path.dirname(''));
 
@@ -55,7 +56,7 @@ var __dirname = path.resolve(path.dirname(''));
             extPyrDir: `D:${path.sep}dev${path.sep}git${path.sep}exr-py-read`,
             textureDir: __dirname + `${path.sep}test${path.sep}textures`,// [PRINT TEXTURE]
             workingDir: __dirname + `${path.sep}test${path.sep}working`,// [PRINT TEXTURE]
-            movieBuilders: [VoronoiExtrudeFace],//[VoronoiExtrudeFace, PNoise, SNoise_points,  CompositeExampleMovie, MaterialMovie, RaceCarMovie],
+            movieBuilders: [BasicHexField],//[VoronoiExtrudeFace, PNoise, SNoise_points,  CompositeExampleMovie, MaterialMovie, RaceCarMovie],
             raceSrc: __dirname + `${path.sep}resources${path.sep}`,
             racetrackSrc: __dirname + `${path.sep}resources${path.sep}`,
             shipFileName: 'Shipwright.0006.blend',
