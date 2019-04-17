@@ -50,15 +50,31 @@ export default class BasicHexField extends Basic {
         var matNames = HexForceField.MaterialNames();
         var material = "hexa_mtl_";// matNames[materialIndex % matNames.length];
         var scatmat = "scatmat";
-        var hexmat = HexForceFieldSimple.HexaMat(material);
+        var hexmat = HexForceFieldSimple.HexaMat(material, {
+            size: Materials.Value(name + "hex_size", 0.8),
+            scale: Materials.Value(name + "hex_scale", 18.5),
+            blend: Materials.Value(name + "hex_blend", .01),
+            random: Materials.Value(name + "hex_random", 1),
+            rotate: Materials.Value(name + "hex_rotate", 1)
+        });
         var scatField = ScatterField.HexForceFieldMat(
-            Materials.Value('scat_field', 2),
+            Materials.Value('scat_field', 2.6),
             Materials.Custom(
                 `hexmat`,
                 hexmat.out(Materials.StandardOut(hexmat))
             ),
-            Materials.Value('scroll_z', 0),
-            Materials.Value('scroll_wave', -.30)
+            Materials.Value('scroll_z', 1).animate([].interpolate(0, 250, x => {
+                return {
+                    frame: x,
+                    value: Math.cos(x / 10),
+                }
+            })),
+            Materials.Value('scroll_wave', -1).animate([].interpolate(0, 250, x => {
+                return {
+                    frame: x,
+                    value: -(((Math.cos(x / 10) + 1) / 2) * 1.2) + .2,
+                }
+            }))
         );
         var final_mat = Materials.Output(`material-${name}`,
             Materials.Custom(
