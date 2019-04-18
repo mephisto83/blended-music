@@ -14,7 +14,7 @@ export default class BasicHexField extends Basic {
     static info() {
         return {
             name: 'Basic Hex',
-            version: '0.0.17'
+            version: '0.0.22'
         }
     }
     renderEngine() {
@@ -32,24 +32,45 @@ export default class BasicHexField extends Basic {
     async constructMovie(raw) {
         var me = this;
         var objects = me.objects;
-        let name = "cubue-1";
-        objects.push({
-            name,
-            type: "plane"
-        });
-        let keyframe = me.getKeyFrame(1);
-        let note_frame = me.createNoteKeyFrame(name);
-        keyframe.objects.push(note_frame);
-
+        if (raw.tracks) {
+            raw.tracks.filter(track => {
+                return !track.isPercussion
+            }).forEach((track, track_index) => {
+                if (track && track.notes) {
+                    var trackStart = track.startTime;
+                    track.notes.forEach((note, note_index) => {
+                        let name = `track-${track_index}-${note.name}-${note_index}`;
+                        objects.push({
+                            name,
+                            type: "plane"
+                        });
+                        let keyframe = me.getKeyFrame(1);
+                        var trackStart = track.startTime;
+                        let note_frame = me.createNoteKeyFrame(note, name, { trackStart, trackCount: raw.tracks.length, track_index });
+                        keyframe.objects.push(note_frame);
+                    });
+                }
+            });
+        }
+        else {
+            log(`no tracks found`)
+        }
         me.addLamps();
     }
 
-
-    createNoteKeyFrame(name) {
+    createNoteKeyFrame(note, name, ops) {
         var me = this;
-        var matNames = HexForceField.MaterialNames();
+        ops = ops || { trackCount: 1, track_index: 0 };
+        var y_ = me.toTimeToPosition(note.time);
+        var x_ = me.midiToDimension(note.midi);
+        var frame = me.toTimeToFrames(note.time);
+        var endframe = me.toTimeToFrames(note.time + note.duration);
+        var width = me.toTimeToDimension(note.duration);// (ops.trackCount / (ops.trackCount || 1)) * .5;
+        var dim = width || me.toTimeToDimension(note.duration);
+        var x_offset = (.5 * 2) * ops.track_index;
+        var palette = me.colorPalette()[ops.track_index] || [1, 0, 0];
+
         var material = "hexa_mtl_";// matNames[materialIndex % matNames.length];
-        var scatmat = "scatmat";
         var hexmat = HexForceFieldSimple.HexaMat(material, {
             size: Materials.Value(name + "hex_size", 0.8),
             scale: Materials.Value(name + "hex_scale", 18.5),
@@ -63,13 +84,13 @@ export default class BasicHexField extends Basic {
                 `hexmat`,
                 hexmat.out(Materials.StandardOut(hexmat))
             ),
-            Materials.Value('scroll_z', 1).animate([].interpolate(0, 250, x => {
+            Materials.Value('scroll_z', 1).animate([].interpolate(frame, endframe, x => {
                 return {
                     frame: x,
                     value: Math.cos(x / 10),
                 }
             })),
-            Materials.Value('scroll_wave', -1).animate([].interpolate(0, 250, x => {
+            Materials.Value('scroll_wave', -1).animate([].interpolate(frame, endframe, x => {
                 return {
                     frame: x,
                     value: -(((Math.cos(x / 10) + 1) / 2) * 1.2) + .2,
@@ -83,15 +104,17 @@ export default class BasicHexField extends Basic {
             )
         );
         final_mat.blend_method = 'ADD';
+
         var res = {
             name: name,
             position: {
-                y: 0,
-                x: 0,
-                z: 0
+                y: y_ + dim,
+                x: (x_ + x_offset),
+                z: .5,
             },
             materialConfig: final_mat,
-            scale: { x: 10, y: 10, z: 1 }
+            scale: { x: width, y: dim, z: 1 * (note.velocity || 1) },
+            rotation: { x: 0, y: 0, z: 0 }
         }
 
         return res;
