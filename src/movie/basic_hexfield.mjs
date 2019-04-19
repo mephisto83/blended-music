@@ -14,7 +14,7 @@ export default class BasicHexField extends Basic {
     static info() {
         return {
             name: 'Basic Hex',
-            version: '0.0.22'
+            version: '0.0.23'
         }
     }
     renderEngine() {
@@ -87,13 +87,13 @@ export default class BasicHexField extends Basic {
             Materials.Value('scroll_z', 1).animate([].interpolate(frame, endframe, x => {
                 return {
                     frame: x,
-                    value: Math.cos(x / 10),
+                    value: Math.cos(x - frame / 10),
                 }
             })),
             Materials.Value('scroll_wave', -1).animate([].interpolate(frame, endframe, x => {
                 return {
                     frame: x,
-                    value: -(((Math.cos(x / 10) + 1) / 2) * 1.2) + .2,
+                    value: -(((Math.cos(x - frame / 10) + 1) / 2) * 1.2) + .2,
                 }
             }))
         );
