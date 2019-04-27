@@ -15,7 +15,7 @@ export default class CompositeExample extends MaterialMovie {
     static info() {
         return {
             name: 'Composite Example Movie',
-            version: '0.0.1'
+            version: '0.0.2'
         }
     }
 
@@ -120,6 +120,7 @@ export default class CompositeExample extends MaterialMovie {
             noiseDistortion: .97,
             mathValue: 0.64
         });
+        ///
         var files = ['alt_root_0', 'alt_root_1', 'alt_root_2'].map(t => `${this.options.workingDir}${path.sep}output${path.sep}${t}${path.sep}0001.exr`);
         var height_map_file = "height_map.json";
         var operations = {
